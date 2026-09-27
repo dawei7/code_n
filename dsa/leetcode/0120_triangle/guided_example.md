@@ -137,6 +137,27 @@ Row 0 (Apex):                11
 | 2 | 1 | 1 | 4 | $\min(DP[1]=6, DP[2]=10)$ | 6 | $4 + 6 = 10$ |
 | **3** | **0** | **0** | **2** | **$\min(DP[0]=9, DP[1]=10)$** | **9** | **$2 + 9 = 11$ (Result)** |
 
+Because $N = 4$, the full path space is small enough to enumerate exhaustively,
+which is exactly the check the DP is meant to avoid performing. Every apex-to-base
+walk is listed, with its column indices, and only one of the eight sums is
+minimal:
+
+| Apex-to-base path | Column indices $(c_0, c_1, c_2, c_3)$ | Path sum |
+|:---|:---|:---:|
+| $2 \to 3 \to 6 \to 4$ | $(0, 0, 0, 0)$ | $15$ |
+| $2 \to 3 \to 6 \to 1$ | $(0, 0, 0, 1)$ | $12$ |
+| $2 \to 3 \to 5 \to 1$ | $(0, 0, 1, 1)$ | $\mathbf{11}$ |
+| $2 \to 3 \to 5 \to 8$ | $(0, 0, 1, 2)$ | $18$ |
+| $2 \to 4 \to 5 \to 1$ | $(0, 1, 1, 1)$ | $12$ |
+| $2 \to 4 \to 5 \to 8$ | $(0, 1, 1, 2)$ | $19$ |
+| $2 \to 4 \to 7 \to 8$ | $(0, 1, 2, 2)$ | $21$ |
+| $2 \to 4 \to 7 \to 3$ | $(0, 1, 2, 3)$ | $16$ |
+
+The DP visits only the ten cells of the triangle and still lands on $\mathbf{11}$,
+while enumeration needs $2^{N-1} = 8$ walks here and $2^{N-1}$ in general. The two
+paths that tie at $12$ also show why the answer is a minimum over $N$ candidate
+endpoints rather than a unique witness: no single bottom cell can be trusted.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -151,6 +172,17 @@ Row 0 (Apex):                11
 
 - **Greedy Choice Failure:** Making the greedy choice at each step from the top: $2 \to \min(3, 4) = 3 \to \min(6, 5) = 5 \to \min(1, 8) = 1$ happens to give 11 here, but if the bottom row was `[100, 1, 8, 0]`, a greedy step might pick the wrong branch early and miss an extremely small terminal value. Dynamic programming explores all options.
 - **Top-Down Edge Cases:** In top-down DP, index $0$ has only parent $0$, and index $r$ has only parent $r-1$. Bottom-up DP eliminates all boundary special-casing.
+
+The four plausible strategies differ in direction, memory, and index discipline;
+on $[[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]$ three of them are correct and one is
+correct only by luck:
+
+| Strategy | Direction | Auxiliary space for $N = 4$ | Behaviour on this instance |
+|:---|:---|:---|:---|
+| Exhaustive enumeration | all apex-to-base walks | $O(N)$ recursion depth | Walks $2^{3} = 8$ paths to confirm $11$; $2^{N-1}$ in general |
+| Top-down memoized DP | apex to base | $10$ memo cells (one per triangle cell) plus $O(N)$ stack | Correct, but the left border $c = 0$ and right border $c = r$ each have a single parent and need explicit guards |
+| Bottom-up rolling array (used above) | base to apex | a single vector of $4$ entries | Every cell has two children, and `dp[0]` already equals $11$ with no final scan |
+| Greedy descent | apex to base, local minimum only | $O(1)$ | Follows $2 \to 3 \to 5 \to 1 = 11$ and matches the optimum here, so this instance gives no evidence for greedy; only the DP argument does |
 
 ---
 

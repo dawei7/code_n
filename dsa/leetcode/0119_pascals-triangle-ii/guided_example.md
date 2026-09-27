@@ -103,6 +103,20 @@ Target $k = 3$:
    $$
 Assembled in 4 steps: `[1, 3, 3, 1]`.
 
+Each multiplicative step consumes one ratio and one already-known term, so the
+whole row is a chain of $k$ divisions rather than a triangular sum:
+
+| Step $i$ | Ratio $\frac{k-i+1}{i}$ for $k = 3$ | Previous term $C(3,i-1)$ | Product | New term $C(3,i)$ |
+|:---:|:---:|:---:|:---:|:---:|
+| $1$ | $\frac{3-1+1}{1} = 3$ | $1$ | $1 \times 3 = 3$ | $3$ |
+| $2$ | $\frac{3-2+1}{2} = 1$ | $3$ | $3 \times 1 = 3$ | $3$ |
+| $3$ | $\frac{3-3+1}{3} = \frac{1}{3}$ | $3$ | $3 \times \frac{1}{3} = 1$ | $1$ |
+
+The third row is the informative one: the ratio is a proper fraction, yet the
+product is never fractional, because $C(3,2) \cdot \frac{1}{3} = 3 \cdot
+\frac{1}{3}$ clears exactly. Multiplying before dividing is what keeps every
+intermediate value an integer.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -128,7 +142,19 @@ Assembled in 4 steps: `[1, 3, 3, 1]`.
 
 ## 6. Traps This Instance Exposes
 
-- **Forward Iteration Bug in Single Array:** If $j$ is iterated forward ($1 \dots i$), $\text{row}[1]$ becomes $2$, and then $\text{row}[2] = \text{row}[2] + \text{row}[1]$ reads the *new* value $2$ instead of the old value $1$, producing corrupted outputs like `[1, 3, 4, 1]`. Backward iteration is mandatory.
+- **Forward Iteration Bug in Single Array:** If $j$ is iterated forward ($1 \dots i$), $\text{row}[1]$ becomes $2$ at step $i = 2$, and then $\text{row}[2] = \text{row}[2] + \text{row}[1]$ reads the *new* value $2$ instead of the previous-level value $1$. Carrying that order through every step corrupts the buffer into `[1, 3, 5, 5]` rather than the required `[1, 3, 3, 1]`. The two orders diverge exactly where a written cell is re-read:
+
+| Step $i$ | Iteration order | Cells written, in order | Values actually read | Buffer after the step |
+|:---:|:---|:---|:---|:---|
+| $1$ | backward $j = 1 \dots 1$ | `row[1]` | `row[1] + row[0] = 0 + 1 = 1` | `[1, 1, 0, 0]` |
+| $2$ | backward $j = 2 \dots 1$ (correct) | `row[2]`, then `row[1]` | `0 + 1 = 1`, then `1 + 1 = 2` | `[1, 2, 1, 0]` |
+| $2$ | forward $j = 1 \dots 2$ (buggy) | `row[1]`, then `row[2]` | `1 + 1 = 2`, then `0 + 2 = 2` — the second read sees the freshly written $2$, not the previous-level $1$ | `[1, 2, 2, 0]` |
+| $3$ | backward $j = 3 \dots 1$ (correct) | `row[3]`, `row[2]`, `row[1]` | `0 + 1 = 1`, `1 + 2 = 3`, `2 + 1 = 3` | `[1, 3, 3, 1]` |
+| $3$ | forward $j = 1 \dots 3$ (buggy) | `row[1]`, `row[2]`, `row[3]` | `2 + 1 = 3`, then `2 + 3 = 5`, then `0 + 5 = 5` | `[1, 3, 5, 5]` |
+
+  The divergence starts at step $2$ and compounds: by step $3$ the erroneous
+  `row[2] = 2` has been added into `row[3]`, so a single read-order mistake
+  changes three of the four entries.
 - **Integer Division Truncation:** In languages where division truncates (e.g. `//`), writing `(C * (k - i + 1)) // i` must multiply before dividing, because `(k - i + 1) // i` might truncate to $0$.
 
 ---

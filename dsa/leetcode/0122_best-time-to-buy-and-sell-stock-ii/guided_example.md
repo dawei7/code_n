@@ -140,6 +140,28 @@ Take:
 | Day $4 \to 5$ | 6 | 4 | $-2$ | No | $0$ | 7 |
 | **Final** | - | - | - | - | - | **7 (Result)** |
 
+### The Same Instance Under the Two-State DP
+
+Method 2 never looks at a slope directly, so replaying the same prices through it
+is the check that the greedy decomposition and the state machine agree. Both
+transitions read the *previous* day's values; `hold` is started at $-\infty$ so
+that day 0's purchase is the only way to enter a holding state:
+
+| Day $i$ | $P[i]$ | `hold` before | `cash` before | New `hold` $= \max(\text{hold},\, \text{cash} - P)$ | New `cash` $= \max(\text{cash},\, \text{hold} + P)$ | Position held after day $i$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | 7 | $-\infty$ | 0 | $\max(-\infty, 0 - 7) = -7$ | $\max(0, -\infty + 7) = 0$ | one share bought at $7$ |
+| 1 | 1 | $-7$ | 0 | $\max(-7, 0 - 1) = -1$ | $\max(0, -7 + 1) = 0$ | one share bought at $1$, the cheaper entry |
+| 2 | 5 | $-1$ | 0 | $\max(-1, 0 - 5) = -1$ | $\max(0, -1 + 5) = 4$ | flat, with the $1 \to 5$ climb banked |
+| 3 | 3 | $-1$ | 4 | $\max(-1, 4 - 3) = 1$ | $\max(4, -1 + 3) = 4$ | one share bought at $3$ |
+| 4 | 6 | $1$ | 4 | $\max(1, 4 - 6) = 1$ | $\max(4, 1 + 6) = 7$ | flat, with the $3 \to 6$ climb banked |
+| 5 | 4 | $1$ | 7 | $\max(1, 7 - 4) = 3$ | $\max(7, 1 + 4) = 7$ | flat at the maximum $7$ |
+
+Two rows carry the whole idea. On day 3 the DP pays $3$ out of the banked $4$ to
+hold a share again, which is what turns day 4's price $6$ into the second $+3$
+segment. On day 5 the same transition would spend $4$ of the banked $7$ on a
+falling price, leaving `hold` $= 3$; the state machine still prefers `cash` $= 7$,
+so the final answer is exactly the greedy total.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -154,6 +176,23 @@ Take:
 
 - **Searching for Global Peaks/Valleys:** Attempting to identify macroscopic peaks and valleys with lookahead loops introduces complex boundary edge cases (e.g. plateaus, multiple identical prices, ending on an upswing). Summing adjacent positive differences achieves the identical result with zero edge cases.
 - **Thinking Same-Day Buy/Sell Is Disallowed:** If the price strictly rises ($1 \to 2 \to 3$), summing $(2-1) + (3-2) = 2$ represents buying at 1 and selling at 3, or selling at 2 and immediately rebuying at 2. The rules explicitly permit this.
+
+Every shape below is decided by the same rule — add a slope only when it is
+strictly positive — so plateaus, drops, and single-day edges need no special
+handling. The slope column is the complete list of deltas for that input:
+
+| Scenario | Input | Slopes $\Delta P$ | Required result | Why the accumulator returns it |
+|:---|:---|:---|:---:|:---|
+| Always rising | $[1, 2, 3, 4, 5]$ | $+1, +1, +1, +1$ | $4$ | All four slopes are harvested, which equals the single holding trade $5 - 1$ |
+| Always falling | $[7, 6, 4, 3, 1]$ | $-1, -2, -1, -2$ | $0$ | No slope is positive, so the accumulator never leaves its initial value |
+| Two days only | $[2, 5]$ | $+3$ | $3$ | The shortest legal transaction has one slope, and it is positive |
+| Separated climbs | $[2, 1, 2, 0, 1, 3]$ | $-1, +1, -2, +1, +2$ | $4$ | Only $+1$ and $+1, +2$ are harvested; the drops contribute nothing but do not block the later climbs |
+| Plateau in the middle | $[1, 3, 3, 4]$ | $+2, 0, +1$ | $3$ | A zero slope is not strictly positive, so it adds $0$; the two rises still total $3$ |
+| Single day | $[5]$ | none | $0$ | There is no adjacent pair, so the loop body never runs |
+
+Note that the separated-climbs row is the one that rules out a "find the global
+valley and global peak" shortcut: the best plan here uses two disjoint climbs and
+a temporary dip between them.
 
 ---
 

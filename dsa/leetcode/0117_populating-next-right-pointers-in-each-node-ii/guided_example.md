@@ -141,6 +141,23 @@ Level 1:         2 -> 3 -> NULL
 Level 2:       4-> 5 ---->7 -> NULL
 ```
 
+Zooming out first, each outer-loop pass is one descent that converts a whole
+tier into the next tier's chain:
+
+| Pass (level $d$) | Nodes traversed as `curr` | Chain assembled at level $d+1$ | Surviving nodes at $d+1$ | `curr` after `curr = dummy.next` |
+|:---:|:---|:---|:---:|:---:|
+| 0 | $\text{Node}(1)$ | $2 \to 3$ | 2 | $\text{Node}(2)$ |
+| 1 | $\text{Node}(2), \text{Node}(3)$ | $4 \to 5 \to 7$ | 3 | $\text{Node}(4)$ |
+| 2 | $\text{Node}(4), \text{Node}(5), \text{Node}(7)$ | none | 0 | $\text{NULL}$ |
+
+Pass 1 is the decisive one: level 1 holds two nodes, so level 2 has four child
+slots, but only three of them are occupied. The chain still comes out gap-free
+because each append is conditional on the child being non-null, so the pass
+shrinks the tier from four *positions* to three *nodes* — which is exactly why
+node $5$ and node $7$ end up adjacent.
+
+The same information at child granularity, in execution order:
+
 | Active Level | Current Node `curr` | Child Inspected | Action on Next Tier Chain | Chain Attached to `dummy` |
 |:---:|:---:|:---:|:---|:---|
 | 0 | $\text{Node}(1)$ | $\text{Node}(2)$ (Left) | Append Node 2 | $\text{dummy} \to 2$ |
@@ -166,6 +183,22 @@ Level 2:       4-> 5 ---->7 -> NULL
 - **Assuming Left Child Always Exists:** In arbitrary binary trees, writing `curr = curr.left` to descend will crash if the leftmost node has no left child. Using `curr = dummy.next` dynamically resolves the true leftmost surviving child.
 - **Forgetting to Reset `dummy.next`:** If `dummy.next` is not severed (`dummy.next = None`) before processing the next level, a leaf level that adds no children might reuse the old pointer and enter an infinite loop.
 - **Multi-Node Cousin Gaps:** Trees can have multiple consecutive missing children (e.g. three nodes with no children). The dummy pointer handles arbitrarily wide horizontal gaps with zero special cases.
+
+The boundary shapes separate the protocols more sharply than the main instance
+does, and each one is handled by the same loop rather than by a special branch:
+
+| Scenario | Input | Required chains | How the sentinel protocol reaches it |
+|:---|:---|:---|:---|
+| Empty tree | `root` is NULL | no nodes | The first descent `curr = dummy.next` is NULL, so the outer loop body never executes |
+| Single node | $[1]$ | $1 \to \text{NULL}$ | Pass 0 appends nothing, `dummy.next` stays NULL, and the loop ends after one empty pass |
+| Missing left child | $[1,2,3,4,5,\text{null},7]$ | $4 \to 5 \to 7 \to \text{NULL}$ | Node $3$'s null left slot is skipped, so the append of node $7$ lands directly behind node $5$ |
+| Missing right child | $[1,2,3,\text{null},5,6,\text{null}]$ | $5 \to 6 \to \text{NULL}$ | The null slots under node $2$'s left and node $3$'s right are skipped, leaving the two occupied children adjacent |
+| Sparse non-leaf level | $[1,2,3,4,\text{null},\text{null},7,\text{null},5,6]$ | $5 \to 6 \to \text{NULL}$ on the last tier | The single surviving child under node $4$ heads the next pass, so `curr` is never taken from `curr.left` |
+| Perfect tree (LeetCode 116) | $[1,2,3,4,5,6,7]$ | $4 \to 5 \to 6 \to 7 \to \text{NULL}$ | Every append fires, so the sentinel protocol degenerates to the two-rule version and stays correct |
+
+The last row matters: the sentinel protocol is strictly more general than the
+116 algorithm, which is why it needs no `curr.next.left` lookup and therefore no
+guarantee that a horizontal successor even has a left child.
 
 ---
 

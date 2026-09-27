@@ -125,6 +125,23 @@ Iteration complete. Final maximum profit: $\mathbf{5}$.
 | **4** | **6** | **1** | **$+5$** | **5** | **1** | **Global Maximum Achieved!** |
 | 5 | 4 | 1 | $+3$ | 5 | 1 | Below peak profit |
 
+The same scan can be replayed as Kadane's maximum-subarray recurrence over the
+daily differences $\Delta P_k = P[k] - P[k-1]$, which is the representation the
+state table above hides. The running sum is clipped at $0$ because a transaction
+may simply not have started yet:
+
+| Day $k$ | Daily change $\Delta P_k$ | Running sum $\max(0, \text{sum} + \Delta P_k)$ | Best subarray sum so far | Profit recorded by the prefix-minimum scan |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | $-6$ | $0$ | $0$ | $0$ |
+| 2 | $+4$ | $4$ | $4$ | $4$ |
+| 3 | $-2$ | $2$ | $4$ | $4$ |
+| 4 | $+3$ | $5$ | $5$ | $5$ |
+| 5 | $-2$ | $3$ | $5$ | $5$ |
+
+Both columns agree on every day, which is the empirical form of the telescoping
+identity: the subarray that ends at day $k$ with sum $5$ is the run of changes
+from day $2$ through day $4$, and that is exactly the $1 \to 6$ trade.
+
 ### Contrast: Monotonically Declining Case ($[7, 6, 4, 3, 1]$)
 - Every daily calculation yields $P[i] - \text{min\_price} \le 0$.
 - $\text{max\_profit}$ remains at its initialized value of $0$.
@@ -145,6 +162,19 @@ Iteration complete. Final maximum profit: $\mathbf{5}$.
 - **Selling Before Buying (Temporal Arrow of Time):** You cannot simply subtract the global minimum from the global maximum! In `prices = [7, 6, 4, 3, 1]`, global min is $1$ and global max is $7$, but $7$ occurs *before* $1$. The buy day must strictly precede the sell day.
 - **Negative Profit Prohibition:** If stock prices strictly decline, the problem specifies returning $0$, not a negative loss. Initializing $\text{max\_profit} = 0$ prevents negative values.
 - **Single Element Input:** If length is 1, no trade is possible; returns 0.
+
+Each boundary below is decided by the same invariant rather than by a special
+branch, and the critical column is the buy day the prefix minimum actually
+selects — not the day holding the array's global extreme:
+
+| Scenario | Input | Required result | Which day the prefix minimum selects at the sell day |
+|:---|:---|:---|:---|
+| Descending series | $[7, 6, 4, 3, 1]$ | $0$ | Every $P[j] - \text{min\_price}$ is negative, so `max_profit` keeps its initialised $0$ |
+| Global extreme in the wrong order | $[7, 6, 4, 3, 1]$: maximum $7$ on day 0, minimum $1$ on day 4 | $0$, never $6$ | On day 4 the prefix minimum is $1$, but day 0 is a *future* day and cannot be the sell day |
+| Rising pair then a crash | $[2, 4, 1]$ | $2$ | Day 2 selects the day-0 price $2$ for $4 - 2 = 2$; day 2's price $1$ arrives after and only lowers `min_price` |
+| Later low then recovery | $[9, 8, 3, 6, 1, 7]$ | $6$ | Day 4 resets the prefix minimum to $1$, and day 5 sells there for $7 - 1 = 6$ |
+| Single element | $[7]$ | $0$ | With no day after day 0 no sale is ever evaluated, so `max_profit` stays at $0$ |
+| Two identical prices | $[7, 7]$ | $0$ | Day 1 yields $7 - 7 = 0$, which does not exceed the initialised `max_profit` |
 
 ---
 

@@ -140,6 +140,32 @@ Final result: $\text{sell2} = \mathbf{6}$.
 | 6 | 1 | 0 | 3 | 2 | 5 | Dip to 1: optimal 2nd buy point |
 | **7** | **4** | **0** | **4** | **2** | **6** | **Sell second share: Max Profit = 6** |
 
+### The Prefix-Suffix Bisection on the Same Prices
+
+The $O(N)$-space alternative named in the introduction never tracks a state
+machine; it fixes a split day and solves two independent single-transaction
+problems. Because the two trades may not overlap, a split after day $i$ uses the
+prefix $0 \dots i$ for the first trade and the suffix $i+1 \dots 7$ for the
+second:
+
+| Split after day $i$ | Prefix $0 \dots i$ | Best single trade in the prefix | Suffix $i+1 \dots 7$ | Best single trade in the suffix | Prefix $+$ suffix |
+|:---:|:---|:---:|:---|:---:|:---:|
+| 0 | `[3]` | $0$ | `[3, 5, 0, 0, 3, 1, 4]` | $4$ | $4$ |
+| 1 | `[3, 3]` | $0$ | `[5, 0, 0, 3, 1, 4]` | $4$ | $4$ |
+| 2 | `[3, 3, 5]` | $2$ | `[0, 0, 3, 1, 4]` | $4$ | $\mathbf{6}$ |
+| 3 | `[3, 3, 5, 0]` | $2$ | `[0, 3, 1, 4]` | $4$ | $\mathbf{6}$ |
+| 4 | `[3, 3, 5, 0, 0]` | $2$ | `[3, 1, 4]` | $3$ | $5$ |
+| 5 | `[3, 3, 5, 0, 0, 3]` | $3$ | `[1, 4]` | $3$ | $\mathbf{6}$ |
+| 6 | `[3, 3, 5, 0, 0, 3, 1]` | $3$ | `[4]` | $0$ | $3$ |
+| no split | whole array, one trade | $4$ | empty | $0$ | $4$ |
+
+Three different splits reach $6$, and they are genuinely different plans. Split
+$2$ pairs $3 \to 5$ with $0 \to 4$; split $3$ pairs the same first trade with
+$0 \to 4$ starting a day later; and split $5$ pairs $0 \to 3$ with $1 \to 4$,
+which is the plan the 4-state registers settle on. The state machine therefore
+achieves the bisection's optimum of $6$ while never materialising either prefix
+or suffix array, which is why its auxiliary space is $O(1)$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -155,6 +181,23 @@ Final result: $\text{sell2} = \mathbf{6}$.
 - **Overlapping Transactions:** The problem prohibits holding two shares concurrently. In the state machine, $\text{buy2}$ can only consume capital from $\text{sell1}$, guaranteeing that trade 1 has completed before trade 2 commences.
 - **Order of Variable Updates:** Updating `buy1`, `sell1`, `buy2`, `sell2` sequentially using the newly computed values within the same iteration allows buying and selling on the exact same day without causing illegal temporal inversions.
 - **Forgetting 1-Trade or 0-Trade Cases:** If prices strictly drop ($[5, 4, 3, 2, 1]$), all selling states remain $0$, correctly returning $0$.
+
+The remaining boundaries are decided by the same four registers; the interesting
+column is the best split, because it shows whether the second transaction is worth
+opening at all:
+
+| Scenario | Input | Best single trade | Best split value | Required result | Why |
+|:---|:---|:---:|:---:|:---:|:---|
+| Single day | $[3]$ | $0$ | none exists | $0$ | No later day can follow a purchase, so `sell1` and `sell2` stay at their initial $0$ |
+| Identical prices | $[3, 3]$ | $0$ | $0$ | $0$ | Every transition nets $0$, which never improves on the initialised values |
+| Strictly falling | $[7, 6, 4, 3, 1]$ | $0$ | $0$ | $0$ | Each price is lower than the last, so no purchase is ever followed by a gain |
+| Strictly rising | $[1, 2, 3, 4, 5]$ | $4$ | $3$ twice (splits after days 1 and 2) | $4$ | Splitting the climb caps the total at $1 + 2 = 3$, so the machine keeps the single $1 \to 5$ trade worth $4$ |
+| Two short rises | $[2, 1, 2, 0, 1]$ | $1$ | $2$ (split after day 2) | $2$ | The second rise $0 \to 1$ is only collectable if the first trade closes before it, and the machine allows exactly that |
+| Two separated wins | $[2, 4, 1, 7, 5, 3, 6, 4]$ | $6$ | $9$ (splits after days 3, 4, 5) | $9$ | $1 \to 7$ and $3 \to 6$ are disjoint, so both are collected; the second trade is mandatory here |
+
+The strictly-rising row is the trap worth remembering: a machine that always
+forces two transactions would report $3$ instead of $4$, which is exactly why
+`sell2` is initialised to $0$ and allowed to inherit `sell1`'s value.
 
 ---
 

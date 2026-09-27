@@ -106,6 +106,21 @@ $$
 - **Inter-Parent Link:** `curr.next` is NULL $\implies$ Node 7's `next` remains NULL.
 - Advance: `curr = curr.next = NULL`.
 
+The whole march can be read as pointer state rather than as prose. Each row is one
+execution of the inner loop body, and the two write columns record exactly which
+pointers change during that iteration:
+
+| Horizontal step | Level $d$ | `curr` | `curr.next` | Intra-parent write | Inter-parent write | Next `curr` |
+|:---:|:---:|:---:|:---:|:---|:---|:---:|
+| 1 | 0 | $\text{Node}(1)$ | $\text{NULL}$ | $2.\text{next} \leftarrow 3$ | skipped: `curr.next` is NULL | $\text{NULL}$ (level-0 pass ends) |
+| 2 | 1 | $\text{Node}(2)$ | $\text{Node}(3)$ | $4.\text{next} \leftarrow 5$ | $5.\text{next} \leftarrow 6$ | $\text{Node}(3)$ |
+| 3 | 1 | $\text{Node}(3)$ | $\text{NULL}$ | $6.\text{next} \leftarrow 7$ | skipped: `curr.next` is NULL | $\text{NULL}$ (level-1 pass ends) |
+
+Only step 2 performs both writes; step 1 has no horizontal successor to bridge to,
+and step 3 writes the last intra-parent link of the tier. The `curr.next` column is
+what makes the bridge legal: it is never read before the previous pass has
+finished writing it.
+
 ---
 
 ### Level $d = 2$ (`leftmost = Node(4)`)
@@ -154,6 +169,19 @@ Level 2:       4-> 5->6-> 7 -> NULL
 - **Crossing the Subtree Boundary ($5 \to 6$):** Connecting siblings with the same parent ($4 \to 5$) is straightforward, but bridging nodes with different parents ($5 \to 6$) requires accessing `curr.next.left`. If `curr.next` is not yet established, this pointer lookup is impossible.
 - **Assuming Imperfect Trees:** This algorithm relies on the problem statement's guarantee that the tree is *perfect* (all levels filled). For arbitrary binary trees with missing children, see LeetCode 117.
 - **Empty Tree:** Checking `if not root: return root` upfront prevents null pointer exceptions.
+
+The instance also separates the plausible strategies by *space*, not by
+correctness — all three below produce the same three chains for $[1,2,3,4,5,6,7]$:
+
+| Strategy | Auxiliary memory | Mechanism | Behaviour on this instance |
+|:---|:---|:---|:---|
+| Level-order queue | $O(W)$ where $W$ is a tier's width | Hold one entire tier in a FIFO, then wire consecutive dequeued nodes | Peak frontier is the 4 leaf nodes, so $O(N)$ here and in general |
+| Recursive tier stitching | $O(h)$ stack frames | Pass the previous node of a tier down the recursion | Depth 3 for this input, so $\Theta(\log N)$ rather than constant |
+| Parent-chain stitching (used above) | $O(1)$ | Read the already-linked tier $d$ chain to write tier $d+1$ | Only two live pointers, `leftmost` and `curr`, regardless of depth |
+
+The parent-chain row is the one that satisfies the problem's constant-space
+requirement, and it is available only because the union of the two write rules
+touches every child exactly once.
 
 ---
 
