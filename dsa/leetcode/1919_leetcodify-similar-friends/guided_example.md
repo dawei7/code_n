@@ -1,6 +1,6 @@
 # Guided Example: Leetcodify Similar Friends
 
-## Problem Understanding
+## 1. Problem Understanding
 
 The task is to identify all unique pairs of users $(u_1, u_2)$ who are registered friends and share a strong mutual musical taste by listening to at least three identical, distinct songs on the very same calendar day.
 
@@ -36,7 +36,7 @@ flowchart TD
 
 ---
 
-## Key Invariant & Theoretical Guarantee
+## 2. Key Invariant & Theoretical Guarantee
 
 ### Relational Equi-Join & Daily Song Intersect Cardinality Invariant Theorem
 *Let $L(u, d) = \{s \in \mathbb{N} : (u, s, d) \in \text{Listens}\}$ denote the finite set of distinct songs user $u$ listened to on date $d$. A pair of users $(u_1, u_2)$ belongs to the final output if and only if:*
@@ -48,7 +48,7 @@ $$u_1 < u_2 \quad \land \quad (u_1, u_2) \in \text{Friendship} \quad \land \quad
 
 ---
 
-## Step-by-Step Walkthrough (Sample Instance)
+## 3. Step-by-Step Walkthrough (Sample Instance)
 
 ### Input Data
 
@@ -135,8 +135,17 @@ We evaluate every friendship entry $(u_1, u_2) \in \text{Friendship}$:
 
 ---
 
-## Final Result
+## 4. Final Result
 
 | `user1_id` | `user2_id` |
 | :---: | :---: |
 | 1 | 2 |
+
+---
+
+## 5. Complexity Derivation
+
+Let $F$ be the number of rows in `Friendship` and $L$ the number of rows in `Listens`. Deduplicating the listening events to one row per `(user_id, song_id, day)` triple costs $O(L)$ hashing work and yields at most $L$ distinct triples. Each of the $F$ friendship rows is then matched against the daily song sets of both endpoints, and intersecting two sets of size at most $k$ is bounded by $k$, so each pair is decided in $O(k)$ expected time. The same-day grouping then reduces every qualifying pair to a single output row.
+
+- **Time Complexity:** $O(L + F \cdot k)$ expected, where $k$ is the largest number of distinct songs a single user hears on one day; with an indexed equi-join on `(day, song_id)` the engine performs the pairing in $O(L)$ probe work per side and the group-by aggregation in $O(L)$.
+- **Auxiliary Space Complexity:** $O(L)$ for the deduplicated listening triples (the hash-join build side) plus $O(F)$ for the accepted pair set, both proportional to the input size rather than to the number of candidate pairs.
