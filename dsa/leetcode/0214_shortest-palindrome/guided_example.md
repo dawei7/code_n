@@ -48,6 +48,24 @@ For $s = \text{"aacecaaa"}$:
   \text{Result} = \text{"a"} + \text{"aacecaaa"} = \mathbf{\text{"aaacecaaa"}}
   $$
 
+### Every Prefix Candidate and the Palindrome It Would Produce
+
+Choosing a palindromic prefix $P = s[0 \dots k-1]$ of length $k$ fixes the whole answer, because the mirror text is exactly $s[k:]^R$ and the result has length $2N - k$. For $s = \text{"aacecaaa"}$ with $N = 8$, the complete search space is:
+
+| $k$ | Prefix $s[0 \dots k-1]$ | Its reverse | Palindrome? | Added characters $N - k$ | Resulting length $2N - k$ |
+|:---:|:---|:---|:---:|:---:|:---:|
+| 8 | `aacecaaa` | `aaacecaa` | no | 0 | 8 |
+| 7 | `aacecaa` | `aacecaa` | **yes** | **1** | **9 (minimal)** |
+| 6 | `aaceca` | `acecaa` | no | 2 | 10 |
+| 5 | `aacec` | `cecaa` | no | 3 | 11 |
+| 4 | `aace` | `ecaa` | no | 4 | 12 |
+| 3 | `aac` | `caa` | no | 5 | 13 |
+| 2 | `aa` | `aa` | yes | 6 | 14 |
+| 1 | `a` | `a` | yes | 7 | 15 |
+| 0 | empty | empty | yes (vacuously) | 8 | 16 |
+
+Only three of the nine rows are usable, and the largest of them is $k = 7$. The $k = 8$ row is the most important negative result in the table: the input is not itself a palindrome, which is why at least one character must be added. Every row below $k = 7$ would produce a longer string, so maximality of the palindromic prefix is exactly the minimality of the answer.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -147,6 +165,19 @@ Answer: "a" + "aacecaaa" = "aaacecaaa"
 | 15 | `'a'` | 5 | Match with $T[5]$ (`'a'`) | 6 | 6 |
 | **16** | **`'a'`** | **6** | **Match with $T[6]$ (`'a'`)** | **7** | **7 (Longest Prefix)** |
 
+### The Same Reduction Across Boundary Instances
+
+| Input $s$ | $N$ | Longest palindromic prefix | Suffix to mirror | Prepended text | Result | What this instance teaches |
+|:---|:---:|:---|:---|:---|:---|:---|
+| `""` | 0 | empty, vacuously | `""` | `""` | `""` | The empty string is already a palindrome, so no character is ever added |
+| `"a"` | 1 | `"a"`, length 1 | `""` | `""` | `"a"` | A single character mirrors itself, so the answer equals the input |
+| `"abcd"` | 4 | `"a"`, length 1 | `"bcd"` | `"dcb"` | `"dcbabcd"` | No prefix beyond the first character survives, so the entire tail is mirrored — the worst case for this length |
+| `"aaaa"` | 4 | `"aaaa"`, length 4 | `""` | `""` | `"aaaa"` | A single repeated letter is always palindromic; this is the instance where the delimiter is indispensable, since an undelimited prefix table would report a match longer than $N$ |
+| `"aacecaaa"` | 8 | `"aacecaa"`, length 7 | `"a"` | `"a"` | `"aaacecaaa"` | The traced instance: exactly one character short of being a palindrome |
+| `"racecar"` | 7 | `"racecar"`, length 7 | `""` | `""` | `"racecar"` | The input is already a palindrome, so the largest candidate prefix is the string itself |
+
+The table also shows the range of answers: the prepended text is empty exactly when the input is already a palindrome, and reaches $N - 1$ characters when only the first character qualifies. The result length therefore always lies between $N$ and $2N - 1$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -162,6 +193,19 @@ Answer: "a" + "aacecaaa" = "aaacecaaa"
 - **Missing Delimiter in KMP:** If $s + s^R$ is used without a delimiter, a string like `"aaaa"` produces `"aaaaaaaa"`, where the KMP table crosses the boundary and reports a prefix length greater than $|s|$. The delimiter `\#` strictly confines prefix matches to $|s|$.
 - **$O(N^2)$ Slicing:** Repeatedly testing `s[:k] == s[:k][::-1]` from $k = N$ down to $1$ takes $O(N^2)$ time, which times out for $N = 50,000$. Both KMP and rolling hash achieve strictly $O(N)$.
 - **Hash Collisions:** Single-modulus rolling hash can produce false positives. KMP is fully deterministic and eliminates collision risks.
+
+### Alternative Methods and Their Tradeoffs
+
+| Method | How the longest palindromic prefix is located | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---|:---|:---|
+| Compare every prefix with its reverse, largest first | For $k = N$ down to $1$, test whether $s[0 \dots k-1]$ equals its own reverse | $O(N^2)$ | $O(1)$ if compared index by index, $O(N)$ if each prefix is copied | Correct but quadratic; it times out at the upper bound $N = 50{,}000$ |
+| Prefix function on $s + \text{"\#"} + s^R$ | The last $\pi$ value is the longest prefix of $s$ that is also a suffix of $s^R$ | $O(N)$ | $O(N)$ for the composite string and the $\pi$ table | Fully deterministic; the delimiter is mandatory, or matches cross the boundary |
+| Dual rolling hash while scanning $s$ once | Maintain a forward and a reversed hash of the current prefix and remember the last index where they agree | $O(N)$ expected | $O(1)$ beyond the input | A single modulus admits collisions, so a false positive can shorten the palindrome; a second modulus reduces the risk without removing it |
+| Z-function on $s + \text{"\#"} + s^R$ | The $Z$ value at each position of the reversed half measures agreement with the prefix of $s$ | $O(N)$ | $O(N)$ for the $Z$ array | Same asymptotics and the same delimiter requirement, with a differently shaped array to maintain |
+| Manacher's algorithm on $s$ | Palindrome radii are computed for every center, and the radius rooted at the first position gives the palindromic prefix directly | $O(N)$ | $O(N)$ for the radii | Solves a strictly stronger problem than the one asked, which is more machinery than the answer needs |
+| Center expansion restricted to prefixes | For each $k$, verify the candidate center by expanding outward and requiring the match to start at index 0 | $O(N^2)$ worst case | $O(1)$ | Degenerates on inputs such as `"aaaa...ab"`, where nearly every candidate prefix must be re-verified |
+
+The last two rows explain the shape of the intended solution. The problem needs one number — how far the palindromic prefix reaches — so the two $O(N)$ methods that compute exactly that number, the prefix function and the rolling hash, dominate every method that computes more (Manacher) or recomputes the same comparison repeatedly (the quadratic scans).
 
 ---
 

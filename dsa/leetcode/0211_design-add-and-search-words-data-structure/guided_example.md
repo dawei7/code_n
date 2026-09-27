@@ -90,6 +90,16 @@ Trie graph:
       'd'*'d'*'d'*  (* marks is_end = true)
 ```
 
+### What Each Insertion Changed
+
+| Step | Operation | Path opened from the root | New nodes | Node whose `is_end` flips to `true` | Why no edge was reused |
+|:---:|:---|:---|:---:|:---|:---|
+| 1 | `addWord("bad")` | `root → b → a → d` | 3 | the `d` at depth 3 of the `b` branch | The trie held only the root, so every edge on the path had to be created |
+| 2 | `addWord("dad")` | `root → d → a → d` | 3 | the `d` at depth 3 of the `d` branch | The first letters differ, so the shared text `"ad"` lives in a *separate* subtree rather than a shared one |
+| 3 | `addWord("mad")` | `root → m → a → d` | 3 | the `d` at depth 3 of the `m` branch | Same reason: the three words agree only on the root, plus the coincidental text `"ad"` |
+
+All three words end at depth 3, and the only node marked terminal on each path is the last one. The three intermediate `a` nodes stay non-terminal, which is exactly why `search("ba")` walks a real path and still fails: the failure comes from the terminal flag, not from a missing edge.
+
 ---
 
 ### Query 1: `search("pad")`
@@ -137,6 +147,20 @@ Trie graph:
   $$
 - Return $\mathbf{true}$.
 
+### What the Root's Child Array Records
+
+The 26-slot array is indexed by `ord(c) - ord('a')`, so a wildcard iterates slots in alphabetical order rather than insertion order. After the three insertions the root holds exactly three non-null slots:
+
+| Slot | Letter | Child present | Query that reaches this slot | What happens there |
+|:---:|:---:|:---|:---|:---|
+| 0 | `'a'` | no | `search(".ad")` | The wildcard loop skips the slot because there is no child to descend into |
+| 1 | `'b'` | yes | `search("bad")` and `search(".ad")` | The suffix `"ad"` is followed to a terminal node, so the wildcard search reports `true` |
+| 3 | `'d'` | yes | `search(".ad")` | Never entered: the loop already returned `true` from slot 1 |
+| 12 | `'m'` | yes | `search(".ad")` | Never entered, for the same short-circuit reason |
+| 15 | `'p'` | no | `search("pad")` | The literal path stops here and reports `false` immediately |
+
+Because slots are visited in increasing index order, the first successful branch is deterministic, and the wildcard search cannot stop merely because a slot is occupied. It has to reach a *terminal* node on the remaining suffix before it may answer `true`; otherwise it must keep trying occupied slots, and `search(".ad")` would have returned `false` had the `b` branch ended at a non-terminal node.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -180,6 +204,33 @@ Trie: stores "bad", "dad", "mad"
 - **Failing to Check `is_end`:** For pattern `"ba"`, all characters exist in the path `b -> a`, but `Node(a).is_end` is `false`. The search must verify that a complete word terminates at the end of the query.
 - **Length Mismatch with Dots:** A pattern `"...."` has 4 dots. If words have length 3, the fourth dot reaches `null` children, correctly returning `false`.
 - **Branching Factor:** While a wildcard theoretically branches up to 26 times, problem constraints specify at most 2 dots per query ($26^2 = 676$), ensuring that DFS recursion remains extremely fast.
+
+### Boundary Queries and Where They Stop
+
+| Scenario | Dictionary contents | Pattern | Where the traversal stops | Result | The rule that decides it |
+|:---|:---|:---|:---|:---:|:---|
+| Query on an empty dictionary | none | `"."` | The wildcard loop finds no non-null child at the root | `false` | A dot branches only across *existing* edges, and the root itself is not terminal |
+| Query on an empty dictionary | none | `"a"` | The literal slot for `'a'` is null at the root | `false` | A literal character has exactly one edge to follow |
+| Pattern shorter than the stored word | `"at"` | `"."` | One dot is consumed and the index stops at 1 while the pattern still has length 2 | `false` | The terminal flag is read only once the index reaches the pattern length |
+| Pattern as long as the stored word | `"at"` | `".."` | Both dots enter the only stored path and the index reaches 2 | `true` | The last node on that path was flagged terminal by `addWord("at")` |
+| Pattern longer than the stored word | `"at"` | `"..."` | The third dot looks for a child below the terminal `t` node and finds none | `false` | A terminal node has children only if some longer word was inserted through it |
+| Wildcard over parallel branches | `"car"`, `"cat"` | `"ca."` | The dot tries the `r` and then the `t` child | `true` | Each slot the dot visits is a separate branch, and one terminal success suffices |
+
+The fourth and fifth rows are the pair worth internalizing together: the same dictionary answers differently to `".."` and `"..."` even though both patterns consist only of dots. Dots relax *which* letter may appear, never *how many* letters the word has.
+
+### Alternative Designs and Their Tradeoffs
+
+Write $\Sigma$ for the total number of characters across all inserted words and $d$ for the number of dots in a query.
+
+| Design | Insertion | Wildcard query | Auxiliary space | Tradeoff against the trie DFS |
+|:---|:---|:---|:---|:---|
+| Trie with depth-first branching (used above) | $O(L)$: one edge per character | $O(26^d \cdot L)$ worst case | $O(\Sigma)$ for the nodes plus $O(L)$ recursion depth | Baseline: shares prefixes and never materializes a candidate string |
+| Hash set of complete words plus pattern enumeration | $O(L)$ | $O(26^d \cdot L)$ to build and probe every replacement | $O(\Sigma)$ for the set | Loses prefix sharing and allocates up to $26^d$ candidate strings per query |
+| Hash sets bucketed by word length | $O(L)$ | $O(1)$ to reject a wrong-length pattern, then the same enumeration | $O(\Sigma)$ | Removes the length mismatch in constant time but still enumerates replacements |
+| Breadth-first expansion of (node, index) pairs | $O(L)$ | Same asymptotic work as the depth-first version | Up to $O(26^d)$ live partial states on the frontier | Identical answer with worse auxiliary space than a recursion stack |
+| Depth-first search with a memo of visited (node, index) pairs | $O(L)$ | Skips a state that an earlier wildcard branch already explored | $O(\Sigma)$ for the memo | Pays off only when many dots create repeated states; with a small dot count the bookkeeping dominates |
+
+The trie wins because the wildcard branching factor is bounded by the *occupied* slots of one array, not by the alphabet: an empty slot costs a single comparison, and a shared prefix is traversed once per query instead of once per candidate word.
 
 ---
 

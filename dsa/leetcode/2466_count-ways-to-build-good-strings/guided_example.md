@@ -175,7 +175,7 @@ a *sum over a closed interval* of lengths, not the count for a single length.
 | Enumerate strings and test them | generate candidate binary strings and check whether each run is a multiple of the corresponding block length | $O(2^{high})$ candidates | worse than enumerating sequences and equally hopeless; most candidates are not constructible |
 | Backward count from each length | count completions from a partially built prefix, branching on the next block | $O(high)$ states with memoisation | correct and equal to the forward table, but it describes the same recurrence from the other end and needs an explicit stopping rule for the "finished string" case |
 | Length recurrence with a full table | fill $f(0)$ up to $f(high)$ by the two-term recurrence, then sum the range | $O(high)$ time, $O(high)$ space | the method used here: simple, exact, and comfortably fast for $high \le 10^{5}$ |
-| Rolling window over the last blocks | keep only the last $one$ values of $f$, since the recurrence reaches back exactly that far | $O(high)$ time, $O(\max(zero, one))$ space | same result with less memory, but it obscures the range-sum bookkeeping and the space saving is irrelevant at this input size |
+| Rolling window over the last blocks | keep only the last $\max(zero, one)$ values of $f$, since the recurrence reaches back no further than that | $O(high)$ time, $O(\max(zero, one))$ space | same result with less memory, but it obscures the range-sum bookkeeping and the space saving is irrelevant at this input size |
 
 ## 9. Complexity: time and auxiliary space
 

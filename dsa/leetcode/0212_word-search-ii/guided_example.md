@@ -93,6 +93,20 @@ We trace the search for `words = ["oath", "pea", "eat", "rain"]`:
 - Insert `"eat"`: `root -> 'e' -> 'a' -> 't'` (`word = "eat"`).
 - Insert `"rain"`: `root -> 'r' -> 'a' -> 'i' -> 'n'` (`word = "rain"`).
 
+| Trie node | Path from the root | `word` stored there | Outgoing edges | Board cells that can reach it |
+|:---|:---|:---|:---|:---|
+| Node(o) | `o` | none | `a` | $(0,0)$ |
+| Node(oa) | `o → a` | none | `t` | $(0,1)$, entered from $(0,0)$ |
+| Node(oat) | `o → a → t` | none | `h` | $(1,1)$, entered from $(0,1)$ |
+| Node(oath) | `o → a → t → h` | `"oath"` | none | $(2,1)$, entered from $(1,1)$ |
+| Node(e) | `e` | none | `a` | $(1,0)$ and $(1,3)$ |
+| Node(ea) | `e → a` | none | `t` | $(1,2)$, entered from $(1,3)$ |
+| Node(eat) | `e → a → t` | `"eat"` | none | $(1,1)$, entered from $(1,2)$ |
+| Node(r) | `r` | none | `a` | $(2,3)$ only |
+| Node(p), Node(pe), Node(pea) | `p`, `p → e`, `p → e → a` | `"pea"` at the deepest of the three | `e`, then `a`, then none | none: no board cell holds `'p'`, so this whole subtree is unreachable |
+
+Two facts in that table decide the whole run. First, the stored word sits at the *end* of a path, so a board path that stops one letter early is not a match. Second, a subtree with no entry point on the board costs nothing: the root test rejects its first letter everywhere.
+
 ---
 
 ### Step 1: Scan Cell $(0, 0)$ (`'o'`)
@@ -149,6 +163,18 @@ Result so far: `["oath", "eat"]`.
 - All other cells either have no matching character in `root.children` (e.g. `'i'`, `'k'`, `'f'`, `'l'`, `'v'`) or their paths terminate with no further Trie children.
 - Final output: `["oath", "eat"]`.
 
+The outer loop still touches all $16$ board cells, so it is worth seeing exactly how each one is disposed of:
+
+| Letter | Cells holding it | Present among the root's edges? | Cells that open a search | What that search achieves |
+|:---|:---|:---|:---:|:---|
+| `'o'` | 1: $(0,0)$ | yes | 1 | The path `o → a → t → h` reaches a node holding `"oath"`, so the word is emitted |
+| `'e'` | 2: $(1,0)$, $(1,3)$ | yes | 2 | $(1,0)$ is pruned after a single step, because Node(e) has only the `'a'` edge and its neighbors hold `'o'`, `'i'`, `'t'`; $(1,3)$ yields `"eat"` |
+| `'r'` | 1: $(2,3)$ | yes | 1 | Pruned after a single step: Node(r) has only the `'a'` edge, and the neighbors hold `'e'`, `'v'`, `'k'` |
+| `'a'` | 3: $(0,1)$, $(0,2)$, $(1,2)$ | no | 0 | The root test fails in constant time, so these three cells never open a search |
+| `'n'`, `'t'`, `'i'`, `'h'`, `'k'`, `'f'`, `'l'`, `'v'` | 9 in total | no | 0 | The same constant-time rejection; in particular `'p'` never appears at all, so `"pea"` is eliminated without any traversal |
+
+Only $4$ of the $16$ cells survive the first comparison, and only $2$ of those produce a word. That ratio is the entire reason the trie is built first: the dictionary, not the board, decides where a search may begin.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -176,6 +202,20 @@ Final Output: ["oath", "eat"]
 | **$(1, 3)$** | **`'e'`** | **`e -> a -> t`** | **$(1,2) \to (1,1)$** | **`"eat"`** | **`"eat"`** |
 | $(2, 3)$ | `'r'` | `r -> (no 'a' neighbor)` | $(1,3), (3,3), (2,2)$ | None | - |
 
+### Decision Trace Inside the Two Successful Backtracking Runs
+
+| Search | Depth | Cell entered | Letter | Trie node reached | Decisive neighbor checks | What this frame does |
+|:---|:---:|:---:|:---:|:---|:---|:---|
+| `"oath"` | 0 | $(0,0)$ | `'o'` | Node(o) | $(1,0)$ = `'e'` rejected, since the only edge is `'a'`; $(0,1)$ = `'a'` accepted | Masks $(0,0)$ and descends to depth 1 |
+| `"oath"` | 1 | $(0,1)$ | `'a'` | Node(oa) | $(0,0)$ is already masked, so it is skipped before any letter test; $(0,2)$ = `'a'` rejected, since the only edge is `'t'`; $(1,1)$ = `'t'` accepted | Masks $(0,1)$ and descends to depth 2 |
+| `"oath"` | 2 | $(1,1)$ | `'t'` | Node(oat) | $(1,0)$ = `'e'` and $(1,2)$ = `'a'` rejected, since the only edge is `'h'`; $(2,1)$ = `'h'` accepted | Masks $(1,1)$ and descends to depth 3 |
+| `"oath"` | 3 | $(2,1)$ | `'h'` | Node(oath) | The node stores `"oath"` | Emits `"oath"`, clears the stored word, then unwinds and restores `'h'`, `'t'`, `'a'`, `'o'` |
+| `"eat"` | 0 | $(1,3)$ | `'e'` | Node(e) | $(1,2)$ = `'a'` accepted; $(0,3)$ = `'n'` and $(2,3)$ = `'r'` rejected | Masks $(1,3)$ and descends to depth 1 |
+| `"eat"` | 1 | $(1,2)$ | `'a'` | Node(ea) | $(1,1)$ = `'t'` accepted; $(0,2)$ = `'a'` and $(2,2)$ = `'k'` rejected | Masks $(1,2)$ and descends to depth 2 |
+| `"eat"` | 2 | $(1,1)$ | `'t'` | Node(eat) | The node stores `"eat"` | Emits `"eat"`, clears the stored word, then unwinds and restores `'t'`, `'a'`, `'e'` |
+
+Three details in this trace carry the correctness of the method. A masked cell is skipped *before* its letter is inspected, which is what forbids reusing a coordinate inside one word. A rejection is always caused by a missing edge at the current trie node, never by a letter's absence from the dictionary as a whole: `'a'` is rejected at Node(oa) even though `'a'` opens the search at $(0,1)$. And each emission clears the node's stored word, so the second successful path would not be able to append `"oath"` again.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -191,6 +231,18 @@ Final Output: ["oath", "eat"]
 - **Duplicate Words in Result:** If `"oath"` can be formed via two distinct paths on the board, searching both paths would append `"oath"` twice. Setting `node.word = None` upon the first discovery prevents duplicate additions without requiring an expensive set conversion.
 - **Trie Pruning Optimization:** After a leaf node's word is found, if that node has no children, it can be pruned from the parent's `children` map. This prevents future board searches from exploring already-completed branches.
 - **Forgetting to Restore Board Cell:** Failing to restore `board[r][c] = temp` during backtracking permanently leaves `'#'` on the board, breaking subsequent searches from other cells.
+
+### Alternative Approaches and Their Tradeoffs
+
+| Approach | Work at each board position | Prefix pruning | Time | Failure mode or tradeoff |
+|:---|:---|:---|:---|:---|
+| Trie plus board DFS (used above) | One trie-node descent per entered cell | Constant-time array lookup per neighbor | $O(\sum L)$ construction plus $O(M \cdot N \cdot 4 \cdot 3^{L-1})$ search | Baseline; correctness depends on the in-place `'#'` marker being restored on every exit |
+| Independent depth-first search per dictionary word | A full walk from every start cell for every word | None: each word pays for its own walk even when no other word shares its prefix | $O(W \cdot M \cdot N \cdot 4^L)$ | The intended slow solution; with tens of thousands of words it exceeds the time limit |
+| Hash set of words plus a hash set of all prefixes | One hashed growing string per entered cell | Pruning power equal to the trie's | $O(M \cdot N \cdot 4^L \cdot L)$ | Correct, but every step rehashes a longer prefix instead of following one array edge, adding a factor of $L$ |
+| Trie plus leaf pruning | Same as the trie DFS, with exhausted leaves detached | Constant-time lookup, and dead branches vanish | Same asymptotic bound with a smaller constant | Mutates the trie during the search, so a second board needs the trie rebuilt first |
+| Aho–Corasick automaton over the dictionary | One amortized constant-time transition per character | Failure links handle mismatches | Linear in the number of board paths examined — which is still exponential | The automaton is linear in a *text*, but a grid offers exponentially many simple paths, so it removes no asymptotic work here |
+
+The trie is chosen because the board supplies the paths and the dictionary only needs to answer one question per step: does this node have an edge labeled with the neighbor's letter? Answering that in constant time is the strongest pruning available, and it also explains why the asymptotics are governed by $3^{L-1}$ rather than by the dictionary size $W$.
 
 ---
 

@@ -124,6 +124,29 @@ Backtrack to Level 1.
 
 Recursion finishes. Output: `[[1, 2, 4]]`.
 
+### The Two-Sided Bound Behind Every Pruning Decision
+
+When the search sits at a node with $r = k - \lvert \text{path} \rvert$ digits still to place, the cheapest continuation takes the $r$ smallest digits still available and the most expensive one takes the $r$ largest digits of the domain:
+
+$$
+\text{cheapest} = \sum_{j=0}^{r-1} (\text{start} + j), \qquad \text{most expensive} = \sum_{j=0}^{r-1} (9 - j)
+$$
+
+A node can lead to a solution only if the remaining sum lies between those two values. Every pruning decision in the trace above is one instance of that test:
+
+| Node | Digits still needed $r$ | Cheapest continuation from `start` | Most expensive continuation | Remaining sum | Verdict |
+|:---|:---:|:---:|:---:|:---:|:---|
+| `[1]`, `start` = 2 | 2 | $2 + 3 = 5$ | $9 + 8 = 17$ | 6 | Feasible: the budget sits between the two extremes |
+| `[1, 2]`, `start` = 3 | 1 | $3$ | $9$ | 4 | Feasible: one digit between 3 and 9 must equal 4 |
+| `[1, 2, 3]` | 0 | – | – | 1 | Complete but unspent: the path is rejected |
+| `[1, 2, 4]` | 0 | – | – | 0 | Complete and exactly spent: the path is emitted |
+| `[1, 3]`, `start` = 4 | 1 | $4$ | $9$ | 3 | $4 > 3$, so even the cheapest continuation overshoots |
+| `[1, 4]`, `start` = 5 | 1 | $5$ | $9$ | 2 | $5 > 2$, pruned for the same reason |
+| `[2]`, `start` = 3 | 2 | $3 + 4 = 7$ | $9 + 8 = 17$ | 5 | $7 > 5$: the cheapest pair already exceeds the budget |
+| `[3]`, `start` = 4 | 2 | $4 + 5 = 9$ | $9 + 8 = 17$ | 4 | $9 > 4$: the whole branch dies at its first node |
+
+The lesson's sum-overflow rule is the special case $r = 1$ of the lower bound, which is why a single comparison against the candidate digit is enough once only one slot remains. Applied at the root, the same inequality is the feasibility test for the whole query: a solution exists only when $\frac{k(k+1)}{2} \le n \le \sum_{i=10-k}^{9} i$. Notice also that the upper bound is never binding in this instance — the budget of $7$ is far below the most expensive completion at every node — so only the lower bound fires, and that is exactly the pruning the trace shows.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -176,6 +199,34 @@ Final Result: [[1, 2, 4]]
 - **Deep Copying Paths:** Appending `path` directly to `result` (`result.append(path)`) stores references to the mutable list, which becomes empty when backtracking completes. Appending a copy (`result.append(list(path))` or `result.append(path[:])`) is mandatory.
 - **Missing Break Pruning:** Continuing the loop after $d > \text{rem\_sum}$ wastes time evaluating $d+1, \dots, 9$, all of which also exceed the sum. Using `break` instead of `continue` prunes entire subtrees.
 - **Extreme Target Bounds:** If $n < \frac{k(k+1)}{2}$ (e.g. $k = 4, n = 9 < 10$) or $n > \sum_{i=10-k}^{9} i$, no solution is possible and the search terminates immediately.
+
+### Feasible and Infeasible $(k, n)$ Pairs
+
+| $k$ | $n$ | Smallest sum $\frac{k(k+1)}{2}$ | Largest sum of $k$ digits | Feasible | Result |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| 3 | 7 | 6 | 24 | yes | `[[1, 2, 4]]` — the traced query |
+| 3 | 9 | 6 | 24 | yes | `[[1, 2, 6], [1, 3, 5], [2, 3, 4]]` — three different completions |
+| 3 | 6 | 6 | 24 | yes | `[[1, 2, 3]]` — the query that meets the lower bound exactly, so it has one answer |
+| 3 | 24 | 6 | 24 | yes | `[[7, 8, 9]]` — the query that meets the upper bound exactly, also with one answer |
+| 1 | 9 | 1 | 9 | yes | `[[9]]` — a single slot succeeds for every $n$ in $[1, 9]$ |
+| 9 | 45 | 45 | 45 | yes | `[[1, 2, 3, 4, 5, 6, 7, 8, 9]]` — the one query where both bounds coincide with $n$ |
+| 4 | 1 | 10 | 30 | **no** | `[]` — the target is below the cheapest four-digit set |
+| 3 | 25 | 6 | 24 | **no** | `[]` — the target is above the most expensive three-digit set |
+| 2 | 18 | 3 | 17 | **no** | `[]` — one more than the largest sum two digits can reach |
+
+The two middle infeasible rows are the ones the search cannot discover cheaply by accident: with $k = 3$ and $n = 25$ the first candidate digit is small enough to pass every local test, and only the accumulated budget reveals that no completion exists. A root-level bound check turns each of those queries into a constant-time rejection.
+
+### Alternative Enumeration Strategies and Their Tradeoffs
+
+| Strategy | How combinations are produced | Work | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---|:---|:---|
+| Enumerate every $k$-subset of $\{1 \dots 9\}$ and filter by sum | Generate the $\binom{9}{k}$ subsets directly and test each one | $O\left(\binom{9}{k} \cdot k\right)$ with no sum-based pruning | $O(k)$ per subset | Visits all $126$ subsets at $k = 4$ even when $n$ makes every one impossible |
+| Backtracking with break pruning (used above) | Extend the path while the budget allows and abandon a level as soon as a candidate overshoots | $O\left(\binom{9}{k} \cdot k\right)$ worst case, far less on small targets | $O(k)$ for the path and the recursion | Produces lexicographically ordered output, but depends on breaking rather than continuing at the overflow test |
+| Bitmask enumeration over the $512$ subsets of $\{1 \dots 9\}$ | Test the popcount and digit sum of each mask | $O(2^9 \cdot 9)$, identical for every query | $O(1)$ beyond the output | Ignores the query entirely, so a trivial $k = 1$ request costs the same as the hardest one |
+| Dynamic programming over (largest digit used, count, sum) | Fill reachable states and read the target states | $O(9 \cdot k \cdot n)$ transitions | $O(9 \cdot k \cdot n)$ for the table | Answers existence without search, but every solution still has to be reconstructed, costing the size of the output again |
+| Generate all ordered selections, then deduplicate with a set | Enumerate every arrangement of $k$ digits and keep the first of each set | Up to $9! = 362{,}880$ tuples at $k = 9$ | $O(k)$ per tuple plus the deduplication set | The exact redundancy the strictly increasing rule exists to remove: each combination appears $k!$ times |
+
+The domain is tiny, so all of these finish on this instance; the discriminating property is how each one scales with the query. Pruning by the remaining budget is the only strategy listed that turns an impossible query into almost no work, which is why the search carries `rem` instead of recomputing a sum at every node.
 
 ---
 

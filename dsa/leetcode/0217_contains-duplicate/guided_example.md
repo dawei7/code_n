@@ -120,6 +120,28 @@ Pair (nums[0], nums[1]) = (1, 1) -> 1 == 1 -> RETURN TRUE
 - Set grows to $\{1, 2, 3, 4\}$ of size 4.
 - Loop exhausts all elements $\implies$ Returns `false`.
 
+| Index $i$ | Prefix inspected | Distinct values in that prefix | `seen` before the test | Test $x \in \text{seen}$ | `seen` after the step |
+|:---:|:---|:---|:---|:---:|:---|
+| 0 | `[1]` | $\{1\}$ | $\emptyset$ | False | $\{1\}$ |
+| 1 | `[1, 2]` | $\{1, 2\}$ | $\{1\}$ | False | $\{1, 2\}$ |
+| 2 | `[1, 2, 3]` | $\{1, 2, 3\}$ | $\{1, 2\}$ | False | $\{1, 2, 3\}$ |
+| 3 | `[1, 2, 3, 4]` | $\{1, 2, 3, 4\}$ | $\{1, 2, 3\}$ | False | $\{1, 2, 3, 4\}$ |
+
+The third and fifth columns are the invariant made visible: the set always holds exactly the distinct values of the prefix inspected so far, never more and never fewer. That equality is what turns the final `false` into a proof — if every prefix has as many distinct values as it has positions, then no value has yet repeated. On this input the loop pays for all four elements, and the size-4 set is also the worst case for auxiliary memory.
+
+### The Sorting Method on the Same Instances
+
+| Input | Sorted form | Adjacent pairs examined before deciding | First equal pair | Result |
+|:---|:---|:---|:---|:---:|
+| `[1, 2, 3, 1]` | `[1, 1, 2, 3]` | $(1, 1)$ | $i = 0$: $1 = 1$ | `true` |
+| `[1, 2, 3, 4]` | `[1, 2, 3, 4]` | $(1,2)$, $(2,3)$, $(3,4)$, none equal | none | `false` |
+| `[1, 1, 1, 3, 3, 4, 3, 2, 4, 2]` | `[1, 1, 1, 2, 2, 3, 3, 3, 4, 4]` | $(1, 1)$ | $i = 0$: $1 = 1$ | `true` |
+| `[5, 5]` | `[5, 5]` | $(5, 5)$ | $i = 0$: $5 = 5$ | `true` |
+| `[-1, 0, 2, -1]` | `[-1, -1, 0, 2]` | $(-1, -1)$ | $i = 0$: $-1 = -1$ | `true` |
+| `[42]` | `[42]` | none: a length-1 array has no adjacent pair | none | `false` |
+
+The ordering step does all the work: once equal values are contiguous, detection is a single comparison, and no value is ever compared with a non-neighbor. The price is visible in the second row, where the whole array is ordered only to conclude that nothing repeats, and in the last row, where the absence of any pair leaves the answer to the loop's exhaustion rather than to a comparison.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -135,6 +157,19 @@ Pair (nums[0], nums[1]) = (1, 1) -> 1 == 1 -> RETURN TRUE
 - **Length of Set Shortcut:** In Python, `len(set(nums)) < len(nums)` is concise, but it converts the entire list to a set even if the duplicate is at indices 0 and 1! A streaming loop with early return achieves optimal best-case $O(1)$ time.
 - **Array Value Range Constraints:** In LeetCode 217, $-10^9 \le \text{nums}[i] \le 10^9$. A frequency array or bitset cannot be sized to $2 \times 10^9$ elements. A hash table or sorting is required.
 - **Single Element Arrays:** When $N = 1$, the loop terminates after 1 step and returns `false`. No special-case guard is needed.
+
+### Strategies and Their Costs
+
+| Strategy | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---|:---|:---|
+| Hash set with early return (traced above) | Test membership, then insert, and stop at the first repeat | $O(N)$ expected; $O(1)$ when the first two elements already repeat | $O(N)$ worst case | Every distinct value is stored, so an all-distinct array is the worst case for memory |
+| Sort, then scan adjacent pairs (the app-local solution) | Order the array once, then compare each neighbor pair | $O(N \log N)$ deterministic | $O(1)$ beyond the input when sorted in place | Pays the full sort even when the duplicate sits at indices 0 and 1, and sorting in place mutates the caller's array |
+| Set-size comparison | Build the complete set and compare its size with the array length | $O(N)$ expected | $O(N)$ | Never short-circuits: the entire array is converted even when the repeat is immediately visible |
+| Brute-force pair comparison | Compare every unordered pair of positions | $O(N^2)$ | $O(1)$ | Space-free and obviously correct, but quadratic on inputs of length $10^5$ |
+| Frequency array or bitset indexed by value | Mark the slot belonging to each value and detect a repeated mark | $O(N)$ | $O(V)$ for the number of possible values $V$ | The values reach $10^9$ in magnitude, so one slot per possible value cannot be allocated |
+| Sort a copy, then scan | The sorting method without the mutation | $O(N \log N)$ | $O(N)$ for the copy | Keeps the caller's array intact, at the cost of linear extra memory that the in-place variant avoids |
+
+The comparison exposes the real tradeoff of this problem: the hash set buys a linear scan and an early exit but must remember every distinct value, while sorting buys constant auxiliary space but always pays a full ordering and quietly rewrites the input. Neither dominates, which is why the problem admits both solutions and why the sort order never matters to the returned boolean.
 
 ---
 

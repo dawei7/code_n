@@ -1,140 +1,108 @@
 # Guided Example: Left and Right Sum Differences
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. What each output position is really asking for
 
-- **Input:** `{"nums": [10, 4, 8, 3]}`
-- **Required output:** `[15, 1, 11, 22]`
+For every index $i$ of a 0-indexed array `nums` of length $n$, define
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$\text{leftSum}[i] = \sum_{k < i} \texttt{nums}[k], \qquad \text{rightSum}[i] = \sum_{k > i} \texttt{nums}[k],$$
 
----
+where a sum over no indices is $0$. The output is the array of magnitudes $\text{answer}[i] = \lvert \text{leftSum}[i] - \text{rightSum}[i] \rvert$.
 
-## 1. Instance & Teaching Goal
+The element `nums[i]` itself belongs to neither side, which is the single most important detail in the problem: at index $i$ the array is split into three parts — everything strictly before $i$, the element at $i$, and everything strictly after $i$. Two useful consequences follow immediately.
 
-You are given a **0-indexed** integer array `nums` of size `n`.
+- Every side sum is a sum of $n - 1$ elements at most, and the two sides together always total $T - \texttt{nums}[i]$, where $T = \sum_k \texttt{nums}[k]$ is the array total.
+- Because the constraint guarantees $\texttt{nums}[i] \ge 1$, all elements are positive. Positivity is not needed for correctness of the running sums, but it produces the monotonicity described in section 4, which explains the shape of the output.
 
-The objective is to compute `[15, 1, 11, 22]` from `{"nums": [10, 4, 8, 3]}` while avoiding redundant calculations and unnecessary overhead.
+## 2. The worked instance
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+- Input: `nums = [10, 4, 8, 3]`
+- Required output: `[15, 1, 11, 22]`
 
----
+The array total is $T = 10 + 4 + 8 + 3 = 25$. Reading the definition literally gives the two side arrays and then the magnitudes:
 
-## 2. Conceptual Foundation & Invariants
+| $i$ | $\text{leftSum}[i]$ | `nums[i]` | $\text{rightSum}[i]$ | Signed difference $D_i = \text{leftSum}[i] - \text{rightSum}[i]$ | $\lvert D_i \rvert$ |
+|---|---|---|---|---|---|
+| 0 | 0 | 10 | 15 | $-15$ | 15 |
+| 1 | 10 | 4 | 11 | $-1$ | 1 |
+| 2 | 14 | 8 | 3 | $11$ | 11 |
+| 3 | 22 | 3 | 0 | $22$ | 22 |
 
-We maintain the core conceptual parameters and state variables:
+The two boundary rows are the interesting ones. At $i = 0$ there is nothing to the left, so $\text{leftSum}[0] = 0$ and the magnitude equals the whole suffix sum $15$. At $i = 3$ there is nothing to the right, so $\text{rightSum}[3] = 0$ and the magnitude equals the whole prefix sum $22$. Computing these four rows directly would cost a separate scan per index; the next section shows how one pass over the array produces all of them.
 
-| State Parameter | Role & Purpose | Initial State |
+## 3. One pass with two running sums
+
+Keep a running left sum $\ell$ and a running right sum $\rho$. Initialize $\ell = 0$, because nothing precedes index $0$, and $\rho = T$, because the suffix starting at index $0$ is the whole array. Before index $i$ can be answered, `nums[i]` must leave the right side; after it is answered, `nums[i]` joins the left side. The order of those two movements is forced, and the correction is exactly what the element in the middle of the split demands.
+
+| Step $i$ | $\ell$ before | $\rho$ before | $\rho$ after removing `nums[i]` | $\lvert \ell - \rho \rvert$ recorded | $\ell$ after adding `nums[i]` |
+|---|---|---|---|---|---|
+| 0 | 0 | 25 | 15 | 15 | 10 |
+| 1 | 10 | 15 | 11 | 1 | 14 |
+| 2 | 14 | 11 | 3 | 11 | 22 |
+| 3 | 22 | 3 | 0 | 22 | 25 |
+
+Four steps, four output entries, and every intermediate quantity is a genuine side sum: the $\rho$ column after the removal is $\text{rightSum}[i]$ and the $\ell$ column before the record is $\text{leftSum}[i]$. The invariant that keeps this honest is
+
+$$\ell + \texttt{nums}[i] + \rho = T \qquad \text{before step } i,$$
+
+which holds at the start because $\ell = 0$ and $\rho = T$ with $i = 0$, and is preserved because the step moves `nums[i]` out of $\rho$ and into $\ell$ while the next element becomes the new middle term: $\ell' + \texttt{nums}[i+1] + \rho' = (\ell + \texttt{nums}[i]) + \texttt{nums}[i+1] + (\rho - \texttt{nums}[i]) = T$.
+
+Two failure modes are therefore excluded by construction. Recording the magnitude **before** removing `nums[i]` from $\rho$ would compare the left side against a right side that still contains the middle element, inflating $\rho$ by `nums[i]` and reporting $|0 - 25| = 25$ at $i = 0$ instead of $15$. Adding `nums[i]` to $\ell$ **before** recording would do the same damage to the other side, reporting $|10 - 15| = 5$ at $i = 0$. The correct discipline is: remove from the right, record, then add to the left.
+
+## 4. The closed form and the monotonic invariant
+
+Let $P_i = \sum_{k < i} \texttt{nums}[k]$ denote the prefix sum. Since the two sides total $T - \texttt{nums}[i]$, we have $\text{rightSum}[i] = T - P_i - \texttt{nums}[i]$, so each signed difference has a compact closed form:
+
+$$D_i = \text{leftSum}[i] - \text{rightSum}[i] = 2P_i + \texttt{nums}[i] - T, \qquad \text{answer}[i] = \lvert D_i \rvert .$$
+
+The signs in the worked instance are $-15, -1, 11, 22$: the left side starts smaller than the right and overtakes it exactly once. That crossing is not an accident of this input. Subtracting consecutive closed forms,
+
+$$D_{i+1} - D_i = 2\left(P_{i+1} - P_i\right) + \texttt{nums}[i+1] - \texttt{nums}[i] = \texttt{nums}[i] + \texttt{nums}[i+1] \ge 2 > 0,$$
+
+because every element is at least $1$. The signed differences therefore form a strictly increasing sequence, which has two sharp consequences worth stating as a single invariant:
+
+> $D_i$ is strictly increasing in $i$, so the sequence $\lvert D_i \rvert$ falls while $D_i < 0$, reaches its minimum, and rises once $D_i > 0$; and $D_i = 0$ can hold for **at most one** index.
+
+The second consequence is a real structural restriction on the output: a single index where both sides are equal is possible, but never two. An instance from the authored cases demonstrates the crossing at its exact zero:
+
+| $i$ | Prefix $P_i$ | $D_i = 2P_i + \texttt{nums}[i] - T$ | Increment $D_i - D_{i-1}$ | $\lvert D_i \rvert$ |
+|---|---|---|---|---|
+| 0 | 0 | $-13$ | — | 13 |
+| 1 | 2 | $-6$ | 7 | 6 |
+| 2 | 7 | $0$ | 6 | 0 |
+| 3 | 8 | $7$ | 7 | 7 |
+| 4 | 14 | $14$ | 7 | 14 |
+
+Here $T = 15$ for `nums = [2, 5, 1, 6, 1]`, the magnitudes $13, 6, 0, 7, 14$ form the predicted valley, and index `2` is the unique balanced position because $P_2 = 7$ makes both sides sum to $7$. The increments are $7, 6, 7, 7$, each equal to the sum of two adjacent elements, and never zero or negative.
+
+## 5. Traps and boundary behaviour
+
+| Situation | Instance | Expected output | What the lesson's reasoning says |
+|---|---|---|---|
+| Single element | `[1]` | `[0]` | both sides are empty sums equal to $0$, so $\lvert 0 - 0 \rvert = 0$; the empty sum is $0$, not undefined |
+| Two elements, extreme values | `[1, 100000]` | `[100000, 1]` | each element is the entire opposite side, and the magnitude is the other value |
+| Symmetric outer values | `[100000, 1, 100000]` | `[100001, 0, 100001]` | the middle index is the unique balanced position; the ends see one large element against the other |
+| All values equal | `[5, 5, 5, 5]` | `[15, 5, 5, 15]` | equal elements at mirrored offsets produce mirrored magnitudes |
+| Increasing values | `[1, 2, 3, 4, 5, 6, 7]` | `[27, 24, 19, 12, 3, 8, 21]` | the crossing lies between index `4` and index `5`; no index is balanced |
+| Decreasing values | `[9, 8, 7, 6, 5, 4, 3, 2, 1]` | `[36, 19, 4, 9, 20, 29, 36, 41, 44]` | the minimum magnitude $4$ sits at index `2`, and the sequence rises afterwards |
+| Alternating magnitudes | `[1, 100000, 2, 99999, 3, 99998]` | `[300002, 200001, 99999, 2, 100004, 200005]` | the crossing lies between index `2` and index `3`, where the largest magnitudes surround the smallest |
+| Maximum size and values | $n = 1000$, $\texttt{nums}[i] = 10^5$ | side sums up to $10^8$ | the largest side sum is $999 \cdot 10^5 = 9.99 \times 10^7$, far inside a 32-bit signed range |
+
+| Trap | Symptom | Correction |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Including the middle element in a side | at $i = 0$ the reading becomes $\lvert 0 - 25 \rvert = 25$ instead of `15` | subtract `nums[i]` from the right sum before recording and add it to the left sum afterwards |
+| Dropping the absolute value | the early entries of the worked instance come out as `-15`, `-1` | the contract asks for $\lvert \text{leftSum}[i] - \text{rightSum}[i] \rvert$, so the sign is discarded |
+| Recomputing each side independently | $n$ separate scans, $\Theta(n^2)$ work | two running sums update both sides in one pass |
+| Expecting several balanced indices | searching for multiple zeros in the output | $\lvert D_i \rvert$ has a single valley, so $D_i = 0$ occurs at most once |
+| Treating the ends as special cases | guarding index `0` and index `n-1` separately | the empty-sum convention $0$ makes both boundaries ordinary steps of the same loop |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Maintain both sides instead of building two arrays
-
-For each index $i$, the required values are the sum strictly before $i$ and the sum strictly after $i$. Recomputing both sums independently at every index would repeat work and cost $O(n^2)$ time.
-
-The solution carries two running totals:
-
-- `l` is the sum of elements already passed, so it represents the current left sum;
-- `r` is the sum of elements not yet passed.
-
-Initially no element lies to the left, so `l = 0`. The initial `r = sum(nums)` contains the entire array, including the first current element. The order of updates inside the loop removes that current element before using `r`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Approach | Passes over the array | Extra space | When it is the right choice |
 |---|---|---|---|
-| Input Slice | `{"nums": [10, 4, 8, 3]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Recompute each side per index | $n$ | $O(1)$ | never for $n \le 1000$ in a hurry, but it is the literal reading of the definition |
+| Precompute prefix and suffix arrays | 2 | $\Theta(n)$ | useful when many different index ranges must be queried afterwards |
+| One pass with two running sums | 1 | $O(1)$ | the intended method here: both sides are always available at the moment they are needed |
 
----
+## 6. Time and auxiliary space
 
-### Step 2: Why the update order matters
-
-For each current value `x`, the statements occur in this exact order:
-
-1. `r -= x`;
-2. append `abs(l - r)`;
-3. `l += x`.
-
-Before step one, `r` includes the current value and everything to its right. Subtracting `x` makes it equal to the sum strictly to the right, which is `rightSum[i]`.
-
-At that same moment, `l` contains only earlier values because the current value has not yet been added. It is exactly `leftSum[i]`. The appended absolute difference is therefore correct for the current index.
-
-Only after recording the answer does the code add `x` to `l`, preparing it to be part of the left side at the next index.
-
-If the last two updates were reversed, the current element would incorrectly appear on the left. If the subtraction from `r` occurred after appending, it would incorrectly appear on the right. The compact algorithm depends on this sequencing.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: A loop invariant
-
-At the beginning of the iteration for index $i$:
-
-$$
-\texttt{l}=\sum_{k=0}^{i-1}\texttt{nums[k]}
-$$
-
-and
-
-$$
-\texttt{r}=\sum_{k=i}^{n-1}\texttt{nums[k]}.
-$$
-
-Subtracting `nums[i]` changes `r` into the suffix strictly after $i$. The algorithm appends the exact absolute difference, then adding `nums[i]` changes `l` into the prefix through $i$. Those are precisely the invariant values required at the beginning of iteration $i+1$.
-
-The invariant is true initially because the empty prefix sums to zero and `r` is the total array sum. By induction, every appended result is correct.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[15, 1, 11, 22]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [10, 4, 8, 3]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[15, 1, 11, 22]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit left and right arrays:** Two prefix/suffix passes are correct but allocate two additional $O(n)$ arrays when two running totals suffice.
-- **Recompute sums for each index:** Slicing and summing both sides at every position costs $O(n^2)$ time.
-- **One prefix array plus total sum:** This also answers each position in $O(1)$ after preprocessing, but still stores $O(n)$ auxiliary prefix values.
-- **Single element:** Subtracting it makes `r=0` while `l=0`, so the sole answer is zero.
-- **First position:** The initialized left sum is the required empty-side zero.
-- **Last position:** Removing the current value from `r` leaves the required empty-side zero.
-- **Equal side sums:** Absolute difference is zero, which the code appends normally.
-- **Large total:** The maximum sum can exceed a 32-bit integer under broader constraints; Python integers expand automatically.
-- **Update order:** Remove the current value from the right before measuring, and add it to the left only afterward.
-- **Input preservation:** All updates affect scalar totals and the new answer list, never `nums`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Computing `sum(nums)` takes $O(n)$ time. The loop visits each element once and does constant work, adding another $O(n)$. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+- **Time.** Computing the total $T$ costs one pass, and the answering pass performs a constant amount of work at each of the $n$ indices: one subtraction, one absolute difference, one addition. The running time is $\Theta(n)$, which is optimal because every element must be read at least once and every output entry must be written.
+- **Auxiliary space.** Beyond the returned array, the method holds the two running sums, the total, and the loop position: $O(1)$ extra space. The output itself is $\Theta(n)$ and is required by the contract, so it is not counted as auxiliary.
+- The bound does not depend on the magnitude of the values; only the number of elements matters, and the constraint $n \le 1000$ with $\texttt{nums}[i] \le 10^5$ shows the arithmetic stays small enough that no overflow handling is needed in a typical fixed-width language.

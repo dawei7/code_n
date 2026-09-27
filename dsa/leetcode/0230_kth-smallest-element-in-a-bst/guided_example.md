@@ -132,6 +132,47 @@ Pop 3: count = 3 == k! -> MATCH! Return 3
 | 3 | Pop next smallest | `[5, 3]` | Node 2 | 2 | $2 \ne 3$ |
 | **4** | **Pop next smallest** | **`[5]`** | **Node 3** | **3** | **$3 == 3 \implies \mathbf{3}$ (Return)** |
 
+### 4.1 Rank Identity for Every Node of the Instance
+
+The early exit stops the trace at rank 3, so the remaining nodes are never
+popped. Their ranks still exist, and they are what the traversal would have
+produced had $k$ been larger. Recording them makes the correspondence between
+inorder position and rank unambiguous.
+
+| Node value | Inorder position (rank) | Stack state immediately after this node is popped | `curr` set to after the pop | Would the traversal have stopped here for $k = 3$? |
+|:---:|:---:|:---|:---|:---|
+| 1 | 1 | `[5, 3, 2]` | `None`; Node 1 has no right child, so the next iteration pops the stack | No; the counter reaches 1 |
+| 2 | 2 | `[5, 3]` | `None`; Node 2 has no right child either | No; the counter reaches 2 |
+| 3 | 3 | `[5]` | not assigned; the traversal returns immediately | Yes; this is the requested rank |
+| 4 | 4 | would leave `[5]` | `None`; Node 4 is a leaf | Not reached; the early exit already fired |
+| 5 | 5 | would leave `[]` | Node 6, its right child | Not reached |
+| 6 | 6 | would leave `[]` | `None`; Node 6 is a leaf | Not reached |
+
+Two structural facts are visible in this table. Node 3 sits at rank 3 even though
+its own value is 3, which is a coincidence of this instance rather than a rule:
+rank and value are different quantities, and a BST such as the trial
+`[9]` has rank 1 with value 9. Also, every node that has no right child leaves
+`curr` empty and forces the next step to pop, which is exactly the moment the
+counter advances. Nodes 4, 5, and 6 are never pushed, so the work saved by the
+early exit is not just the pops but the entire right-spine traversal that would
+have followed them.
+
+### 4.2 Boundary and Trap Instances
+
+| Trial input | $k$ | Inorder sequence | Popped nodes before the exit | Answer | Why the instance matters |
+|:---|:---:|:---|:---:|:---:|:---|
+| `[9]` | 1 | `[9]` | 1 | 9 | Degenerate case: the left spine is a single node, and `count == k` fires on the first pop, so the loop body never runs a second time |
+| `[3, 1, 4, null, 2]` | 1 | `[1, 2, 3, 4]` | 1 | 1 | The answer is the deepest left-spine leaf, reached only after the full descent rather than at the root |
+| `[3, 1, 4, null, 2]` | 3 | `[1, 2, 3, 4]` | 3 | 3 | The rank lands on the root, but the root is popped third, not first; the descent must still find the two smaller values |
+| `[1, null, 2, null, 3, null, 4, null, 5]` | 5 | `[1, 2, 3, 4, 5]` | 5 | 5 | A right-skewed tree: the left spine holds only one node at a time, so the stack never grows beyond one entry but the traversal still visits every node |
+| `[5, 3, 6, 2, 4, null, null, 1]` | 6 | `[1, 2, 3, 4, 5, 6]` | 6 | 6 | The maximum rank, where the early exit coincides with exhausting the tree and no work is saved at all |
+
+The last row is the honest counterweight to the early-exit claim: when $k = N$ the
+traversal degenerates to a complete inorder walk. The claimed saving is
+proportional to how much of the tree lies above rank $k$, not a constant factor.
+The right-skewed row shows the opposite extreme for auxiliary space, where the
+stack depth is $H = 5$ while the total node count is also 5.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -157,3 +198,35 @@ Pop 3: count = 3 == k! -> MATCH! Return 3
   - In a degenerate linked-list tree, $H = O(N)$.
   - In all cases, only $k$ nodes are visited, achieving optimal early exit.
 - **Auxiliary Space Complexity:** $O(H)$ auxiliary memory for the stack, storing at most $H$ nodes along the left-spine branch ($O(\log N)$ on balanced trees).
+
+### 7.1 Alternatives Compared on This Instance
+
+| Approach | How the rank is reached | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Iterative inorder with an explicit stack and early exit (traced above) | Descend the left spine, pop in ascending order, stop at the $k^{\text{th}}$ pop | $O(H + k)$ | $O(H)$ | Chosen. Visits only the nodes at or below the requested rank, and never touches Nodes 4, 5, or 6 |
+| Recursive inorder with a counter | Recurse left, count the node, recurse right, unwinding once the count hits $k$ | $O(H + k)$ | $O(H)$ call frames | Same asymptotics and easier to read, but the recursion cannot stop the sibling calls cleanly without an extra guard at every level |
+| Materialize the full inorder sequence | Collect every value, then index the $k - 1$ position | $O(N)$ | $O(N)$ list plus $O(H)$ | Always correct, but pays for all $N$ nodes even when $k = 1$; on this instance it visits 4, 5, and 6 unnecessarily |
+| Morris threaded traversal | Thread each left subtree to its predecessor and walk without a stack | $O(N)$ | $O(1)$ | Best possible auxiliary space, but it must temporarily rewrite child pointers, so the tree is mutated during the walk and the early exit has to undo the last thread before returning |
+| Subtree-size augmentation (follow-up direction) | Store the left-subtree size at each node and descend by comparing sizes with $k$ | $O(H)$ | $O(H)$ for the descent, $O(N)$ extra storage | The fastest option for repeated rank queries after inserts and deletes, but it requires changing the node representation, which a single-query interface does not justify |
+
+The first two rows dominate the others for one query because the rank is reached
+without materializing anything. The augmentation row is the answer to the
+follow-up question rather than to this instance: it trades extra stored state for
+a query that no longer depends on $k$ at all. The Morris row is the only
+alternative that improves auxiliary space, and it does so by paying a traversal
+cost that the early exit avoids.
+
+### 7.2 Where the Time Bound Comes From
+
+| Contribution | Nodes or steps | On this instance ($k = 3$) | Where it appears in the trace |
+|:---|:---|:---:|:---|
+| Left-spine descent pushes | At most $H + 1$ pushes total across the whole run | 4 pushes: Nodes 5, 3, 2, 1 | Step 1, giving `stack = [5, 3, 2, 1]` |
+| Pops that advance the counter | Exactly $k$ pops | 3 pops: Nodes 1, 2, 3 | Steps 2 through 4 |
+| Right-child descents after a pop | One check per popped node, and a new spine only when a right child exists | 3 checks, all `None` | Steps 2, 3, and the implicit check before returning |
+| Work avoided by the early exit | The remaining $N - k$ ranks | 3 ranks: Nodes 4, 5, 6 | Never executed; the return fires as soon as the third pop occurs |
+
+Summing the first two rows gives the $O(H + k)$ bound: the stack can be filled
+only along a single root-to-leaf path, and the counter can advance only once per
+pop. Nothing in the loop depends on the total node count, which is why a tree
+with $N = 6$ and one with $N = 10^5$ cost the same for a fixed small $k$ on a
+balanced shape.

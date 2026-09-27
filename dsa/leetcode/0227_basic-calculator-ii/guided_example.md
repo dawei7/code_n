@@ -121,7 +121,7 @@ We trace the single-pass evaluation on $s = \text{"3+2*2"}$ ($N = 5$):
 ### Index 4: $c = \text{'2'}$ (Terminal Index $i = 4 == N - 1$)
 - Digit detected: $\text{num} = 0 \times 10 + 2 = 2$.
 - Terminal boundary condition $i == N - 1$ triggered!
-- Process $\text{num} = 2$ under pending operator $\text{pre\_op} = \text{'*' Tanto high precedence!}$:
+- Process $\text{num} = 2$ under pending operator $\text{pre\_op} = \text{'*'}$, the higher-precedence operator that governs this second factor:
   - Pop top of stack: $\text{top} = \text{stack}.\text{pop}() = 2$.
   - Evaluate product: $2 \times 2 = \mathbf{4}$.
   - Push product back:
@@ -166,6 +166,59 @@ sum(stack) = 3 + 4 = 7
 | **4** | **`'2'`** | 2 | **`'*'`** | **Pop 2, multiply $2 \times 2 = 4$, push 4** | **`[3, 4]` (Terminal)** |
 | **End** | - | - | - | $\sum [3, 4] = 3 + 4$ | **$\mathbf{7}$ (Final Answer)** |
 
+### 4.1 The Same Scan Against a Spaced Expression
+
+The main instance has no whitespace, so it never exercises the skip rule. Running
+the identical protocol on $s = \text{" 3+5 / 2 "}$ ($N = 9$) shows what the
+spaces do and, more importantly, what they must *not* do: a space is neither a
+digit nor an operator, so it neither accumulates into `num` nor commits a term.
+
+| Index $i$ | Character $c$ | `num` after the index | `pre_op` after the index | Term committed at this index | Stack afterwards |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | `' '` | 0 | `'+'` | none; whitespace is inert | `[]` |
+| 1 | `'3'` | 3 | `'+'` | none | `[]` |
+| 2 | `'+'` | 0 | `'+'` | `+3`, because the governing operator is the initial `'+'` | `[3]` |
+| 3 | `'5'` | 5 | `'+'` | none | `[3]` |
+| 4 | `' '` | 5 | `'+'` | none; a space must not reset `num` or alter `pre_op` | `[3]` |
+| 5 | `'/'` | 0 | `'/'` | `+5`, the factor that the division will consume | `[3, 5]` |
+| 6 | `' '` | 0 | `'/'` | none | `[3, 5]` |
+| 7 | `'2'` | 2 | `'/'` | none | `[3, 5]` |
+| 8 | `' '` (terminal, $i = N - 1$) | 0 | `' '` | pop 5, evaluate $5 / 2 = 2$, push 2 | `[3, 2]` |
+| End | - | - | - | $\sum [3, 2] = 3 + 2$ | **$\mathbf{5}$** |
+
+Two details in this trace are worth isolating. First, index 4 proves that a space
+between a digit and an operator must leave `num` untouched; clearing `num` on
+whitespace would silently discard the 5. Second, the terminal index 8 is a
+space, not a digit, yet it still triggers the commit because the trigger is
+$i = N - 1$ rather than "the character is an operator". That is why the trailing
+space cannot strand the final number: the last uncommitted value is flushed by
+position, and `pre_op` at that moment is still `'/'` from index 5.
+
+### 4.2 Why Truncation Toward Zero Is Not Floor Division
+
+The trial input $s = \text{"0-7/2+3*4"}$ expects $9$. Reaching it requires the
+division to truncate the negative intermediate toward zero rather than downward,
+which in turn depends on the sign of the term already sitting on the stack.
+
+| Index $i$ | Character $c$ | `num` after the index | `pre_op` before the commit | Action on the stack | Stack afterwards |
+|:---:|:---:|:---:|:---:|:---|:---|
+| 0 | `'0'` | 0 | `'+'` | none | `[]` |
+| 1 | `'-'` | 0 | `'+'` | push `+0` | `[0]` |
+| 2 | `'7'` | 7 | `'-'` | none | `[0]` |
+| 3 | `'/'` | 0 | `'-'` | push `-7`; the negative term now sits on top | `[0, -7]` |
+| 4 | `'2'` | 2 | `'/'` | none | `[0, -7]` |
+| 5 | `'+'` | 0 | `'/'` | pop `-7`, evaluate $-7 / 2$ truncated toward zero $= -3$, push `-3` | `[0, -3]` |
+| 6 | `'3'` | 3 | `'+'` | none | `[0, -3]` |
+| 7 | `'*'` | 0 | `'+'` | push `+3` | `[0, -3, 3]` |
+| 8 | `'4'` (terminal) | 4 | `'*'` | pop 3, evaluate $3 \times 4 = 12$, push `12` | `[0, -3, 12]` |
+| End | - | - | - | $\sum [0, -3, 12]$ | **$\mathbf{9}$** |
+
+Had index 5 used floor division, the quotient would have been $-4$ instead of
+$-3$, the final sum would have collapsed to $8$, and the submission would be
+rejected on exactly this hidden case. Note also that the sign of the term pushed
+at index 3 is what makes the quotient negative in the first place: the stack
+stores signed terms, so the division sees `-7` and not `7`.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -181,6 +234,28 @@ sum(stack) = 3 + 4 = 7
 - **Integer Division Truncation Toward Zero:** In Python, standard floor division `//` rounds toward $-\infty$ (e.g. `-3 // 2 = -2`), but C/C++ integer division truncates toward zero (e.g. `int(-3 / 2) = -1`). LeetCode 227 requires truncation toward zero, so `int(a / b)` or `math.trunc(a / b)` must be used instead of `a // b`.
 - **Operator Processing Lag:** The operator encountered at index $i$ governs the *next* number, not the current one. Applying the current operator immediately causes incorrect evaluations (e.g. interpreting `3 + 2` as `+3`).
 - **Whitespace Traps:** Spaces can appear anywhere (e.g. `" 3 / 2 "`). The algorithm must ignore spaces during digit accumulation and only trigger evaluation if a space happens to be at the terminal index $N - 1$.
+
+### 6.1 The Two Division Roundings Side by Side
+
+The stack holds signed terms, so the dividend passed to a division can be
+negative even though every integer literal in the expression is non-negative.
+The two candidate roundings agree on non-negative dividends and disagree
+everywhere else, which is precisely where the trap bites.
+
+| Dividend $a$ | Divisor $b$ | Truncation toward zero $\text{trunc}(a / b)$ | Floor $\lfloor a / b \rfloor$ | Do the two agree? |
+|:---:|:---:|:---:|:---:|:---|
+| 3 | 2 | 1 | 1 | Yes; the mandated sample `" 3/2 "` cannot detect the difference |
+| 5 | 2 | 2 | 2 | Yes; `" 3+5 / 2 "` also passes under either rounding |
+| -7 | 2 | -3 | -4 | No; this is the row exercised by `"0-7/2+3*4"` |
+| -6 | 3 | -2 | -2 | Yes; an exact quotient hides the defect |
+| -1 | 2 | 0 | -1 | No; the quotient is smaller than 1 in magnitude |
+| -9 | 4 | -2 | -3 | No; a second non-exact negative case that a single spot check would miss |
+
+The lesson is that a correct implementation cannot be confirmed with positive
+dividends only. Two of the six rows above are non-exact negative divisions, and
+an expression whose negative term divides exactly (row four) still passes,
+which is why the failure mode survives casual testing and appears only on a
+hidden case such as `"0-7/2+3*4"`.
 
 ---
 

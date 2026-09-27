@@ -108,6 +108,21 @@ $$
 \text{Total Maximum} = \max(4, 3) = \mathbf{4}
 $$
 
+### Recurrence Table with the Plan Each Decision Selects
+
+The rolling variables record only the value, not the plan. The equivalent prefix table restores that information; $DP[i]$ is the best value obtainable from $H[0 \dots i]$:
+
+| Slice | $i$ | $H[i]$ | Skip: $DP[i-1]$ | Rob: $DP[i-2] + H[i]$ | $DP[i]$ | Decision at $i$ | Circle houses realizing $DP[i]$ |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| $H_1 = [1, 2, 3]$ | 0 | 1 | 0 | $0 + 1 = 1$ | 1 | Rob | $\{0\}$ |
+| $H_1$ | 1 | 2 | 1 | $0 + 2 = 2$ | 2 | Rob | $\{1\}$ |
+| $H_1$ | 2 | 3 | 2 | $1 + 3 = 4$ | **4** | Rob house 2 and reuse the optimum of $H_1[0 \dots 0]$ | $\{0, 2\}$ |
+| $H_2 = [2, 3, 1]$ | 0 | 2 | 0 | $0 + 2 = 2$ | 2 | Rob circle house 1 | $\{1\}$ |
+| $H_2$ | 1 | 3 | 2 | $0 + 3 = 3$ | 3 | Rob circle house 2 | $\{2\}$ |
+| $H_2$ | 2 | 1 | 3 | $2 + 1 = 3$ | 3 | Tie: skipping keeps 3 and robbing also reaches 3 | $\{2\}$ or $\{1, 3\}$ |
+
+Read the slice positions carefully: $H_2$ starts at circle house $1$, so its last entry `1` is circle house $3$. The tie on the final row is instructive rather than decorative — two distinct legal plans reach $3$, and the contract asks only for the value, so no reconstruction is needed. The row above it is the one that decides the instance: the winning plan $\{0, 2\}$ robs around the circle's wrap edge, which is exactly the choice the linear problem forbids and the decomposition has to license.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -159,6 +174,30 @@ Because these three cases partition all possibilities, $\max(\text{Slice 1}, \te
 - **Length 1 Array ($N = 1$):** When $N = 1$ (e.g. `nums = [1]`), slicing `nums[:-1]` and `nums[1:]` produces empty lists, returning $0$ instead of $1$! Guard with `if len(nums) == 1: return nums[0]`.
 - **Length 2 Array ($N = 2$):** For `nums = [1, 2]`, the houses are adjacent. The algorithm evaluates $\max(\text{rob}([1]), \text{rob}([2])) = \max(1, 2) = 2$, correctly picking the larger single house.
 - **Duplicate Memory Allocation:** Slicing creates two small subarrays of length $N - 1$. If $O(1)$ memory is strictly required, iterate over index ranges `range(0, n - 1)` and `range(1, n)` directly.
+
+### Boundary Sizes $N = 1$ Through $5$
+
+| $N$ | Input | Slice 1 $(0 \dots N-2)$ and its value | Slice 2 $(1 \dots N-1)$ and its value | Returned value | Why this size behaves that way |
+|:---:|:---|:---|:---|:---:|:---|
+| 1 | `[50]` | empty, $0$ | empty, $0$ | **50** | Both slices drop the only house, so the decomposition cannot answer at all; the value must be returned before the two subproblems are formed |
+| 2 | `[18, 73]` | `[18]`, $18$ | `[73]`, $73$ | **73** | The two houses are adjacent in both directions, so every legal plan robs exactly one of them and the larger single value wins |
+| 3 | `[1, 2, 3]` | `[1, 2]`, $2$ | `[2, 3]`, $3$ | **3** | Houses 0 and 2 touch through the wrap, so the middle house neighbors both endpoints; the slices differ only in which endpoint they discard |
+| 4 | `[1, 2, 3, 1]` | `[1, 2, 3]`, $4$ | `[2, 3, 1]`, $3$ | **4** | The traced instance: the optimum robs the two non-adjacent houses 0 and 2 |
+| 5 | `[2, 7, 9, 3, 1]` | `[2, 7, 9, 3]`, $11$ | `[7, 9, 3, 1]`, $10$ | **11** | The slices genuinely disagree, and the better value comes from discarding the *last* house rather than the first |
+
+Rows 2 and 3 show that the two slices may be identical in value or complementary, so neither slice can be skipped: only their maximum is guaranteed. Row 1 is the single size where an explicit guard is unavoidable, because both slices are empty there and the maximum of two zeros is not the answer.
+
+### Alternative Formulations and Their Tradeoffs
+
+| Formulation | State carried | Passes over the circle | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---|:---|:---|
+| Two linear slices with rolling variables (used above) | The last two prefix optima | Two | $O(N)$ | $O(1)$ | Baseline; interior houses are visited twice and $N = 1$ needs its own guard |
+| Exhaustive search over all $2^N$ subsets | The subset itself | One | $O(2^N)$ | $O(N)$ | Correct and useful for hand-checking tiny inputs, but exponentially slow |
+| One pass of a four-state DP keyed on whether house 0 was robbed | That flag plus the last two optima | One | $O(N)$ | $O(1)$ | Saves the second pass, but the wrap constraint must then be enforced from the flag at the end, which is easier to get wrong |
+| Memoized recursion on (index, whether house 0 was robbed) | A table of solved states | One | $O(N)$ | $O(N)$ | Same asymptotics as the single-pass version, with a linear table in place of constants |
+| Delete the cheapest house, then solve the resulting linear problem | The last two prefix optima | One | $O(N)$ | $O(1)$ | Wrong in general: for `[5, 1, 1, 5]` deleting a cheapest house leaves `[5, 1, 5]`, whose linear optimum $10$ robs the two end houses that are adjacent in the circle; the true answer is $6$ |
+
+The two-slice decomposition is preferred because it never has to reason about the wrap edge during the scan. Each slice is an ordinary linear instance whose adjacency is purely local, and the circular edge is handled once, by the choice of which endpoint to discard.
 
 ---
 

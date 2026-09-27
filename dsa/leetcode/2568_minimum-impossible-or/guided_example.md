@@ -1,140 +1,111 @@
 # Guided Example: Minimum Impossible OR
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Expressibility is reachability under bitwise OR
 
-- **Input:** `{"nums": [2, 1]}`
-- **Required output:** `4`
+An integer $x$ is *expressible* when some selection of positions $i_1 < i_2 < \dots < i_k$ satisfies `nums[i_1] | ... | nums[i_k] = x`. Empty selections are allowed by the definition and produce $0$, which is why the task asks for the smallest **positive** value that no selection can reach.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The OR operation has one property that controls everything: it is **monotone in the set of contributing bits**. Adding another element to a selection can only turn more bits on, never off. There is no cancellation, no borrowing, and no way to remove a bit that a chosen element brings along.
 
----
+For the instance we trace, `nums = [2,1]`, the whole reachable set is small enough to list exhaustively:
 
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums`.
-
-The objective is to compute `4` from `{"nums": [2, 1]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Selected positions | Selected values | Bitwise OR reached |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| none | — | 0 |
+| 0 | 2 | 2 |
+| 1 | 1 | 1 |
+| 0 and 1 | 2, 1 | 3 |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+So $1$, $2$ and $3$ are expressible and $4$ is the smallest positive integer that is not — the authored answer for this input. The interesting question is *why* $4$ is out of reach, and the answer is not "the array is too short": `nums` contains no value with bit $2$ set at all, and no combination of $1$ and $2$ can manufacture one.
 
----
+## 2. The decisive lemma: a single-bit value needs that exact value present
 
-## 3. Step-by-Step Worked Execution
+**Lemma.** For every exponent $p \ge 0$, the value $2^p$ is expressible from `nums` if and only if some element of `nums` equals $2^p$.
 
-### Step 1: OR can add bits but can never remove them
+*If direction.* Choosing the single position that holds $2^p$ yields an OR of $2^p$.
 
-The bitwise OR of selected numbers has a one in every bit position that is one in at least one selected number. Once an unwanted bit appears, no later OR operation can turn it back to zero.
+*Only-if direction.* Suppose a selection ORs to exactly $2^p$, whose binary form has bit $p$ set and every other bit clear. Since the OR has bit $p$ set, at least one selected element $v$ has bit $p$ set. That same $v$ contributes all of its other set bits to the OR as well, and OR never clears them. For the result to have no bit other than $p$, $v$ must have no other set bits, so $v = 2^p$. Hence an element equal to $2^p$ must exist in the array.
 
-This makes powers of two special. The number $2^k$ has exactly one set bit, at position $k$. To express exactly $2^k$, every chosen number must contain no set bit outside position $k$, and at least one chosen number must contain bit $k$. Because all input numbers are positive, the only number satisfying both conditions is $2^k$ itself.
+The lemma is where intuition usually fails, because multi-bit values look helpful. A value like $3 = 2 + 1$ does carry bit $1$, yet it also drags bit $0$ into the result; the reachable value $3$ is not $2$, and no partner element can subtract bit $0$ back out.
 
-Therefore:
-
-$$
-2^k\text{ is expressible if and only if }2^k\text{ appears in }\texttt{nums}.
-$$
-
-Combining other numbers cannot manufacture a missing single-bit value. Any number carrying bit $k$ plus some additional bit would make the OR larger and different from $2^k$.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Target | Array | Elements carrying the target bit | Why the target is still unreachable |
 |---|---|---|---|
-| Input Slice | `{"nums": [2, 1]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| 4 | `[2,1]` | none (only bits 0 and 1 occur) | no element supplies bit 2 |
+| 2 | `[1,3,5,6,7]` | 3, 6, 7 | each also carries bit 0 or bit 2, and OR keeps those bits |
+| 4 | `[1,1,2,2,8,8]` | none (elements are $2^0$, $2^1$, $2^3$) | duplicates of 1 and 2 can only rebuild 1, 2, 3, 8, 9, 10, 11 |
+| 32 | `[16,1,8,2,4,31]` | none (every element is below 32) | the largest possible OR is $31 = 2^5-1$ |
 
----
+## 3. The answer is the smallest power of two that is absent
 
-### Step 2: Why the first missing power of two is the answer
+Let $p$ be the smallest exponent with $2^p \notin \texttt{nums}$; the claim is that the answer is exactly $2^p$.
 
-Suppose $2^k$ is the first power of two absent from the array. It is impossible to express by the single-bit argument above.
+**No smaller positive value is missing.** Take any $x$ with $1 \le x < 2^p$ and write it in binary as a sum of distinct powers,
 
-Now consider any positive integer $x<2^k$. Its binary representation uses only bit positions $0$ through $k-1$. Because $2^k$ is the first missing power, all values
+$$x \;=\; \sum_{j=1}^{m} 2^{e_j}, \qquad e_1 < e_2 < \dots < e_m \le p-1 .$$
 
-$$
-1,2,4,\ldots,2^{k-1}
-$$
+Every exponent appearing here is below $p$, and by minimality of $p$ each of the values $2^{e_j}$ occurs in `nums`. Choosing one occurrence per exponent gives distinct positions, and because distinct powers of two have disjoint bit sets, the OR of the chosen values *is* their sum, namely $x$. Every $x$ below $2^p$ is therefore expressible.
 
-are present in `nums`. Select the power of two corresponding to each set bit of $x$. ORing those selected values reconstructs $x$ exactly.
+**The value $2^p$ itself is not expressible**, by the lemma, since no element equals it.
 
-For example, if $x=13$, its binary representation is `1101`, so
+Combining the two halves, $2^p$ is the minimum positive non-expressible integer. The algorithm is thus a search for the first absent power of two:
 
-$$
-13=8\mathbin{|}4\mathbin{|}1.
-$$
+$$\text{answer} \;=\; \min\{\,2^p \;:\; p \ge 0,\; 2^p \notin \texttt{nums}\,\}.$$
 
-If $1$, $4$, and $8$ are present, $13$ is expressible. This construction works for every smaller positive value. Hence the first missing power of two is not merely impossible; every positive integer below it is possible. It is exactly the minimum impossible OR.
+## 4. Tracing `nums = [2,1]` exponent by exponent
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+| Exponent $p$ | Power $2^p$ | Present in `nums`? | Consequence |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| 0 | 1 | yes, position 1 | $1$ expressible as a one-element selection |
+| 1 | 2 | yes, position 0 | $2$ expressible; also $3 = 2 \mid 1$ becomes expressible |
+| 2 | 4 | no | $4$ is the first absent power, so it is the answer |
 
----
+The trace also shows the completeness half of the argument at work: $3 < 4$, its binary form is $2^1 + 2^0$, and both powers are present, so selecting `nums[0] = 2` together with `nums[1] = 1` reaches $3$. No selection reaches $4$: the only elements available are $1$ and $2$, their OR is $3$, and $3$ has bit $1$ and bit $0$ set but not bit $2$.
 
-### Step 3: How the implementation finds that power
+## 5. Applying the test to the awkward inputs
 
-The code builds `s = set(nums)`, allowing expected $O(1)$ membership tests. It then generates powers `1 << i` for $i$ from $0$ through $31$ and returns the first one not in the set:
+| `nums` | Powers of two present | First absent power | Answer | Note |
+|---|---|---|---|---|
+| `[2,1]` | 1, 2 | 4 | 4 | small prefix, then a gap |
+| `[5,3,2]` | 2 | 1 | 1 | 1 is missing, so nothing smaller can be |
+| `[1,3]` | 1 | 2 | 2 | the element 3 has bit 1 set but cannot isolate it |
+| `[1,2,4,8]` | 1, 2, 4, 8 | 16 | 16 | four consecutive powers |
+| `[7]` | none | 1 | 1 | a lone multi-bit value never reaches 1 |
+| `[1,1,2,2,8,8]` | 1, 2, 8 | 4 | 4 | duplicate powers do not fill the missing bit 2 |
+| `[1,3,5,6,7]` | 1 | 2 | 2 | extra bits in larger elements do not help |
+| `[16,1,8,2,4,31]` | 1, 2, 4, 8, 16 | 32 | 32 | input order is irrelevant; 31 caps every OR at 31 |
+| powers $2^0$ through $2^{29}$ | 1, 2, 4, ..., $2^{29}$ | $2^{30}$ | 1073741824 | the answer exceeds every element |
 
-`next(1 << i for i in range(32) if 1 << i not in s)`.
+Two rows deserve emphasis. In `[1,1,2,2,8,8]` the array holds three distinct powers with multiplicity, and the reachable set is exactly the set of subset sums of $\{1,2,8\}$: $\{1,2,3,8,9,10,11\}$. Four is missing because no element and no combination carries bit 2 alone; a third copy of 2 would not change that, since the multiset of *bit patterns* is what matters, not the count of elements. In `[16,1,8,2,4,31]` the element `31` contains every bit below 5, which makes it tempting as a universal building block, yet every value here is at most 31, so every OR is at most 31 and 32 remains out of reach. Presence of *bits* is not the criterion; presence of the exact power is.
 
-Left-shifting one by $i$ places its only set bit at position $i$, producing $2^i$. The generator tests powers in strictly increasing order, so `next` returns the smallest missing one without generating later candidates.
+## 6. Why 31 exponents already decide the answer
 
-For `nums = [2,1]`, both $1$ and $2$ are present. Their OR expresses $3$. Power $4$ is absent and cannot be assembled without also introducing some other bit, so the answer is $4$.
+The constraint is $1 \le \texttt{nums}[i] \le 10^{9}$, and
 
-For `nums = [5,3,2]`, power $1$ is not an array element. Although both $5$ and $3$ contain their least-significant bit, each also contains another bit. OR cannot remove those extras, so neither can express $1$. The answer is immediately $1$.
+$$2^{30} = 1073741824 > 10^{9},$$
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+so no element can equal $2^{30}$, nor any higher power. Scanning exponents $p = 0, 1, \dots, 30$ therefore always terminates with an absent power, and the answer never exceeds $2^{30}$. This is why the search can stay at machine-word width: the exponent bound comes from the element bound, not from an arbitrary limit. Note that the answer may be far larger than any element, as the final row of the previous table shows.
 
----
+## 7. Why the reasoning is correct
 
-## 4. Complete Execution Trace
+The proof has one invariant that carries the completeness half: *before testing exponent $p$, every integer in $[1, 2^p - 1]$ is expressible.* It holds initially because the range $[1, 1]$ is empty when $p = 0$. If the invariant holds and $2^p$ is present, then every $x < 2^{p+1}$ is a sum of distinct powers below $p+1$, each of which is present, so OR-combining them reaches $x$ and the invariant advances. If instead $2^p$ is absent, the lemma shows $2^p$ itself is unreachable, so no larger value needs to be examined — every candidate smaller than $2^p$ was already shown expressible by the invariant.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [2, 1]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+Soundness of the stopping rule and completeness of the reachable prefix therefore come from the same two facts: OR cannot clear bits (so single-bit targets demand single-bit sources), and distinct powers of two OR to their sum (so binary decompositions are realizable). Nothing in the argument uses the order of `nums`, its length beyond the presence of the required positions, or the multiplicity of repeated powers.
 
----
+## 8. Traps this instance exposes
 
-## 5. Algorithmic Correctness
+| Tempting reasoning | Where it breaks | Correct view |
+|---|---|---|
+| "Enumerate subsequences and OR them." | `[1,1,2,2,8,8]` already has $2^6$ selections. | Only the presence of each exact power of two matters. |
+| "Any element with bit $p$ set can supply $2^p$." | `[1,3,5,6,7]` returns 2, not a value built from 3. | OR retains the other bits of every contributor, so a single-bit target needs a single-bit source. |
+| "Large elements act as wildcards because they contain many bits." | `[16,1,8,2,4,31]` still answers 32. | Extra bits are noise; 31 cannot create bit 5. |
+| "More copies must help." | `[1,1,2,2,8,8]` answers 4 with or without extra copies. | Expressibility depends on the set of distinct bit patterns, not on frequencies. |
+| "The answer is bounded by the largest element." | the all-powers input answers $2^{30}$, larger than every element. | The answer is the first absent power, which is one bit above the longest present prefix. |
+| "Sorting or deduplicating would change the answer." | — | Order and duplicates are irrelevant; a membership test on 31 values is the whole decision. |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 9. Time and auxiliary space
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $n = \texttt{nums.length}$ and let $W = 30$ be the largest exponent that a legal element can reach.
 
----
+- **Time** $O(n)$ expected: one pass inserts the $n$ values into a hash set, and then at most $W + 1 = 31$ membership probes locate the first absent power. Since $W$ is a constant fixed by the element bound, the whole procedure is a linear scan with a constant-size tail.
+- **Auxiliary space** $O(n)$ for the set of distinct values. A hash set is not strictly necessary: a boolean array indexed by exponent, filled during a single scan that tests whether an element is a power of two within range, uses $O(W) = O(1)$ additional space while keeping the same linear time.
 
-## 6. Traps This Instance Exposes
-
-- **Bit-presence mask:** Record bit $k$ only when an input equals $2^k$. This preserves the proof and achieves $O(1)$ auxiliary space under the fixed 32-bit domain.
-- **Enumerate subsequence OR values:** Maintaining all reachable OR results is much more expensive and unnecessary because the minimum answer is controlled by powers of two.
-- **Sort the array:** Sorting does not help; exact membership of a few powers is enough, and a set supplies it directly.
-- **Missing one:** If literal value $1$ is absent, the answer is always $1$, even when other numbers have their lowest bit set.
-- **All small powers present:** Their subsequences express every number below the first missing higher power by selecting the set-bit components.
-- **Duplicates:** Repeated copies do not change OR expressibility and are collapsed by the set.
-- **Composite values:** They may express other composites but can never replace a missing single-bit power.
-- **Guaranteed generator result:** The value $2^{30}$ exceeds the input maximum and is necessarily absent, so checking 32 positions is sufficient.
-- **Expected set behavior:** The $O(n)$ time statement uses normal expected constant-time Python hash membership.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the number of input values. Building `set(nums)` takes expected $O(n)$ time and $O(n)$ space. The generator checks at most 32 powers, which is $O(1)$ time under the fixed integer bound. Total expected time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Neither bound depends on the number of expressible values, because the method never enumerates subsets.

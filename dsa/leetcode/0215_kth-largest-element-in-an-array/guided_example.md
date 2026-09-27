@@ -32,6 +32,21 @@ Sorting the entire array takes $O(N \log N)$ time.
 However, sorting all elements is wasteful because we only care about the single value at index $\text{target}$.
 The **Quickselect** algorithm exploits the partition subroutine of Quicksort, but recurses into **only one side** of the partition, achieving $O(N)$ expected time.
 
+### Rank Translation for Every $k$ on the Traced Array
+
+The translation $\text{target} = N - k$ is a bijection between the two ways of naming a position, so every rank has exactly one answer, including both ends of the array:
+
+| $k$ (rank from the largest) | Target index $N - k$ | Value at that index | What the extreme ranks demand |
+|:---:|:---:|:---:|:---|
+| 1 | 5 | 6 | The maximum; a size-$k$ min-heap degenerates to a single running maximum |
+| 2 | 4 | **5** | The traced query |
+| 3 | 3 | 4 | The upper median, where neither a heap of size $k$ nor one of size $N - k$ is small |
+| 4 | 2 | 3 | Just below the median |
+| 5 | 1 | 2 | Just above the minimum |
+| 6 | 0 | 1 | The minimum; every element must be examined, and a size-$k$ heap would store the whole array |
+
+Both endpoints are ordinary cases of the same rule rather than special branches: $k = 1$ maps to index $N - 1$ and $k = N$ maps to index $0$. Only the cost of the auxiliary strategies changes, which is why the conversion is stated once and never revisited.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -95,6 +110,22 @@ Final min-heap root: $\mathbf{5}$!
 
 ---
 
+### When the First Partition Misses: The Duplicate Instance
+
+The $k = 2$ sample is unusually kind — the first partition lands exactly on the target. The duplicate sample $\text{nums} = [3, 2, 3, 1, 2, 4, 5, 5, 6]$ with $k = 4$ forces three partitions, and it is the instance that shows what "recurse into one side" actually saves. Here $N = 9$, so the target index is $9 - 4 = 5$, and the ascending order of the array is $[1, 2, 2, 3, 3, 4, 5, 5, 6]$, confirming that index $5$ holds $4$.
+
+Each partition runs over the active range only, takes the element at the middle index of that range as its pivot, and groups the range into values below the pivot, values equal to it, and values above it:
+
+| Pass | Active range $[L, R]$ | Elements in play | Pivot (middle index of the range) | Whole array after the partition | Block of values equal to the pivot | Decision |
+|:---:|:---:|:---:|:---:|:---|:---|:---|
+| 1 | $[0, 8]$ | 9 | $2$ | `[1, 2, 2, 3, 4, 5, 5, 6, 3]` | $[1, 2]$ holds `2, 2` | $5 > 2$, so discard everything below the block and continue on $[3, 8]$ |
+| 2 | $[3, 8]$ | 6 | $5$ | `[1, 2, 2, 3, 4, 3, 5, 5, 6]` | $[6, 7]$ holds `5, 5` | $5 < 6$, so discard the block and everything above it and continue on $[3, 5]$ |
+| 3 | $[3, 5]$ | 3 | $4$ | `[1, 2, 2, 3, 3, 4, 5, 5, 6]` | $[5, 5]$ holds `4` | The target index lies inside the block, so the pivot value $4$ is the answer |
+
+Three facts make this trace more instructive than the one-pass sample. First, the work shrinks geometrically: $9$, then $6$, then $3$ elements are examined, and the total of $18$ is linear in $N$, whereas ordering all nine elements would cost a multiple of $N \log N$. Second, the equal-value block is what makes duplicates safe — on the all-equal input $[2, 2, 2, 2]$ the very first partition puts every element into the block, so the search ends after one pass instead of degrading. Third, no element is ever compared with a discarded segment again: once the block $[1, 2]$ is known to sit below the target index, its values can never be the answer, because the target index is a position in the sorted order and positions are fixed.
+
+---
+
 ## 4. Complete Execution Trace
 
 ```text
@@ -141,6 +172,19 @@ Top element = 5 -> Result: 5
 - **Quicksort vs Quickselect:** Quicksort branches into both subintervals, taking $O(N \log N)$. Quickselect branches into **only one** subinterval, summing work geometrically: $N + N/2 + N/4 + \dots \le 2N = O(N)$.
 - **Worst-Case Pivot Degradation:** Always picking the first element as pivot on an already-sorted array leads to $O(N^2)$ worst-case time. Using random pivot selection or middle-index selection avoids adversarial degradation in practice.
 - **Handling Duplicate Values:** Arrays with many identical values (e.g. $[2, 2, 2, 2]$) can degrade two-way partitioning to $O(N^2)$. Three-way partitioning ($<, ==, >$) groups duplicates together and terminates immediately if $\text{target}$ falls in the middle range.
+
+### Alternative Strategies and Their Tradeoffs
+
+| Strategy | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---|:---|:---|
+| Three-way Quickselect (used above) | Partition, then recurse into the one segment that contains the target index | $O(N)$ expected, $O(N^2)$ worst case | $O(1)$ if iterated, $O(\log N)$ recursion depth | The worst case is possible, not merely unlikely, when the pivot rule is adversarial |
+| Full sort, then read index $N - k$ | Order every element and index into the result | $O(N \log N)$ deterministic | Depends on the sort; $O(N)$ for a merge sort | Simple and predictable, but it computes $N$ answers when one is needed |
+| Size-$k$ min-heap over a single pass | Keep the $k$ largest values seen, evicting the smallest | $O(N \log k)$ deterministic | $O(k)$ | Excellent for small $k$ and for streaming input, but it stores the whole array when $k$ approaches $N$ |
+| Max-heap of all elements, then $k$ extractions | Build a heap of every value and pop $k$ times | $O(N + k \log N)$ | $O(N)$ | The $k$-th pop is the answer, but the heap holds the entire array, which the size-$k$ heap avoids |
+| Frequency array indexed by value | Count occurrences over the bounded value range and walk from the largest value downward | $O(N + V)$, where $V$ is the range of allowed values | $O(V)$ | Deterministic and linear, but it exploits the stated value bound and does not generalize to unbounded or non-numeric keys |
+| Median-of-medians pivot selection inside Quickselect | Choose a provably good pivot so each partition removes a constant fraction | $O(N)$ worst case | $O(1)$ beyond the input | Removes the quadratic risk entirely, at the cost of a heavier pivot routine and larger constants than randomization |
+
+The choice is driven by two questions that this instance answers concretely. How large is $k$ relative to $N$? A small $k$ favors the heap; a $k$ near the middle favors selection. And must the bound hold in the worst case, or is an expected bound acceptable? Quickselect with a randomized or middle-index pivot is expected linear, while median-of-medians is linear with certainty but slower in practice.
 
 ---
 

@@ -163,6 +163,62 @@ n = -16: -16 > 0 (F)                   -> FALSE
 | **0** | **False** ($0 \not> 0$) | $(00000)_2$ | - | - | - | **`false`** |
 | **-16** | **False** ($-16 \not> 0$) | $(10000)_2$ | - | - | - | **`false`** |
 
+### 4.1 What the Clearing Formula Returns for Every Small Input
+
+The three traced cases are isolated points. Sweeping the first sixteen positive
+integers shows that the formula is never ambiguous: the AND result after clearing
+is exactly $n$ with its lowest set bit removed, which is a power of two precisely
+when nothing remains.
+
+| $n$ | $n - 1$ | $n \ \& \ (n - 1)$ | Lowest set bit value in $n$ | Set bits in $n$ | Is the AND result 0? | Decision |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | 0 | 0 | 1 | 1 | Yes | `true` |
+| 2 | 1 | 0 | 2 | 1 | Yes | `true` |
+| 3 | 2 | 2 | 1 | 2 | No | `false` |
+| 4 | 3 | 0 | 4 | 1 | Yes | `true` |
+| 5 | 4 | 4 | 1 | 2 | No | `false` |
+| 6 | 5 | 4 | 2 | 2 | No | `false` |
+| 7 | 6 | 6 | 1 | 3 | No | `false` |
+| 8 | 7 | 0 | 8 | 1 | Yes | `true` |
+| 9 | 8 | 8 | 1 | 2 | No | `false` |
+| 10 | 9 | 8 | 2 | 2 | No | `false` |
+| 11 | 10 | 10 | 1 | 3 | No | `false` |
+| 12 | 11 | 8 | 4 | 2 | No | `false` |
+| 13 | 12 | 12 | 1 | 3 | No | `false` |
+| 14 | 13 | 12 | 2 | 3 | No | `false` |
+| 15 | 14 | 14 | 1 | 4 | No | `false` |
+| 16 | 15 | 0 | 16 | 1 | Yes | `true` |
+
+The rows with a single set bit are exactly the rows whose AND result is zero, and
+they are exactly the powers of two. Row 12 is the instructive non-power: its
+lowest set bit is worth 4, so clearing it leaves 8 rather than 0. Two claims from
+the derivation are visible here at once. The cleared value is always
+$n - (\text{lowest set bit})$, so the result is smaller than $n$ but never
+negative for positive input, and the operation never touches any bit above the
+lowest one.
+
+### 4.2 Negative and Composite Boundaries
+
+The positivity guard is a separate decision from the bit test, and this table
+separates the two so that neither can be mistaken for the other.
+
+| Input $n$ | Two's complement or binary form | $n - 1$ | $n \ \& \ (n - 1)$ | Bit test alone would say | Positivity guard says | Final decision |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | $(00000)_2$ | -1 | 0 | Accept, which is wrong: $2^x$ is never 0 | Reject | `false` |
+| -16 | $(11110000)_2$ | -17 | -32 | Reject, since the result is non-zero | Reject | `false` |
+| -2147483648 | $(1\underbrace{00\ldots0}_{31})_2$ | -2147483649 | -2147483648 | Reject, since the result is non-zero | Reject | `false` |
+| 3 | $(00011)_2$ | 2 | 2 | Reject: two set bits | Accept | `false` |
+| 48 | $(110000)_2$ | 47 | 32 | Reject: two set bits | Accept | `false` |
+
+Row 1 is the single case where the bit test alone gives the wrong answer: zero
+survives it because subtracting one produces an all-ones value whose AND with
+zero is zero. The negative rows are not rescued by the bit test, because a
+negative integer's lowest set bit is not its only set bit; only the guard
+excludes them on principle. Rows 4 and 5 show the converse situation, where the
+guard passes and the bit test is the one that rejects. Reading the table by
+column, no single condition accepts every power of two and rejects everything
+else, which is exactly why the answer is a conjunction rather than either test.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -178,6 +234,23 @@ n = -16: -16 > 0 (F)                   -> FALSE
 - **Missing Positivity Check ($n = 0$):** In binary, $0 - 1 = -1 = (1111\dots 1)_2$. Computing $0 \ \& \ (-1) = 0$. Without `n > 0`, $n = 0$ would falsely return `true`!
 - **Negative Powers Fallacy:** In two's complement, $-2147483648 = -2^{31}$ has binary representation `0x80000000`. Subtracting 1 in 32-bit unsigned arithmetic wraps, so without `n > 0`, negative numbers could produce false positives.
 - **Operator Precedence in C/C++/Python:** Bitwise AND (`&`) has lower precedence than equality comparison (`==`). Writing `n & n - 1 == 0` evaluates as `n & (n - 1 == 0)`. Parentheses are mandatory: `(n & (n - 1)) == 0`.
+
+### 6.1 Alternatives Compared on This Instance
+
+| Approach | How it decides | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Clear the lowest set bit and test for zero (traced above) | One subtraction and one AND | $O(1)$ | $O(1)$ | Chosen. No loop, no recursion, and no conversion; the positivity guard supplies the only case the bit test misses |
+| Repeated halving while the remainder is zero | Divide by 2 until the value becomes odd | $O(\log n)$ | $O(1)$ | Correct, but it performs up to 31 iterations on this problem's domain and needs its own zero handling, since 0 is even forever |
+| Popcount equals one | Count set bits and test the count | $O(1)$ to $O(\log n)$ | $O(1)$ | Equivalent in meaning, but a hardware popcount is not available in every target language, and a manual loop reintroduces the iteration cost |
+| Isolate the lowest set bit with two's complement and compare with $n$ | Test whether $n \ \& \ -n$ equals $n$ | $O(1)$ | $O(1)$ | Correct for positive $n$, and the positivity guard is still required because the identity holds trivially at zero |
+| Test the decimal last digit | Accept values ending in 2, 4, 6, or 8, plus 1 | $O(1)$ | $O(1)$ | Wrong. The last digit is not a function of the exponent: $2^{10} = 1024$ ends in 4 and $2^{12} = 4096$ ends in 6, so the pattern breaks after single digits |
+| Floating-point logarithm | Test whether $\log_2 n$ is an integer | $O(1)$ | $O(1)$ | Wrong near the domain limits, where the logarithm of a large power of two rounds to a non-integer and rejects a valid input |
+
+The first row is the only one that is simultaneously constant time, constant
+space, integer-exact, and free of loop-boundary cases. The last two rows are the
+traps: both look like constant-time arithmetic, and both fail because they reason
+about a decimal or real-valued representation instead of the binary one that
+actually defines the property.
 
 ---
 

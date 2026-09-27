@@ -1,143 +1,147 @@
 # Guided Example: Handling Sum Queries After Update
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. Three query types, but only two numbers matter
 
-- **Input:** `{"nums1": [1, 0, 1], "nums2": [0, 0, 0], "queries": [[1, 1, 1], [2, 1, 0], [3, 0, 0]]}`
-- **Required output:** `[3]`
+The three operations touch `nums1` and `nums2` in very different ways:
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- **Type 1**, written `[1, l, r]`, flips every bit of `nums1` between indices $l$ and $r$ inclusive: a stored $0$ becomes $1$ and a stored $1$ becomes $0$.
+- **Type 2**, written `[2, p, 0]`, adds `nums1[i] * p` to `nums2[i]` for **every** index $i$ — the first operand is the multiplier $p$, not a position.
+- **Type 3**, written `[3, 0, 0]`, asks for the current total $\sum_i \texttt{nums2}[i]$ and contributes one entry to the returned list.
 
----
+The distribution of values inside `nums2` never influences any future operation. Type 2 spreads a per-index addition, type 3 asks for the aggregate, and nothing else ever reads an individual `nums2[i]`. So the entire state we must track collapses to two numbers:
 
-## 1. Instance & Teaching Goal
+$$T = \sum_{i} \texttt{nums2}[i], \qquad S_1 = \sum_{i} \texttt{nums1}[i] = \text{number of ones in \texttt{nums1}}.$$
 
-You are given two **0-indexed** arrays `nums1` and `nums2` and a 2D array `queries` of queries. There are three types of queries:
+A type 2 query with multiplier $p$ adds $p\cdot\texttt{nums1}[i]$ to each entry, so the total moves by
 
-The objective is to compute `[3]` from `{"nums1": [1, 0, 1], "nums2": [0, 0, 0], "queries": [[1, 1, 1], [2, 1, 0], [3, 0, 0]]}` while avoiding redundant calculations and unnecessary overhead.
+$$\Delta T = \sum_i p\cdot\texttt{nums1}[i] = p\sum_i \texttt{nums1}[i] = p\,S_1 ,$$
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+which depends only on the *count* of ones, not on where they sit. A type 3 query simply reports $T$. A type 1 query leaves $T$ untouched and changes $S_1$. The whole problem is therefore: report a running total that receives occasional additions of $p\,S_1$, while $S_1$ itself is driven by range flips of a binary array.
 
----
+## 2. What one range flip does to the count of ones
 
-## 2. Conceptual Foundation & Invariants
+Let the flipped range have length $L = r - l + 1$ and suppose it currently holds $c$ ones and $L - c$ zeros. After the flip the zeros have become ones and the ones have become zeros, so the range holds
 
-We maintain the core conceptual parameters and state variables:
+$$c' = (L - c)\cdot 1 + c\cdot 0 = L - c$$
 
-| State Parameter | Role & Purpose | Initial State |
+ones, and the global count changes by $c' - c = L - 2c$. Taking `nums1 = [1,0,1,0]` as a concrete array:
+
+| Flipped range | Length $L$ | Ones inside, $c$ | Ones after, $L-c$ | Change in $S_1$ |
+|---|---|---|---|---|
+| `[0,0]` | 1 | 1 | 0 | $-1$ |
+| `[0,1]` | 2 | 1 | 1 | 0 |
+| `[0,2]` | 3 | 2 | 1 | $-1$ |
+| `[0,3]` | 4 | 2 | 2 | 0 |
+| `[1,3]` | 3 | 1 | 2 | $+1$ |
+
+Two structural facts follow. First, a flip is an involution: applying the same range twice restores the original bits, because each bit is toggled twice. Second, the effect on $S_1$ can be computed from the range's own count alone — but that count is exactly what a single global counter does not provide. Knowing $S_1 = 2$ before a flip of `[1,3]` does not reveal that the range contains one one; we need range-level information.
+
+## 3. The official instance, traced through the aggregate state
+
+For `nums1 = [1,0,1]`, `nums2 = [0,0,0]` and `queries = [[1,1,1],[2,1,0],[3,0,0]]`:
+
+| Step | Query | What happens to `nums1` | $S_1$ | $T = \sum \texttt{nums2}[i]$ | Emitted |
+|---|---|---|---|---|---|
+| initial | — | `[1,0,1]` | 2 | 0 | — |
+| 1 | `[1,1,1]` | flip index 1: `[1,1,1]` | 3 | 0 | — |
+| 2 | `[2,1,0]` | unchanged; $T \mathrel{+}= 1 \cdot 3$ | 3 | 3 | — |
+| 3 | `[3,0,0]` | unchanged | 3 | 3 | 3 |
+
+The returned list is `[3]`. Note what the flip did *not* do: it did not add anything to `nums2` by itself; only the later type 2 query converted the enlarged count of ones into total mass, contributing $1 \times 3$ because all three positions were then active.
+
+## 4. A lazy segment tree over `nums1`
+
+The remaining work is a standard data-structure obligation: maintain the number of ones in a binary array under range flips. A segment tree over the $n$ positions stores for each node $u$:
+
+| Stored field | Meaning | Initial value |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| interval | the contiguous index range $[L_u, R_u]$ the node covers | root covers the whole array |
+| $len_u$ | $R_u - L_u + 1$, the number of positions covered | fixed for the build |
+| $cnt_u$ | number of ones inside that interval, with all pending flips on the path to $u$ already applied to this node | leaf value, or the sum of the children |
+| $lazy_u$ | whether a flip is pending for the whole interval of $u$ | 0, meaning no pending flip |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The tree is a complete binary partition of the index range:
 
----
+```mermaid
+flowchart TD
+    accTitle: Segment tree layout over four positions
+    accDescr: The root covers positions 0 through 3 and splits into a node for 0 to 1 and a node for 2 to 3, each of which splits further into single-position leaves.
+    R["root: positions 0-3, cnt 2"] --> A["node: positions 0-1, cnt 1"]
+    R --> B["node: positions 2-3, cnt 1"]
+    A --> A0["leaf: position 0, cnt 1"]
+    A --> A1["leaf: position 1, cnt 0"]
+    B --> B0["leaf: position 2, cnt 1"]
+    B --> B1["leaf: position 3, cnt 0"]
+```
 
-## 3. Step-by-Step Worked Execution
+**Flip on a fully covered node.** If the query range contains the node's whole interval, every position below it toggles. The count of ones in that interval becomes $len_u - cnt_u$, and we set $lazy_u \leftarrow lazy_u \oplus 1$ to record that the children are now stale. Descending is unnecessary — this is what makes the flip $O(\log n)$ instead of $O(n)$.
 
-### Step 1: Only two aggregate facts are needed
+**Flip on a partially covered node.** Before recursing, a pending tag must be pushed to both children: each child updates $cnt \leftarrow len - cnt$ and toggles its own tag, then the parent's tag is cleared. After the children are updated, the parent recomputes $cnt_u = cnt_{left} + cnt_{right}$.
 
-Type 1 queries change a range of bits in `nums1`. Type 2 queries appear to update every element of `nums2`, but the requested type 3 result is only the total sum.
+**Invariant of the representation.** At every moment, for each node $u$, if all pending flips stored at proper ancestors of $u$ are applied to $u$'s subtree, then $cnt_u$ is the true number of ones in $[L_u, R_u]$. The root's $cnt$ is therefore always the true global count $S_1$, which is the only value the query types need.
 
-For a type 2 query with multiplier $p$,
+## 5. Tracing two overlapping flips node by node
 
-$$
-\sum_i\bigl(\texttt{nums2[i]}+p\cdot\texttt{nums1[i]}\bigr)
-=
-\sum_i\texttt{nums2[i]}
-+p\sum_i\texttt{nums1[i]}.
-$$
+Take `nums1 = [1,0,1,0]` so that the tree above holds `cnt` values $1, 0, 1, 0$ at the leaves. Apply the flip `[0,2]` and then the flip `[1,3]`, recording every node the recursion touches. `pushdown` means the node's pending tag is transferred to its children and cleared; `pushup` means the node's `cnt` is rebuilt from the two children.
 
-Because `nums1` is binary, its sum is exactly its number of ones. Therefore, the algorithm never needs to update `nums2` element by element. It maintains:
+| Flip | Node interval | Fully covered? | Action taken | $cnt$ before $\to$ after | $lazy$ before $\to$ after |
+|---|---|---|---|---|---|
+| `[0,2]` | `[0,3]` | no | descend, tag is 0 so nothing to push | 2 → 2 | 0 → 0 |
+| `[0,2]` | `[0,1]` | yes | flip in place, do not descend | 1 → 1 | 0 → 1 |
+| `[0,2]` | `[2,3]` | no | descend, tag is 0 so nothing to push | 1 → 1 | 0 → 0 |
+| `[0,2]` | `[2,2]` | yes | flip in place | 1 → 0 | 0 → 1 |
+| `[0,2]` | `[2,3]` | — | pushup from children | 1 → 0 | 0 → 0 |
+| `[0,2]` | `[0,3]` | — | pushup: $1 + 0$ | 2 → 1 | 0 → 0 |
+| `[1,3]` | `[0,3]` | no | descend | 1 → 1 | 0 → 0 |
+| `[1,3]` | `[0,1]` | no | pushdown: children become 0 and 1, tag cleared | 1 → 1 | 1 → 0 |
+| `[1,3]` | `[0,0]` | not visited (outside the range) | receives the pushdown anyway: count flipped, tag set | 1 → 0 | 0 → 1 |
+| `[1,3]` | `[1,1]` | yes | receives the pushdown first: fresh count and tag | 0 → 1 | 0 → 1 |
+| `[1,3]` | `[1,1]` | yes | then flips in place | 1 → 0 | 1 → 0 |
+| `[1,3]` | `[0,1]` | — | pushup: $0 + 0$ | 1 → 0 | 0 → 0 |
+| `[1,3]` | `[2,3]` | yes | flip in place, root of this subtree only | 0 → 2 | 0 → 1 |
+| `[1,3]` | `[0,3]` | — | pushup: $0 + 2$ | 1 → 2 | 0 → 0 |
 
-- `s`, the current total sum of `nums2`;
-- the current number of ones in `nums1`.
+Reading the table bottom-up after the second flip: the array is `[0,0,1,1]`, which contains exactly $2$ ones, and the root reports $2$. After the first flip the array is `[0,1,0,0]` with one one, and the root reports $1$ — even though the node `[0,1]` never pushed its tag down, its own $cnt$ of $1$ already accounted for both positions. That is precisely what the invariant promises: stale children are invisible to the root until a future partial update forces a pushdown.
 
-The hard operation is flipping a whole range while keeping the one count current. A lazy segment tree supports that in logarithmic time.
+With the same input and the query sequence `[[3,0,0],[1,0,2],[2,5,0],[1,1,3],[2,2,0],[3,0,0]]`, the aggregate state evolves as follows.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [1, 0, 1], "nums2": [0, 0, 0], "queries": [[1, 1, 1], [2, 1, 0], [3, 0, 0]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Step | Query | $S_1$ after | Change to $T$ | $T$ | Emitted |
+|---|---|---|---|---|---|
+| 0 | initial (`nums2 = [10,20,30,40]`) | 2 | — | 100 | — |
+| 1 | `[3,0,0]` | 2 | — | 100 | 100 |
+| 2 | `[1,0,2]` | 1 | — | 100 | — |
+| 3 | `[2,5,0]` | 1 | $+5\cdot 1 = +5$ | 105 | — |
+| 4 | `[1,1,3]` | 2 | — | 105 | — |
+| 5 | `[2,2,0]` | 2 | $+2\cdot 2 = +4$ | 109 | — |
+| 6 | `[3,0,0]` | 2 | — | 109 | 109 |
 
----
+The output `[100,109]` matches the authored expectation, and the two $S_1$ values $1$ and $2$ are exactly the root counts computed in the node table above.
 
-### Step 2: What each tree node stores
+## 6. Why the reduction is correct
 
-A node represents an inclusive one-based interval `[l, r]`. Its field `s` is the number of ones in that interval. For a leaf, `s` is the corresponding input bit. For an internal node,
+- **$T$ is a faithful summary.** Each type 2 query adds the same vector $p\cdot\texttt{nums1}$ componentwise to `nums2`; summation is linear, so the new total is the old total plus $p\,S_1$. No operation ever needs an individual entry, so discarding the vector loses nothing.
+- **$S_1$ is exactly the root count.** The invariant in Section 4 states that the root's $cnt$ equals the number of ones in `nums1`; since the root interval is the whole array, `[3,0,0]` and `[2,p,0]` both read the correct $S_1$.
+- **The in-place flip formula is sound.** For a fully covered node, toggling each of its $len_u$ positions yields $len_u - cnt_u$ ones regardless of their arrangement, so no descent is needed to obtain the new count. The toggle is idempotent in pairs, which makes the tag an XOR rather than a counter.
+- **Pushdown preserves the invariant.** A pending tag at $u$ means every position below is logically toggled; applying $len - cnt$ and a tag toggle to each child reproduces exactly that logical state, and clearing the parent's tag removes the double description. Pushup then restores $cnt_u = cnt_{left} + cnt_{right}$ for the parent.
+- **Query types 2 and 3 are $O(1)$.** Only the root count is read, so no traversal occurs on those queries at all.
 
-`node.s = left_child.s + right_child.s`.
+## 7. Traps this instance exposes
 
-The tree converts the zero-based input array to one-based tree coordinates during building: leaf position $l$ reads `nums[l - 1]`.
+| Tempting reasoning | Where it breaks | Correct view |
+|---|---|---|
+| "Type 2 must update every element of `nums2`." | `n, q \le 10^{5}` makes per-element work $O(nq)$. | Keep only the total $T$; type 2 costs $O(1)$. |
+| "A flip's effect can be read off the global count." | global $S_1 = 2$ does not tell whether `[1,3]` holds one one or two. | The range's own count is required, which is why a segment tree is needed. |
+| "The first operand of `[2, p, 0]` is an index." | `[2, 5, 0]` adds $5$ per active position, not to position 5. | Type 2's middle value is the multiplier $p$, and its last value is always 0. |
+| "A flip is an assignment to 1." | applying `[1,1,2]` twice must restore the original bits. | A flip is a toggle; parity matters, and the lazy tag composes by XOR. |
+| "The lazy tag can be overwritten by 1." | a second full-cover flip on a tagged node must undo the first. | The tag toggles: $lazy \leftarrow lazy \oplus 1$. |
+| "Totals stay inside 32-bit integers." | `[2, 1000000, 0]` with two active positions and initial entries of $10^9$ yields 2002000000. | The sum can exceed $2^{31}-1$; plain integers of unbounded width are needed. |
+| "Every call returns at least one answer." | a query list with no type 3 must return an empty list. | The result is the sequence of type 3 answers, possibly empty. |
 
-The tree list has about four nodes per input element, a conventional safe capacity for recursive segment-tree layouts.
+## 8. Time and auxiliary space
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $n = \texttt{nums1.length}$ and $q = \texttt{queries.length}$.
 
----
+- **Time** $O(n + q\log n)$: building the tree takes $O(n)$; each type 1 query decomposes its range into $O(\log n)$ canonical nodes and performs constant work per node visited, with pushdowns touching $O(\log n)$ tags; each type 2 and type 3 query is $O(1)$ because it reads the root and does arithmetic.
+- **Auxiliary space** $O(n)$: the segment tree stores four arrays of length about $4n$ (interval bounds, counts, tags), and the output list holds one entry per type 3 query.
 
-### Step 3: Flipping an entire represented interval
-
-Suppose a node covers a segment of length
-
-$$
-L=r-l+1
-$$
-
-and currently contains $c$ ones. It contains $L-c$ zeros. Flipping every bit turns those zeros into ones and the old ones into zeros, so the new one count is
-
-$$
-L-c.
-$$
-
-When a type 1 range fully covers a node, `modify` can update its count with this formula without visiting its descendants.
-
-The field `lazy` records whether the descendants still need to receive a pending flip. Flipping twice restores the original bits, so only the parity of pending flips matters. The operation `lazy ^= 1` toggles between “no pending flip” and “one pending flip.”
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[3]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums1": [1, 0, 1], "nums2": [0, 0, 0], "queries": [[1, 1, 1], [2, 1, 0], [3, 0, 0]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[3]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Flip every element directly:** Range updates can cost $O(n)$ each, leading to $O(nq)$ time.
-- **Fenwick tree:** A standard Fenwick tree handles point updates and range sums well, but range bit complementation is not a simple additive update without more structure.
-- **Store actual `nums2` values:** Type 2 would update many elements even though only the total is ever queried. Maintaining `s` avoids that work.
-- **Read the root directly:** Since type 2 always needs the whole-array one count, `tree.tr[1].s` would replace the general full-range query.
-- **Flip the same range twice:** Lazy flags XOR twice to zero, and count complementation twice restores the original state.
-- **Single-element range:** Recursion reaches one leaf, whose count changes from zero to one or one to zero.
-- **Multiplier zero:** Type 2 adds zero regardless of the current one count, leaving `s` unchanged.
-- **No type 3 queries:** The returned answer list is empty, while updates are still processed correctly.
-- **Index conversion:** Both inclusive endpoints receive plus one; forgetting either conversion would update the wrong tree positions.
-- **Large totals:** Repeated multipliers can produce sums beyond 32-bit range, so fixed-width implementations need 64-bit accumulation.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n + q log n)$. Let $n$ be the array length and $q$ the number of queries. Building the tree visits $O(n)$ nodes. A range flip touches $O(\log n)$ boundary paths and a logarithmic-size canonical cover in the usual lazy segment-tree analysis, so it costs $O(\log n)$. The exact type 2 full-range query returns at the root in $O(1)$, and type 3 is $O(1)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The comparison that motivates these bounds is the direct simulation: applying a type 1 query to the stored array costs $O(n)$, and applying a type 2 query componentwise costs $O(n)$, giving $O(nq)$ overall — far beyond the limit for $n, q = 10^{5}$, while the lazy tree pays only a logarithm per update.

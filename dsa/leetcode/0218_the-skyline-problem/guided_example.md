@@ -53,6 +53,14 @@ When sorting events by coordinate $x$:
 - If two right edges share the same $x$: process the shorter building first.
 - If a left edge and a right edge share the same $x$: process the **left edge first** (since $-H < 0$), ensuring that continuous or touching buildings do not falsely dip to 0!
 
+These rules only become observable when coordinates actually collide, so the next table pins each kind of collision to a concrete instance and to the exact output the correct order produces.
+
+| Collision at one coordinate $x$ | Events that collide | Correct order and the height it reads | Output produced if the order is reversed |
+|:---|:---|:---|:---|
+| Two or more **left** edges at $x = 1$: $B_1 = [1,3,2]$, $B_2 = [1,4,4]$, $B_3 = [1,2,6]$ | $(1,-6,2)$, $(1,-4,4)$, $(1,-2,3)$ | Tallest first, so the read after $(1,-6,2)$ is already $6$; the two shorter starts never raise the contour further and exactly one key point `[1, 6]` is recorded at $x = 1$ | Shortest first would read $2$, then $4$, then $6$ and emit `[1, 2]`, `[1, 4]`, `[1, 6]` — three key points stacked on one coordinate instead of one |
+| A **left** edge and a **right** edge at $x = 2$: $B_1 = [0,2,3]$, $B_2 = [2,5,3]$ | $(2,-3,5)$ and the end marker $(2,0,0)$ | The left event sorts first because $-3 < 0$, so $B_2$ is already in the heap when the height is read and the contour stays at $3$ across $x = 2$: `[[0,3],[5,0]]` | The end marker first would evict $B_1$ before $B_2$ was ever pushed, dropping the contour to $0$ and immediately back to $3$: `[[0,3],[2,0],[2,3],[5,0]]` |
+| Two or more **right** edges at one coordinate, as at $x = 12$ in the main instance | The end marker $(12,0,0)$ for $B_3$, together with the long-expired entry of $B_1$ at $R = 9$ | Ordering among end markers cannot be observed at all: every end marker is the identical tuple $(R,0,0)$ and carries no height. What matters is that the eviction pass drains *every* expired top before the height is read, and that single pass removes both stale entries so `[12, 0]` is emitted once | No interleaving changes the result, so shortening-first among end markers is harmless but also inert here; the guarantee comes from the exhaustive eviction pass, never from the relative order of end markers |
+
 ### Priority Queue Max-Height Tracking (with Lazy Deletion):
 Store active building tuples $(-\text{height}, \text{right})$ in a min-heap:
 - Ground baseline: always keep $(0, \infty)$ in the heap.
@@ -154,6 +162,26 @@ We trace the sweep-line across the events of $\text{buildings}$:
 - $0 \ne 8 \implies$ **Emit Key Point $[24, 0]$**.
 - $\text{prev\_height} = 0$.
 
+### Heap Contents After Every Event
+
+The walkthrough above reports the height that was read at each coordinate; the table below shows *why* that was the height, by exposing the heap's contents at every step. Entries are written as $(\text{height}, \text{right})$ with the current top listed first; entries after the top are unordered.
+
+| Event $x$ | Heap contents after the step, top first | Expired entries popped in this step | Height read | Expired entries still buried |
+|:---:|:---|:---:|:---:|:---|
+| Start of the sweep | $(0, \infty)$ | none | — | none |
+| 2 | $(10,9)$, $(0,\infty)$ | none | 10 | none |
+| 3 | $(15,7)$, $(10,9)$, $(0,\infty)$ | none | 15 | none |
+| 5 | $(15,7)$, $(12,12)$, $(10,9)$, $(0,\infty)$ | none | 15 | none |
+| 7 | $(12,12)$, $(10,9)$, $(0,\infty)$ | $(15,7)$, because $7 \le 7$ | 12 | none |
+| 9 | $(12,12)$, $(10,9)$, $(0,\infty)$ | none | 12 | $(10,9)$, because $9 \le 9$ yet it sits below the top |
+| 12 | $(0,\infty)$ | $(12,12)$, because $12 \le 12$; then $(10,9)$, because $9 \le 12$ | 0 | none |
+| 15 | $(10,20)$, $(0,\infty)$ | none | 10 | none |
+| 19 | $(10,20)$, $(8,24)$, $(0,\infty)$ | none | 10 | none |
+| 20 | $(8,24)$, $(0,\infty)$ | $(10,20)$, because $20 \le 20$ | 8 | none |
+| 24 | $(0,\infty)$ | $(8,24)$, because $24 \le 24$ | 0 | none |
+
+The $x = 9$ row is the whole point of lazy deletion. Building $B_1$ has already expired there, yet its entry stays in the heap because the entry that is inspected — the top — is $B_3$ at height $12$. The height read is therefore correct anyway, and the dead entry is discarded later at $x = 12$ when it finally surfaces. Eager removal would have to search the heap for that entry, which is the $O(N)$ operation that would destroy the $O(N \log N)$ bound.
+
 All events processed.
 
 ---
@@ -209,6 +237,15 @@ x = 24: End B5(8)  -> max: 0  -> [24, 0]
 - **Touching Buildings of Equal Height:** For $[[0, 2, 3], [2, 5, 3]]$, processing the start of the second building before the end of the first maintains height $3$ across $x = 2$, correctly emitting $[[0, 3], [5, 0]]$ without an intermediate $[2, 0]$.
 - **Immediate Eager Heap Deletion:** Deleting arbitrary elements from a binary heap takes $O(N)$ time, degrading total runtime to $O(N^2)$. Lazy deletion only removes expired elements when they reach the top of the heap, ensuring $O(\log N)$ amortized cost per operation.
 - **Adjacent Duplicate Points:** Consecutive segments of equal height must not generate redundant points. Verifying $\text{curr\_height} \ne \text{prev\_height}$ automatically filters out redundant horizontal markers.
+
+**Alternative formulations, and why the sweep line is preferred here.** Each method below can return the same seven key points for this instance, but they maintain different state and they break in different places.
+
+| Approach | Mechanism applied to these five buildings | Cost | Failure mode or tradeoff |
+|:---|:---|:---|:---|
+| Divide and conquer over the building list | Skyline $\{[2,9,10],[3,7,15]\}$ and skyline $\{[5,12,12],[15,20,10],[19,24,8]\}$ are computed recursively, then merged by advancing two cursors and keeping the larger of the two current heights at each of the $10$ boundary coordinates | $O(N \log N)$ | The merge is the dangerous step: a segment that begins exactly where the other contour ends, or two contours holding equal heights, must not both be emitted, and each recursion level materialises an extra contour list |
+| Coordinate-compressed range-max structure | Only the $10$ boundary coordinates $\{2,3,5,7,9,12,15,19,20,24\}$ can start a horizontal segment, so the $9$ elementary intervals between them are stored and each building raises the intervals it spans to its own height | $O(N \log M)$ for $M$ distinct coordinates | Requires a range-assign maximum structure; a plain point-update Fenwick tree cannot raise a whole range, and the compression step is pure overhead next to a heap that compares raw coordinates |
+| Ordered multiset of active heights | Insert each starting height at its left edge, delete it at its right edge, and read the maximum from the multiset at every boundary coordinate | $O(N \log N)$ | The structure must count duplicates. With set semantics, the deletion at $x = 2$ for $[0,2,3]$ and $[2,5,3]$ would remove the only copy of height $3$ while the second building is still alive, printing a spurious `[2, 0]` before the contour recovered |
+| Dense height array over every integer coordinate | Write each height into the unit cells of $[L, R)$ — $7 + 4 + 7 + 5 + 5 = 28$ writes across the $22$ cells from $x = 2$ to $x = 23$ — then scan for changes | $O(\sum_i (R_i - L_i) + \max R)$ | Sound only for hand-checking tiny inputs: the stated limit $right_i \le 2^{31} - 1$ makes the array impossible to materialise, and the cost scales with coordinate magnitude rather than with the number of buildings |
 
 ---
 
