@@ -151,6 +151,27 @@ Global maximum area: $\mathbf{10}$.
 | - | - | `[-1, 1]` | 4 | 2 | 1 | 6 | 4 | $2 \times 4 = 8$ | 10 |
 | - | - | `[-1]` | 1 | 1 | -1 | 6 | 6 | $1 \times 6 = 6$ | 10 |
 
+### Per-Bar Boundary Ledger
+
+The chronological trace above shows the pops; this ledger is the complementary view, one
+row per bar, recording the boundary pair that fixes that bar's maximal rectangle. The
+left boundary is the nearest bar strictly shorter than $\text{heights}[i]$, and the right
+boundary is the nearest bar at most as tall (the sentinel $0$ at index $6$ supplies it
+whenever nothing shorter exists to the right):
+
+| Bar index $i$ | $\text{heights}[i]$ | Nearest shorter bar on the left | Nearest bar $\le \text{heights}[i]$ on the right | Maximal width | Area |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 2 | none, sentinel $-1$ | 1 | $1 - (-1) - 1 = 1$ | $2 \times 1 = 2$ |
+| 1 | 1 | none, sentinel $-1$ | sentinel $6$ | $6 - (-1) - 1 = 6$ | $1 \times 6 = 6$ |
+| 2 | 5 | 1 | 4 | $4 - 1 - 1 = 2$ | $5 \times 2 = \mathbf{10}$ |
+| 3 | 6 | 2 | 4 | $4 - 2 - 1 = 1$ | $6 \times 1 = 6$ |
+| 4 | 2 | 1 | sentinel $6$ | $6 - 1 - 1 = 4$ | $2 \times 4 = 8$ |
+| 5 | 3 | 4 | sentinel $6$ | $6 - 4 - 1 = 1$ | $3 \times 1 = 3$ |
+
+Every maximal rectangle is realized by some bar at its own height, so this ledger is a
+complete enumeration of the candidate set. Its largest entry is $10$ at index $2$, which
+matches the global maximum reached during the pop sequence, and no row exceeds it.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -165,6 +186,16 @@ Global maximum area: $\mathbf{10}$.
 
 - **Sentinel Simplification:** Without sentinel values ($-1$ at the bottom of the stack and $0$ appended at the end), one must write separate cleanup loops after the main pass and add conditional branches for empty stacks. The dual sentinels unify all edge cases into a single loop.
 - **Equal Heights Handling:** If adjacent bars have equal heights (e.g. $[2, 2, 2]$), popping on $\le$ computes a suboptimal width for the earlier bars, but the final bar of the duplicate run evaluates the full correct width. The global maximum remains correct.
+
+### Boundary Instances and Their Verdicts
+
+| Instance | `heights` | Expected area | Boundary exercised | Why the verdict is correct |
+|:---|:---|:---:|:---|:---|
+| Interior two-bar rectangle | $[2, 1, 5, 6, 2, 3]$ | 10 | Short bars capping a tall run on both sides | Bar $5$ at index $2$ is capped left by $1$ and right by $2$, giving width $2$ and area $10$; every other bar is bounded at least as tightly. |
+| Two increasing bars | $[2, 4]$ | 4 | Purely increasing input, flushed by the sentinel | Height $2$ spans both bars for area $4$; height $4$ spans only its own bar for area $4$. The two candidates tie. |
+| Single zero-height bar | $[0]$ | 0 | Zero height | The area formula contributes $0 \times 1 = 0$, and the appended sentinel $0$ pops the bar immediately without producing a negative width. |
+| Strictly increasing bars | $[1, 2, 3, 4]$ | 6 | No pop until the sentinel arrives | Heights $2$ and $3$ each span 3 and 2 bars respectively, both giving area $6$; the sentinel is what makes those spans measurable. |
+| Equal-height plateau | $[2, 2, 2]$ | 6 | Repeated equal heights | The first two bars are popped by their equal successor and see widths $1$ and $2$, but the last bar is flushed by the sentinel with width $3$, so the plateau total $6$ is still recorded. |
 
 ---
 

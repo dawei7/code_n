@@ -100,6 +100,18 @@ We trace $\text{nums} = [-10, -3, 0, 5, 9]$ ($N = 5$, indices $0 \dots 4$):
 - Subtree heights: $H_L = 2$, $H_R = 2 \implies |2 - 2| = 0 \le 1$.
 - Total height is $3$, perfectly balanced.
 
+**Balance audit for every constructed subtree.** Heights are counted as the number of nodes on the longest downward path from that root, so an empty interval has height $0$ and a leaf has height $1$. Every node's two subtree heights differ by at most one:
+
+| Subtree Root $V$ | Interval $[L, R]$ | Size $K$ | Left Size | Right Size | $H_L$ | $H_R$ | $\lvert H_L - H_R \rvert$ | Balanced? |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| $0$ | $[0, 4]$ | 5 | 2 | 2 | 2 | 2 | 0 | Yes |
+| $-10$ | $[0, 1]$ | 2 | 0 | 1 | 0 | 1 | 1 | Yes |
+| $-3$ | $[1, 1]$ | 1 | 0 | 0 | 0 | 0 | 0 | Yes |
+| $5$ | $[3, 4]$ | 2 | 0 | 1 | 0 | 1 | 1 | Yes |
+| $9$ | $[4, 4]$ | 1 | 0 | 0 | 0 | 0 | 0 | Yes |
+
+The two interval sizes at every node differ by at most one because bisection splits $K$ elements into $\lfloor (K-1)/2 \rfloor$ and $\lceil (K-1)/2 \rceil$; because the recursion is identical on both sides, that size parity propagates into the height difference recorded above.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -136,6 +148,15 @@ We trace $\text{nums} = [-10, -3, 0, 5, 9]$ ($N = 5$, indices $0 \dots 4$):
 
 - **Integer Overflow in Midpoint Calculation:** In languages with fixed-width integers, writing `(L + R) // 2` can overflow when $L + R > 2^{31} - 1$. The form $L + (R - L) // 2$ prevents overflow.
 - **Multiple Valid BST Topologies:** For an even number of elements (such as $[0, 1]$), choosing the lower median ($\lfloor (L+R)/2 \rfloor$) or the upper median ($\lceil (L+R)/2 \rceil$) both produce valid height-balanced BSTs. Both choices are accepted by the judge.
+
+**Boundary instances and what the midpoint rule does with each.**
+
+| Scenario | Input | Midpoint decision | Serialized result | Why it remains a correct balanced BST |
+|:---|:---|:---|:---|:---|
+| Empty input | $\text{nums} = [\,]$ | $\text{buildTree}(0, -1)$ has $L > R$ | $[\,]$ | The empty interval admits exactly one tree, so returning $\emptyset$ without selecting a root is forced rather than special-cased. |
+| Single element | $\text{nums} = [5]$ | $M = 0$ | $[5]$ | Both child intervals $[0, -1]$ and $[1, 0]$ are empty, so the lone node is a leaf with $H_L = H_R = 0$. |
+| Two elements | $\text{nums} = [1, 3]$ | $M = 0 + \lfloor 1/2 \rfloor = 0$ | $[1, \text{null}, 3]$ | The lower-median rule keeps the smaller value as root and pushes the remaining element right, preserving $1 < 3$ and giving heights $0$ and $1$. |
+| Odd count, seven values | $\text{nums} = [-5, -3, -1, 0, 2, 4, 8]$ | $M = 0 + \lfloor 6/2 \rfloor = 3$ | $[0, -3, 4, -5, -1, 2, 8]$ | The split is exactly $3$ and $3$ elements, so both subtrees have height $2$ and the difference is $0$. |
 
 ---
 

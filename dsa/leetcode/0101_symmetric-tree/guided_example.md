@@ -114,6 +114,20 @@ We trace the recursive mirror evaluation on $\text{root} = [1, 2, 2, 3, 4, 4, 3]
 - Step 3: Dequeue $(\emptyset, \text{Node}(3))$. Exactly one is null!
 - **Discrepancy:** Structural asymmetry $\implies$ returns $\mathbf{False}$ immediately.
 
+### Frontier Evolution on the Sparse Symmetric Tree ($[1, 2, 2, \text{null}, 3, 3, \text{null}]$)
+
+The sparse instance is the most instructive queue state: the first dequeued pair is $(\emptyset, \emptyset)$, and only the second is a genuine value comparison. Every pair is enqueued in outer-then-inner order, so the queue breadth never exceeds two entries.
+
+| Dequeue step | Pair $(u, v)$ removed | Values or null state | Decision | Pairs enqueued by this step | Queue contents afterwards |
+|:---:|:---|:---|:---|:---|:---|
+| 1 | $(2_L, 2_R)$ | $2 = 2$ | Values match; descend | Outer $(2_L.\text{left}, 2_R.\text{right}) = (\emptyset, \emptyset)$, then inner $(2_L.\text{right}, 2_R.\text{left}) = (3_L, 3_R)$ | $[(\emptyset, \emptyset), (3_L, 3_R)]$ |
+| 2 | $(\emptyset, \emptyset)$ | Both null | Base case matched, no values to read | None | $[(3_L, 3_R)]$ |
+| 3 | $(3_L, 3_R)$ | $3 = 3$ | Values match; descend | Outer $(\emptyset, \emptyset)$, then inner $(\emptyset, \emptyset)$ | $[(\emptyset, \emptyset), (\emptyset, \emptyset)]$ |
+| 4 | $(\emptyset, \emptyset)$ | Both null | Base case matched | None | $[(\emptyset, \emptyset)]$ |
+| 5 | $(\emptyset, \emptyset)$ | Both null | Base case matched | None | $[\,]$ |
+
+The queue drains after exactly five dequeues: together they account for the four non-root internal nodes ($2_L$, $2_R$, $3_L$, $3_R$) and the six null child slots of the leaves. Each null pair is still absorbed as a matched leaf pair, which is exactly why this sparse tree is symmetric even though its level-order encoding $[1, 2, 2, \text{null}, 3, 3, \text{null}]$ is not a palindrome.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -129,6 +143,16 @@ We trace the recursive mirror evaluation on $\text{root} = [1, 2, 2, 3, 4, 4, 3]
 - **Confusing Same Tree with Symmetric Tree:** Calling `isSameTree(root.left, root.right)` tests translation equality rather than reflection symmetry. In a mirror reflection, left must be paired with right, not left with left.
 - **Identical Shapes That Are Asymmetric:** A tree where both $2$s have right children with value $3$ is translationally identical, but axially asymmetric.
 - **Empty Root:** If $\text{root} == \emptyset$, the tree is trivially symmetric, returning `True`.
+
+### Alternative Methods and Their Failure Modes
+
+| Method | Mechanism | Time | Auxiliary space | Where it breaks |
+|:---|:---|:---:|:---:|:---|
+| Cross-mirror recursion (used here) | Recurse on the outer pair $(t_1.\text{left}, t_2.\text{right})$ and the inner pair $(t_1.\text{right}, t_2.\text{left})$ | $O(N)$ | $O(H)$ call stack | None for this contract; deep skewed trees stack-overflow only if recursion depth is a hard limit |
+| Pair queue over levels | Dequeue $(u, v)$, verify the pair, then enqueue the outer and inner child pairs | $O(N)$ | $O(W)$, up to $O(N)$ at the widest level | Omitting null pairs from the queue makes $[1, 2, 2, \text{null}, 3, \text{null}, 3]$ look symmetric, because the mismatched $(\emptyset, 3)$ pair is never examined |
+| Invert one subtree, then test equality | Reflect the left subtree in place and compare it with the right subtree using the LeetCode 100 left-to-left rule | $O(N)$ | $O(H)$ | Mutates the caller's tree and must be undone; the equality test itself is left-to-left, so it silently answers the wrong question until the inversion is complete |
+| Preorder of $t_1$ against reversed preorder of $t_2$ | Serialize both subtrees and compare the streams | $O(N)$ | $O(N)$ | Emitting only values and skipping null markers lets $[1, 2, 2, \text{null}, 3, \text{null}, 3]$ pass, since both sides yield $2, 3$ before the deeper structure is inspected |
+| Level-order array palindrome test | Read the level-order encoding and check it against its reverse | $O(N)$ | $O(N)$ | Only valid for complete trees; the sparse instance $[1, 2, 2, \text{null}, 3, 3, \text{null}]$ is symmetric yet its encoding is not palindromic |
 
 ---
 

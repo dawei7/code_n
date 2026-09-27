@@ -145,6 +145,23 @@ Result: $[3, 9, 20, \text{null}, \text{null}, 15, 7]$.
 | 1.2.1 | 20's Left | $[3, 3]$ (`[15]`) | $[2, 2]$ (`[15]`) | 15 | 2 | 0 | $\text{Node}(15)$ |
 | 1.2.2 | 20's Right | $[4, 4]$ (`[7]`) | $[4, 4]$ (`[7]`) | 7 | 4 | 0 | $\text{Node}(7)$ |
 
+### Interval Arithmetic on a Mixed Subtree Instance
+
+Take $\text{preorder} = [1, 2, 4, 5, 3, 6]$ and $\text{inorder} = [4, 2, 5, 1, 3, 6]$. Here the root sits at inorder index $3$, so the left subtree is large and the two index systems drift apart immediately: the left subtree's preorder window and its inorder window no longer start at the same coordinate. The map is $\text{in\_map} = \{4: 0, 2: 1, 5: 2, 1: 3, 3: 4, 6: 5\}$.
+
+| Subproblem | Preorder window | Inorder window | Root $V$ | $k$ | $\text{left\_size} = k - \text{in\_start}$ | Left child windows (pre / in) | Right child windows (pre / in) |
+|:---|:---|:---|:---:|:---:|:---:|:---|:---|
+| Root | `pre[0..5]` = `[1, 2, 4, 5, 3, 6]` | `in[0..5]` = `[4, 2, 5, 1, 3, 6]` | 1 | 3 | $3 - 0 = 3$ | `pre[1..3]` / `in[0..2]` | `pre[4..5]` / `in[4..5]` |
+| $1$'s left | `pre[1..3]` = `[2, 4, 5]` | `in[0..2]` = `[4, 2, 5]` | 2 | 1 | $1 - 0 = 1$ | `pre[2..2]` / `in[0..0]` | `pre[3..3]` / `in[2..2]` |
+| $1$'s left-left | `pre[2..2]` = `[4]` | `in[0..0]` = `[4]` | 4 | 0 | $0 - 0 = 0$ | empty | empty |
+| $1$'s left-right | `pre[3..3]` = `[5]` | `in[2..2]` = `[5]` | 5 | 2 | $2 - 2 = 0$ | empty | empty |
+| $1$'s right | `pre[4..5]` = `[3, 6]` | `in[4..5]` = `[3, 6]` | 3 | 4 | $4 - 4 = 0$ | empty | `pre[5..5]` / `in[5..5]` |
+| $1$'s right-right | `pre[5..5]` = `[6]` | `in[5..5]` = `[6]` | 6 | 5 | $5 - 5 = 0$ | empty | empty |
+
+Row two is the offset trap made concrete. Node $2$ has $k + 1 = 2$, but its right subtree actually begins at preorder index $1 + 1 + 1 = 3$. Using $k + 1$ as the preorder offset would hand node $4$ — a left-subtree node — to the right subtree, and every value below it would be misplaced. The correct formula, $\text{pre\_start} + \text{left\_size} + 1$, is derived from the preorder layout, not from the inorder index.
+
+The reconstructed tree is $[1, 2, 3, 4, 5, \text{null}, 6]$: node $1$ keeps both children, node $2$ keeps both children, and node $3$ has only a right child, which is why its left slot appears as a null in the level-order output.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -160,6 +177,17 @@ Result: $[3, 9, 20, \text{null}, \text{null}, 15, 7]$.
 - **Array Slicing Complexity ($O(N^2)$ Trap):** Writing `build(preorder[1:left_size+1], inorder[:k])` creates new array slices at every recursive step, degrading runtime to $O(N^2)$. Passing scalar index boundaries avoids any array allocation.
 - **Index Offsets in Preorder:** The right subtree in `preorder` does not begin at $k+1$; it begins at $\text{pre\_start} + \text{left\_size} + 1$, because preorder groups left subtree nodes contiguously.
 - **Duplicate Value Preconditions:** This algorithm requires tree values to be unique. If duplicate values exist, inorder root lookups would be ambiguous without additional structural hints.
+
+### Construction Strategies Compared
+
+| Strategy | How the root position is found | Time | Auxiliary space | When it fails or costs more |
+|:---|:---|:---:|:---:|:---|
+| Inorder hash map plus scalar bounds (used here) | One dictionary lookup per subproblem | $O(N)$ | $O(N)$ for the map plus $O(H)$ stack | Needs the unique-value guarantee; the map alone is $N$ entries regardless of tree shape |
+| Direct-address table over the value domain | An array slot per admissible value, shifted by the lower bound $-3000$ | $O(N)$ | $O(6001)$ table plus $O(H)$ stack | Exploits the constraint $-3000 \le \text{inorder}[i] \le 3000$; it is invalid for values outside that fixed window, and wastes 6001 slots even for $N = 5$ |
+| Slice-based recursion with a linear root search | Scan the inorder slice for the root value | $O(N^2)$ | $O(N^2)$ transient copies | Correct for the two-node and six-node instances but degrades sharply near $N = 3000$, where each level copies a large slice |
+| Iterative monotonic stack over preorder | Walk an inorder cursor and compare it with the stack top instead of mapping values | $O(N)$ | $O(H)$ | Removes recursion but still requires unique values and both traversals; the stack must be popped whenever its top matches the next unconsumed inorder value, and an off-by-one in that cursor silently misplaces right children |
+
+The absolute-bounds method is preferred here because it is the only one whose cost is independent of both the value range and the tree shape: it pays exactly one map entry per node and one stack frame per open subtree.
 
 ---
 

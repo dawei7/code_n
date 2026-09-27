@@ -129,6 +129,20 @@ We trace the recursive post-order call stack on $\text{root} = [3, 9, 20, \text{
 | $\text{Node}(20)$ | 1 (Node 15) | 1 (Node 7) | $1 + \max(1, 1)$ | 2 |
 | **$\text{Node}(3)$ (Root)** | **1 (Node 9)** | **2 (Node 20)** | **$1 + \max(1, 2)$** | **3 (Result)** |
 
+### Post-Order Recurrence on the Sparse Instance ($[1, 2, 3, \text{null}, 4, \text{null}, \text{null}, 5]$)
+
+Here the two subtrees of the root are wildly unbalanced, so the maximum genuinely discards information: node $3$ returns $1$ and is thrown away by the root's `max`. Each row is a completed subproblem whose parent consumes the returned value.
+
+| Subproblem | $L$ | $R$ | Recurrence evaluated | Returned depth | Lies on the deepest root-to-leaf path |
+|:---|:---:|:---:|:---|:---:|:---:|
+| $\text{maxDepth}(\text{Node}(5))$ | 0 | 0 | $1 + \max(0, 0)$ | 1 | Yes: the chain continues through it as a leaf |
+| $\text{maxDepth}(\text{Node}(4))$ | 1 (node 5) | 0 ($4.\text{right}$ is null) | $1 + \max(1, 0)$ | 2 | Yes |
+| $\text{maxDepth}(\text{Node}(2))$ | 0 ($2.\text{left}$ is null) | 2 (node 4) | $1 + \max(0, 2)$ | 3 | Yes |
+| $\text{maxDepth}(\text{Node}(3))$ | 0 | 0 | $1 + \max(0, 0)$ | 1 | No: the root's maximum selects its sibling branch instead |
+| $\text{maxDepth}(\text{Node}(1))$ | 3 (node 2) | 1 (node 3) | $1 + \max(3, 1)$ | **4** | Yes: the root itself |
+
+The deepest path is $1 \to 2 \to 4 \to 5$, using the right child at nodes $1$ and $2$ and the left child at node $4$. Since the null children contribute $0$ rather than a negative value or an exception, no special branch is needed for the one-sided nodes $2$ and $4$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -143,6 +157,21 @@ We trace the recursive post-order call stack on $\text{root} = [3, 9, 20, \text{
 
 - **Base Case Distinction from Minimum Depth:** In *Maximum* Depth, an absent child correctly contributes $0$, and $\max(L, R)$ picks the non-empty branch. In *Minimum* Depth (LeetCode 111), a node with one child cannot use the empty child (which has depth 0) because depth must be measured to a leaf.
 - **Degenerate Skew Trees:** If the tree is a straight line ($1 \to 2 \to 3 \to 4$), the recursion stack reaches depth $N$. In languages with small default stack sizes, an iterative BFS or DFS with explicit stack prevents stack overflow.
+
+### Maximum Depth Against its Boundary Instances
+
+The maximum-depth recurrence is defined on every tree, including the empty one, so the boundary rows are decided by the base case rather than by a defensive branch.
+
+| Instance | Level-order encoding | Maximum depth | Longest root-to-leaf path | Recursion depth reached |
+|:---|:---|:---:|:---|:---:|
+| Empty tree | `root = []` | 0 | none exists; the base case returns immediately | 1 call, returning 0 |
+| Single node | `root = [7]` | 1 | $7$ | 1 |
+| Balanced three tiers | `root = [3, 9, 20, null, null, 15, 7]` | 3 | $3 \to 20 \to 15$, and $3 \to 20 \to 7$ ties | 3 |
+| Right-skewed pair | `root = [1, null, 2]` | 2 | $1 \to 2$ (the left child is absent) | 2 |
+| Sparse deepest branch | `root = [1, 2, 3, null, 4, null, null, 5]` | 4 | $1 \to 2 \to 4 \to 5$ | 4 |
+| Left-degenerate chain | `root = [1, 2, null, 3, null, null, null, 4]` | 4 | $1 \to 2 \to 3 \to 4$ | 4 calls, one per node, so $O(N)$ stack |
+
+The last row is the worst case for auxiliary space: a chain of $N$ nodes forces $N$ nested calls, whereas the balanced instance of the same depth needs only a logarithmic stack in general. The empty row is the only one where the returned value is produced without inspecting any child.
 
 ---
 

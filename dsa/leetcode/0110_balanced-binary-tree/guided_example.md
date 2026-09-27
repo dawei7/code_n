@@ -77,6 +77,18 @@ The root is balanced if and only if $\text{checkHeight}(\text{root}) \ne -1$.
   - Returns height $1 + 2 = 3$.
 - Since $3 \ne -1$, tree is **Balanced** ($\text{True}$).
 
+The same evaluation written as a per-node audit makes it explicit that the height returned by a node is exactly $1 + \max(L, R)$ and that the balance predicate is re-tested at every node, not only at the root:
+
+| Node | Left Child Height $L$ | Right Child Height $R$ | Height Difference $\lvert L - R \rvert$ | Balance Predicate | Height Returned |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| $9$ (leaf) | 0 | 0 | 0 | $0 \le 1$, satisfied | 1 |
+| $15$ (leaf) | 0 | 0 | 0 | $0 \le 1$, satisfied | 1 |
+| $7$ (leaf) | 0 | 0 | 0 | $0 \le 1$, satisfied | 1 |
+| $20$ | 1 (from $15$) | 1 (from $7$) | 0 | $0 \le 1$, satisfied | 2 |
+| $3$ (root) | 1 (from $9$) | 2 (from $20$) | 1 | $1 \le 1$, satisfied but tight | 3 |
+
+No node returns $-1$, so the root's reported height $3$ is the genuine height of the tree and the verdict is $\text{True}$. Note the root row: $3$ would still be balanced at difference $1$, so a single further level under node $20$ or $7$ would already push the root past the limit.
+
 ---
 
 ### Instance 2: Unbalanced Tree ($[1, 2, 2, 3, 3, \text{null}, \text{null}, 4, 4]$)
@@ -120,6 +132,22 @@ The root is balanced if and only if $\text{checkHeight}(\text{root}) \ne -1$.
 | 5 | Right Node 2 | 0 | 0 | 0 | Yes | 1 |
 | **6** | **Root 1** | **3 (Left Node 2)** | **1 (Right Node 2)** | **$\lvert 3 - 1 \rvert = 2$** | **No ($> 1$)** | **$-1$ (Error)** |
 | Exit | Root Return | - | - | - | - | **False** |
+
+### Sentinel Propagation on an Internally Unbalanced Tree
+
+The instance $[1, 2, 2, 3, \text{null}, \text{null}, 3, 4, \text{null}, \text{null}, 4]$ is a sharper test: the two children of the root end up with *equal* depths once their own subtrees are corrected, yet the tree is still unbalanced because the violation sits strictly inside them. Walking the post-order evaluation gives:
+
+| Node | Left Height $L$ | Right Height $R$ | Height Difference $\lvert L - R \rvert$ | Decision | Returned Value |
+|:---:|:---:|:---:|:---:|:---|:---:|
+| $4$ (only child of the left $3$) | 0 | 0 | 0 | $0 \le 1$, satisfied | 1 |
+| left $3$ | 1 (from $4$) | 0 | 1 | $1 \le 1$, satisfied | 2 |
+| $4$ (only child of the right $3$) | 0 | 0 | 0 | $0 \le 1$, satisfied | 1 |
+| right $3$ | 0 | 1 (from $4$) | 1 | $1 \le 1$, satisfied | 2 |
+| left $2$ | 2 (from the left $3$) | 0 | 2 | $2 > 1$, violated | $-1$ sentinel |
+| right $2$ | 0 | 2 (from the right $3$) | 2 | $2 > 1$, violated | $-1$ sentinel |
+| root $1$ | $-1$ (from the left $2$) | not needed | not evaluated | left child already carries the sentinel, so the recursion returns before any arithmetic | $-1$ sentinel, so the answer is $\text{False}$ |
+
+This table isolates two facts that a root-only check would miss. First, both internal $3$-nodes are perfectly balanced and their heights are equal ($2$ and $2$), so the root's two subtrees look symmetric at first glance; the imbalance only appears one level lower, where each $2$-node has a single subtree of height $2$ and an empty subtree of height $0$. Second, the sentinel is what makes the root row legal: once the left child returns $-1$, the parent never evaluates $\lvert L - R \rvert$, because a subtree that already failed cannot be repaired by anything above it.
 
 ---
 

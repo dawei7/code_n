@@ -156,6 +156,23 @@ Final tree structure: $[3, 9, 20, \text{null}, \text{null}, 15, 7]$.
 | 1.2.1 | 20's Left | $[2, 2]$ (`[15]`) | $[1, 1]$ (`[15]`) | 15 | 2 | 0 | $\text{Node}(15)$ |
 | 1.2.2 | 20's Right | $[4, 4]$ (`[7]`) | $[2, 2]$ (`[7]`) | 7 | 4 | 0 | $\text{Node}(7)$ |
 
+### Interval Arithmetic on a Mixed Subtree Instance
+
+Take $\text{inorder} = [4, 2, 5, 1, 3, 6]$ and $\text{postorder} = [4, 5, 2, 6, 3, 1]$. The root $1$ sits at inorder index $3$, so its left subtree holds three nodes while its right subtree holds two. The map is $\text{in\_map} = \{4: 0, 2: 1, 5: 2, 1: 3, 3: 4, 6: 5\}$.
+
+| Subproblem | Inorder window | Postorder window | Root $V$ | $k$ | $\text{left\_size}$ | $\text{right\_size}$ | Left child windows (in / post) | Right child windows (in / post) |
+|:---|:---|:---|:---:|:---:|:---:|:---:|:---|:---|
+| Root | `in[0..5]` = `[4, 2, 5, 1, 3, 6]` | `post[0..5]` = `[4, 5, 2, 6, 3, 1]` | 1 | 3 | $3 - 0 = 3$ | $5 - 3 = 2$ | `in[0..2]` / `post[0..2]` | `in[4..5]` / `post[3..4]` |
+| $1$'s left | `in[0..2]` = `[4, 2, 5]` | `post[0..2]` = `[4, 5, 2]` | 2 | 1 | $1 - 0 = 1$ | $2 - 1 = 1$ | `in[0..0]` / `post[0..0]` | `in[2..2]` / `post[1..1]` |
+| $1$'s left-left | `in[0..0]` = `[4]` | `post[0..0]` = `[4]` | 4 | 0 | 0 | 0 | empty | empty |
+| $1$'s left-right | `in[2..2]` = `[5]` | `post[1..1]` = `[5]` | 5 | 2 | 0 | 0 | empty | empty |
+| $1$'s right | `in[4..5]` = `[3, 6]` | `post[3..4]` = `[6, 3]` | 3 | 4 | $4 - 4 = 0$ | $5 - 4 = 1$ | empty | `in[5..5]` / `post[3..3]` |
+| $1$'s right-right | `in[5..5]` = `[6]` | `post[3..3]` = `[6]` | 6 | 5 | 0 | 0 | empty | empty |
+
+Two window facts are visible in this table. First, the root of every window is always its last postorder slot: node $2$ is at `post[2]`, node $3$ at `post[4]`, node $6$ at `post[3]`. Second, the right child's postorder window starts at $\text{post\_start} + \text{left\_size}$ and ends at $\text{post\_end} - 1$, not at $k + 1$: for node $2$ that start is $0 + 1 = 1$, and for node $3$ it is $3 + 0 = 3$ with end $4 - 1 = 3$, giving the window `post[3..3]`. Using $k + 1$ as a postorder index would read `post[2] = 2` as the root of node $2$'s right subtree, which is node $2$ itself.
+
+The reconstructed tree is $[1, 2, 3, 4, 5, \text{null}, 6]$: nodes $1$ and $2$ keep both children, while node $3$ keeps only its right child $6$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -170,6 +187,18 @@ Final tree structure: $[3, 9, 20, \text{null}, \text{null}, 15, 7]$.
 
 - **Right-First Recursion Requirement When Popping:** If using `postorder.pop()`, you **must** build the right subtree before the left subtree (`root.right = build(...)` then `root.left = build(...)`). Because postorder traversal is `Left -> Right -> Root`, reading backwards encounters `Root`, then `Right`, then `Left`.
 - **Calculating Postorder Range Endpoints:** The right subtree's postorder span ends at $\text{post\_end} - 1$ (excluding the root), and starts at $\text{post\_start} + \text{left\_size}$. Mixing up endpoints will associate wrong nodes with subtrees.
+
+### Authored Instances and Their Deciding Feature
+
+| Instance | Inorder | Postorder | Root $V$ | $k$ | $\text{left\_size}$ / $\text{right\_size}$ | Level-order result | What it tests |
+|:---|:---|:---|:---:|:---:|:---:|:---|:---|
+| Single node | `[1]` | `[1]` | 1 | 0 | 0 / 0 | `[1]` | Both windows collapse to one slot; the base case must still build the node |
+| Left child only | `[1, 2]` | `[1, 2]` | 2 | 1 | 1 / 0 | `[2, 1]` | The root is the last postorder element, so $2$ is the parent even though it appears second in inorder |
+| Right child only | `[1, 2]` | `[2, 1]` | 1 | 0 | 0 / 1 | `[1, null, 2]` | A zero left size leaves the left slot null while the right window still holds one node |
+| Mixed six nodes | `[4, 2, 5, 1, 3, 6]` | `[4, 5, 2, 6, 3, 1]` | 1 | 3 | 3 / 2 | `[1, 2, 3, 4, 5, null, 6]` | Both subtrees are non-empty and of different sizes, so both postorder offsets must be computed independently |
+| Three-level sample | `[9, 3, 15, 20, 7]` | `[9, 15, 7, 20, 3]` | 3 | 1 | 1 / 3 | `[3, 9, 20, null, null, 15, 7]` | A right subtree of three nodes whose root sits at postorder index $3$, immediately before the global root |
+
+The left-child-only and right-child-only rows are the pair to keep straight: the two inputs differ only by swapping the postorder entries, yet one produces a left child and the other a right child. Each instance consumes exactly $N$ recursion frames that create a node, plus one terminating frame for every empty window.
 
 ---
 

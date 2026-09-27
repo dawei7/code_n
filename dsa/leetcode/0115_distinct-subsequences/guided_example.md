@@ -166,6 +166,23 @@ Columns represent prefixes of $t = \text{"rabbit"}$ ($j = 0 \dots 6$), Rows repr
 | `'i'` | 1 | 1 | 1 | 3 | 3 | **3** | 0 |
 | `'t'` | 1 | 1 | 1 | 3 | 3 | 3 | **3 (Result)** |
 
+### Second Instance Expanded: $s = \text{"babgbag"}$, $t = \text{"bag"}$
+
+The same recurrence on a shorter target shows how the grid stays narrow while the source row by row accumulates counts. Here $M = 7$ and $N = 3$, so the matrix has four columns:
+
+| $s \backslash t$ | $\emptyset$ | `'b'` | `'a'` | `'g'` |
+|:---:|:---:|:---:|:---:|:---:|
+| $\emptyset$ | 1 | 0 | 0 | 0 |
+| `'b'` | 1 | 1 | 0 | 0 |
+| `'a'` | 1 | 1 | 1 | 0 |
+| `'b'` | 1 | 2 | 1 | 0 |
+| `'g'` | 1 | 2 | 1 | 1 |
+| `'b'` | 1 | 3 | 1 | 1 |
+| `'a'` | 1 | 3 | 4 | 1 |
+| `'g'` | 1 | 3 | 4 | **5 (Result)** |
+
+Reading selected cells in words: the row `'a'` at column `'a'` reaches $4$ because four prefixes of `"babgba"` end in a way that spells `"ba"` (the `'b'` may be the first, third, or fifth character of $s$, and the final `'a'` is the sixth); the final cell reaches $5$ because the last `'g'` either is skipped, leaving the $1$ way already counted at row `'a'`, or is paired with `"ba"`, adding the $4$ ways just described. An independent check confirms the same total: the `'b'` positions are $1, 3, 5$, the `'a'` positions are $2, 6$, and the `'g'` positions are $4, 7$, and the valid increasing triples are $(1,2,4)$, $(1,2,7)$, $(1,6,7)$, $(3,6,7)$, and $(5,6,7)$ — five in total.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -181,6 +198,15 @@ Columns represent prefixes of $t = \text{"rabbit"}$ ($j = 0 \dots 6$), Rows repr
 - **Forward Iteration Collision in 1D DP:** When using a 1D array, iterating $j$ forwards from $1 \dots N$ causes $dp[j]$ to use the updated value of $dp[j-1]$ from the *current* character, equivalent to allowing a single character in $s$ to match multiple characters in $t$! Iterating $j$ strictly backwards ($N$ down to $1$) prevents this corruption.
 - **Base Column Invariant:** $DP[i][0]$ must remain $1$ for all $i$, because there is always exactly one way to form an empty target (by deleting all characters of $s$).
 - **Length Filtering:** If $|s| < |t|$, a subsequence is impossible; return $0$ immediately.
+
+**Boundary instances and the base-case row or column that decides each one.**
+
+| Scenario | Input | Result | Which part of the state decides it |
+|:---|:---|:---:|:---|
+| Both strings empty | $s = \text{""}$, $t = \text{""}$ | 1 | Column $j = 0$ is $1$ in every row, including the empty-source row, so the answer is the single empty subsequence. |
+| Empty target, non-empty source | $s = \text{"abc"}$, $t = \text{""}$ | 1 | The answer is $DP[M][0]$, which is fixed at $1$ for all $M$ because deleting every character is the one way to produce the empty target. |
+| Target longer than source | $s = \text{"ab"}$, $t = \text{"abc"}$ | 0 | Length $3$ cannot be drawn from $2$ characters, so a first row of zeros cannot be recovered; the length filter returns $0$ before any grid work. |
+| All characters identical | $s = \text{"aaaaaaaaaa"}$, $t = \text{"aaaaa"}$ | 252 | Every choice of $5$ positions out of $10$ spells the target, so the count is $\binom{10}{5} = 252$; the grid reproduces this combinatorially rather than by enumeration. |
 
 ---
 

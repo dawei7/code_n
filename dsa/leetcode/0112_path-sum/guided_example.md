@@ -140,6 +140,19 @@ The boolean `True` propagates up the call stack, short-circuiting remaining bran
 | **1.1.1.2** | **$\text{Node}(2)$** | **2** | **2** | **Yes** | **Compare $2 == 2$** | **True (Target Met)** |
 | Return | - | - | - | - | Short-circuit $\lor$ to root | **True** |
 
+### Leaf-Candidate Audit
+
+Every root-to-leaf path is examined below against the same reduced target. The fourth column records the value of `rem` at the moment the leaf is reached, which is what the leaf comparison actually tests:
+
+| Leaf Reached | Root-to-Leaf Path | Path Sum | $\text{rem}$ on Arrival | Leaf Value | Leaf Test |
+|:---:|:---|:---:|:---:|:---:|:---|
+| $7$ | $5 \to 4 \to 11 \to 7$ | 27 | $22 - 5 - 4 - 11 = 2$ | 7 | Fails: $7 \ne 2$ |
+| $2$ | $5 \to 4 \to 11 \to 2$ | 22 | $22 - 5 - 4 - 11 = 2$ | 2 | Succeeds: $2 = 2$ |
+| $13$ | $5 \to 8 \to 13$ | 26 | $22 - 5 - 8 = 9$ | 13 | Fails: $13 \ne 9$ |
+| $1$ | $5 \to 8 \to 4 \to 1$ | 18 | $22 - 5 - 8 - 4 = 5$ | 1 | Fails: $1 \ne 5$ |
+
+The path sum column is the quantity the problem statement asks about; the $\text{rem}$ column is the quantity the recursion actually maintains. They agree at each leaf because $\text{rem} = 22 - (\text{path sum} - \text{leaf value})$, so the equality $\text{leaf value} = \text{rem}$ is equivalent to $\text{path sum} = 22$. Only the second row satisfies it. Notice also that $13$ and $1$ receive different $\text{rem}$ values ($9$ and $5$) even though they share the parent chain $5 \to 8$, because the reduction accumulates along the whole path rather than depending on the parent alone.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -155,6 +168,15 @@ The boolean `True` propagates up the call stack, short-circuiting remaining bran
 - **Terminating on Non-Leaf Zero Remainder:** If a node has value equal to $\text{rem}$ but has children (e.g. $[1, 2]$ with target 1), it is not a leaf. Checking `not node.left and not node.right` prevents premature termination.
 - **Empty Tree Root:** An empty tree $\text{root} = \emptyset$ has no leaves and no paths, returning `False` for any `targetSum` (including $\text{targetSum} = 0$).
 - **Negative Node Values:** Tree node values can be negative (e.g. $-10 \dots 1000$). Never prune branches based on `rem < 0`, because adding negative descendants can restore the sum.
+
+**Boundary instances and the structural condition that settles each one.**
+
+| Scenario | Input and $\text{targetSum}$ | Structural condition | Outcome | Why that outcome is forced |
+|:---|:---|:---|:---:|:---|
+| Empty tree | $\text{root} = [\,]$, $\text{targetSum} = 0$ | There is no leaf, so no root-to-leaf path exists | False | The empty tree has zero paths, so even the target $0$ cannot be met; the empty node test returns False before any comparison. |
+| Target met above a leaf | $\text{root} = [1, 2]$, $\text{targetSum} = 1$ | The root's value already exhausts the target, but the root has a child | False | The only root-to-leaf path is $1 \to 2 = 3$; the partial sum at a non-leaf node is not evidence of a path. |
+| No leaf matches | $\text{root} = [1, 2, 3]$, $\text{targetSum} = 5$ | The two leaves are $2$ and $3$ | False | The candidate sums are $1 + 2 = 3$ and $1 + 3 = 4$, neither equal to $5$. |
+| Negative values on a one-sided chain | $\text{root} = [-2, \text{null}, -3]$, $\text{targetSum} = -5$ | Single-child nodes force the path $ -2 \to -3$ | True | The sum is $-5$, and the running $\text{rem}$ is already negative at the root ($-5 - (-2) = -3$), so any pruning rule based on a negative remainder would discard the correct branch. |
 
 ---
 

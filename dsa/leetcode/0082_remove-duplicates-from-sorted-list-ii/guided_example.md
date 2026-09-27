@@ -121,6 +121,29 @@ Return $\text{dummy.next} \implies 1 \longrightarrow 2 \longrightarrow 5 \longri
 
 ---
 
+### Instance 2: Duplicate Prefix ($[1, 1, 1, 2, 3]$)
+
+The second representative instance has its entire duplicate cluster at the front, so the
+sentinel node is the predecessor that performs the excision. The three $1$-nodes are
+written $\text{Node}(1)^{(1)}, \text{Node}(1)^{(2)}, \text{Node}(1)^{(3)}$ to keep the
+positions distinguishable:
+
+| Step | Candidate `cur` | Test $\text{cur.val}$ vs. $\text{cur.next.val}$ | $\text{dup\_val}$ | Cluster consumed by the skip loop | Rewire $\text{prev.next}$ | `prev` afterwards | Retained chain |
+|:---:|:---|:---|:---:|:---:|:---|:---|:---|
+| 1 | $\text{Node}(1)^{(1)}$ | $1 == 1$ (duplicate) | $1$ | all three $1$-nodes | $\text{dummy.next} \leftarrow \text{Node}(2)$ | unchanged: `dummy` | $2 \to 3$ |
+| 2 | $\text{Node}(2)$ | $2 \ne 3$ (unique) | — | none | none needed | $\text{Node}(2)$ | $\text{dummy} \to 2 \to 3$ |
+| 3 | $\text{Node}(3)$ | $\text{cur.next} == \emptyset$ (unique) | — | none | none needed | $\text{Node}(3)$ | $\text{dummy} \to 2 \to 3$ |
+| Exit | $\emptyset$ | — | — | — | — | — | **Final: $[2, 3]$** |
+
+Two details are visible only in this instance. First, `prev` stays at `dummy` through
+step 1, so the head of the result is rewritten through the sentinel exactly as an
+interior link would be — there is no special case for deleting the original head.
+Second, the skip loop must stop on the null check: had the input been $[1, 1]$ the loop
+would consume both nodes and leave $\text{cur} = \emptyset$, after which
+$\text{dummy.next} \leftarrow \emptyset$ correctly yields an empty list.
+
+---
+
 ## 4. Complete Execution Trace
 
 | Step | Current Candidate $\text{cur}$ | Value Comparison ($\text{cur.val}$ vs $\text{cur.next.val}$) | Duplicate Flag? | Cluster Nodes Skipped | Link Rewired ($\text{prev.next}$) | Retained Chain |
@@ -147,6 +170,16 @@ Return $\text{dummy.next} \implies 1 \longrightarrow 2 \longrightarrow 5 \longri
 - **Advancing `prev` Too Early:** Advancing `prev = prev.next` immediately after bypassing a duplicate cluster breaks if consecutive different duplicate clusters follow each other (e.g. $3, 3$ followed immediately by $4, 4$). Keeping `prev` anchored until a node is proven unique handles back-to-back clusters correctly.
 - **Head Node Duplicates ($[1, 1, 2]$):** Without a dummy sentinel node, deleting the head requires separate special-case code to update the head pointer. The dummy node makes head deletions identical to interior node deletions.
 - **Null-Check on `.next`:** In the while-loop skipping duplicates, testing `cur and cur.val == dup_val` prevents `NullPointerException` / `AttributeError` when a duplicate cluster extends to the very end of the list (e.g. $[1, 2, 2]$).
+
+### Boundary Instances and Their Verdicts
+
+| Instance | Input list | Expected output | Boundary exercised | Why the protocol stays correct |
+|:---|:---|:---|:---|:---|
+| Duplicate prefix | $[1, 1, 1, 2, 3]$ | $[2, 3]$ | Excision begins at the head | `prev` is still the sentinel when the cluster is skipped, so rewiring `dummy.next` removes the head with the same statement that removes an interior node. |
+| Entire list duplicated | $[1, 1]$ | $[\ ]$ | The result becomes empty | The skip loop consumes both nodes and halts because `cur` is null, so the sentinel simply points at nothing. |
+| Empty list | $[\ ]$ | $[\ ]$ | No nodes at all | The outer loop never executes; `dummy.next` was already null, which is the required answer. |
+| Alternating runs | $[-3, -3, -2, -1, -1, 0, 2, 2, 4]$ | $[-2, 0, 4]$ | Negative values and back-to-back clusters | Three clusters are excised while `prev` advances only to $-2$, $0$, and $4$; sortedness makes each cluster contiguous regardless of sign. |
+| Trailing duplicate run | $[1, 2, 2]$ | $[1]$ | Cluster touching the tail | The skip loop stops only at null, then `prev.next ← ∅` terminates the list at the last distinct node. |
 
 ---
 

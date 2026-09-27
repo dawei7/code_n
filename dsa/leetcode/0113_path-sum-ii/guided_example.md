@@ -146,6 +146,35 @@ Returned result: `[[5, 4, 11, 2], [5, 8, 4, 5]]`.
 | 4 | Node 5 | `[5, 8, 4, 5]` | 22 | 0 | **Yes** | **Capture snapshot** | `[[5, 4, 11, 2], [5, 8, 4, 5]]` |
 | 5 | Node 1 | `[5, 8, 4, 1]` | 18 | 4 | No | Backtrack | `[[5, 4, 11, 2], [5, 8, 4, 5]]` |
 
+### Shared Buffer Rollback Trace
+
+The candidate table above shows only the leaves. The table below shows the single mutable buffer that produced those candidates, event by event, so that the push/pop pairing and the exact moment of each snapshot are visible:
+
+| # | Event | Active Buffer After the Event | Cumulative Sum | $\text{rem}$ | Consequence |
+|:---:|:---|:---|:---:|:---:|:---|
+| 1 | Push $5$ | `[5]` | 5 | 17 | Root is not a leaf, so the descent continues left. |
+| 2 | Push $4$ | `[5, 4]` | 9 | 13 | Node $4$ has only a left child, so only one continuation exists. |
+| 3 | Push $11$ | `[5, 4, 11]` | 20 | 2 | Both children of $11$ are leaves and will be probed separately. |
+| 4 | Push $7$ | `[5, 4, 11, 7]` | 27 | $-5$ | Leaf reached with a nonzero remainder, so nothing is stored. |
+| 5 | Pop $7$ | `[5, 4, 11]` | 20 | 2 | The buffer returns to the state of event 3 before the sibling is tried. |
+| 6 | Push $2$ | `[5, 4, 11, 2]` | 22 | 0 | Leaf reached with remainder $0$, so a detached copy of `[5, 4, 11, 2]` is stored. |
+| 7 | Pop $2$ | `[5, 4, 11]` | 20 | 2 | The stored copy survives this pop because it was detached at event 6. |
+| 8 | Pop $11$ | `[5, 4]` | 9 | 13 | The whole left subtree of node $4$ is finished. |
+| 9 | Pop $4$ | `[5]` | 5 | 17 | Back at the root, ready for the right subtree. |
+| 10 | Push $8$ | `[5, 8]` | 13 | 9 | Right subtree descent begins. |
+| 11 | Push $13$ | `[5, 8, 13]` | 26 | $-4$ | Leaf reached with a nonzero remainder. |
+| 12 | Pop $13$ | `[5, 8]` | 13 | 9 | Sibling node $4$ is tried next. |
+| 13 | Push $4$ | `[5, 8, 4]` | 17 | 5 | Node $4$ has two leaf children. |
+| 14 | Push $5$ | `[5, 8, 4, 5]` | 22 | 0 | Second match; a detached copy of `[5, 8, 4, 5]` is stored. |
+| 15 | Pop $5$ | `[5, 8, 4]` | 17 | 5 | The second stored copy also survives its own pop. |
+| 16 | Push $1$ | `[5, 8, 4, 1]` | 18 | 4 | Final leaf of the tree; no match. |
+| 17 | Pop $1$ | `[5, 8, 4]` | 17 | 5 | Both children of node $4$ are exhausted. |
+| 18 | Pop $4$ | `[5, 8]` | 13 | 9 | Right subtree of $8$ finished. |
+| 19 | Pop $8$ | `[5]` | 5 | 17 | Back at the root once more. |
+| 20 | Pop $5$ | `[]` | 0 | 22 | The buffer is empty again, while the result list still holds both detached copies. |
+
+Two properties are visible only in this view. First, pushes and pops are perfectly balanced: every value pushed at some event is removed before the traversal finishes, which is what keeps the buffer at $O(H)$ size instead of growing with $N$. Second, the cumulative sum and $\text{rem}$ always satisfy $\text{rem} = 22 - \text{cumulative sum}$, and both return to their parent's values at every pop, so a sibling never inherits state from a branch that has already been abandoned.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -161,6 +190,15 @@ Returned result: `[[5, 4, 11, 2], [5, 8, 4, 5]]`.
 - **Storing References Instead of Copies:** Writing `results.append(path)` stores a reference to the mutable list. When the search backtracks to the root, `path` becomes empty `[]`, leaving `results` filled with empty lists `[[], []]`. A copy `list(path)` or `path[:]` is strictly mandatory.
 - **Premature Pruning on Negative Remainder:** Tree values can be negative. Even if $\text{rem} < 0$, deeper nodes can have negative values that bring the sum back to $\text{targetSum}$. No branches may be pruned based on intermediate sign.
 - **Stopping at First Match:** Unlike Path Sum I, the search must continue across the entire tree to find all matching paths.
+
+**Boundary instances and the condition that decides each result.**
+
+| Scenario | Input and $\text{targetSum}$ | Leaves that exist | Result | Why that result is forced |
+|:---|:---|:---|:---|:---|
+| Empty tree | $\text{root} = [\,]$, $\text{targetSum} = 0$ | None | `[]` | With no node there is no root-to-leaf path, so the empty result is returned even though the target $0$ would be met by an empty sum. |
+| Single leaf path | $\text{root} = [1, 2]$, $\text{targetSum} = 3$ | Only $2$ | `[[1, 2]]` | The root has a child, so the sole path is $1 \to 2$ and it sums to $3$. |
+| No matching leaf | $\text{root} = [1, 2, 3]$, $\text{targetSum} = 5$ | $2$ and $3$ | `[]` | The two candidate sums are $3$ and $4$; every leaf is rejected and the result list stays empty. |
+| Mixed signs along one path | $\text{root} = [1, -2, -3, 1, 3, -2, \text{null}, -1]$, $\text{targetSum} = -1$ | $-1$, $3$, and $-2$ | `[[1, -2, 1, -1]]` | Only the path $1 \to -2 \to 1 \to -1$ sums to $-1$; the other leaves give $1 - 2 + 3 = 2$ and $1 - 3 - 2 = -4$, so the remainder dips below zero at intermediate nodes without invalidating the surviving path. |
 
 ---
 

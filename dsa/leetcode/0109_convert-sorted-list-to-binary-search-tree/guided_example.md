@@ -169,6 +169,29 @@ We trace Inorder Simulation on $[-10, -3, 0, 5, 9]$ ($N = 5$, range $[0, 4]$):
 | 10 | $[4, 4]$ | 4 | **Build Node 9** | $\text{Node}(9)$ | $\emptyset$ |
 | Final | - | - | Complete Balanced Tree | - | **Return Root 0** |
 
+### The Same Instance Under Tortoise-and-Hare Bisection
+
+Before the recursion can create a node, the slow and fast pointers must agree on where the midpoint is. Walking them across $[-10, -3, 0, 5, 9]$ gives the following probe record:
+
+| Pass | slow before $\to$ after | fast before $\to$ after | prev | Are `fast` and `fast.next` both non-empty? | What the iteration does |
+|:---:|:---:|:---:|:---:|:---|:---|
+| Start | $-10 \to -10$ | $-10 \to -10$ | $\emptyset$ | not tested yet | Both pointers are placed on the head node before the first test. |
+| 1 | $-10 \to -3$ | $-10 \to 5$ | $-10$ | Yes: `fast` is $-10$ and `fast.next` is $-3$ | slow advances by one node while fast advances by two. |
+| 2 | $-3 \to 0$ | $5 \to \emptyset$ | $-3$ | Yes: `fast` is $5$ and `fast.next` is $9$ | fast steps off the end, so slow has arrived at the true middle node. |
+| Exit | $0$ (unchanged) | $\emptyset$ (unchanged) | $-3$ | No: `fast` is $\emptyset$ | The loop stops with slow on the median $0$ and prev on its predecessor $-3$. |
+
+Severing happens only after the loop: the link from $-3$ to $0$ is cut, which splits the list into the disjoint sublists $[-10, -3]$ and $[5, 9]$. The median node $0$ becomes the current root, and the two sublists are handed to the two recursive calls. The complete call sequence is:
+
+| Call Order | Current Sublist | slow Lands On (Root Value) | prev | Left Sublist After Severing | Right Sublist | Node Created |
+|:---:|:---|:---:|:---:|:---|:---|:---|
+| 1 | $[-10, -3, 0, 5, 9]$ | $0$ | $-3$ | $[-10, -3]$ | $[5, 9]$ | root $0$ |
+| 2 | $[-10, -3]$ | $-3$ | $-10$ | $[-10]$ | $[\,]$ | left child of $0$, value $-3$ |
+| 3 | $[-10]$ | $-10$ | $\emptyset$ | $[\,]$ (no severing is needed) | $[\,]$ | left child of $-3$, value $-10$, a leaf |
+| 4 | $[5, 9]$ | $9$ | $5$ | $[5]$ | $[\,]$ | right child of $0$, value $9$ |
+| 5 | $[5]$ | $5$ | $\emptyset$ | $[\,]$ (no severing is needed) | $[\,]$ | left child of $9$, value $5$, a leaf |
+
+Reading the created nodes back in level order gives $[0, -3, 9, -10, \text{null}, 5]$: the root is $0$, its children are $-3$ and $9$, node $-3$ owns the single left child $-10$, node $9$ owns the single left child $5$, and the remaining child slots are empty. Both methods necessarily place a middle value at the root, but they need not agree on the rest of the shape. Method 2's lower-median index rule gave the left subtree $-10$ above $-3$, while severing at the slow pointer makes $-3$ the left child and $-10$ its child; both trees are valid height-balanced BSTs over the same values, which is why the representation is checked structurally rather than compared literally.
+
 ---
 
 ## 5. Algorithmic Correctness

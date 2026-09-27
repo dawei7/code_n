@@ -126,6 +126,21 @@ Final output: `[[3], [9, 20], [15, 7]]`.
 | 2 | `[Node(15), Node(7)]` | 2 | $\text{Node}(15) \to 15$, $\text{Node}(7) \to 7$ | None | `[15, 7]` | `[]` |
 | Exit | `[]` | 0 | - | - | - | **`[[3], [9, 20], [15, 7]]`** |
 
+### Per-Pop Operations on the Sparse Instance ($[1, 2, 3, \text{null}, 5, \text{null}, 7, 8]$)
+
+The sparse tree has four tiers, and its queue never holds more than two nodes. This log shows the exact pop-by-pop mechanics, including the fact that a null child costs nothing at all: it is never enqueued, so it never occupies a later snapshot.
+
+| Pop | Tier $d$ (snapshot $k$) | Node popped | `current_level` after this pop | Children enqueued | Queue after this pop |
+|:---:|:---:|:---|:---|:---|:---|
+| 1 | 0 ($k = 1$) | $\text{Node}(1)$ | `[1]` | $\text{Node}(2)$ then $\text{Node}(3)$ | `[Node(2), Node(3)]` |
+| 2 | 1 ($k = 2$) | $\text{Node}(2)$ | `[2]` | Only $\text{Node}(5)$, since $2.\text{left}$ is null | `[Node(3), Node(5)]` |
+| 3 | 1 ($k = 2$) | $\text{Node}(3)$ | `[2, 3]` | Only $\text{Node}(7)$, since $3.\text{left}$ is null | `[Node(5), Node(7)]` |
+| 4 | 2 ($k = 2$) | $\text{Node}(5)$ | `[5]` | Only $\text{Node}(8)$, since $5.\text{right}$ is null | `[Node(7), Node(8)]` |
+| 5 | 2 ($k = 2$) | $\text{Node}(7)$ | `[5, 7]` | None: $7$ is a leaf | `[Node(8)]` |
+| 6 | 3 ($k = 1$) | $\text{Node}(8)$ | `[8]` | None: $8$ is a leaf | `[]` |
+
+Tier $2$ holds only two stored nodes although its row in the encoding spans four positions $(\text{null}, 5, \text{null}, 7)$, and tier $3$ holds the single node $8$. The traversal emits stored values only, so the output is `[[1], [2, 3], [5, 7], [8]]` with no placeholder entry for any null child.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -141,6 +156,20 @@ Final output: `[[3], [9, 20], [15, 7]]`.
 - **Dynamic Queue Length Mutation:** Writing `for i in range(len(queue)):` directly in environments where `len(queue)` is evaluated dynamically each loop iteration will mix parent and child nodes! Capturing $k = \text{len}(\text{queue})$ upfront fixes the level boundary.
 - **Empty Root Input:** If $\text{root} == \emptyset$, checking `if not root: return []` upfront avoids attempting to initialize a queue with `None` and appending `[None]` to the output.
 - **Enqueuing Null Children:** Always check `if node.left:` before enqueuing to prevent polluting the queue with `None` sentinels.
+
+### Instance Boundary Matrix and Peak Queue Occupancy
+
+Peak occupancy is the largest queue length observed at any moment, which is the quantity that the auxiliary-space bound actually measures. It is a property of the widest frontier, not of the node count.
+
+| Instance | Level-order encoding | Emitted levels | Peak queue occupancy | Stored nodes $N$ | What the instance tests |
+|:---|:---|:---|:---:|:---:|:---|
+| Empty tree | `root = []` | none | 0 | 0 | The early return fires before any queue exists, so the answer is `[]` rather than `[[]]` |
+| Single node | `root = [1]` | `[[1]]` | 1 | 1 | One tier, one pop, zero enqueues; the queue empties after the first snapshot |
+| Three-level sample | `root = [3, 9, 20, null, null, 15, 7]` | `[[3], [9, 20], [15, 7]]` | 2 | 5 | Null children of $9$ are skipped, so tier $1$ contributes exactly two entries |
+| Complete tree | `root = [1, 2, 3, 4, 5, 6, 7]` | `[[1], [2, 3], [4, 5, 6, 7]]` | 4 | 7 | Peak occupancy $4 = \lceil N / 2 \rceil$: the bottom tier is the widest frontier |
+| Sparse tree | `root = [1, 2, 3, null, 5, null, 7, 8]` | `[[1], [2, 3], [5, 7], [8]]` | 2 | 6 | Height $3$ forces four tiers of output, while the eight-position encoding hides the two null children of tier $2$ |
+
+The complete-tree row is the worst case for this family: its frontier doubles at the last tier, which is why the space bound must be written $O(W)$ with $W = \lceil N / 2 \rceil$ rather than a fixed constant.
 
 ---
 

@@ -126,6 +126,26 @@ We trace the $4 \times 5$ matrix:
 
 All rows evaluated. Final maximal rectangle area is $6$.
 
+### Per-Column Run Ledger
+
+Reading the same data column-first exposes the vertical half of the reduction. Each
+column's height series is its run of consecutive `'1'`s ending at the current row, and a
+`'0'` cell truncates that series:
+
+| Column $c$ | Heights down rows $0 \dots 3$ | Longest vertical run of `'1'`s | Rows where the height is reset to $0$ |
+|:---:|:---:|:---:|:---:|
+| 0 | $1, 2, 3, 4$ | 4 (rows $0 \dots 3$) | none |
+| 1 | $0, 0, 1, 0$ | 1 (row $2$) | 0, 1, 3 |
+| 2 | $1, 2, 3, 0$ | 3 (rows $0 \dots 2$) | 3 |
+| 3 | $0, 1, 2, 3$ | 3 (rows $1 \dots 3$) | 0 |
+| 4 | $0, 1, 2, 0$ | 2 (rows $1 \dots 2$) | 0, 3 |
+
+The answer cannot be read off the longest run alone: column 0 supports a run of $4$ but
+is isolated horizontally, so its tallest rectangle is only $4 \times 1 = 4$. Conversely
+the winning rectangle needs columns $2 \dots 4$ simultaneously, and their height series
+agree on the value $2$ exactly at rows $1 \dots 2$, which is why the maximal area is
+$2 \times 3 = 6$ rather than $3 \times 1$ or $1 \times 5$.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -136,6 +156,26 @@ All rows evaluated. Final maximal rectangle area is $6$.
 | 1 | `["1", "0", "1", "1", "1"]` | `[2, 0, 2, 1, 1]` | $[2, 4]$ | 1 | 3 | 3 | 3 |
 | **2** | **`["1", "1", "1", "1", "1"]`** | **`[3, 1, 3, 2, 2]`** | **$[2, 4]$** | **2** | **3** | **6** | **6 (Max)** |
 | 3 | `["1", "0", "0", "1", "0"]` | `[4, 0, 0, 3, 0]` | $[0, 0]$ | 4 | 1 | 4 | 6 |
+
+### Candidate Intervals on the Decisive Row
+
+Row 2 produces the winning rectangle, so it is worth enumerating its histogram
+candidates exhaustively. Every maximal rectangle of a histogram has height equal to some
+bar, and for each such height the best width is the widest interval whose minimum is at
+least that height:
+
+| Candidate interval | Limiting height $h$ | Columns spanned | Width $w$ | Area | Why this is the maximal span at that height |
+|:---|:---:|:---:|:---:|:---:|:---|
+| $[0, 0]$ | 3 | 0 | 1 | $3 \times 1 = 3$ | Column 1 has height $1 < 3$, so the height-$3$ block is capped immediately on the right. |
+| $[0, 4]$ | 1 | $0 \dots 4$ | 5 | $1 \times 5 = 5$ | Every column has height $\ge 1$ and column 1 is the single minimum, so the span cannot grow. |
+| $[2, 2]$ | 3 | 2 | 1 | $3 \times 1 = 3$ | Column 1 caps it on the left and column 3 (height $2$) caps it on the right. |
+| $[2, 4]$ | 2 | $2 \dots 4$ | 3 | $2 \times 3 = \mathbf{6}$ | Columns 2, 3, 4 all have height $\ge 2$ while column 1 has height $1$, so this is the widest height-$2$ interval. |
+
+The height-$2$ candidate is the largest of the four. Row 2 is the first row that admits a
+height-$2$ interval of width $3$: on row 1 the same columns held heights $2, 1, 1$, so
+their minimum was only $1$ and the identical span yielded just $1 \times 3 = 3$. Row 3
+then destroys the span by resetting columns 2 and 4 to $0$, which is why the global
+maximum stays at $6$.
 
 ---
 
@@ -152,6 +192,16 @@ All rows evaluated. Final maximal rectangle area is $6$.
 - **Failing to Reset on `'0'`:** If $\text{matrix}[r][c] == \text{'0'}$, $\text{heights}[c]$ must be immediately set to $0$. Merely keeping the previous height would allow rectangles to jump across zero cells.
 - **Empty Matrix Guards:** Matrices with zero rows ($M = 0$) or zero columns ($N = 0$) must return $0$ upfront to avoid out-of-bounds indexing.
 - **Single Row Matrix:** If $M = 1$, the loop runs once, correctly evaluating the maximum run of consecutive `'1'`s.
+
+### Boundary Instances and Their Verdicts
+
+| Instance | `matrix` | Expected area | Boundary exercised | Why the reduction still answers correctly |
+|:---|:---|:---:|:---|:---|
+| Interior rectangle | `[["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]` | 6 | Short bars capping a tall block | The block is exactly the height-$2$, width-$3$ interval found by the row-2 histogram pass. |
+| No `'1'` cell | `[["0"]]` | 0 | Single zero cell | The only height is reset to $0$, so every histogram candidate has area $0$. |
+| Single `'1'` cell | `[["1"]]` | 1 | Smallest non-empty rectangle | The height array becomes $[1]$ and the histogram pass returns $1 \times 1 = 1$. |
+| All-one square | `[["1","1"],["1","1"]]` | 4 | No reset ever occurs | Heights grow to $[2, 2]$ on the second row, giving width $2$ at height $2$. |
+| Zero splits wide rectangles | `[["1","1","0","1"],["1","1","0","1"],["1","1","1","1"]]` | 6 | A zero that forbids spanning | Heights reach $[3, 3, 1, 3]$ on row $2$; the left pair yields $3 \times 2 = 6$, and the zero column prevents any wider combination. |
 
 ---
 

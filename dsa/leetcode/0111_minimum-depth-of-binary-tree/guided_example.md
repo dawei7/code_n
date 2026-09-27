@@ -104,6 +104,20 @@ We trace BFS on $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$:
 | - | $\text{Node}(15)$ | 3 | $\emptyset$ | $\emptyset$ | - | Pruned |
 | - | $\text{Node}(7)$ | 3 | $\emptyset$ | $\emptyset$ | - | Pruned |
 
+### Recursive Recurrence on the One-Sided Chain
+
+The same instance $[2, \text{null}, 3, \text{null}, 4, \text{null}, 5, \text{null}, 6]$ is the decisive test for the recursive rule, because every node on it has exactly one child. The next table records each node's rule selection and returned depth, together with what the naive formula $1 + \min(L, R)$ would have claimed in the same position:
+
+| Node | Left Child | Right Child | Rule Selected | Naive $1 + \min(L, R)$ | Correct Depth Returned |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| $6$ (deepest node) | $\emptyset$ | $\emptyset$ | Both child slots are empty, so the node is itself a leaf and contributes $1$ | $1 + \min(0, 0) = 1$ | 1 |
+| $5$ | $\emptyset$ | $6$ | The left slot is empty, so only the right branch can lead to a leaf | $1 + \min(0, 1) = 1$ | $1 + 1 = 2$ |
+| $4$ | $\emptyset$ | $5$ | The left slot is empty, so only the right branch can lead to a leaf | $1 + \min(0, 2) = 1$ | $1 + 2 = 3$ |
+| $3$ | $\emptyset$ | $4$ | The left slot is empty, so only the right branch can lead to a leaf | $1 + \min(0, 3) = 1$ | $1 + 3 = 4$ |
+| $2$ (root) | $\emptyset$ | $3$ | The left slot is empty, so only the right branch can lead to a leaf | $1 + \min(0, 4) = 1$ | $1 + 4 = 5$ |
+
+The naive column collapses to $1$ at every non-leaf node here, which is exactly the reported wrong answer for this input; the correct column reports $5$, the depth of node $6$, which is the unique leaf of the tree. BFS reaches the same conclusion by a different route: it dequeues nodes one tier at a time and only discovers node $6$ at tier $5$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -118,6 +132,16 @@ We trace BFS on $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$:
 
 - **The Absent-Child Fallacy ($1 + \min(L, R)$):** Blindly taking the minimum child depth fails whenever a node has exactly one child, because $\min(0, R) = 0$, falsely reporting an absent branch as a path of depth 0 to a leaf.
 - **BFS vs DFS Efficiency:** In an unbalanced tree where a leaf exists at depth 2 and another branch extends to depth $10^5$, DFS must traverse the entire $10^5$ branch if it visits it first, while BFS terminates at step 2.
+
+**Boundary instances the rule has to survive.** Each row names the case, the structural condition that decides the answer, and the resulting minimum depth:
+
+| Scenario | Input | Deciding structural condition | Minimum Depth | Why that value is forced |
+|:---|:---|:---|:---:|:---|
+| Empty tree | $\text{root} = [\,]$ | There is no node to make into a leaf | 0 | No path to a leaf exists, so the empty convention $0$ is returned before any traversal begins. |
+| Single node | $\text{root} = [1]$ | The root has no children at all, so it is a leaf | 1 | The shortest root-to-leaf path contains only the root. |
+| Shallow leaf beside a deep branch | $\text{root} = [3, 9, 20, \text{null}, \text{null}, 15, 7]$ | Node $9$ is childless at tier $2$, while node $20$ still has children | 2 | Node $9$ is a leaf and no other leaf can lie at tier $1$, since the root is not a leaf. |
+| One-sided chain | $\text{root} = [2, \text{null}, 3, \text{null}, 4, \text{null}, 5, \text{null}, 6]$ | Every node has exactly one child, so the only leaf is the last node | 5 | With a single child per node, the chain has no shortcut; node $6$ is five nodes below the root. |
+| Shortest leaf on the right | $\text{root} = [1, 2, 3, 4, \text{null}, \text{null}, \text{null}, 5]$ | Node $3$ is childless at tier $2$, while the left branch runs on to node $5$ at tier $4$ | 2 | The nearest leaf is on the right branch, so the deeper left branch cannot shorten the answer. |
 
 ---
 

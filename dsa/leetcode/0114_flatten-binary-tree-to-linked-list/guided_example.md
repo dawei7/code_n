@@ -147,6 +147,21 @@ Initial Tree:               After Step 1 (cur=1):        After Step 2 (cur=2):
 | 6 | $\text{Node}(6)$ | No | - | Advance `cur` | None |
 | Exit | $\emptyset$ | - | - | Complete linear chain | **$1 \to 2 \to 3 \to 4 \to 5 \to 6$** |
 
+### The Same Instance Under Reverse Post-Order Recursion
+
+Method 2 arrives at the identical spine through a completely different mechanical route: it visits the tree in reverse preorder (right subtree, then left subtree, then the node itself) and keeps a single `prev` reference to the node processed immediately before. Because the order is reversed, each node attaches the already-finished successor as its own right child, so the linked list is assembled from the back:
+
+| Processing Order | Node Visited | prev Before the Assignment | New `right` Pointer | New `left` Pointer | prev After |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | $\text{Node}(6)$ | $\emptyset$ | $\emptyset$ (nothing follows the last preorder node) | $\emptyset$ | $\text{Node}(6)$ |
+| 2 | $\text{Node}(5)$ | $\text{Node}(6)$ | $\text{Node}(6)$ | $\emptyset$ | $\text{Node}(5)$ |
+| 3 | $\text{Node}(4)$ | $\text{Node}(5)$ | $\text{Node}(5)$ | $\emptyset$ | $\text{Node}(4)$ |
+| 4 | $\text{Node}(3)$ | $\text{Node}(4)$ | $\text{Node}(4)$ | $\emptyset$ | $\text{Node}(3)$ |
+| 5 | $\text{Node}(2)$ | $\text{Node}(3)$ | $\text{Node}(3)$ | $\emptyset$ | $\text{Node}(2)$ |
+| 6 | $\text{Node}(1)$ | $\text{Node}(2)$ | $\text{Node}(2)$ | $\emptyset$ | $\text{Node}(1)$ |
+
+The visit order $6, 5, 4, 3, 2, 1$ is exactly the reverse of the preorder sequence, which is why each assignment writes the successor that the spine will later read forward. The finished chain is $1 \to 2 \to 3 \to 4 \to 5 \to 6$, identical to the Morris result, but this variant spends $O(H)$ recursion frames instead of $O(1)$ pointer state.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -162,6 +177,16 @@ Initial Tree:               After Step 1 (cur=1):        After Step 2 (cur=2):
 - **Forgetting to Nullify Left Pointers:** Leaving `node.left` pointing to the old child causes test case rejections because LeetCode verifies that all `left` references are strictly `None`.
 - **Finding Predecessor on Empty Left Child:** Only find `pred` when `cur.left` is non-null. If `cur.left` is null, advance directly to `cur.right`.
 - **Predecessor Traversal Boundary:** When searching for `pred`, only advance right: `while pred.right: pred = pred.right`. Do not advance left.
+
+**Boundary instances and what the splicing rule does with each.**
+
+| Scenario | Input | Resulting spine | Why that spine is forced |
+|:---|:---|:---|:---|
+| Empty tree | $\text{root} = [\,]$ | $[\,]$ | There is no node to rewire, so the loop body never runs. |
+| Single node | $\text{root} = [0]$ | $[0]$ | The root has no left child, so no predecessor is sought and no pointer is moved. |
+| Already right-leaning | $\text{root} = [1, \text{null}, 2, \text{null}, 3]$ | $[1, \text{null}, 2, \text{null}, 3]$ | Every node already has an empty left slot, so each iteration only advances `cur`; the transformation is idempotent on an already-flat tree. |
+| Complete seven-node tree | $\text{root} = [1, 2, 3, 4, 5, 6, 7]$ | $[1, \text{null}, 2, \text{null}, 4, \text{null}, 5, \text{null}, 3, \text{null}, 6, \text{null}, 7]$ | The preorder sequence is $1, 2, 4, 5, 3, 6, 7$. At `cur` $= 1$ the predecessor of the pending right subtree $\{3, 6, 7\}$ is node $5$, so $\{3, 6, 7\}$ is parked under $5$; the same move at `cur` $= 2$ parks node $5$ under node $4$. |
+| The traced instance | $\text{root} = [1, 2, 5, 3, 4, \text{null}, 6]$ | $[1, \text{null}, 2, \text{null}, 3, \text{null}, 4, \text{null}, 5, \text{null}, 6]$ | Preorder is $1, 2, 3, 4, 5, 6$; two splices (at node $1$ and node $2$) are enough to convert the left branches into the spine. |
 
 ---
 

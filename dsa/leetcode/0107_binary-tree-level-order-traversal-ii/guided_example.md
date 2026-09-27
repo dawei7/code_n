@@ -117,6 +117,21 @@ Result: `[[15, 7], [9, 20], [3]]`.
 | 2 | 2 | $\text{Node}(15), \text{Node}(7) \to [15, 7]$ | None | $\text{appendleft}([15, 7])$ | `[[15, 7], [9, 20], [3]]` |
 | Exit | 0 | Queue empty | - | - | **`[[15, 7], [9, 20], [3]]`** |
 
+### Pop-by-Pop Trace on the Sparse Instance ($[1, 2, 3, \text{null}, 5, 6, \text{null}, 7]$)
+
+The sparse tree has four tiers of different widths, so the prepending accumulator is rewritten four times. Values inside a tier are read from the traversal queue in left-to-right order at the moment they are popped, which is why tier `[5, 6]` is never reversed.
+
+| Pop | Tier $d$ | Node popped | `current_level` after this pop | Children enqueued | Traversal queue after this pop | Accumulator after the tier's prepend |
+|:---:|:---:|:---|:---|:---|:---|:---|
+| 1 | 0 | $\text{Node}(1)$ | `[1]` | $\text{Node}(2)$, $\text{Node}(3)$ | `[Node(2), Node(3)]` | `[[1]]` |
+| 2 | 1 | $\text{Node}(2)$ | `[2]` | Only $\text{Node}(5)$, since $2.\text{left}$ is null | `[Node(3), Node(5)]` | - |
+| 3 | 1 | $\text{Node}(3)$ | `[2, 3]` | Only $\text{Node}(6)$, since $3.\text{right}$ is null | `[Node(5), Node(6)]` | `[[2, 3], [1]]` |
+| 4 | 2 | $\text{Node}(5)$ | `[5]` | Only $\text{Node}(7)$, since $5.\text{right}$ is null | `[Node(6), Node(7)]` | - |
+| 5 | 2 | $\text{Node}(6)$ | `[5, 6]` | None: $6$ is a leaf | `[Node(7)]` | `[[5, 6], [2, 3], [1]]` |
+| 6 | 3 | $\text{Node}(7)$ | `[7]` | None: $7$ is a leaf | `[]` | `[[7], [5, 6], [2, 3], [1]]` |
+
+Tier $3$ is prepended last but prints first, and each prepend shifts every earlier tier one position further right. The accumulator therefore ends in exactly the reverse discovery order while no tier's internal sequence was ever touched.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -131,6 +146,20 @@ Result: `[[15, 7], [9, 20], [3]]`.
 
 - **Inverting Internal Tier Ordering:** Bottom-up refers only to the order of the *levels* (vertical inversion). The nodes within each level must remain strictly left-to-right ($[15, 7]$, **not** $[7, 15]$).
 - **List `insert(0, ...)` Performance:** Using `list.insert(0, item)` in Python takes $O(K)$ time per insertion to shift existing elements, resulting in $O(H^2)$ time where $H$ is the tree height. Using a `collections.deque` or collecting into a list and reversing once at the end with `levels[::-1]` preserves optimal $O(N)$ runtime.
+
+### Discovery Order, Emitted Order, and Boundary Instances
+
+Let $\text{discovery} = [D_0, D_1, \dots, D_{H-1}]$ be the tiers in the order BFS discovers them, from the root downward. The emitted sequence satisfies the exact reflection relation $\text{emitted}[i] = D_{H-1-i}$ for every $i$, with no change to any tier's internal order.
+
+| Instance | Tier count $H$ | Discovery order (root first) | Emitted order (leaves first) | Peak queue occupancy | Stored nodes $N$ |
+|:---|:---:|:---|:---|:---:|:---:|
+| Empty tree | 0 | none | `[]` | 0 | 0 |
+| Single node | 1 | `[[1]]` | `[[1]]` | 1 | 1 |
+| Three-level sample | 3 | `[[3], [9, 20], [15, 7]]` | `[[15, 7], [9, 20], [3]]` | 2 | 5 |
+| Complete four-level | 4 | `[[1], [2, 3], [4, 5, 6, 7], [8]]` | `[[8], [4, 5, 6, 7], [2, 3], [1]]` | 4 | 8 |
+| Sparse four-level | 4 | `[[1], [2, 3], [5, 6], [7]]` | `[[7], [5, 6], [2, 3], [1]]` | 2 | 6 |
+
+Two rows deserve attention. The single-node instance has $H = 1$, so the reflection is the identity and the reversal is unobservable; a bug that reverses tier contents instead of tier positions still passes it. The complete four-level instance is the opposite extreme, where the widest tier has four nodes and lands at emitted index $1$ rather than index $3$, so both the tier order and each tier's left-to-right order are exercised at once.
 
 ---
 

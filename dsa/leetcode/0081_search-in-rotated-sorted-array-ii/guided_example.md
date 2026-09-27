@@ -96,6 +96,25 @@ At each step, calculate $M = L + \lfloor (R - L) / 2 \rfloor$:
 
 ---
 
+### Instance 3: Degenerate All-Equal Array ($[1, 1, 1, 1, 1]$, $\text{target} = 0$)
+
+When every element of the live window equals every other, the ambiguity test fires on
+every iteration and the window shrinks by only two indices at a time. No comparison can
+ever certify a sorted half, so the search degenerates to a linear scan that still
+terminates correctly:
+
+| Iteration | $L$ | $R$ | $M = L + \lfloor (R - L)/2 \rfloor$ | $(\text{nums}[L], \text{nums}[M], \text{nums}[R])$ | $\text{nums}[M] == 0$? | Classification | Action | Next $[L, R]$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|:---|:---:|
+| 1 | 0 | 4 | 2 | $(1, 1, 1)$ | $1 \ne 0$ | Ambiguous triplet | $L \leftarrow 1,\ R \leftarrow 3$ | $[1, 3]$ |
+| 2 | 1 | 3 | 2 | $(1, 1, 1)$ | $1 \ne 0$ | Ambiguous triplet | $L \leftarrow 2,\ R \leftarrow 2$ | $[2, 2]$ |
+| 3 | 2 | 2 | 2 | $(1, 1, 1)$ | $1 \ne 0$ | Ambiguous triplet (single cell) | $L \leftarrow 3,\ R \leftarrow 1$ | $[3, 1]$ empty |
+
+After three probes the window is empty, so the answer is $\text{False}$. A window of $n$
+identical values costs $\lceil n/2 \rceil$ iterations, which is the concrete mechanism
+behind the linear worst case discussed in Section 6.
+
+---
+
 ## 4. Complete Execution Trace
 
 ### Ambiguous Duplicate Trace ($[1, 0, 1, 1, 1]$, $\text{target} = 0$)
@@ -126,6 +145,16 @@ At each step, calculate $M = L + \lfloor (R - L) / 2 \rfloor$:
 
 - **Worst-Case Linear Degradation:** For arrays where all elements are identical (e.g. $[1, 1, 1, 1, 1]$ with $\text{target} = 0$), $L$ and $R$ increment/decrement one step at a time, degrading runtime to $O(N)$.
 - **Strict Inequality on Half-Sorted Check:** Using strictly $<$ vs $\le$ in $\text{nums}[L] \le \text{nums}[M]$ must be coupled with the three-way equality check first, otherwise duplicate prefixes will be misidentified as monotonically increasing.
+
+### Boundary Conditions Exercised by the Authored Instances
+
+| `nums` | `target` | Condition exercised | Result | Why the deciding branch is sound |
+|:---|:---:|:---|:---:|:---|
+| $[2, 5, 6, 0, 0, 1, 2]$ | 0 | Midpoint lands directly on the target | True | The first probe is $\text{nums}[3] = 0$, so one comparison settles it; no rotation reasoning is needed. |
+| $[2, 5, 6, 0, 0, 1, 2]$ | 3 | Range test is necessary but not sufficient | False | At $[L, R] = [0, 2]$ the left half is sorted and $2 \le 3 < 5$ correctly keeps the target inside, yet the final cell is $\text{nums}[0] = 2$, so the value simply does not occur. |
+| $[1, 0, 1, 1, 1]$ | 0 | Ambiguous triplet with the target in the left half | True | Trimming to $[1, 3]$ removes only values equal to $\text{nums}[M] \ne \text{target}$; the surviving containment test $0 \le 0 < 1$ then isolates index 1. |
+| $[1]$ | 2 | Single-element array | False | The window opens already degenerate at $L = R = M = 0$; the sole value $1$ is not the target, so the window empties and no element is skipped. |
+| $[1, 1, 1, 1, 2, 1, 1]$ | 2 | Duplicate blocks hiding the pivot on both sides | True | Two trims advance the window to $[2, 4]$; the only non-duplicate value, $\text{nums}[4] = 2$, survives and becomes the final probe. |
 
 ---
 

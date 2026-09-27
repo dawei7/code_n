@@ -121,6 +121,23 @@ Final output: `[[3], [20, 9], [15, 7]]`.
 | 2 | Left $\to$ Right | `[Node(15), Node(7)]` | 2 | $\text{append}(15)$, then $\text{append}(7)$ | `[15, 7]` | `[]` |
 | Exit | - | `[]` | 0 | - | - | **`[[3], [20, 9], [15, 7]]`** |
 
+### Buffer Evolution on a Four-Tier Tree ($[1, 2, 3, 4, 5, 6, 7, 8]$)
+
+This instance separates the two orderings that the algorithm must keep apart: the traversal queue stays left-to-right on every tier, while the committed buffer is reversed only on odd tiers. The buffer is written from its insertion end, so every row shows the resulting left-to-right reading order.
+
+| Pop | Tier $d$ | Polarity | Node popped | Level buffer after insertion | Children enqueued | Traversal queue after pop |
+|:---:|:---:|:---|:---|:---|:---|:---|
+| 1 | 0 | Left $\to$ Right | $\text{Node}(1)$ | `[1]` | $\text{Node}(2)$, $\text{Node}(3)$ | `[Node(2), Node(3)]` |
+| 2 | 1 | Right $\to$ Left | $\text{Node}(2)$ | `[2]` | $\text{Node}(4)$, $\text{Node}(5)$ | `[Node(3), Node(4), Node(5)]` |
+| 3 | 1 | Right $\to$ Left | $\text{Node}(3)$ | `[3, 2]` | $\text{Node}(6)$, $\text{Node}(7)$ | `[Node(4), Node(5), Node(6), Node(7)]` |
+| 4 | 2 | Left $\to$ Right | $\text{Node}(4)$ | `[4]` | $\text{Node}(8)$ only, since $4.\text{right}$ is null | `[Node(5), Node(6), Node(7), Node(8)]` |
+| 5 | 2 | Left $\to$ Right | $\text{Node}(5)$ | `[4, 5]` | None: $5$ is a leaf | `[Node(6), Node(7), Node(8)]` |
+| 6 | 2 | Left $\to$ Right | $\text{Node}(6)$ | `[4, 5, 6]` | None: $6$ is a leaf | `[Node(7), Node(8)]` |
+| 7 | 2 | Left $\to$ Right | $\text{Node}(7)$ | `[4, 5, 6, 7]` | None: $7$ is a leaf | `[Node(8)]` |
+| 8 | 3 | Right $\to$ Left | $\text{Node}(8)$ | `[8]` | None: $8$ is a leaf | `[]` |
+
+At pop $3$ the buffer reads `[3, 2]` even though node $2$ was inserted first, which is precisely the reversal that tier $1$ requires. Tier $2$ flips the polarity back, so the same values are appended at the tail in ascending pop order and the buffer reads `[4, 5, 6, 7]`; the traversal queue itself is never reversed, only the committed tier is.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -136,6 +153,32 @@ Final output: `[[3], [20, 9], [15, 7]]`.
 - **Reversing the Main BFS Queue:** If one attempts to pop from the right of the main queue on odd levels, the order in which child nodes are enqueued will become tangled, destroying the ordering of subsequent tiers. The main BFS queue must strictly maintain standard FIFO left-to-right order.
 - **Array Slicing Reversal ($O(K)$ Overhead):** Reversing a list via `level[::-1]` at the end of every odd level works, but incurs auxiliary copying overhead. A `collections.deque` achieves $O(1)$ push-front operations.
 - **Empty Tree Root:** An empty tree $\text{root} = \emptyset$ must return `[]` immediately.
+
+### Reversal Strategies Compared
+
+Every method below returns the same values; they differ in where the reversal cost is paid and in what breaks.
+
+| Strategy | Where the direction is applied | Time | Auxiliary space | Failure mode |
+|:---|:---|:---:|:---:|:---|
+| Front insertion into a level deque (used here) | At insertion time: `append` on even tiers, `appendleft` on odd tiers | $O(N)$ total, $O(1)$ per node | $O(W)$ for the traversal queue and the active buffer | None for this contract; the polarity flag must be toggled once per tier, not once per node |
+| Tail insertion, then reverse the committed tier | After the tier is complete, reverse the whole sublist | $O(N)$ total but $O(k)$ extra work for each odd tier of width $k$ | $O(W)$ plus a temporary copy for the reversal | Correct but pays a second pass over every odd tier; an in-place reversal avoids the copy but still costs $O(k)$ swaps |
+| Alternate child enqueue order per tier | Enqueue $u.\text{right}$ before $u.\text{left}$ on odd tiers | $O(N)$ | $O(W)$ | Corrupts geometry: tier $d+1$ is then built in reversed left-to-right order, so its own required orientation comes out wrong and later tiers inherit the error |
+| Pop from either end of the traversal queue | Reverse the traversal queue itself on odd tiers | $O(N)$ | $O(W)$ | Children of a popped node are enqueued in an order that no longer matches the geometric row, so tier boundaries no longer correspond to contiguous runs |
+| Depth-first recursion with a depth index | Prepend values into the bucket of an odd depth, append into an even depth | $O(N)$ with deques, $O(N^2)$ with plain list front insertion | $O(H)$ stack plus the buckets | Reaches the right answer but loses the natural tier-by-tier frontier, and front-inserting into a plain list makes odd tiers quadratic |
+
+The comparison isolates the design principle of this problem: keep the structural traversal unbiased and let a single polarity flag control only the committed orientation of each tier.
+
+### Tier Boundary Conditions
+
+| Instance | Level-order encoding | Emitted tiers | Last tier | Result |
+|:---|:---|:---|:---|:---|
+| Empty tree | `root = []` | none | - | `[]` |
+| Single node | `root = [1]` | Left $\to$ Right only | `[1]` | `[[1]]` |
+| Two levels | `root = [1, 2, 3]` | Left $\to$ Right, then Right $\to$ Left | `[3, 2]` | `[[1], [3, 2]]` |
+| Four levels | `root = [1, 2, 3, 4, 5, 6, 7, 8]` | alternating, ending on an odd tier | `[8]` | `[[1], [3, 2], [4, 5, 6, 7], [8]]` |
+| Sparse, four levels | `root = [1, 2, 3, null, 5, 6, null, 7]` | alternating, ending on an odd tier | `[7]` | `[[1], [3, 2], [5, 6], [7]]` |
+
+A tier of width one makes the polarity invisible: `[8]` and `[7]` read identically whichever way they are inserted, so a wrong flag at the final tier is only exposed by a wider tier such as `[3, 2]`.
 
 ---
 

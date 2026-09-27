@@ -115,6 +115,21 @@ We trace $p = [1, 2, 3]$ and $q = [1, 2, 3]$:
 - Condition: Exactly one is null!
 - **Early Return:** Returns $\text{False}$ immediately without visiting right subtrees.
 
+### Deep Value Mismatch Trace ($p = [4, 2, 6, 1, 3, 5, 7]$, $q = [4, 2, 6, 1, 3, 8, 7]$)
+
+Both trees are complete binary trees over the same level-order skeleton, so structure is never the deciding factor here; only one value differs. The conjunction short-circuits left-to-right, so the traversal order determines how many pairs are inspected before the verdict.
+
+| Visit | Node pair $(p, q)$ | Position in the skeleton | Value comparison | Verdict | What happens next |
+|:---:|:---|:---|:---:|:---:|:---|
+| 1 | $(4, 4)$ | depth 0, root | $4 = 4$ | match | Descend into the left pair first |
+| 2 | $(2, 2)$ | depth 1, root's left | $2 = 2$ | match | Descend into its left pair |
+| 3 | $(1, 1)$ | depth 2, left-left | $1 = 1$ | match | Both children null, so this leaf pair is complete |
+| 4 | $(3, 3)$ | depth 2, left-right | $3 = 3$ | match | Left subtree resolved as matching |
+| 5 | $(6, 6)$ | depth 1, root's right | $6 = 6$ | match | Descend into its left pair |
+| 6 | $(5, 8)$ | depth 2, right-left | $5 \ne 8$ | mismatch | Return $\text{False}$; the pair $(7, 7)$ is never inspected |
+
+The tree pair $(7, 7)$ stays unvisited even though its values agree, because the left-to-right conjunction already returned false. This is why the running time is bounded by the number of pairs inspected before the first discrepancy, not by the total size of the trees.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -130,6 +145,21 @@ We trace $p = [1, 2, 3]$ and $q = [1, 2, 3]$:
 - **Order of Null Checks:** Checking `p.val == q.val` before checking whether `p` or `q` is null causes an immediate `AttributeError` / `NullPointerException`. The dual null check `not p and not q` must precede any attribute access.
 - **Asymmetric Null Check:** Using `if not p and not q: return True` followed by `if not p or not q: return False` cleanly catches the case where one node exists and the other is null.
 - **Serialization Traps:** Serializing trees into strings without explicit null indicators confuses left vs right skew trees (e.g. $[1, 2]$ vs $[1, \text{null}, 2]$).
+
+### Boundary Case Matrix
+
+The lesson's instances can be classified by which rule of the protocol terminates the comparison. The final column counts only pairs where both nodes exist and their values are actually read; null-structure calls cost a visit but never a value comparison.
+
+| Instance | Level-order encoding | Deciding rule | Non-null value pairs compared | Result |
+|:---|:---|:---|:---:|:---:|
+| Both trees empty | `p = []`, `q = []` | Dual-null base case on the very first call | 0 | True |
+| Exactly one tree empty | `p = [0]`, `q = []` | Asymmetric null: the root exists in $p$ but not in $q$ | 0 | False |
+| Equal values, different shape | `p = [1, 2]`, `q = [1, null, 2]` | Left-position mismatch: $2$ is $p$'s left child but $q$'s right child | 1 | False |
+| Sibling values swapped | `p = [1, 2, 1]`, `q = [1, 1, 2]` | Value mismatch at the left pair, even though both trees hold the multiset $\{1, 1, 2\}$ | 1 | False |
+| Deep single-value mismatch | `p = [4, 2, 6, 1, 3, 5, 7]`, `q = [4, 2, 6, 1, 3, 8, 7]` | Value mismatch at the sixth pair, after five confirming pairs | 6 | False |
+| Fully identical | `p = [1, 2, 3]`, `q = [1, 2, 3]` | Every pair matches and every child pair is doubly null | 3 | True |
+
+The swapped-sibling row is the sharpest trap: the two trees contain the same values, and a multiset or sorted-serialization test would accept them. Only a position-aware comparison rejects them, because equivalence is required per corresponding node, not per set of values.
 
 ---
 
