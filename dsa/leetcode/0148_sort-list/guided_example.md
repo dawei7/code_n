@@ -116,10 +116,10 @@ The same merge read as a decision ledger, where each row names the two remaining
 
 | Step | Remaining $L_1$ | Remaining $L_2$ | Test at the two heads | Node appended | Merged chain so far |
 |:---:|:---|:---|:---|:---|:---|
-| 1 | $[2, 4]$ | $[1, 3]$ | $1 < 2$ | `Node(1)` | `dummy → 1` |
-| 2 | $[2, 4]$ | $[3]$ | $2 \le 3$ | `Node(2)` | `dummy → 1 → 2` |
-| 3 | $[4]$ | $[3]$ | $3 < 4$ | `Node(3)` | `dummy → 1 → 2 → 3` |
-| exhaustion | $[4]$ | $\emptyset$ | guard $L_1 \ne \emptyset \land L_2 \ne \emptyset$ fails | remainder `Node(4)` | `dummy → 1 → 2 → 3 → 4` |
+| 1 | $[2, 4]$ | $[1, 3]$ | $1 < 2$ | `Node(1)` | $\text{dummy} \to 1$ |
+| 2 | $[2, 4]$ | $[3]$ | $2 \le 3$ | `Node(2)` | $\text{dummy} \to 1 \to 2$ |
+| 3 | $[4]$ | $[3]$ | $3 < 4$ | `Node(3)` | $\text{dummy} \to 1 \to 2 \to 3$ |
+| exhaustion | $[4]$ | $\emptyset$ | guard $L_1 \ne \emptyset \land L_2 \ne \emptyset$ fails | remainder `Node(4)` | $\text{dummy} \to 1 \to 2 \to 3 \to 4$ |
 
 - **Comparison 1 ($2$ vs $1$):**
   - $1 < 2 \implies \text{curr.next} = \text{Node}(1)$.

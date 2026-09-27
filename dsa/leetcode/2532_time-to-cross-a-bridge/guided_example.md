@@ -1,125 +1,176 @@
 # Guided Example: Time to Cross a Bridge
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The physical model
 
-- **Input:** `{"n": 1, "k": 3, "time": [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]}`
-- **Required output:** `6`
+There are $k$ workers and $n$ boxes. Every worker starts on the left bank, every box starts on the right bank, and the bridge admits one worker at a time. Worker $i$ is described by four durations,
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$
+\text{time}[i] = [\text{right}_i,\ \text{pick}_i,\ \text{left}_i,\ \text{put}_i],
+$$
 
----
+meaning: cross to the right bank in $\text{right}_i$ minutes, pick up one box there in $\text{pick}_i$ minutes, carry it back across in $\text{left}_i$ minutes, and put it down on the left bank in $\text{put}_i$ minutes. The quantity asked for is the elapsed time at which the **last box reaches the left side of the bridge**, so the final put-down is not part of the answer.
 
-## 1. Instance & Teaching Goal
+The bridge discipline is prescribed rather than chosen, which is what makes the problem a simulation instead of an optimization: at every moment when the bridge becomes free, the rules say exactly which worker may use it next.
 
-There are `k` workers who want to move `n` boxes from the right (old) warehouse to the left (new) warehouse. You are given the two integers `n` and `k`, and a 2D integer array `time` of size `k x 4` where $\text{time}[i] = [\text{right}_{i}, \text{pick}_{i}, \text{left}_{i}, \text{put}_{i}]$.
+The instance traced below is $n = 3$, $k = 2$ with
+`time = [[1, 5, 1, 8], [10, 10, 10, 10]]`,
+whose required answer is 37. It is chosen because the two workers have very different bridge costs, because one worker must be dispatched twice while the other is still busy, and because the final put-down of the last worker must be excluded from the returned value.
 
-The objective is to compute `6` from `{"n": 1, "k": 3, "time": [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]}` while avoiding redundant calculations and unnecessary overhead.
+| Worker | $\text{right}_i$ | $\text{pick}_i$ | $\text{left}_i$ | $\text{put}_i$ | Bridge cost $\text{right}_i + \text{left}_i$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 1 | 5 | 1 | 8 | 2 |
+| 1 | 10 | 10 | 10 | 10 | 20 |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Efficiency is a fixed total order
 
----
+Worker $i$ is *less efficient* than worker $j$ when
 
-## 2. Conceptual Foundation & Invariants
+$$
+\text{left}_i + \text{right}_i > \text{left}_j + \text{right}_j,
+$$
 
-We maintain the core conceptual parameters and state variables:
+or when the two sums are equal and $i > j$. Only the time spent on the bridge enters this comparison; picking and putting are irrelevant to rank. The ordering is computed once, from the static input, and never changes during the simulation — it is the dispatch priority, not a measurement of current progress.
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Worker | Bridge cost | Comparison | Rank | Dispatch priority |
+|:---:|:---:|:---|:---:|:---|
+| 0 | 2 | the smaller bridge cost | more efficient | sent second |
+| 1 | 20 | the larger bridge cost | less efficient | sent first |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Ties are broken toward the larger index by the second clause of the definition, so when several workers share a bridge cost the one with the greatest index is dispatched first. This is a static tie-break, not a comparison of who has waited longest.
 
----
+## 3. Four pools of state
 
-## 3. Step-by-Step Worked Execution
+At any instant each worker is in exactly one of four situations, and each pool behaves differently. Two pools hold workers who are ready to move, and two hold workers who are committed until a known completion time.
 
-### Step 1: Model workers in four off-bridge states
+| Pool | Membership | Becomes relevant when | Role in the rules |
+|:---|:---|:---|:---|
+| idle on the left | on the left bank, not occupied | immediately | eligible to cross right, but only while unassigned boxes remain |
+| ready on the right | on the right bank holding a box | immediately | highest priority to cross left |
+| busy on the left | putting a box down | at a known future time | returns to the idle-left pool at that time; not eligible before then |
+| busy on the right | crossing right or picking | at a known future time | joins the ready-right pool at that time; not eligible before then |
 
-At any moment, a worker is in exactly one of these collections:
+A single counter $n$ accompanies them: the number of boxes that have **not yet been assigned** to a worker. It is decremented the moment a worker is sent from the left bank, and it never changes for any other reason. This counter is the exact implementation of the rule that no further workers are sent from the left once the remaining boxes are already covered.
 
-- `wait_in_left`: ready on the left to cross right and fetch a box;
-- `work_in_right`: picking up a box, unavailable until a completion time;
-- `wait_in_right`: ready on the right with a box and waiting to cross left;
-- `work_in_left`: putting down a returned box, unavailable until completion.
+## 4. The decision made whenever the bridge is free
 
-The bridge itself is simulated by advancing current time `cur` whenever one chosen worker crosses. Since crossings are never simultaneous, no separate bridge-occupancy structure is needed.
+The rules resolve every free-bridge moment in a fixed order, with three outcomes.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 1, "k": 3, "time": [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Priority | Condition at the current time | Action |
+|:---:|:---|:---|
+| 1 | at least one worker is ready on the right | that pool's least efficient member crosses left; the clock advances by his $\text{left}_i$; one box reaches the left bank |
+| 2 | no one is ready on the right, and $n > 0$, and someone is idle on the left | that pool's least efficient member crosses right; the clock advances by his $\text{right}_i$; $n$ decreases by one |
+| 3 | neither of the above | the bridge stays unused and the clock jumps forward to the earliest completion time among the busy workers |
 
----
+The first branch encodes the priority of workers who are already carrying a box. The second encodes the rule that boxes are only collected while unassigned work remains. The third is the event-advance step: if nobody can use the bridge, time simply moves to the next moment when somebody can.
 
-### Step 2: Turn worker indices into efficiency ranks
+## 5. Timeline of the traced instance
 
-The code sorts `time` by `right_i+left_i` in ascending order. Python's sort is stable, so equal crossing sums remain in original worker-index order.
+Each row below is one decision by the simulation. The clock column shows the time at which the decision is made, not the time it finishes.
 
-After sorting:
+| Step | Clock | Situation at that moment | Decision and its interval | Clock after | $n$ after |
+|:---:|:---:|:---|:---|:---:|:---:|
+| 1 | 0 | both workers idle on the left; 3 boxes unassigned; nobody ready on the right | send worker 1, the least efficient; crossing occupies 0 to 10 | 10 | 2 |
+| 2 | 10 | worker 1 is picking until 20; worker 0 idle; 2 boxes unassigned | nobody ready on the right, so send worker 0; crossing occupies 10 to 11 | 11 | 1 |
+| 3 | 11 | worker 0 begins picking until 16; worker 1 still picking until 20 | no one is idle and no one is ready, so the clock jumps to the earliest completion, 16 | 16 | 1 |
+| 4 | 16 | worker 0 holds a box and is ready on the right | right side has priority: worker 0 crosses left, 16 to 17 | 17 | 1 |
+| 5 | 17 | box 1 has arrived; worker 0 begins putting, 17 to 25 | 1 box is still unassigned but nobody is idle on the left, so the clock jumps to 20 | 20 | 1 |
+| 6 | 20 | worker 1 holds a box and is ready on the right | right side has priority: worker 1 crosses left, 20 to 30 | 30 | 1 |
+| 7 | 30 | box 2 has arrived; worker 1 begins putting, 30 to 40; worker 0 has been idle since 25 | 1 box is unassigned and worker 0 is idle, so send worker 0 right, 30 to 31 | 31 | 0 |
+| 8 | 31 | worker 0 begins picking until 36 | $n = 0$, so no left dispatch is possible; the clock jumps to 36 | 36 | 0 |
+| 9 | 36 | worker 0 holds the last box, ready on the right | right side has priority: worker 0 crosses left, 36 to 37 | 37 | 0 |
 
-- a larger sorted index has a larger crossing sum, or the same sum and a larger original index;
-- therefore, a larger sorted index means a less efficient worker under the problem's exact ordering.
+At 37 the third box reaches the left side, $n$ is already 0, and the right bank holds no worker in any state. The simulation stops and returns 37; worker 0's put-down (37 to 45) is deliberately never charged, because the boxes are already on the left.
 
-The simulation can use these sorted indices as efficiency ranks. It does not need original IDs because the answer asks only for elapsed time.
+| Box | Carried by | Pick-up interval on the right | Left crossing | Arrival on the left |
+|:---:|:---:|:---:|:---:|:---:|
+| 1 | worker 0 | 11 to 16 | 16 to 17 | 17 |
+| 2 | worker 1 | 10 to 20 | 20 to 30 | 30 |
+| 3 | worker 0 | 31 to 36 | 36 to 37 | 37 |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Step 7 deserves a second look. Worker 0 finished putting at 25, but the bridge was occupied by worker 1 from 20 to 30, so the earliest moment he could be sent was 30. The simulation notices his availability only when the clock reaches 30, and the outcome is identical: during 25 to 30 no dispatch was possible anyway. Deferring availability to the decision points of section 4 is therefore safe, because the clock only ever advances to a moment at which either the bridge is free and someone is waiting, or nothing at all can happen.
 
----
+## 6. Why the simulation is exact
 
-### Step 3: Waiting heaps choose the least efficient worker
+The correctness of this method rests on the fact that its state is a complete description of the physical situation at every decision point.
 
-Python heaps return the smallest key. Waiting heaps store `-i`, so the most negative key corresponds to the largest sorted index and hence the least efficient waiting worker.
+1. **Every worker is in exactly one pool.** A worker who is sent right leaves the idle-left pool and enters the busy-right pool with an explicit completion time $\text{clock} + \text{pick}_i$, since his right crossing is charged to the clock at dispatch. A worker who crosses left enters the busy-left pool with completion time $\text{clock} + \text{put}_i$. When a completion time is reached, he moves to the corresponding ready pool. No worker is lost and none is double-counted.
+2. **The clock never skips a usable moment.** In branch 3 the clock jumps to the earliest completion time of any busy worker, and every pool is empty of ready workers at that instant. Removing all busy workers from consideration leaves nothing that could legitimately act during the interval, so no decision is missed. After the jump, branch 1 or 2 applies again.
+3. **The box counter is exact.** Every left dispatch assigns exactly one worker to exactly one box, and every such assignment produces exactly one delivery: the worker returns with the box he was sent for. Hence at any moment the number of boxes still to arrive equals $n$ plus the number of workers in the ready-right and busy-right pools. When $n = 0$ and both of those pools are empty, the crossing that has just finished is the final delivery, which is exactly the stopping condition.
+4. **The priority order is time-independent.** Because rank depends only on $\text{right}_i + \text{left}_i$ and the index, the least efficient worker in a pool is a fixed element of that pool; no comparison of arrival times or waiting durations is needed, and the choice is deterministic.
 
-All workers begin on the left, and indices 0 through `k-1` are inserted into `wait_in_left`.
+The invariant that makes the timeline reproducible is therefore: *at the top of each decision, the clock is the time of the decision, the pools partition the workers by their physical location and readiness, and $n$ counts exactly the boxes that no worker has been sent to collect.* Two runs on the same input produce the same timeline, because every branch is fully determined by that state.
 
-There are separate waiting heaps per side because right-side workers always receive bridge priority over left-side workers.
+```mermaid
+flowchart TD
+    accTitle: Decision loop of the bridge simulation
+    accDescr: At each step workers whose completion time has been reached move from the busy pools to the ready pools. If someone is ready on the right, the least efficient of them crosses left with a box. Otherwise, if boxes remain unassigned and someone is idle on the left, the least efficient of them crosses right. Otherwise the clock jumps to the earliest completion time. The answer is returned when a left crossing finishes with no boxes unassigned and an empty right side.
+    A[advance clock to the earliest completion] --> B[move finished workers into ready pools]
+    B --> C{anyone ready on the right}
+    C --> D[least efficient crosses left with a box]
+    C --> E{boxes unassigned and someone idle left}
+    E --> F[least efficient crosses right and claims a box]
+    E --> G[nobody can act: jump to earliest completion]
+    D --> H{no boxes unassigned and right side empty}
+    H --> I[return the current clock]
+    H --> B
+    F --> B
+    G --> B
+```
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `6` |
+## 7. A one-number change, a different schedule
 
----
+Changing worker 0's pick-up time from 5 to 9 keeps the same two workers and the same number of boxes, and the authored variant of this instance requires 50 instead of 37. The change matters because it moves worker 0's readiness from 16 to exactly 20, the moment worker 1 also becomes ready — and then the right-side priority rule decides which of the two boxes comes home first.
 
-## 4. Complete Execution Trace
+| Quantity | Traced instance | Variant with $\text{pick}_0 = 9$ |
+|:---|:---|:---|
+| worker 0 ready on the right at | 16 | 20 |
+| worker 1 ready on the right at | 20 | 20 |
+| left crossings, in order | 16 to 17, 20 to 30, 36 to 37 | 20 to 30, 30 to 31, 49 to 50 |
+| worker chosen at the tied moment | worker 0 alone at 16 | worker 1, the less efficient of the two |
+| box arrival times | 17, 30, 37 | 30, 31, 50 |
+| required answer | 37 | 50 |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 1, "k": 3, "time": [[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `6` | Verified |
+In the variant, worker 0 tidies up the first box only after 31 and is busy putting until 39, so the third box cannot leave the right bank until 49, and it arrives at 50 — thirteen minutes later than in the traced instance, from a four-minute change. The example shows that the answer is a product of the schedule, not a simple sum of per-box costs.
 
----
+## 8. Boundary instances and traps
 
-## 5. Algorithmic Correctness
+Each row is an authored case of this package with its required answer.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+| $n$ | $k$ | `time` | Required answer | The boundary it isolates |
+|:---:|:---:|:---|:---:|:---|
+| 1 | 1 | `[[2, 3, 5, 7]]` | 10 | one box, one worker: $2 + 3 + 5$, and the put-down of 7 is excluded |
+| 1 | 3 | `[[1, 1, 2, 1], [1, 1, 3, 1], [1, 1, 4, 1]]` | 6 | the single box is claimed by the first dispatch (worker 2, the least efficient, bridge cost 5), so the other two workers never move; the answer is $1 + 1 + 4$ |
+| 3 | 1 | `[[2, 3, 5, 7]]` | 44 | one worker pipelines three boxes: $10$ minutes for the first arrival, then two full cycles of $7 + 2 + 3 + 5$ |
+| 2 | 2 | `[[1, 1, 1, 1], [1, 1, 1, 1]]` | 4 | identical workers: the tie-break sends the larger index first, and the answer is four one-minute crossings |
+| 2 | 3 | `[[1, 2, 3, 4], [2, 1, 2, 1], [3, 1, 1, 2]]` | 8 | three workers with the same bridge cost 4 but very different components: only $\text{right} + \text{left}$ may be used for ranking |
+| 3 | 2 | `[[1, 9, 1, 8], [10, 10, 10, 10]]` | 50 | the schedule-changing variant of section 7, where two workers become ready at the same instant |
+| 3 | 2 | `[[1, 5, 1, 8], [10, 10, 10, 10]]` | 37 | the traced instance |
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Several tempting mistakes are visible in these rows.
 
----
+- **Charging the final put-down.** The answer for the one-worker, one-box case would become 17 instead of 10, and the traced instance would become 45 instead of 37. The return happens on the completion of the crossing, not after the box is stored.
+- **Sending the most efficient worker first.** In the `n = 1, k = 3` case, worker 0 would deliver at $1 + 1 + 2 = 4$; the rule prescribes the least efficient, giving $1 + 1 + 4 = 6$.
+- **Breaking ties toward the smaller index.** The three workers of the `n = 2, k = 3` case all have bridge cost 4, so the second clause of the definition sends worker 2 first and the answer is 8; sending worker 0 first instead produces 6.
+- **Ignoring the box counter.** The condition $n > 0$ is what stops workers from being sent once every remaining box already has an owner. Removing it makes the simulation dispatch workers for boxes that do not exist, so crossings and deliveries continue after all $n$ boxes have arrived, and the returned time belongs to a delivery that never happened.
+- **Releasing a carrier before his put-down ends.** In the `n = 3, k = 1` case the put-down of 7 minutes keeps the worker off the bridge between deliveries; treating him as free the instant he arrives would return 30 instead of 44.
+- **Letting two workers share the bridge.** The clock must advance by the whole crossing before the next decision; overlapping intervals would produce times that no physical schedule can realise.
+- **Ranking by the wrong quantity.** Bridge cost is $\text{right}_i + \text{left}_i$ alone. The three workers of the `n = 2, k = 3` case all have bridge cost 4, while their $\text{left} + \text{pick}$ values are 5, 3, and 2: ranking by that quantity would send worker 0 first, and the answer would change from 8 to 6.
+- **Confusing the two crossings.** $\text{right}_i$ and $\text{left}_i$ are distinct durations; in the `n = 1, k = 3` case the chosen worker needs 1 minute outbound and 4 minutes home, and swapping them changes the answer.
 
-## 6. Traps This Instance Exposes
+## 9. Time and auxiliary space
 
-- **Minute-by-minute simulation:** It wastes time across long pick or put intervals; completion heaps allow jumps.
-- **One waiting heap:** It cannot enforce unconditional right-side priority cleanly.
-- **Efficiency ties:** Stable sorting preserves original index order, so larger sorted rank remains less efficient.
-- **Several simultaneous completions:** Release all before choosing the least efficient waiter.
-- **No boxes left to dispatch:** Do not send another left worker even if one waits.
-- **Final box:** Return after its left crossing without waiting for put time.
-- **One worker:** The same worker cycles through all four stages for every box.
-- **Right-side priority:** It is checked before left dispatch whenever both wait.
-- **Idle bridge:** Advance to the earliest work completion.
-- **Input mutation:** Sorting reorders worker rows into efficiency rank order.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+**Time.** The simulation performs at most $n$ dispatches from the left, each assigning one box, and therefore at most $n$ crossings back; each of those steps selects one worker from a pool. Between them the clock-advance steps number no more than the number of completion times that exist, which is $O(n)$ as well, plus the $k$ initial insertions. Every pool operation is a priority-queue operation costing $O(\log k)$, so the running time is
 
----
+$$
+O\bigl((n + k)\log k\bigr),
+$$
 
-## 7. Complexity Derivation
+with the $k$ initial insertions and the fixed ordering of the workers by bridge cost contributing $O(k \log k)$ of that bound. Nothing in the process depends on the magnitudes of the durations, only on their order and their sums, so the running time does not grow with the size of the times.
 
-- **Time Complexity:** $O(\log k)$. Sorting `k` workers costs $O(k\log k)$. Each dispatched box causes one left-to-right and one right-to-left crossing. Workers enter and leave work heaps a constant number of times per carried box, and every heap operation costs $O(\log k)$.
-- **Auxiliary Space Complexity:** $O(k)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** Four pools hold the $k$ workers between them, one entry per worker at any instant, and the box counter is a single integer. No history of events is retained, and the input array is only reordered, so the auxiliary space is
+
+$$
+O(k),
+$$
+
+which is the number of workers. The answer itself is a sum of durations up to $1000$ each over up to $10^{4}$ boxes and crossings, so it comfortably exceeds a small integer range and should be accumulated in a 64-bit value.

@@ -131,6 +131,21 @@ Result: True
 - Test replacement: $s[3:] == t[3:] \iff \text{"3"} == \text{"3"}$.
 - Return **True**.
 
+### Every Authored Instance Through the Same Three Phases
+
+The lengths below follow the method's own convention: the shorter string plays the role of $s$ and the longer plays the role of $t$, so the given pair is swapped whenever the first string is longer.
+
+| Authored instance | $(m, n)$ | Gap | First mismatch $i$ | Branch reached | Test evaluated | Verdict |
+|:---|:---:|:---:|:---:|:---|:---|:---:|
+| `s = "ab"`, `t = "acb"` | $(2, 3)$ | 1 | 1 | unequal lengths → insertion or deletion | `s[1:] == t[2:]` → `"b" == "b"` | `true` |
+| `s = "a"`, `t = "A"` | $(1, 1)$ | 0 | 0 | equal lengths → replacement | `s[1:] == t[1:]` → `"" == ""` | `true` |
+| `s = "ab"`, `t = "cd"` | $(2, 2)$ | 0 | 0 | equal lengths → replacement | `s[1:] == t[1:]` → `"b" == "d"` | `false` |
+| `s = "algorith"`, `t = "algorithm"` after the swap | $(8, 9)$ | 1 | none, all 8 compared positions match | prefix exhausted | `m + 1 == n` → `9 == 9` | `true` |
+| `s = ""`, `t = "7"` | $(0, 1)$ | 1 | none, nothing to compare | prefix exhausted | `m + 1 == n` → `1 == 1` | `true` |
+| `s = ""`, `t = ""` | $(0, 0)$ | 0 | none, nothing to compare | prefix exhausted | `m + 1 == n` → `1 == 0` | `false` |
+| `s = "a"`, `t = "abc"` | $(1, 3)$ | 2 | never scanned | length gate | not reached | `false` |
+| 10,000-character instance, last character `'0'` against `'A'` | $(10000, 10000)$ | 0 | 9999, the final position | equal lengths → replacement | `s[10000:] == t[10000:]` → `"" == ""` | `true` |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -147,9 +162,42 @@ Result: True
 - **Empty String Inputs:** If $s = \text{""}$ and $t = \text{""}$, loop does not run, $m + 1 == n \implies 0 + 1 == 0 \implies \text{False}$. If $s = \text{""}$ and $t = \text{"a"}$, $0 + 1 == 1 \implies \text{True}$.
 - **Full Dynamic Programming Overhead:** Running 2D Levenshtein DP takes $O(N^2)$ time and space, which is unnecessary and risks time limit exceeded on large strings ($N = 10^5$).
 
+The word "exactly" is what makes the following outcomes counter-intuitive; each row names the phase that decides it:
+
+| Scenario | Concrete instance | Expected | Phase that decides it |
+|:---|:---|:---:|:---|
+| Identical strings of any length | `"abc"` against `"abc"`, and `""` against `""` | `false` | the final test `m + 1 == n`, which fails because $m = n$: zero edits is not one edit |
+| Equal lengths with a single difference | `"a"` against `"A"` | `true` | replacement branch, and the empty suffixes after index 0 match |
+| Equal lengths with two differences | `"ab"` against `"cd"` | `false` | replacement branch: after aligning index 0 the suffixes `"b"` and `"d"` still differ |
+| Lengths differing by one, extra character at the end | `"algorith"` against `"algorithm"` | `true` | prefix exhausted, so the trailing-character test answers instead of the loop |
+| Lengths differing by one, extra character in the middle | `"ab"` against `"acb"` | `true` | insertion branch: the mismatch at index 1 is resolved by skipping `t[1]` |
+| Lengths differing by two | `"a"` against `"abc"` | `false` | length gate, before any character is compared |
+| Equal lengths with the only difference at the final index | the 10,000-character instance | `true` | replacement branch; the two suffixes are both empty, so the position of the lone edit does not matter |
+
 ---
 
 ## 7. Complexity Derivation
+
+Four candidate methods return the same verdict on the sampled instances; the comparison below shows what each one spends, and the ledger after it counts the characters the traced method actually inspects:
+
+| Candidate method | Mechanism | Cost | Failure mode or tradeoff |
+|:---|:---|:---|:---|
+| Full Levenshtein dynamic programming | fill the $(m+1) \times (n+1)$ table of prefix distances and compare the final distance with $1$ | $O(mn)$ time and space | the 10,000-character instance needs $10^8$ cells, and the stated upper bound of $10^5$ characters would need $10^{10}$ |
+| Banded dynamic programming | keep only the diagonal band with $\lvert i - j \rvert \le 1$, three cells per row | $O(N)$ time, $O(1)$ space | correct, but it maintains a recurrence where a prefix scan and two suffix tests are enough |
+| Longest common prefix plus longest common suffix | measure the matching head and tail, then require the two unmatched middles to total exactly one | $O(N)$ time | the head and tail must be forced not to overlap; measured independently they double-count, and `"aa"` against `"aa"` yields a negative middle |
+| Count positional mismatches | compare the strings index by index and accept at most one difference | $O(N)$ time | wrong in both directions: `"ab"` against `"acb"` has two positional differences yet is one edit away, while `"ab"` against `"ab"` has none yet must be `false` |
+| First mismatch plus branch on the length gap | stop at the first difference and validate the remaining suffix | $O(N)$ time, $O(1)$ space | the branch is mandatory: applying the replacement test when the lengths differ misaligns the suffixes and would reject `"ab"` against `"acb"` |
+
+| Authored instance | Full DP cells $(m+1)(n+1)$ | Prefix comparisons | Suffix comparisons | Total character inspections |
+|:---|:---:|:---:|:---:|:---:|
+| `""` against `""` | 1 | 0 | 0 (the trailing test only compares $m + 1$ with $n$) | 0 |
+| `""` against `"7"` | 2 | 0 | 0 | 0 |
+| `"a"` against `"A"` | 4 | 1 | 0, both suffixes empty | 1 |
+| `"ab"` against `"acb"` | 12 | 2 | 1 | 3 |
+| `"ab"` against `"cd"` | 9 | 1 | 1 | 2 |
+| `"a"` against `"abc"` | 8 | 0, rejected by the length gate | 0 | 0 |
+| `"algorith"` against `"algorithm"` | 90 | 8 | 0, the trailing test decides | 8 |
+| 10,000-character instance | 100020001 | 10000 | 0, both suffixes empty | 10000 |
 
 - **Time Complexity:** $O(N)$, where $N = \min(|s|, |t|)$. Finding the first mismatch takes at most $N$ character comparisons. Comparing the remaining suffixes takes at most $N$ character comparisons.
 - **Auxiliary Space Complexity:** $O(1)$ constant auxiliary memory when comparing suffix indices directly with pointers (or $O(N)$ if string slicing is used).

@@ -143,6 +143,18 @@ Result: 6 trailing zeroes
 | 3 | 1 | $125$ | 0 | None ($125 > 28$) | 6 |
 | **End** | **0** | - | - | **Terminated ($n == 0$)** | **6 (Final)** |
 
+The quotient table above accumulates one term per prime power. The complementary accounting counts the same total one integer at a time, which shows that the folded quotient is an exact multiplicity and not an estimate:
+
+| Integer $m \le 28$ divisible by 5 | Factorization of $m$ | Factors of 5 inside $m$ | Term $\lfloor 28 / 5^k \rfloor$ that counts it | Running total |
+|:---:|:---:|:---:|:---:|:---:|
+| 5 | $5$ | 1 | $k = 1$ | 1 |
+| 10 | $2 \times 5$ | 1 | $k = 1$ | 2 |
+| 15 | $3 \times 5$ | 1 | $k = 1$ | 3 |
+| 20 | $2^2 \times 5$ | 1 | $k = 1$ | 4 |
+| 25 | $5^2$ | 2 | $k = 1$ (its first factor) and $k = 2$ (its second factor) | 6 |
+
+Both accountings agree on $6$, and they must: the first sums over prime powers, the second sums over the contributing integers, and each factor of 5 in $28!$ is counted exactly once by each.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,6 +170,32 @@ Result: 6 trailing zeroes
 - **Missing Powers of 5:** Naively counting only $\lfloor n / 5 \rfloor$ misses the extra factors from $25, 125, 625, \dots$, undercounting $25!$ as 5 instead of 6.
 - **Computing $n!$ Directly:** Attempting `math.factorial(n)` will exceed memory and time limits or crash with integer size limits in languages with fixed-width integers.
 - **Base Case $n = 0$:** $0! = 1$, which has 0 trailing zeroes. The loop condition `while n > 0` handles $n = 0$ immediately, returning 0.
+
+### Boundary Behaviour of the Same Loop
+
+The traced instance sits just above the second power of five, so it is worth rehearsing how the identical loop behaves on the values that bracket it. No value below needs a special case; each is settled by the first quotient that reaches zero.
+
+| Instance $n$ | Quotient terms | Trailing zeroes | Why that value is forced |
+|:---:|:---|:---:|:---|
+| 0 | $\lfloor 0/5 \rfloor = 0$ | 0 | $0! = 1$ contains no factor of 5, and the loop body never accumulates before terminating |
+| 3 | $\lfloor 3/5 \rfloor = 0$ | 0 | $3! = 6$; no multiple of 5 exists at or below 3 |
+| 4 | $\lfloor 4/5 \rfloor = 0$ | 0 | $4! = 24$; the smallest multiple of 5 is 5 itself |
+| 5 | $1 + 0$ | 1 | $5! = 120$; one factor of 5 meets one of the many available factors of 2 |
+| 24 | $4 + 0$ | 4 | $\{5, 10, 15, 20\}$ each contribute one 5, and none contributes a second |
+| 25 | $5 + 1$ | 6 | $25 = 5^2$ contributes twice, the case stored as `trial-square-of-five` |
+| 28 | $5 + 1$ | 6 | the traced instance; the next power $125$ exceeds it |
+| 100 | $20 + 4$ | 24 | $100 = 4 \times 25$, so only the terms through $5^2$ are nonzero |
+
+The pair $(24, 25)$ is the instructive one: a single increment of the input raises the answer by two, because crossing a multiple of $25$ releases two factors of 5 at once. The pair $(0, 4)$ shows the opposite flat region, where the answer stays at zero until the input reaches 5.
+
+### Alternatives This Instance Eliminates
+
+| Approach | What it computes | Cost | Why it is not the method here |
+|:---|:---|:---|:---|
+| Expand $n!$ and count trailing digits | the full decimal expansion of $n!$ | $\Theta(n \log n)$ bits of arithmetic | $28!$ is already a 30-digit number and $10^4!$ exceeds $35{,}000$ digits, so almost all of the work produces digits the answer never inspects |
+| Count the exponent of prime 2 instead | $E_2(n!)$ | $O(\log_2 n)$ | every multiple of 2 outnumbers the multiples of 5, so $E_2(n!) > E_5(n!)$ for all $n \ge 2$ and this overcounts systematically |
+| Factor every integer from 1 to $n$ | per-integer multiplicities, summed | $O(n \log n)$ | it reaches the same total as the table above, but scans $n$ candidates where the folded quotients need $\lfloor \log_5 n \rfloor$ steps |
+| Fold the quotients (this lesson) | $\sum_{k \ge 1} \lfloor n / 5^k \rfloor$ | $O(\log_5 n)$ time, $O(1)$ space | exact multiplicity of 5, obtained by shrinking the input instead of expanding the factorial |
 
 ---
 

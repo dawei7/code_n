@@ -147,6 +147,19 @@ R=4: [L=2..3, R=4] "eba"  -> 3 distinct! L moves to 3 -> "ba" len=2, max=3
 | 3 | `'b'` | `{'e': 2, 'c': 1, 'b': 1}` | $3 > 2$ (Yes) | $L: 0 \to 1 \to 2$ (del `'c'`) | `{'e': 1, 'b': 1}` | $[2, 3]$ (`"eb"`) | 2 | 3 |
 | 4 | `'a'` | `{'e': 1, 'b': 1, 'a': 1}` | $3 > 2$ (Yes) | $L: 2 \to 3$ (del `'e'`) | `{'b': 1, 'a': 1}` | $[3, 4]$ (`"ba"`) | 2 | **3 (Final)** |
 
+### Boundary Behaviour Across the Authored Instances
+
+The authored inputs exercise every degenerate alphabet size, and each row answers the same question: which part of the loop decides the result?
+
+| Boundary shape | Authored instance | Answer | Why the main loop produces it |
+|:---|:---|:---:|:---|
+| Single character | `"Z"` | 1 | the only window is $[0, 0]$ with one key, so no contraction is triggered |
+| One distinct character | `"zzzz"` | 4 | the map never reaches three keys, the contraction body never executes, and the recorded length grows with $R$ up to $N$ |
+| Exactly two distinct characters | `"abababa"` | 7 | alternating characters still occupy only two keys, so the window spans the whole string |
+| Case-sensitive alphabet | `"aAab"` | 3 | `'a'` and `'A'` are separate keys, so appending `'b'` creates a third key and forces two evictions; the best window is `"aAa"` |
+| Several evictions inside one contraction | `"abacccab"` | 5 | the final `'b'` creates the third key, and `L` must advance four positions before `'c'` leaves the map; the answer is the earlier window `"accca"` |
+| Three long runs | 100,000 characters: 33,333 `'a'`, 33,334 `'b'`, 33,333 `'c'` | 66667 | a single contraction evicts the whole `'a'` run, after which the window covers all 66,667 characters of the `'b'` and `'c'` runs |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -163,9 +176,32 @@ R=4: [L=2..3, R=4] "eba"  -> 3 distinct! L moves to 3 -> "ba" len=2, max=3
 - **Short Input Strings ($|s| \le 2$):** If $s = \text{"ab"}$ or $s = \text{"a"}$, the entire string contains at most 2 distinct characters. Returning $|s|$ directly is valid and handled naturally by the window logic.
 - **Plateau Excision:** With $s = \text{"ccaabbb"}$, after adding `'b'`, multiple `'c'` characters must be evicted by advancing $L$ from 0 to 2 before `'c'` is deleted, expanding the subsequent `"aabbb"` to length 5.
 
+The alternative methods below are the ones most often reached for first; each is separated from the traced window by a specific instance:
+
+| Candidate method | Mechanism | Cost | Failure mode or tradeoff |
+|:---|:---|:---|:---|
+| Enumerate every substring | for each start index, extend the end while counting the distinct characters seen | $O(N^2)$ time, $O(1)$ auxiliary space | the largest authored instance has 100,000 characters, so roughly $5.0 \times 10^9$ substrings would be examined |
+| Keep counts without deleting zero keys | decrement `counts[s[L]]` but leave the key in the map | intended $O(N)$, but incorrect | `len(counts)` still reports three keys, so feasibility is never restored and `L` is driven past the current right end of the window |
+| Demand exactly two distinct characters | contract whenever the window holds anything other than two keys | $O(N)$ | single-character and one-run inputs become unanswerable: `"zzzz"` holds one key yet the correct answer is $4$ |
+| Track the window with a set instead of counts | insert each entering character, discard each character that leaves | $O(N)$ | a character that leaves the window may still occur later inside it, so the set under-reports the alphabet and the window grows past the two-character limit |
+| Remember only the last position of the two active characters | keep the newest index of each active character and restart the window one step past the earlier of the two when a third appears | $O(N)$ time, $O(1)$ space | competitive, but that restart index is easy to place one step too early or too late, and a late restart silently keeps three characters in the window with no count available to detect it |
+
 ---
 
 ## 7. Complexity Derivation
+
+Counting the two pointer movements on every authored instance shows the amortization directly: the right pointer advances once per character, the left pointer advances only during a contraction, and the two totals together stay below $2N$:
+
+| Instance | $N$ | Right-side expansions | Left-side evictions | Peak map size | Answer | Window that attains it |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| `"Z"` | 1 | 1 | 0 | 1 | 1 | `"Z"`, $[0, 0]$ |
+| `"zzzz"` | 4 | 4 | 0 | 1 | 4 | the whole string, $[0, 3]$ |
+| `"abababa"` | 7 | 7 | 0 | 2 | 7 | the whole string, $[0, 6]$ |
+| `"eceba"` | 5 | 5 | 3 | 3 | 3 | `"ece"`, $[0, 2]$ |
+| `"aAab"` | 4 | 4 | 2 | 3 | 3 | `"aAa"`, $[0, 2]$ |
+| `"ccaabbb"` | 7 | 7 | 2 | 3 | 5 | `"aabbb"`, $[2, 6]$ |
+| `"abacccab"` | 8 | 8 | 6 | 3 | 5 | `"accca"`, $[2, 6]$ |
+| Three-run string | 100000 | 100000 | 33333 | 3 | 66667 | the `'b'` run followed by the `'c'` run, $[33333, 66666]$ |
 
 - **Time Complexity:** $O(N)$, where $N = |s|$. Both $R$ and $L$ advance monotonically from $0$ to $N - 1$. Each character is added once and evicted at most once. Hash map operations take $O(1)$ time since the map contains at most 3 keys at any time.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, since the hash map stores at most 3 distinct character keys regardless of $N$.

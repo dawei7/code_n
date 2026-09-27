@@ -139,6 +139,16 @@ Converged:                     [L=R=3]    Value = 1
 | **2** | **$[3, 4]$** | **3** | **1** | **2** | **$1 < 2 \implies \text{sorted right}$** | **$R \leftarrow M$** | **$[3, 3]$** |
 | **End** | **$[3, 3]$** | - | - | - | **$L == R$ (Converged)** | **Return $\text{nums}[3]$** | **1 (Result)** |
 
+Every case in the package exercises a different amount of rotation, and the midpoint sequence makes the cost of each one visible:
+
+| Array | Minimum index | Midpoint sequence $M$ | Iterations | Answer | What the instance proves |
+|:---|:---:|:---:|:---:|:---:|:---|
+| $[3, 4, 5, 1, 2]$ | $3$ | $2 \to 3$ | $2$ | $1$ | The traced instance: the second comparison keeps $M$ as the answer with $R \leftarrow M$ |
+| $[4, 5, 6, 7, 0, 1, 2]$ | $4$ | $3 \to 5 \to 4$ | $3$ | $0$ | A deeper rotation first throws the midpoint right past the drop, then walks left twice to recover it |
+| $[11, 13, 15, 17]$ | $0$ | $1 \to 0$ | $2$ | $11$ | No drop exists, so the $L \leftarrow M + 1$ branch is never taken and the interval walks left to index $0$ |
+| $[2, 1]$ | $1$ | $0$ | $1$ | $1$ | The smallest possible rotation: one comparison suffices, and $\text{nums}[M]$ cannot be returned blindly because $\text{nums}[0] > \text{nums}[1]$ |
+| $[8, 9, 10, 11, 12, 3, 4, 5, 6, 7]$ | $5$ | $4 \to 7 \to 6 \to 5$ | $4$ | $3$ | With $N = 10$ the loop needs four iterations, matching $\lceil \log_2 10 \rceil = 4$, and the last three steps all shrink $R$ by one |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -154,6 +164,15 @@ Converged:                     [L=R=3]    Value = 1
 - **Comparing with Left Instead of Right:** Comparing $\text{nums}[M]$ against $\text{nums}[L]$ fails when the array is already unrotated (e.g. $[1, 2, 3]$). In that case, $\text{nums}[M] > \text{nums}[L]$, which would incorrectly suggest moving right even though the minimum is at index 0! Comparing with $\text{nums}[R]$ works uniformly for both rotated and unrotated arrays.
 - **Using $R = M - 1$ instead of $R = M$:** If $\text{nums}[M] < \text{nums}[R]$, $M$ itself could be the minimum (as in Step 2 above where $\text{nums}[3] = 1$). Setting $R = M - 1$ would discard the minimum!
 - **Using `while L <= R`:** Because $R = M$ does not eliminate $M$, using `L <= R` without a separate return branch causes an infinite loop when $L == R$. Using `while L < R` terminates cleanly.
+
+The choice of comparison is the whole algorithm, so the candidates are worth running against the same two arrays, one unrotated and one rotated:
+
+| Comparison that drives the decision | Test applied | Result on the unrotated $[11, 13, 15, 17]$ | Result on the rotated $[3, 4, 5, 1, 2]$ | Verdict |
+|:---|:---|:---|:---|:---|
+| $\text{nums}[M]$ against $\text{nums}[R]$, the current interval end | $L \leftarrow M + 1$ exactly when $\text{nums}[M] > \text{nums}[R]$ | Midpoints $1 \to 0$, returns $11$ | Midpoints $2 \to 3$, returns $1$ | Selected: the test reads the interval's own boundary, so it stays meaningful however far the interval has already shrunk |
+| $\text{nums}[M]$ against $\text{nums}[L]$, the current interval start | $L \leftarrow M + 1$ exactly when $\text{nums}[M] > \text{nums}[L]$ | Midpoints $1 \to 2$, returns $15$: wrong, because index $0$ held the minimum and was discarded | Midpoints $2 \to 3$, returns $1$, but only by accident since the interval happens to collapse onto the minimum | Rejected: in an ascending array every midpoint exceeds the left bound, so the search always walks right |
+| $\text{nums}[M]$ against the array's fixed last element $\text{nums}[N-1]$ | $L \leftarrow M + 1$ exactly when $\text{nums}[M] > \text{nums}[N-1]$ | Returns $11$ | Returns $1$ | An equivalent variant that agrees with the traced rule on every case in this package; it compares against a fixed element rather than the moving interval end |
+| Linear scan of all elements | Compare every value and keep the smallest | Returns $11$ | Returns $1$ | Correct but $O(N)$ time, which the required bound forbids |
 
 ---
 

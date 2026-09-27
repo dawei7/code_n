@@ -30,6 +30,14 @@ While higher-level split methods (`" ".join(reversed(s.split()))`) solve this co
 2. Reverse the entire character buffer: $\text{"world hello"}^R = \text{"olleh dlrow"}$.
 3. Reverse each individual word in-place: $\text{"hello"}$ and $\text{"world"}$.
 
+The two families of solutions differ in what they allocate rather than in what they compute, so their tradeoffs are worth placing side by side before tracing either one:
+
+| Approach | What it actually does | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Split on whitespace, then join the reversed tokens | Uses the language's whitespace-aware split to produce tokens and joins them backwards | $O(N)$ | $O(N)$ for the token list and result | Shortest to write and normalizes runs for free, but it hides the scanning logic and still allocates the full token list |
+| Two-pointer extraction, as traced in Section 3 | Advances a skip pointer over spaces and a word pointer to the boundary, collecting slices | $O(N)$ | $O(N)$ for the collected words and result | Explicit and portable, and it never depends on the language's split semantics; it still copies each word into a token |
+| Three-step reversal of one mutable buffer | Compacts spaces, reverses the whole buffer, then reverses every word inside it | $O(N)$ | $O(1)$ beyond the buffer itself | The only $O(1)$-auxiliary variant, but it needs a mutable character array, so it is unavailable on an immutable Python `str` without an explicit conversion |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -154,6 +162,16 @@ Formatted:    "world hello"
 | Trailing Trim | $[13, 15)$ | `' '`, `' '` | Skip whitespace | `["hello", "world"]` |
 | **Final Join** | - | Invert & Join | `reversed(words)` | **`"world hello"`** |
 
+The in-place method reaches the same output through three passes over a single buffer, and the buffer contents after each pass show exactly what each pass is responsible for:
+
+| Pass | Buffer contents afterwards | Word boundaries reversed in this pass | Why the pass is needed |
+|:---|:---|:---|:---|
+| 1. Normalize whitespace | `hello world` | none | Collapsing the two leading, the one inter-word, and the two trailing spaces to single delimiters makes every later pass a plain scan over one-space separators |
+| 2. Reverse the whole buffer | `dlrow olleh` | none | The words now sit in the required order, but the global reversal also spelled every word backwards |
+| 3. Reverse each word in place | `world hello` | $[0, 4]$ and $[6, 10]$ | Restoring the spelling inside each word repairs the damage of pass 2 without disturbing the word order that pass 2 established |
+
+The composition of passes 2 and 3 is the whole theorem: reversing the entire buffer and then reversing each of its words is exactly reversing the sequence of words, because each word's characters are reversed twice and therefore return to their original orientation.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -169,6 +187,16 @@ Formatted:    "world hello"
 - **Leading / Trailing Whitespace Leakage:** Naively splitting by `" "` (e.g. `s.split(' ')`) creates empty strings `""` for consecutive spaces! Using regex, `s.split()` (without arguments in Python), or explicit character testing filters out all empty tokens.
 - **Index Out of Bounds at String End:** In inner while loops, the condition `j < N` must always precede `s[j] != ' '` to prevent IndexError when the final word touches the end of the string.
 - **Single Word String:** For $s = \text{"  hello  "}$, only `["hello"]` is extracted, returning `"hello"` with zero delimiter spaces.
+
+Every case in this package is a different combination of leading, trailing, and repeated spaces, and in each one the delimiter count of the answer is pinned to $k - 1$ for $k$ extracted words:
+
+| Case input | Extracted words | Delimiters in the answer | Required output | Why the normalization is correct |
+|:---|:---|:---:|:---|:---|
+| `"the sky is blue"` | `["the", "sky", "is", "blue"]` | $3$ | `"blue is sky the"` | Nothing needs compaction here; with four words the joined answer carries exactly $4 - 1 = 3$ single spaces |
+| `"  hello world  "` | `["hello", "world"]` | $1$ | `"world hello"` | The two-space prefix and the two-space suffix are each consumed by a single skip phase, so neither becomes an empty token |
+| `"a good   example"` | `["a", "good", "example"]` | $2$ | `"example good a"` | The three-space run is one skip phase rather than two empty words, so three words still yield exactly two delimiters |
+| `"   solitary   "` | `["solitary"]` | $0$ | `"solitary"` | A lone word has no neighbour to separate from: the boundary case that breaks any implementation which unconditionally appends a delimiter after every word |
+| `"  a  b   c d  "` | `["a", "b", "c", "d"]` | $3$ | `"d c b a"` | Space runs of length $2$, $3$, and $1$ all normalize to the same single delimiter, so only the word count survives into the output |
 
 ---
 

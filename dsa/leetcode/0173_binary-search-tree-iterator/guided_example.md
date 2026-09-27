@@ -196,6 +196,32 @@ hasNext():    []                         -               -                    fa
 | 9 | `next` | `[20]` | `Node(20)` | None | `[]` | **20** |
 | 10 | `hasNext` | `[]` | - | - | `[]` | **`false`** |
 
+The call-by-call table shows the stack's evolution; the complementary view follows each node from the moment it is discovered to the moment it is emitted, which is what makes the amortized bound convincing rather than merely plausible:
+
+| Node | Pushed during | Stack depth right after its push | Right child | Popped by | Where its successor comes from |
+|:---:|:---|:---:|:---:|:---|:---|
+| 7 | constructor, left-spine walk from the root | 1 | 15 | second `next` | left spine of the right subtree: 15, then 9 |
+| 3 | constructor, left-spine walk from the root | 2 | none | first `next` | the ancestor directly beneath it on the stack, 7 |
+| 15 | second `next`, left-spine walk starting at 7's right child | 1 | 20 | fourth `next` | left spine of the right subtree: 20 alone |
+| 9 | second `next`, left-spine walk starting at 7's right child | 2 | none | third `next` | the ancestor directly beneath it on the stack, 15 |
+| 20 | fourth `next`, left-spine walk starting at 15's right child | 1 | none | fifth `next` | none; the stack empties and the traversal ends |
+
+Every one of the five nodes appears exactly once as pushed and exactly once as popped, so the ten protocol operations are split evenly over the five `next` calls. The deepest the stack ever gets is 2, which is exactly the height $h$ of this tree measured in edges; no moment in the trace holds more than one root-to-node path.
+
+### How the Bound Depends on Shape, Not Size
+
+The $O(h)$ claim is only meaningful once it is separated from the number of nodes, so it is worth stating what each extreme shape does to the same protocol:
+
+| Tree shape | Stack depth reached | Cost of initialization | Behaviour of the protocol |
+|:---|:---:|:---|:---|
+| Empty tree, $\text{root} = \text{null}$ | 0 | nothing is pushed | `hasNext` is false from the first call and no `next` is legal |
+| One node, no children | 1 | one push | the first `next` emits it and leaves the stack empty |
+| Left-leaning chain of $N$ nodes | $N$ | the constructor walks the entire chain | initialization alone costs $O(N)$ time and the stack holds $N$ references, so the honest bound is $O(h)$ and here $h = N$ |
+| Right-leaning chain of $N$ nodes | 1 | one push | each `next` pops a node and immediately pushes its single right child, so the stack never grows past depth 1 |
+| Balanced tree of $N$ nodes | $h$ | one root-to-leaf path | the traced tree has this shape, and $h \approx \log_2 N$ keeps the stack tiny while the emitted sequence still contains all $N$ values |
+
+The chain row is the one that refutes a careless reading of the guarantee: the memory bound is a statement about one path down the tree, not about $\log N$ for every input.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -211,6 +237,15 @@ hasNext():    []                         -               -                    fa
 - **$O(N)$ Space Precomputation:** Flattening the entire tree to an array or list during `__init__` violates the $O(h)$ space requirement. On a balanced tree of $10^5$ nodes, $h \approx 17$, where $O(h)$ uses only 17 references while $O(N)$ uses $100,000$.
 - **Worst-Case vs Amortized Complexity:** A single call to `next()` can take $O(h)$ time when descending a long left spine (e.g. step 3 above where 15 and 9 are pushed). However, across all $N$ elements, exactly $N$ total pushes occur, yielding strictly $O(1)$ amortized time.
 - **Tree Mutation:** Flattening the tree by re-pointing node references modifies the underlying BST, which breaks caller expectations if the tree is concurrently read elsewhere. The stack simulation is completely read-only.
+
+### Alternative Designs This Instance Ranks
+
+| Design | Initialization | Cost of one call | Auxiliary space | Why it loses or wins here |
+|:---|:---|:---|:---|:---|
+| Flatten the whole tree into an array at construction | $O(N)$ | $O(1)$ strict for both calls | $O(N)$ | all five values would be correct, but it holds every node reference alive at once and fails the $O(h)$ requirement the lesson is teaching |
+| Re-derive the successor by searching down from the root on each call | $O(1)$ | $O(h)$ worst case, $O(Nh)$ over a full traversal | $O(1)$ | correct but repetitive: it re-walks paths the stack already remembers, and a left-leaning chain makes the full traversal quadratic |
+| Parent links plus an upward walk | $O(1)$ | $O(1)$ amortized, $O(h)$ worst case | $O(1)$ extra | needs mutable parent pointers, which a read-only tree does not offer, and it still walks the same ancestors the stack stores explicitly |
+| Explicit stack of the active left spine (this lesson) | $O(h)$ | $O(1)$ amortized | $O(h)$ | every node is pushed and popped once, the tree is never modified, and the top of the stack is always the next value to emit |
 
 ---
 

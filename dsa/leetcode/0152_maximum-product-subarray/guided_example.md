@@ -57,7 +57,11 @@ For each element $x = \text{nums}[i]$:
    $$
 
 ### Zero Element Invariant
-If $x = 0$, both $\text{curr\_max}$ and $\text{curr\_min}$ become $0$. At the subsequent element, $\max(x_{i+1}, 0 \times x_{i+1}) = x_{i+1}$, naturally restarting the subarray search.
+If $x = 0$, both $\text{curr\_max}$ and $\text{curr\_min}$ become $0$, because every subarray product that ends at this index is $0$. The extension term carried into the next index is then $0 \times x_{i+1} = 0$ for both registers, so the search restarts there:
+$$
+\text{curr\_max} = \max(x_{i+1}, \, 0), \qquad \text{curr\_min} = \min(x_{i+1}, \, 0)
+$$
+A positive successor therefore restores $\text{curr\_max} = x_{i+1}$ itself, while a negative successor leaves $\text{curr\_max} = 0$ and parks the negative value in $\text{curr\_min}$ instead. The restart is a genuine fresh start in both directions: no product formed across the zero can ever exceed $0$.
 
 > **Invariant.** At every index $i$, $\text{curr\_max}$ stores the maximum product of any contiguous subarray ending at index $i$, and $\text{curr\_min}$ stores the minimum product of any contiguous subarray ending at index $i$.
 
@@ -141,6 +145,24 @@ global_max:      2  ->  6  ->   6  ->   6  => RESULT = 6
 - $i=2$ ($x=-4$): Swap ($\text{max}=-6, \text{min}=3$).
   $\text{curr\_max} = \max(-4, -6 \times -4) = \mathbf{24}$!
 
+### Contrast: Zero Resets and Two Separated Blocks on $[0, -3, 1, -2, -4, 0, 5, -1, 2]$
+
+This instance holds two zeros and two blocks of negatives, and its required answer is $8$. Each row shows the extension term that survives the swap, the fresh start at $x$, and the registers that result:
+
+| Index $i$ | $x$ | Swapped? | Extension into $\text{curr\_max}$ | Extension into $\text{curr\_min}$ | $\text{curr\_max}$ | $\text{curr\_min}$ | $\text{global\_max}$ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 0 | 0 | - | Init | Init | 0 | 0 | 0 |
+| 1 | -3 | **Yes (0 $\leftrightarrow$ 0)** | $0 \times -3 = 0$ | $0 \times -3 = 0$ | 0 | **-3** | 0 |
+| 2 | 1 | No | $0 \times 1 = 0$ | $-3 \times 1 = -3$ | **1** | -3 | **1** |
+| 3 | -2 | **Yes (-3 $\leftrightarrow$ 1)** | $-3 \times -2 = 6$ | $1 \times -2 = -2$ | **6** | -2 | **6** |
+| 4 | -4 | **Yes (-2 $\leftrightarrow$ 6)** | $-2 \times -4 = 8$ | $6 \times -4 = -24$ | **8** | **-24** | **8** |
+| 5 | 0 | No | $8 \times 0 = 0$ | $-24 \times 0 = 0$ | 0 | 0 | 8 |
+| 6 | 5 | No | $0 \times 5 = 0$ | $0 \times 5 = 0$ | **5** | 0 | 8 |
+| 7 | -1 | **Yes (0 $\leftrightarrow$ 5)** | $0 \times -1 = 0$ | $5 \times -1 = -5$ | 0 | **-5** | 8 |
+| 8 | 2 | No | $0 \times 2 = 0$ | $-5 \times 2 = -10$ | **2** | -10 | **8 (Final)** |
+
+Two rows carry the lesson. At index 1 the fresh start $-3$ loses to the extension $0$, because the zero at index 0 is a legitimate single-element subarray with product $0$; the negative value is preserved in $\text{curr\_min}$ instead. At index 4 the register that was minimised one step earlier becomes the one that maximises, and $8$ comes from a subarray that excludes the earlier $-3$: pairing $-3$ with $-2$ and $-4$ would give $-24$, which is precisely the value parked in $\text{curr\_min}$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -158,6 +180,17 @@ global_max:      2  ->  6  ->   6  ->   6  => RESULT = 6
   `curr_max = max(x, curr_max * x)`
   `curr_min = min(x, curr_max * x)` $\implies$ `curr_min` erroneously uses the *newly updated* `curr_max`! Pre-swapping when $x < 0$ or using temporary variables avoids this bug.
 - **All-Negative Arrays:** If $\text{nums} = [-2]$, the initial $\text{global\_max} = -2$ correctly returns $-2$ instead of 0.
+
+Each case in the package stresses a different part of the dual-register argument, and naming a subarray that attains the answer shows what the registers must be able to represent:
+
+| Array | Required answer | A subarray attaining it | What the instance proves |
+|:---|:---:|:---|:---|
+| $[2, 3, -2, 4]$ | $6$ | $[2, 3]$ | Extending beats every subarray that includes the $-2$, so the maximum can come from a strict prefix |
+| $[-2, 0, -1]$ | $0$ | $[0]$ | The answer is the zero itself: a run of negatives cannot recover, and returning the largest negative instead would be wrong |
+| $[-2, 3, -4]$ | $24$ | $[-2, 3, -4]$ | The whole array is optimal only because the two negatives cancel, which is exactly the case a maximum-only tracker misses |
+| $[0, -3, 1, -2, -4, 0, 5, -1, 2]$ | $8$ | $[1, -2, -4]$ or $[-2, -4]$ | Two separated blocks and two zeros: the best block is bounded by zeros on both sides, so the registers must reset |
+| $[2]$ | $2$ | $[2]$ | A non-empty subarray is required, so the single-element initialisation is itself the answer |
+| $[2, 2]$ | $4$ | $[2, 2]$ | Positive duplicates make extension strictly better than a fresh start, so the maximum is not simply the largest element |
 
 ---
 

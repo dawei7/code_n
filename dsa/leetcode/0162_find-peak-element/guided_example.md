@@ -138,6 +138,23 @@ Converged:               [ L=R=2 ]   Peak index = 2 (value = 3)
 | **2** | **$[2, 3]$** | **2** | **3** | **1** | **$3 > 1$ (Downhill)** | **$R \leftarrow M$** | **$[2, 2]$** |
 | **End** | **$[2, 2]$** | - | - | - | **$L == R$** | **Return index $L$** | **2 (Result)** |
 
+### The Other Authored Instances Under the Same Bisection
+
+Each instance below converges in at most two steps, and each one also shows that the returned index is only one of the admissible peaks: in `[2, 5, 1, 4, 0, 3]` indices 1, 3 and 5 are all peaks, and the slope decisions funnel the interval into 5.
+
+| Instance | Iteration | Interval $[L, R]$ | $M$ | Comparison | Slope | Update | Interval after the step |
+|:---|:---:|:---:|:---:|:---:|:---|:---|:---|
+| `[1, 2, 1, 3, 5, 6, 4]` | 1 | $[0, 6]$ | 3 | $3 < 5$ | uphill | $L \leftarrow 4$ | $[4, 6]$ |
+| `[1, 2, 1, 3, 5, 6, 4]` | 2 | $[4, 6]$ | 5 | $6 > 4$ | downhill | $R \leftarrow 5$ | $[5, 5]$, converged, returns index 5 |
+| `[2, 5, 1, 4, 0, 3]` | 1 | $[0, 5]$ | 2 | $1 < 4$ | uphill | $L \leftarrow 3$ | $[3, 5]$ |
+| `[2, 5, 1, 4, 0, 3]` | 2 | $[3, 5]$ | 4 | $0 < 3$ | uphill | $L \leftarrow 5$ | $[5, 5]$, converged, returns index 5 |
+| `[5, 4, 3, 2]` | 1 | $[0, 3]$ | 1 | $4 > 3$ | downhill | $R \leftarrow 1$ | $[0, 1]$ |
+| `[5, 4, 3, 2]` | 2 | $[0, 1]$ | 0 | $5 > 4$ | downhill | $R \leftarrow 0$ | $[0, 0]$, converged, returns index 0 |
+| `[1, 2, 3]` | 1 | $[0, 2]$ | 1 | $2 < 3$ | uphill | $L \leftarrow 2$ | $[2, 2]$, converged, returns index 2 |
+| `[1]` | 0 | $[0, 0]$ | not computed | not computed | - | the test $L < R$ is false before any midpoint | returns index 0 |
+
+Monotone instances are answered by the endpoints: two downhill steps leave the interval on index 0 of `[5, 4, 3, 2]`, and one uphill step leaves it on index 2 of `[1, 2, 3]`, because the virtual $-\infty$ beyond the last index is what makes the right endpoint a peak.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -146,6 +163,14 @@ Converged:               [ L=R=2 ]   Peak index = 2 (value = 3)
 
 **Completeness.** Since $L < R$, $M = \lfloor (L+R)/2 \rfloor < R$. Setting $R = M$ strictly decreases $R$, and setting $L = M + 1$ strictly increases $L$. The algorithm terminates in at most $\lceil \log_2 N \rceil$ steps.
 
+The invariant is not an assertion about slopes in general; it is a pair of witness inequalities carried by every interval. Reading them off the traced instance shows exactly what each update preserves:
+
+| Active interval | Left witness | Right witness | Slope decided at $M$ | Guarantee carried forward |
+|:---|:---|:---|:---|:---|
+| $[0, 3]$ before any step | $\text{nums}[-1] = -\infty < \text{nums}[0] = 1$ | $\text{nums}[3] = 1 > \text{nums}[4] = -\infty$ | $M = 1$: $\text{nums}[1] = 2 < \text{nums}[2] = 3$, uphill | the interval starts above its left boundary and ends below its right boundary, so its values must crest somewhere inside |
+| $[2, 3]$ after the uphill step | $\text{nums}[1] = 2 < \text{nums}[2] = 3$ | $\text{nums}[3] = 1 > \text{nums}[4] = -\infty$ | $M = 2$: $\text{nums}[2] = 3 > \text{nums}[3] = 1$, downhill | the ascending pair that was just crossed becomes the new left witness, so a crest remains inside |
+| $[2, 2]$ after the downhill step | $\text{nums}[1] = 2 < \text{nums}[2] = 3$ | $\text{nums}[2] = 3 > \text{nums}[3] = 1$ | not evaluated, because $L == R$ | the single remaining element satisfies both witness inequalities, which is exactly the definition of a peak |
+
 ---
 
 ## 6. Traps This Instance Exposes
@@ -153,6 +178,16 @@ Converged:               [ L=R=2 ]   Peak index = 2 (value = 3)
 - **Checking Both Neighbors ($M - 1$ and $M + 1$):** Checking both neighbors requires handling boundary out-of-bounds when $M = 0$. By comparing only $\text{nums}[M]$ with $\text{nums}[M + 1]$, boundary checking is eliminated entirely because $M < R \le N - 1$ guarantees $M + 1 < N$.
 - **Setting $R = M - 1$:** If $\text{nums}[M] > \text{nums}[M + 1]$, $M$ itself could be the peak (as shown in Step 2 above where $\text{nums}[2] = 3$). Setting $R = M - 1$ would skip the peak! Setting $R = M$ is essential.
 - **Single-Element Array:** If $N = 1$, $L = 0, R = 0$. The loop `while L < R` immediately terminates and returns index 0, which is valid since $-\infty < \text{nums}[0] > -\infty$.
+
+The variants below all reach a peak on some input; each is separated from the traced bisection by one of the arrays in this package or by a termination defect:
+
+| Candidate method | Mechanism | Cost | Failure mode or tradeoff |
+|:---|:---|:---|:---|
+| Linear scan for the first local maximum | walk left to right and stop at the first index larger than both neighbours | $O(N)$ time, $O(1)$ space | finds a correct peak but cannot meet the logarithmic requirement, since an unsorted array gives the scan nothing to halve |
+| Bisection comparing both neighbours | compare $\text{nums}[M]$ with $\text{nums}[M - 1]$ and with $\text{nums}[M + 1]$ | $O(\log N)$ time | needs a boundary test whenever $M = 0$, and spends a second comparison per step that the slope test avoids |
+| Slope bisection with $R \leftarrow M - 1$ | treat a downhill step as proof that the peak lies strictly left of $M$ | $O(\log N)$ time | wrong on `[1, 3, 2]`: the downhill step at $M = 1$ discards index 1 and the search returns index 0, whose value 1 is smaller than its right neighbour 3 |
+| Keep the usual loop test $L \le R$ with $R \leftarrow M$ | reuse the textbook binary-search loop condition | intended $O(\log N)$ | does not terminate when the last interval is a single downhill element, because both bounds stay at $M$ |
+| Ternary search for the maximum | assume one unimodal shape and discard one third of the range per step | $O(\log N)$ time | the array has no such shape: `[1, 2, 1, 3, 5, 6, 4]` rises again after its first peak, so indices 0 to 2 — including the peak at index 1 — can be discarded, and only a unimodality assumption would justify that |
 
 ---
 

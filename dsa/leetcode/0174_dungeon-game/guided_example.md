@@ -164,6 +164,34 @@ Health Simulation (Start HP = 7):
 | $(0, 1)$ | -3 | Right: 2, Down: 11 | 2 | $\max(1, 2 - (-3))$ | 5 |
 | **$(0, 0)$** | **-2** | **Right: 5, Down: 6** | **5** | **$\max(1, 5 - (-2))$** | **7 (Result)** |
 
+### Why Each Branch Was Accepted or Rejected
+
+The table above records the winning branch's values. Reading it as an elimination argument shows that the answer $7$ is the result of two local rejections, not of an exhaustive path search:
+
+| Decision point | Room value | Right branch demands | Down branch demands | Chosen | Why the rejected branch is strictly worse |
+|:---:|:---:|:---:|:---:|:---|:---|
+| $(0, 0)$ | -2 | $DP[0][1] = 5$ | $DP[1][0] = 6$ | Right | the Down route must absorb $5$ damage before reaching room $(1, 0)$, so it needs $6 + 2 = 8$ health at the entrance, more than the $7$ the winning route needs |
+| $(0, 1)$ | -3 | $DP[0][2] = 2$ | $DP[1][1] = 11$ | Right | the Down branch hands the knight to the $-10$ room, whose entry requirement of $11$ is nine points above the Right branch |
+| $(0, 2)$ | 3 | no Right move exists | $DP[1][2] = 5$ | Down, forced | the last column admits only Down, so no comparison is available or needed |
+| $(1, 2)$ | 1 | no Right move exists | $DP[2][2] = 6$ | Down, forced | the same edge rule applies one row lower |
+| $(2, 2)$ | -5 | princess room | princess room | stop | the recurrence seeds this cell with $\text{needed\_next} = 1$ and computes $\max(1, 1 - (-5)) = 6$ |
+
+At $(0, 1)$ the knight rejects a branch that is *cheaper in the immediate sense* only after the comparison: the $-10$ room looks attractive because the Down move itself costs nothing, yet entering it alive demands $11$ health, which is the largest requirement anywhere in the grid. Backward DP converts that currently invisible future cost into a single number before the decision is made.
+
+### Health Along the Winning Route
+
+The DP table stores requirements, not the health the knight actually carries. Turning the requirements into an executed route is the real check that $7$ is feasible:
+
+| Step | Room entered | Room value | Health on entry | Health after resolving the room | $DP$ value demanded here | What it means |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 1 | $(0, 0)$ | -2 | 7 | 5 | 7 | the start is exactly the computed requirement, so no slack is spent or saved |
+| 2 | $(0, 1)$ | -3 | 5 | 2 | 5 | this is the lowest health on the whole route: two points above death |
+| 3 | $(0, 2)$ | 3 | 2 | 5 | 2 | the orb repairs three points before the knight turns downward |
+| 4 | $(1, 2)$ | 1 | 5 | 6 | 5 | a further net gain keeps the knight away from the floor |
+| 5 | $(2, 2)$ | -5 | 6 | 1 | 6 | the final demon leaves exactly one health: alive, never at or below zero |
+
+Starting with $6$ instead is fatal on the same route: the health sequence becomes $4, 1, 4, 5, 0$, and the princess's room itself kills the knight at the last step. That is why the initial answer must be $7$ and not the value that merely reaches the princess's doorstep.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -179,6 +207,21 @@ Health Simulation (Start HP = 7):
 - **Trying Forward DP:** In forward DP, high HP gains later cannot compensate for dying earlier. Trying to track both `min_hp_needed` and `current_hp` forward requires an intractable multi-objective state space. Backward DP completely resolves this.
 - **Forgetting $\max(1, \dots)$ Clamping:** If a room gives massive healing (e.g. $+30$), $\text{needed} - \text{val} = 6 - 30 = -24$. Entering with $-24$ HP means the knight is dead! Health cannot drop to $\le 0$, so entry health must always be at least $1$.
 - **Sentinel Padding:** Initializing a DP table of size $(M+1) \times (N+1)$ with $\infty$, and setting $DP[M][N-1] = DP[M-1][N] = 1$, allows unified processing of edges without boundary if-statements.
+
+### Boundary Grids the Same Recurrence Must Handle
+
+The traced grid is generous: it contains a $+30$ orb and a route that avoids the deepest damage. The recurrence earns its keep on the degenerate grids, where the clamp and the edge rules decide everything:
+
+| Grid | Shape | Required initial health | What the recurrence is actually doing |
+|:---|:---|:---:|:---|
+| `[[0]]` | one neutral room | 1 | $\text{needed\_next} = 1$ and the room changes nothing, so $\max(1, 1 - 0) = 1$ |
+| `[[-3]]` | one damaging room | 4 | the knight absorbs three damage and must still be alive, so $\max(1, 1 - (-3)) = 4$ |
+| `[[100]]` | one healing room | 1 | $1 - 100$ is negative and the clamp lifts it back to the floor of 1, since the knight cannot start below one health |
+| `[[-10]]` | one severely damaging room | 11 | the ten points of damage plus the single point that must remain on arrival |
+| `[[-1,-1],[-1,-1]]` | every route accumulates damage | 4 | both routes cross three damaging rooms, so the branch minimum is the same on either side and the answer is the sum of the damage plus 1 |
+| `[[-3,-3,-3]]` | single row, no healing | 10 | with one forced chain of three rooms the recurrence degenerates to $1 + 3 + 3 + 3$; a single column behaves identically |
+
+The last two rows are the ones that catch a careless implementation: with no healing anywhere, the clamp at 1 only matters at the princess's room, and every earlier cell's value is a running sum of future damage plus one. A solution that clamps too aggressively, or that treats the princess's room as free, understates these answers.
 
 ---
 

@@ -1,127 +1,155 @@
 # Guided Example: Maximal Score After Applying K Operations
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. What one operation does, and what a strategy really chooses
 
-- **Input:** `{"nums": [10, 10, 10, 10, 10], "k": 5}`
-- **Required output:** `50`
+Each operation names an index $i$, adds $\text{nums}[i]$ to the score, and then replaces that entry by $\lceil \text{nums}[i]/3 \rceil$, the least integer greater than or equal to one third of it. Exactly $k$ operations must be applied, and the total must be as large as possible.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given a **0-indexed** integer array `nums` and an integer `k`. You have a **starting score** of `0`.
-
-The objective is to compute `50` from `{"nums": [10, 10, 10, 10, 10], "k": 5}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Always take the largest currently available reward
-
-Each operation adds the chosen current value to the score, then replaces only that value by its smaller successor
+A first, decisive observation is that the *order* of the chosen indices is irrelevant. The value an entry holds the $r$-th time it is chosen depends only on how many times it has already been chosen, never on when those choices happened relative to other indices being chosen. So a strategy is nothing more than a multiplicity vector $(m_1, \dots, m_n)$ with
 
 $$
-\left\lceil\frac v3\right\rceil.
+m_1 + m_2 + \dots + m_n = k,
+\qquad m_i \ge 0,
 $$
 
-At any moment, the best immediate reward is the largest array value. A max-priority queue supports repeatedly finding it and reinserting its successor.
+where $m_i$ counts how often index $i$ is chosen. The score of that strategy is fully determined by the vector, so the problem is a *selection* problem: decide how many times each index is used.
 
-Python's standard heap is a min-heap, so the method stores negative values. The smallest negative number corresponds to the largest original value.
+The instance traced below is `nums = [1, 10, 3, 3, 3]` with $k = 3$, whose required score is 17. It is chosen because the best strategy uses one index twice — so a plan that consumes every index at most once is already refuted — and because the ceiling is strict on the first replacement ($10$ becomes $4$, not $3$).
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums": [10, 10, 10, 10, 10], "k": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Index $i$ | `nums[i]` | Reaches the ceiling strictly? |
+|:---:|:---:|:---|
+| 0 | 1 | no: $\lceil 1/3 \rceil = 1$, a fixed point |
+| 1 | 10 | yes: $\lceil 10/3 \rceil = 4$ while $10/3 = 3.33\ldots$ |
+| 2 | 3 | no: $\lceil 3/3 \rceil = 1$ exactly |
+| 3 | 3 | no: $\lceil 3/3 \rceil = 1$ exactly |
+| 4 | 3 | no: $\lceil 3/3 \rceil = 1$ exactly |
 
----
+## 2. Each index generates a non-increasing chain
 
-### Step 2: Build the heap
+Repeated ceiling division composes exactly. For positive integers $x$, $a$, and $b$,
 
-List `h=[-v for v in nums]` negates every input. `heapify(h)` rearranges it into heap order in linear time.
+$$
+\left\lceil \frac{\lceil x/a \rceil}{b} \right\rceil = \left\lceil \frac{x}{ab} \right\rceil ,
+$$
 
-The original `nums` list is not modified. All evolving operation values live in `h`.
+because both sides equal the least integer $t$ with $x \le abt$: the condition $\lceil x/a \rceil \le bt$ is equivalent to $x \le a \cdot bt$ precisely when $bt$ is an integer. Applying this identity $r-1$ times shows that the value collected the $r$-th time index $i$ is chosen is
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$
+c_{i,r} = \left\lceil \frac{\text{nums}[i]}{3^{\,r-1}} \right\rceil ,
+$$
 
----
+independently of the rest of the schedule. Each index therefore contributes an infinite non-increasing chain $c_{i,1} \ge c_{i,2} \ge c_{i,3} \ge \dots$, and because $\lceil 1/3 \rceil = 1$, every chain eventually reaches the fixed point $1$ and stays there.
 
-### Step 3: Perform exactly `k` operations
+| Chain | Values $c_{i,1}, c_{i,2}, c_{i,3}, \dots$ | Behaviour |
+|:---|:---|:---|
+| index 0 (`nums[0] = 1`) | 1, 1, 1, $\dots$ | constant at the fixed point from the very first term |
+| index 1 (`nums[1] = 10`) | 10, 4, 2, 1, 1, $\dots$ | three strict decreases, then constant |
+| index 2 (`nums[2] = 3`) | 3, 1, 1, $\dots$ | one decrease, then constant |
+| index 3 (`nums[3] = 3`) | 3, 1, 1, $\dots$ | one decrease, then constant |
+| index 4 (`nums[4] = 3`) | 3, 1, 1, $\dots$ | one decrease, then constant |
 
-On every iteration:
+The score of a multiplicity vector is then the sum of a *prefix* of each chain:
 
-1. `heappop(h)` removes the smallest negative entry;
-2. negating it recovers largest current positive value `v`;
-3. add `v` to `ans`;
-4. compute $\lceil v/3\rceil$;
-5. negate and push the successor back.
+$$
+\text{score}(m_1, \dots, m_n) = \sum_{i=1}^{n} \sum_{r=1}^{m_i} c_{i,r}.
+$$
 
-The heap size stays equal to `len(nums)`, representing one current value for every original index.
+Choosing index $i$ for the $r$-th time without having chosen it $r-1$ times before is impossible, so the selected terms always form a prefix of every chain they touch. The task has become: pick exactly $k$ terms from the union of the chains, respecting prefix closure, with the largest possible total.
 
-The loop runs exactly `k` times as required, even after values become one. Since $\lceil1/3\rceil=1$, choosing a one simply earns another one and reinserts it.
+## 3. The largest remaining term sits at a chain head
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `50` |
+A chain is non-increasing, so for every index the largest term that has not yet been selected is its *head*: the first unselected term. This gives the structural lemma the algorithm depends on.
 
----
+> At every moment, the largest unselected term among all chains is the largest of the current heads.
 
-## 4. Complete Execution Trace
+Consequently a max-priority queue holding one head per index can enumerate the terms of the union in non-increasing order: pop the largest head, record it, then insert the next term of that same chain, which is at most the term just removed. The heap never needs to look deeper into a chain, because a deeper term is dominated by the head of its own chain.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [10, 10, 10, 10, 10], "k": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `50` | Verified |
+```mermaid
+flowchart LR
+    accTitle: Chains merged by a max heap of heads
+    accDescr: Every index produces a non-increasing chain of ceiling divisions by three. The heap keeps only the first unselected term of each chain. Popping the largest head and pushing that chain's next term yields the terms of all chains in non-increasing order.
+    A[index 1 chain: 10 then 4 then 2 then 1] --> B[head 10]
+    C[index 2 chain: 3 then 1] --> D[head 3]
+    E[index 3 chain: 3 then 1] --> F[head 3]
+    G[index 0 chain: 1 then 1] --> H[head 1]
+    B --> I[max heap of heads]
+    D --> I
+    F --> I
+    H --> I
+    I --> J[pop largest head and push that chain's next term]
+```
 
----
+## 4. Replaying the instance
 
-## 5. Algorithmic Correctness
+The heap starts with every $c_{i,1}$, which is simply the whole array. Each operation removes the largest head, adds it to the score, and inserts the next term of the same chain. Only two entries change per operation: the one popped and the one inserted.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+| Operation | Heap multiset before the pop | Popped value | Inserted next term | Score after | Terms taken so far |
+|:---:|:---|:---:|:---:|:---:|:---|
+| 1 | $\{10, 3, 3, 3, 1\}$ | 10 | $\lceil 10/3 \rceil = 4$ | 10 | 10 |
+| 2 | $\{4, 3, 3, 3, 1\}$ | 4 | $\lceil 10/9 \rceil = 2$ | 14 | 10, 4 |
+| 3 | $\{3, 3, 3, 2, 1\}$ | 3 | $\lceil 3/3 \rceil = 1$ | 17 | 10, 4, 3 |
+| — | $\{3, 3, 2, 1, 1\}$ after the last insertion | — | — | **17** | final state |
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+The sequence of collected values is $10, 4, 3$, and the corresponding multiplicity vector is $(m_0, m_1, m_2, m_3, m_4) = (0, 2, 1, 0, 0)$: index 1 is used twice, index 2 once. The collected sequence is non-increasing, which is the visible signature of the lemma in section 3.
 
----
+Note where the third operation goes. After two operations the heap holds $\{4, 3, 3, 3, 1\}$, and $4 > 3$, so the greedy takes the twice-reduced chain again rather than starting a fresh $3$. That is why the score is 17 instead of $10 + 3 + 3 = 16$, and why taking the three largest initial values is not enough.
 
-## 6. Traps This Instance Exposes
+## 5. The invariant and the correctness argument
 
-- **Repeated linear maximum search:** It costs $O(kn)$ and is too slow.
-- **Balanced ordered multiset:** It supports maximum removal and reinsertion in $O(\log n)$ but is more machinery.
-- **Integer ceiling formula:** `(v+2)//3` is exact without floating point.
-- **`k=1`:** Take the original maximum once.
-- **Single array element:** Repeatedly follow its ceiling-divided chain.
-- **Values equal one:** They remain one under the operation.
-- **Duplicate maxima:** Choosing any equal occurrence gives the same immediate and successor values.
-- **Exactly `k`:** Do not stop when rewards become small.
-- **Input preservation:** Only the negative heap is mutated.
-- **Large score:** Use a sufficiently wide accumulator.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+The invariant maintained by the method is:
 
----
+> Before each operation, the heap contains exactly one entry per index — the head of that chain — so the multiset of heap values is the multiset of largest unselected terms of the chains.
 
-## 7. Complexity Derivation
+This is preserved by the update: popping a head leaves that chain represented by its next term, which is the new largest unselected term of that chain, while every other chain is untouched.
 
-- **Time Complexity:** $O(n+k\log n)$. Let $n=\lvert\texttt{nums}\rvert$. Creating and heapifying `h` costs $O(n)$ time. Each of `k` iterations performs one pop and one push on a heap of size `n`, costing $O(\log n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Upper bound.** Any feasible strategy selects $k$ terms respecting prefix closure. Its total is at most the sum of the $k$ largest terms of the union of all chains, since a feasible selection is a selection of $k$ terms, and no selection of $k$ terms can beat the $k$ largest.
+
+**Achievability.** The heap enumerates the terms of the union in non-increasing order, by the lemma of section 3 applied inductively: each pop returns the largest unselected term overall. The first $k$ pops are therefore exactly the $k$ largest terms, and they are automatically prefix-closed, because within a chain a term can only appear after every larger term of the same chain has already been popped. Hence the greedy total equals the upper bound and no other strategy can exceed it, which proves optimality.
+
+Two consequences of the argument are worth stating explicitly. First, ties never need a special rule: equal heads may be popped in any order, and the multiset of the first $k$ terms is unaffected. Second, the greedy is not "locally optimal only" — the bound is global, because the terms it selects are precisely the top $k$ of a fixed multiset.
+
+## 6. Boundary instances and the traps they expose
+
+Every row below is an authored case of this package with its required score; each isolates one way the reasoning can fail.
+
+| `nums` | $k$ | Required score | Best multiplicity vector | The trap it exposes |
+|:---|:---:|:---:|:---|:---|
+| `[10, 10, 10, 10, 10]` | 5 | 50 | $(1,1,1,1,1)$ | ties: the cheapest plan spends one operation per index and never reduces anything; chains are $10, 4, 2, 1, 1$ |
+| `[1, 10, 3, 3, 3]` | 3 | 17 | $(0,2,1,0,0)$ | reuse: the best plan returns to index 1, and a static sort of the input gives only 16 |
+| `[1]` | 5 | 5 | $(5)$ | the fixed point: after the first operation the entry is already 1 and every later operation still yields 1 |
+| `[10]` | 3 | 16 | $(3)$ | a single chain under ceiling: $10 + 4 + 2$, where truncating division would give $10 + 3 + 1 = 14$ |
+| `[8, 1, 1]` | 2 | 11 | $(1,1,0)$ | the replacement 3 from the chain of 8 still outranks the untouched 1s |
+| `[9, 9, 1]` | 3 | 21 | $(2,1,0)$ | competing chains: the best plan takes 9, 9 from the two large chains, then 3 from one of them |
+| `[1000000000]` | 2 | 1333333334 | $(2)$ | the ceiling near the upper bound: $\lceil 10^{9}/3 \rceil = 333333334$ |
+| `[2, 2]` | 5 | 7 | $(3,2)$ | $k$ larger than the number of indices: operations continue on chains that have already reached 1 |
+
+Reading the column of multiplicity vectors shows the shape of the answer: large values are drained first, and once all chains have collapsed to 1 the remaining operations are worth exactly 1 each.
+
+## 7. Rejected alternatives
+
+| Alternative | Cost | Why it fails or is not used |
+|:---|:---|:---|
+| sort once, take the $k$ largest initial values | $\Theta(n \log n)$ | ignores the replacement: on `[1, 10, 3, 3, 3]` with $k = 3$ it returns 16 instead of 17 |
+| truncating division instead of the ceiling | $\Theta(n \log n)$ with a heap | the value after a pick is too small: on `[10]` with $k = 3$ it returns 14 instead of 16 |
+| ceiling computed through floating point | same order | exact for the stated bound, but the integer identity $\lceil x/3 \rceil = \lfloor (x+2)/3 \rfloor$ is exact for every non-negative integer and removes the rounding question entirely |
+| scan the array for the maximum on every operation | $\Theta(nk)$ | up to $10^{10}$ comparisons at the stated limits |
+| keep a sorted list and re-sort after each replacement | $\Theta(k n \log n)$ | the replacement moves one entry; a heap restores the order in one logarithmic step |
+| always re-pick the index just reduced | $\Theta(k)$ | wrong whenever another entry is larger: on the traced instance the third operation must take a 3 from another index once the chain of 10 has fallen to 2 |
+| stop early once all entries are 1 and add $k - t$ | $\Theta(n + k)$ in the worst case | correct in value, but it is a special case of the heap method rather than a simplification; the heap already yields 1 per remaining operation |
+
+## 8. Time and auxiliary space
+
+**Time.** Building the heap from the $n$ initial heads costs $\Theta(n)$ with a bottom-up heap construction, and each of the $k$ operations performs one pop and one push, each $\Theta(\log n)$. The total is
+
+$$
+\Theta(n + k \log n),
+$$
+
+which for $n, k \le 10^{5}$ is comfortably fast; a linear scan per operation would instead cost $\Theta(nk)$ and is the reason a priority queue is the natural structure here. The chain terms themselves are never precomputed: only one term per chain exists in the structure at any time.
+
+**Auxiliary space.** The heap holds exactly $n$ entries, one per index, throughout the process, together with the constant-size score accumulator. No chain is materialised beyond its head, and no history of operations is stored, so the auxiliary space is
+
+$$
+\Theta(n),
+$$
+
+which is the size of the input array itself and cannot be avoided, since every index must remain a candidate for future operations. The score is a sum of at most $k$ values each below $10^{9}$, so it needs a 64-bit integer rather than a 32-bit one.
