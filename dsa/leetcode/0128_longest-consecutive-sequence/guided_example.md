@@ -154,9 +154,32 @@ Length:          1      -      1      4      -  -  => MAX = 4
 - **Duplicate Elements:** If the input contains repeated numbers (e.g. `[1, 2, 0, 1]`), constructing `set(nums)` handles duplicates naturally so they do not artificially increment lengths.
 - **Empty Array:** If `nums = []`, `num_set` is empty and the loop never executes, correctly returning `0`.
 
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the method produces it |
+|:---|:---|:---:|:---|
+| $\text{nums} = [100, 4, 200, 1, 3, 2]$ | Three disjoint chains: $[100]$, $[200]$, and $[1, 2, 3, 4]$ | $4$ | Only $1$ passes the head test inside the long chain, so it alone expands to $4$ while $2$, $3$, and $4$ are each rejected in a single lookup. |
+| $\text{nums} = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1]$ | One chain $[0 \dots 8]$ plus a repeated $0$ | $9$ | `set(nums)` collapses the duplicate, so the tenth element cannot inflate the count; the chain still contains nine distinct integers. |
+| $\text{nums} = [1, 0, 1, 2]$ | A duplicate sitting inside its own chain | $3$ | The duplicate is discarded by the set; $0$ is the head because $-1$ is absent, and it expands through $1$ and $2$. |
+| $\text{nums} = []$ | Empty array | $0$ | `num_set` is empty, so the outer loop never runs and `max_streak` keeps its initial value. |
+| $\text{nums} = [-3, -2, -1, 10, 11, 50]$ | A negative chain plus two shorter positive chains | $3$ | $-3$ is a head because $-4$ is absent and it expands to $-1$; the chain from $10$ reaches length $2$ and $50$ stays at $1$, so neither overtakes it. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$ average time. Building `num_set` takes $O(N)$. The outer loop iterates $N$ times. Each interior element is rejected in $O(1)$ time. The inner while loop visits each element in a consecutive chain exactly once across the entire run. Total set lookups are bounded by $2N = O(N)$.
 - **Auxiliary Space Complexity:** $O(N)$ to store the hash set `num_set` containing up to $N$ unique integers.
+
+### Set Lookup Accounting: Why the Bound Is $2N$
+
+Each inspected element costs one predecessor probe, and only a head pays for expansion probes. Summing both kinds on the representative instance gives exactly $2N = 12$ lookups for $N = 6$.
+
+| Element inspected $x$ | Head probe $x - 1$ | Expansion probes | What the probes establish | Cumulative lookups |
+|:---:|:---|:---|:---|:---:|
+| $100$ | $99$ — miss | $101$ — miss | No predecessor exists, and the single successor probe proves the chain is a singleton. | 2 |
+| $4$ | $3$ — hit | none | An interior element is pruned before any expansion probe is issued. | 3 |
+| $200$ | $199$ — miss | $201$ — miss | The same singleton pattern as $100$. | 5 |
+| $1$ | $0$ — miss | $2$, $3$, $4$ — hits, then $5$ — miss | The only productive expansion: four probes walk the whole chain and prove where it ends. | 10 |
+| $3$ | $2$ — hit | none | Interior to the $[1, 2, 3, 4]$ chain; still rejected in constant time. | 11 |
+| $2$ | $1$ — hit | none | Interior as well, so the total closes at $2N$. | 12 |

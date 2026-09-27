@@ -149,6 +149,19 @@ Initial Board:               Phase 1 (Border Flood):      Phase 2 (Capture & Res
 | 2 | $(3, 1)$ | `'#'` | Yes | Restore from `'#'` | **`'O'` (Preserved)** |
 | All | All other cells | `'X'` | - | Ignored | `'X'` |
 
+### Region Connectivity Census
+
+Each `'O'` in the instance, its four-directional component, and the reason for its fate:
+
+| Cell $(r, c)$ | On the perimeter? | Orthogonal `'O'` neighbours | Four-directional component | Reaches a perimeter `'O'`? | Fate after Phase 2 |
+|:---:|:---:|:---|:---|:---:|:---|
+| $(1, 1)$ | No | $(1, 2)$ | $\{(1, 1), (1, 2), (2, 2)\}$ | No | Captured to `'X'` |
+| $(1, 2)$ | No | $(1, 1)$, $(2, 2)$ | $\{(1, 1), (1, 2), (2, 2)\}$ | No | Captured to `'X'` |
+| $(2, 2)$ | No | $(1, 2)$ | $\{(1, 1), (1, 2), (2, 2)\}$ | No | Captured to `'X'` |
+| $(3, 1)$ | **Yes** (bottom row) | none — all three in-bounds neighbours are `'X'` | $\{(3, 1)\}$ | **Yes**, it is itself the source | Restored to `'O'` |
+
+The three-cell component has no cell on the perimeter and its only boundary contact is with `'X'`, so the flood fill launched at $(3, 1)$ never reaches it. Note that the fill from $(3, 1)$ terminates immediately: its other neighbours $(3, 0)$ and $(3, 2)$ are `'X'`, so exactly one cell carries the `'#'` sentinel into Phase 2.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -164,6 +177,16 @@ Initial Board:               Phase 1 (Border Flood):      Phase 2 (Capture & Res
 - **Checking Boundaries from Interior Outward:** Exploring from each interior `'O'` to see if it reaches the boundary requires tracking visited sets and rolling back marks if a boundary is touched. Flood-filling from the perimeter inward eliminates all backtracking and edge-casing.
 - **Using External Visited Matrices:** Allocating a visited boolean grid of size $M \times N$ uses $O(M \cdot N)$ auxiliary space. Mutating `board[r][c]` directly to `'#'` achieves in-place state tracking with $O(1)$ extra space.
 - **Grid Dimensions Less Than 3:** If $M < 3$ or $N < 3$, every cell is on the perimeter or adjacent to it; no cell can be strictly surrounded. The algorithm naturally preserves all `'O'`s in such matrices.
+
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the two phases produce it |
+|:---|:---|:---|:---|
+| The $4 \times 4$ board of this lesson | One interior cluster of three `'O'`s plus one border `'O'` | Only $(1, 1)$, $(1, 2)$, $(2, 2)$ become `'X'` | The fill source $(3, 1)$ is isolated by `'X'`, so the interior cluster is never marked and is captured, while $(3, 1)$ is restored. |
+| $\text{board} = [[\text{"X"}]]$ | A single cell, $M = N = 1$ | Unchanged | The cell is examined once as the whole top row and once as the whole left column; being `'X'` it launches no fill, and the sweep finds nothing to change. |
+| $\text{board} = [[\text{"O"}, \text{"O"}], [\text{"O"}, \text{"O"}]]$ | $M = N = 2 < 3$, so no cell is interior | Unchanged | The fill started at $(0, 0)$ marks all four cells, and Phase 2 restores each sentinel to `'O'` instead of capturing it. |
+| The $5 \times 5$ trial board | A four-cell border-connected chain, two isolated border `'O'`s, and one interior `'O'` at $(3, 3)$ | Only $(3, 3)$ becomes `'X'` | The chain $(0, 1) \to (1, 1) \to (1, 2) \to (2, 2)$ and the isolated cells $(2, 4)$ and $(3, 0)$ all touch a border, whereas $(3, 3)$ has four `'X'` neighbours. |
+| $\text{board} = [[\text{"O"}, \text{"X"}, \text{"X"}], [\text{"X"}, \text{"O"}, \text{"X"}], [\text{"X"}, \text{"X"}, \text{"O"}]]$ | Three `'O'`s touching only diagonally | The centre becomes `'X'`; both corners stay `'O'` | The centre $(1, 1)$ has four `'X'` neighbours, and diagonal contact with $(0, 0)$ and $(2, 2)$ transmits no immunity because adjacency is four-directional. |
 
 ---
 

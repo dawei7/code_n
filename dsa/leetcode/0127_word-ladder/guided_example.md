@@ -161,6 +161,15 @@ Backward Frontier (cog):             {"dog", "log"} <- "cog"
 | 3 | `{"cog"}` | `{"dot", "lot"}` | **Yes (1 < 2)** | 4 | `"dog"`, `"log"` | No | `next_front = {"dog", "log"}` |
 | **4** | **`{"dog", "log"}`** | **`{"dot", "lot"}`** | No | **5** | **`"dot"`** | **Yes (`"dot"`)** | **Collision! Return 5** |
 
+### Word Count Accounting at the Collision
+
+| Component of the joined ladder | Words | Edges | Role in the returned counter |
+|:---|:---:|:---:|:---|
+| Forward sphere from `"hit"` down to the collision word `"dot"` | 3 (`"hit"`, `"hot"`, `"dot"`) | 2 | Supplies 3 of the returned words. |
+| Backward sphere from `"cog"` down to the frontier word `"dog"` | 2 (`"dog"`, `"cog"`) | 1 | Supplies the remaining 2 words; the spheres share no word. |
+| The joining edge `"dot"`–`"dog"` | none added | 1 | Crossing it is what the final expansion step detects, and that step's increment raises the counter to $5$. |
+| **Complete ladder** | **$3 + 2 = 5$** | **$2 + 1 + 1 = 4$** | **Returns $5$; the edge count $4$ would be the wrong answer.** |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -176,6 +185,16 @@ Backward Frontier (cog):             {"dog", "log"} <- "cog"
 - **Word Count vs Edge Count:** The problem asks for the *number of words* in the sequence, not the number of transformation edges. The path `"hit" -> "cog"` (if valid) has 1 transformation edge but 2 words. Initializing `length = 1` correctly counts words.
 - **`endWord` Not in `wordList`:** If `endWord` is absent from `wordList`, no transformation can end at `endWord`. Checking `if endWord not in word_set: return 0` upfront avoids redundant computation.
 - **Symmetric Frontier Expansion:** Expanding both sets without size-swapping degrades performance when one frontier blossoms into thousands of words while the other remains small. The swap `if len(front) > len(back): front, back = back, front` is crucial.
+
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the search produces it |
+|:---|:---|:---:|:---|
+| `beginWord = "hit"`, `endWord = "cog"`, `wordList = ["hot", "dot", "dog", "lot", "log", "cog"]` | Two 3-word routes of equal length join the spheres | $5$ | The forward sphere reaches `"dot"` while the backward sphere holds `"dog"`, so the collision lands on the edge `"dot"`–`"dog"` and the counter stops at $5$ words. |
+| The same words without `"cog"` in `wordList` | `endWord` is absent from the dictionary | $0$ | The membership guard rejects the request before either frontier exists, so no candidate is ever generated. |
+| `beginWord = "a"`, `endWord = "c"`, `wordList = ["a", "b", "c"]` | Length-$1$ words; the target is one substitution away | $2$ | The first expansion of `"a"` tests `"c"` against the backward frontier and returns before `"b"` can be inserted, so the answer is the 2-word ladder `"a" → "c"` rather than `"a" → "b" → "c"`. |
+| `beginWord = "red"`, `endWord = "tax"`, `wordList = ["ted", "tex", "rex", "tad", "den", "pee", "tax"]` | Several routes of equal length converge | $4$ | The backward frontier holds `"ted"` and `"rex"` while the forward frontier holds `"tad"` and `"tex"`; expanding `"tad"` generates `"ted"`, which already sits in the backward frontier, so the counter halts at $4$. |
+| `beginWord = "abc"`, `endWord = "xyz"`, `wordList = ["xbc", "xya", "ayz", "xyz"]` | The target is listed but unreachable | $0$ | The sole admissible neighbour of `"abc"` is `"xbc"`, and no single substitution of `"xbc"` produces `"xya"`, `"ayz"`, or `"xyz"`, so the next frontier is empty and the loop ends without a collision. |
 
 ---
 

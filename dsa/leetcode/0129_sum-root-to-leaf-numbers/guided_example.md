@@ -158,9 +158,30 @@ Final answer: $\mathbf{1026}$.
 - **Handling Zero Digits:** Trailing zeroes (like node $0$ in path $4 \to 0 = 40$) are fully preserved by the multiplication $\text{curr} \times 10 + 0 = 40$. String conversions can sometimes drop leading or trailing zeroes if parsed carelessly.
 - **Empty Tree:** An empty tree $\text{root} == \emptyset$ returns $0$.
 
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the arithmetic produces it |
+|:---|:---|:---:|:---|
+| $\text{root} = [1, 2, 3]$ | Both children of the root are leaves | $25$ | One shift builds $12$ and the other builds $13$; the root then returns their sum. |
+| $\text{root} = [4, 9, 0, 5, 1]$ | Two 3-digit paths and one 2-digit path | $1026$ | The shorter path stops shifting at $4$ and $0$, contributing $40$ rather than a third 3-digit number. |
+| $\text{root} = [0]$ | A single node whose digit is $0$ | $0$ | The only path is the one-digit number $0$; the same value a null child returns, so both the leaf base case and the null guard agree. |
+| $\text{root} = [1, \text{null}, 2, \text{null}, 3]$ | Every internal node has exactly one child | $123$ | There is one leaf, so the single number $1 \to 2 \to 3$ is returned instead of three partial prefixes. |
+| $\text{root} = [0, 1, 2]$ | The root digit is $0$ and both children are leaves | $3$ | The leading zero adds nothing: $0 \times 10 + 1 = 1$ and $0 \times 10 + 2 = 2$, so the total is $3$ rather than $12$. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is visited once and performs $O(1)$ arithmetic.
 - **Auxiliary Space Complexity:** $O(H)$, where $H$ is the tree height ($O(\log N)$ balanced, $O(N)$ skewed), to maintain the call stack.
+
+### Alternative Implementations and Their Costs
+
+With $N \le 1000$ nodes and depth $H \le 10$, the arithmetic route is the only one that keeps both the work per node and the live state constant.
+
+| Approach | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| **String concatenation per path** | Append each node's digit to a string and parse the completed string at every leaf. | $\mathcal{O}(N \cdot H)$ worst case | $\mathcal{O}(H)$ live strings plus one string per completed path | Each leaf pays a parse proportional to its depth, and correct zero handling depends on the parser rather than on positional arithmetic. |
+| **Positional integer accumulation** (used here) | Pass `curr * 10 + node.val` down the recursion and return that value at a leaf. | $\mathcal{O}(N)$ | $\mathcal{O}(H)$ call stack | Demands the exact leaf test `not node.left and not node.right`; a null child must return $0$ instead of the accumulated prefix. |
+| **Breadth-first queue of node-value pairs** | Enqueue each child together with its accumulated value and add to the total when a leaf is dequeued. | $\mathcal{O}(N)$ | $\mathcal{O}(W)$, where $W$ is the widest level (up to roughly $500$ here) | Level order keeps a whole level alive at once, which on this tree is far more state than a depth-3 recursion stack. |
+| **Explicit-stack depth-first traversal** | Push (node, value) pairs onto a list and add the value when a leaf is popped. | $\mathcal{O}(N)$ | $\mathcal{O}(H)$ | Matches the recursion in cost and avoids any call-depth limit, but here $H \le 10$, so the call stack is already safe. |

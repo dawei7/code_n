@@ -149,6 +149,19 @@ Returned partitions: `[["a", "a", "b"], ["aa", "b"]]`.
 | **2.1.1** | $[3, 3)$ | Base ($\text{start}=3$) | - | `["aa", "b"]` | **Capture Snapshot** | `["aa", "b"]` |
 | 3 | $[0, 3)$ | `"aab"` | **No** | `[]` | **Pruned (Skip)** | - |
 
+### Palindromic Substring Table for $s = \text{"aab"}$
+
+The recurrence $\text{is\_pal}[i][j] = (s[i] == s[j]) \land (j - i \le 2 \lor \text{is\_pal}[i + 1][j - 1])$ is evaluated from the main diagonal outward, so every dependency is ready before it is needed.
+
+| Fill order | Cell(s) $(i, j)$ | Span $j - i$ | Value | Dependency and reason |
+|:---:|:---:|:---:|:---:|:---|
+| 1 | $(0, 0)$, $(1, 1)$, $(2, 2)$ | 0 | $\text{True}$ | Initialized directly: a single character is always a palindrome and has no dependency. |
+| 2 | $(1, 2)$ | 1 | $\text{False}$ | $s[1] = \text{'a'} \ne s[2] = \text{'b'}$, so the span rule is never consulted. |
+| 3 | $(0, 1)$ | 1 | $\text{True}$ | $s[0] = s[1] = \text{'a'}$ and the span $1 \le 2$ means there is no interior left to verify. |
+| 4 | $(0, 2)$ | 2 | $\text{False}$ | $s[0] = \text{'a'} \ne s[2] = \text{'b'}$, so the interior value $\text{is\_pal}[1][1]$ is never read. |
+
+Only cell $(0, 1)$ among the spans of length at least $1$ is `True`, which is exactly why the search accepts the first cuts $[0, 1)$ and $[0, 2)$ and prunes the cut $[0, 3)$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -164,6 +177,16 @@ Returned partitions: `[["a", "a", "b"], ["aa", "b"]]`.
 - **Deep Copy Requirement on Base Case:** Storing `results.append(path)` stores a reference to the mutable list. When backtracking rolls back to the root, `path` becomes empty, ruining the results. Using `results.append(list(path))` is required.
 - **Forgetting to Backtrack:** Omitting `path.pop()` causes previously explored tokens to contaminate alternate sibling branches.
 - **Repeated Substring Reversal Overhead:** Calling `sub == sub[::-1]` inside the loop takes $O(L)$ time per check. For longer strings ($N \le 16$), precomputing the 2D boolean palindrome table reduces each check to $O(1)$.
+
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the search produces it |
+|:---|:---|:---|:---|
+| $s = \text{"aab"}$ | Two valid cut patterns and two pruned ones | `[["a", "a", "b"], ["aa", "b"]]` | The cuts $[1, 3)$ and $[0, 3)$ fail the palindrome gate; the surviving routes reach $\text{start} = 3$ and are captured. |
+| $s = \text{"a"}$ | A single character, $N = 1$ | `[["a"]]` | The root loop offers only the cut $[0, 1)$, whose substring is trivially palindromic, so the recursion reaches $\text{start} = 1 = N$ immediately. |
+| $s = \text{"efe"}$ | The whole string is itself a palindrome | `[["e", "f", "e"], ["efe"]]` | Cuts are tried shortest first, so the singleton route is emitted before the whole-string route; the intermediate cuts `"ef"` and `"fe"` are rejected. |
+| $s = \text{"abc"}$ | No substring of length at least $2$ is a palindrome | `[["a", "b", "c"]]` | Every multi-character candidate fails the gate, so the only surviving route is the three-singleton partition. |
+| $s = \text{"aaa"}$ | Every substring is a palindrome | All four cut patterns | Each of the $2^{3-1} = 4$ ways to place the two cuts passes the gate, so no branch is pruned and four partitions are emitted. |
 
 ---
 

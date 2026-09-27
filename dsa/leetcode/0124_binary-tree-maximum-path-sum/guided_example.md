@@ -167,9 +167,30 @@ Traversal completes. Final maximum path sum: $\mathbf{42}$.
 - **Pruning Negative Branches:** If a subtree returns a negative gain (e.g. $-5$), including it in any path would reduce the sum. Clamping with $\max(0, \text{gain})$ safely discards harmful subtrees.
 - **Trees with All Negative Values:** If the tree contains only negative numbers (e.g. `[-3, -2, -5]`), initializing $\text{max\_sum} = 0$ will return $0$, which is wrong (the answer is $-2$). Initializing $\text{max\_sum} = -\infty$ guarantees that the least negative single node is returned.
 
+### Boundary and Degenerate Instances
+
+Each row names the attaining path and the exact value the method reports; the last column says which part of the protocol produces that value.
+
+| Instance | Structural condition | Optimal path | Attained sum | Why the protocol returns it |
+|:---|:---|:---:|:---:|:---|
+| `root = [1, 2, 3]` | Apex sits at the root and both children are positive | $2 \to 1 \to 3$ | $1 + 2 + 3 = 6$ | $L = 2$ and $R = 3$, so the root apex sum $6$ exceeds every single-node path. |
+| `root = [-3]` | Single node, no children | $-3$ | $-3$ | $L = R = 0$ and the apex sum is $-3$; a running maximum seeded at $-\infty$ retains it. |
+| `root = [2, -1]` | The only child returns a negative gain | $2$ | $2$ | The child is clamped by $\max(0, -1) = 0$, so the root apex sum is $2$, not the bridging $2 + (-1) = 1$. |
+| `root = [-8, -3, -10, -4, -5]` | Every value is negative; the best apex is the internal node $-3$ | $-3$ | $-3$ | Every clamped gain is $0$, so only single-node apex sums survive; seeding the maximum at $0$ would wrongly answer $0$. |
+| `root = [-10, 9, 20, null, null, 15, 7]` | The optimal apex lies strictly below the root | $15 \to 20 \to 7$ | $15 + 20 + 7 = 42$ | The root's own apex sum is only $34$, so the maximum is not monotone along any root-to-leaf descent. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N$ is the number of nodes in the binary tree. Each node is visited once during post-order traversal, performing $O(1)$ arithmetic operations.
 - **Auxiliary Space Complexity:** $O(H)$, where $H$ is the tree height, for the recursion call stack ($O(\log N)$ average, $O(N)$ worst case).
+
+### Why the Clamped-Gain Recursion Wins
+
+| Approach | Mechanism | Time | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| **Explicit path enumeration** | Walk the unique connecting path of each of the $\frac{N(N+1)}{2}$ node pairs and sum its values. | $\mathcal{O}(N^3)$ naive | $\mathcal{O}(N)$ for the current path | Correct but hopeless at $N = 3 \cdot 10^{4}$; caching prefix sums only reaches $\mathcal{O}(N^2)$. |
+| **Downward-gain search restarted at every node** | Treat each node in turn as a start, descend to the best single branch, and combine the two child gains there. | $\mathcal{O}(N^2)$ | $\mathcal{O}(H)$ | Recomputes the same subtree gains repeatedly and times out at the constraint limit. |
+| **Post-order clamped gain with apex update** (used here) | One post-order pass returns $u.\text{val} + \max(L, R)$ upward while recording $u.\text{val} + L + R$ in a global maximum. | $\mathcal{O}(N)$ | $\mathcal{O}(H)$ | Requires the two return values to stay distinct; reporting the apex sum upward silently admits a fork. |
+| **Running maximum seeded at $0$** | The same recursion, but the global best starts at $0$ rather than $-\infty$. | $\mathcal{O}(N)$ | $\mathcal{O}(H)$ | Fails on all-negative trees: `root = [-3]` produces $0$ instead of $-3$. |

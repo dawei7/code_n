@@ -128,11 +128,11 @@ Result: All alphanumeric characters matched symmetrically. Returns $\mathbf{True
 | 3 | 3 | `'a'` | `'a'` | 27 | `'a'` | `'a'` | Yes | $L \leftarrow 4, R \leftarrow 26$ |
 | 4 | 4 | `'n'` | `'n'` | 26 | `'n'` | `'n'` | Yes | $L \leftarrow 5, R \leftarrow 25$ |
 | 5 | 7 | `'a'` | `'a'` | 25 | `'a'` | `'a'` | Yes | Skip `", "` at $5, 6$; $L \leftarrow 8, R \leftarrow 24$ |
-| 6 | 9 | `'p'` | `'p'` | 23 | `'P'` | `'p'` | Yes | Skip spaces; match `'p'`; $L \leftarrow 10, R \leftarrow 22$ |
-| 7 | 10 | `'l'` | `'l'` | 21 | `'l'` | `'l'` | Yes | Skip punctuation; $L \leftarrow 11, R \leftarrow 20$ |
-| 8 | 11 | `'a'` | `'a'` | 19 | `'a'` | `'a'` | Yes | $L \leftarrow 12, R \leftarrow 18$ |
-| 9 | 12 | `'n'` | `'n'` | 18 | `'n'` | `'n'` | Yes | $L \leftarrow 13, R \leftarrow 17$ |
-| 10 | 15 | `'a'` | `'a'` | 16 | `'a'` | `'a'` | Yes | Skip spaces; $L \leftarrow 16, R \leftarrow 15$ |
+| 6 | 9 | `'p'` | `'p'` | 24 | `'P'` | `'p'` | Yes | Skip space at $8$; match `'p'`; $L \leftarrow 10, R \leftarrow 23$ |
+| 7 | 10 | `'l'` | `'l'` | 21 | `'l'` | `'l'` | Yes | Skip space at $23$ and `':'` at $22$; $L \leftarrow 11, R \leftarrow 20$ |
+| 8 | 11 | `'a'` | `'a'` | 20 | `'a'` | `'a'` | Yes | $L \leftarrow 12, R \leftarrow 19$ |
+| 9 | 12 | `'n'` | `'n'` | 19 | `'n'` | `'n'` | Yes | $L \leftarrow 13, R \leftarrow 18$ |
+| 10 | 15 | `'a'` | `'a'` | 18 | `'a'` | `'a'` | Yes | Skip `','` at $13$ and space at $14$; $L \leftarrow 16, R \leftarrow 17$ |
 | Term | 17 | `'c'` | `'c'` | 17 | `'c'` | `'c'` | - | $L = R \implies$ Loop Ends. **True** |
 
 ### Counterexample: `"race a car"`
@@ -160,9 +160,28 @@ Result: All alphanumeric characters matched symmetrically. Returns $\mathbf{True
 - **Digits in Alphanumeric Strings:** `isalnum()` includes numeric digits `'0' \dots '9'`. Digits are case-insensitive (`'0'.lower() == '0'`) and must match identical digit characters (`'0'` does not match `'a'`).
 - **Creating Filtered String Copies:** Allocating a new string with `[c.lower() for c in s if c.isalnum()]` takes $O(N)$ extra heap memory. In-place two-pointer comparison maintains $O(1)$ space.
 
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected | Why the scan produces it |
+|:---|:---|:---:|:---|
+| `s = "A man, a plan, a canal: Panama"` | 21 alphanumerics separated by 5 punctuation marks and 4 spaces | `true` | All ten mirrored pairs agree after lowercasing; the middle character `'c'` at index $17$ is reached with $L = R$ and is never compared. |
+| `s = "race a car"` | normalized form `"raceacar"`, 8 characters | `false` | Normalized positions $3$ and $4$ hold `'e'` and `'a'`; the scan exits there, so the outer `'r'`, `'a'`, `'c'` matches cannot rescue the verdict. |
+| `s = " "` | one space and zero alphanumerics | `true` | $L = 0$ and $R = 0$, so the outer guard $L < R$ fails immediately and the body never executes; the empty normalized string is vacuously symmetric. |
+| `s = "0P"` | one digit and one letter, length $2$ | `false` | Case folding maps `'P'` to `'p'`, which still differs from `'0'`; `isalnum()` admits digits into the comparison but never equates a digit with a letter. |
+| `s = "1a-2-B1"` | digits, a separator, and mixed case | `false` | Normalization yields `"1a2b1"`; the outer `'1'` characters match, but the second pair `'a'` versus `'b'` differs. |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N = |s|$. Pointer $L$ only advances and pointer $R$ only decreases. Each character is visited at most twice (once during skipping and once during comparison), guaranteeing strictly linear runtime.
 - **Auxiliary Space Complexity:** $O(1)$ constant memory, requiring only two index variables ($L$ and $R$) without string allocations.
+
+### Alternative Implementations and Their Costs
+
+| Approach | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| **Normalized copy compared with its reverse** | Keep only alphanumeric characters, lowercase them, then compare the result against its own reversal. | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ | Builds two full-length buffers; at $N = 2 \cdot 10^{5}$ that dwarfs the two index variables the scan actually needs. |
+| **Regular-expression filtering** | Substitute every non-alphanumeric character away, lowercase, and compare with the reversed string. | $\mathcal{O}(N)$ | $\mathcal{O}(N)$ | Still allocates the filtered string, and the pattern engine adds a large constant factor to a scan that needs no pattern at all. |
+| **Inward two pointers with guarded skips** (used here) | Advance $L$ and $R$ past non-alphanumerics while $L < R$, compare the lowercased pair, then step both inward. | $\mathcal{O}(N)$ | $\mathcal{O}(1)$ | Requires the $L < R$ guard in both skip loops, and the reasoning is longer than the one-line reversal test. |
+| **Skip loops without the $L < R$ guard** | The same inward scan, but each skip loop tests only its own character with `isalnum()`. | $\mathcal{O}(N)$ | $\mathcal{O}(1)$ | On `s = " "` the left pointer walks past the end of the string instead of halting at $R$, so the scan must be range-checked from outside. |

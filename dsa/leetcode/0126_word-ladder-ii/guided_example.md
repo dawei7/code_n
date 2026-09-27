@@ -166,6 +166,19 @@ Level 4:                "cog"
 | **3** | **`["dog", "log"]`** | **`{"dog", "log"}`** | **`"cog"`** | **$\text{parents}[\text{"cog"}] = [\text{"dog"}, \text{"log"}]$** | **Yes (`"cog"`)** |
 | 4 | - | - | - | **Halt BFS** | - |
 
+### Hamming Distance Versus Discovered Depth
+
+The number of differing positions between a word and `"hit"` is only a lower bound on its ladder length, because every intermediate word must itself appear in the dictionary.
+
+| Dictionary word | Hamming distance from `"hit"` | Discovered at BFS depth $d$ | Why the two numbers coincide or differ |
+|:---|:---:|:---:|:---|
+| `"hot"` | 1 | 1 | They coincide: one substitution at index 1 turns `'i'` into `'o'`. |
+| `"dot"` | 2 | 2 | They coincide because `"hot"` sits on the shortest route; index 0 then changes from `'h'` to `'d'`. |
+| `"lot"` | 2 | 2 | The same predecessor `"hot"` reaches `"lot"` through the alternative index-0 substitution. |
+| `"dog"` | 3 | 3 | `'d'` and `'o'` are already in place, so only index 2 must change from `'t'` to `'g'`. |
+| `"log"` | 3 | 3 | The mirror case: index 0 became `'l'` at depth $2$ and only index 2 changes to `'g'` at depth $3$. |
+| `"cog"` | 3 | 4 | The bound of 3 is unreachable: no dictionary word is one substitution from `"cog"` *and* one from `"hot"`, so the ladder must detour through a fourth word. |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -181,6 +194,16 @@ Level 4:                "cog"
 - **Immediate Word Removal (The Parallel Parent Erasure Bug):** If `"cog"` is removed from `words` the instant `"dog"` discovers it, then `"log"` will not find `"cog"` in `words`, missing the second valid shortest path `["hit", "hot", "lot", "log", "cog"]`. Words must be removed level-by-level, not neighbor-by-neighbor.
 - **Storing Full Paths in BFS Queues (Memory Explosion TLE):** Storing full paths `[["hit", "hot", ...], ...]` inside the queue duplicates sub-paths combinatorially. Separating BFS into parent graph construction followed by DFS path extraction runs an order of magnitude faster.
 - **Missing `endWord` Check:** If `endWord` $\notin$ `wordList`, return `[]` immediately before running any search.
+
+### Boundary and Degenerate Instances
+
+| Instance | Input condition | Expected output | Why the algorithm produces it |
+|:---|:---|:---|:---|
+| `beginWord = "hit"`, `endWord = "cog"`, `wordList = ["hot", "dot", "dog", "lot", "log", "cog"]` | Two dictionary routes of equal length converge on `"cog"` | The two 5-word ladders | `"dog"` and `"log"` both record `"cog"` as a successor in the same tier, so the predecessor map stores both parents and backtracking emits both sequences. |
+| The same words without `"cog"` in `wordList` | `endWord` is absent from the dictionary | `[]` | The membership guard rejects the request before the first expansion, so no level is ever built. |
+| `beginWord = "a"`, `endWord = "c"`, `wordList = ["a", "b", "c"]` | Length-$1$ words; the target is one substitution away | `[["a", "c"]]` | Among the $L \times 26 = 26$ candidate mutations of `"a"`, the string `"c"` itself is present, so `"c"` enters the frontier at depth $1$ and the search halts; the longer `"a" → "b" → "c"` route is never emitted. |
+| `beginWord = "red"`, `endWord = "tax"`, `wordList = ["ted", "tex", "rex", "tad", "den", "pee", "tax"]` | Three routes of the same length converge | The three 4-word ladders | `"tex"` is discovered from both `"ted"` and `"rex"` at depth $2$, so its predecessor set has two entries, and `"tax"` is discovered at depth $3$ from both `"tad"` and `"tex"`. |
+| `beginWord = "abc"`, `endWord = "xyz"`, `wordList = ["xbc", "xya", "ayz", "xyz"]` | `endWord` is in the dictionary but unreachable | `[]` | The only listed neighbour of `"abc"` is `"xbc"`, and no single substitution of `"xbc"` lands on `"xya"`, `"ayz"`, or `"xyz"`, so the next frontier is empty and the search ends without a destination. |
 
 ---
 
