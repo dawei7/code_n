@@ -1,125 +1,198 @@
 # Guided Example: Remove Letter To Equalize Frequency
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and what "exactly one" forbids
 
-- **Input:** `{"word": "abcc"}`
-- **Required output:** `true`
+Take `word = "abcc"`, for which the required answer is `true`. The lesson then
+turns to `word = "aazz"`, whose answer is `false`, because the two instances
+differ only in ways that the phrase *exactly one letter* makes decisive.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The task is not "can the frequencies be made equal". It is "can they be made
+equal by deleting exactly one character, neither more nor fewer". That
+qualification is the whole difficulty of the problem, and every failure in this
+lesson is a violation of it rather than a failure of the counting itself.
 
----
+## 2. Positions collapse to letter types
 
-## 1. Instance & Teaching Goal
+The statement asks about an index, but the effect of a deletion depends only on
+which **letter** is deleted, not on which of its occurrences was chosen. If a
+letter $c$ occurs $m$ times, deleting any one of those $m$ positions lowers the
+frequency of $c$ by one and leaves every other letter's frequency untouched.
 
-You are given a **0-indexed** string `word`, consisting of lowercase English letters. You need to select **one** index and **remove** the letter at that index from `word` so that the **frequency** of every letter present in `word` is equal.
+So the search space shrinks from $n$ candidate positions to at most
+$\sigma \le 26$ candidate letter types, where $\sigma$ is the number of distinct
+letters in `word`. This is not an approximation: two positions holding the same
+letter produce literally the same frequency table, so testing the type once
+covers every position of that type.
 
-The objective is to compute `true` from `{"word": "abcc"}` while avoiding redundant calculations and unnecessary overhead.
+## 3. The frequency table and the zero-count rule
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Let $\mathrm{cnt}[c]$ be the number of occurrences of letter $c$ in the original
+word. Deleting one occurrence of $c$ produces the vector
+$\mathrm{cnt}'$ with
 
----
+$$
+\mathrm{cnt}'[c] = \mathrm{cnt}[c] - 1,
+\qquad
+\mathrm{cnt}'[d] = \mathrm{cnt}[d] \ \text{ for } d \ne c .
+$$
 
-## 2. Conceptual Foundation & Invariants
+The resulting word is valid exactly when all letters that are **still present**
+have the same frequency. A letter with $\mathrm{cnt}'[d] = 0$ is absent from the
+resulting word and imposes no requirement at all. That gives the test:
 
-We maintain the core conceptual parameters and state variables:
+$$
+\lvert\{\, \mathrm{cnt}'[d] : d \text{ is a letter and } \mathrm{cnt}'[d] > 0 \,\}\rvert = 1 .
+$$
 
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+The set on the left collects distinct positive frequencies; it has size one
+precisely when every surviving letter shares a single common frequency. The
+resulting word is never empty, because the input has at least two characters and
+only one is removed, so the set on the left is never itself empty.
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Zero must be excluded, not rounded away. Deleting the only occurrence of a letter
+is a legal move, and afterwards that letter simply does not participate.
 
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Removing a position is equivalent to choosing its letter
-
-The operation must remove exactly one character. If a letter `c` appears several times, deleting any one of its occurrences has the same effect on the frequency table: `cnt[c]` decreases by one, while every other count stays unchanged. Therefore there is no need to try all positions. It is sufficient to try each distinct letter type once.
-
-The method begins with `cnt = Counter(word)`, which stores the frequency of every letter present in the original string. Since the input contains only lowercase English letters, there can be at most 26 keys.
-
-For each `c` in `cnt.keys()`, the algorithm temporarily performs the removal by executing `cnt[c] -= 1`. It then examines the positive counts:
-
-`set(v for v in cnt.values() if v)`.
-
-The `if v` filter deliberately excludes a zero count. If the removed character was the only occurrence of `c`, that letter is no longer present in the resulting word. The contract requires equal frequencies only among letters that remain present, so zero must not be compared with their positive frequencies.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Letter | $\mathrm{cnt}[c]$ in `"abcc"` | Present after deleting one `c` | Compared? |
 |---|---|---|---|
-| Input Slice | `{"word": "abcc"}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `a` | 1 | yes, frequency 1 | yes |
+| `b` | 1 | yes, frequency 1 | yes |
+| `c` | 2 | yes, frequency 1 | yes |
 
----
+## 4. Worked trace of `"abcc"`
 
-### Step 2: Why a set detects equality
+The word has three distinct letters, so exactly three trials run. The table
+records the state of the frequency table inside each trial, before the table is
+restored.
 
-A set stores each distinct frequency value once. If all remaining letters have the same positive frequency $f$, the generated set is exactly `{f}` and has length 1. If two remaining letters have different frequencies, both values appear and the set has length at least 2.
+| Trial | Letter deleted | Frequencies during trial | Positive frequencies | Distinct positive values | Verdict |
+|---|---|---|---|---|---|
+| 1 | `a` | `a = 0`, `b = 1`, `c = 2` | `1, 2` | 2 | fail, restore |
+| 2 | `b` | `a = 1`, `b = 0`, `c = 2` | `1, 2` | 2 | fail, restore |
+| 3 | `c` | `a = 1`, `b = 1`, `c = 1` | `1, 1, 1` | 1 | success, answer `true` |
 
-The resulting word cannot be empty under the stated constraints: its original length is at least 2 and exactly one character is removed. Therefore there is always at least one positive count, and a set length of 1 means precisely that every present letter has equal frequency. The code can immediately return `true`.
+Trials 1 and 2 are the instructive failures. Deleting an `a` makes `a` vanish, so
+the trial compares only `b = 1` and `c = 2`; those differ, and the deletion is
+rejected. It is *not* rejected because `a` reached zero. If zeros were compared,
+trial 1 would show `0, 1, 2` and trial 3 would still show `1, 1, 1` — the final
+answer would happen to survive here, but the rule would be wrong, as the next
+section shows.
 
-If the test fails, `cnt[c] += 1` restores the original frequency before the next letter type is tried. This restoration is essential. Without it, later iterations would simulate several deletions at once rather than the required single deletion.
+Trial 3 succeeds because the original word had exactly one over-represented
+letter: `c` appeared twice while `a` and `b` appeared once. Reducing the lone
+excess by one equalises everything.
 
-After every distinct letter has been tried without producing one positive frequency value, the method returns `false`.
+## 5. Failure instances and the trap they expose
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+`word = "aazz"` looks like an easy success: the two frequencies are already equal
+at $2$ and $2$. But the operation is mandatory, so "leave it alone" is one of the
+forbidden moves.
+
+| Trial | Letter deleted | Frequencies during trial | Positive frequencies | Distinct positive values | Verdict |
+|---|---|---|---|---|---|
+| 1 | `a` | `a = 1`, `z = 2` | `1, 2` | 2 | fail |
+| 2 | `z` | `a = 2`, `z = 1` | `2, 1` | 2 | fail |
+
+Every legal move destroys the balance that was already present, so the answer is
+`false`. The same mechanism rejects `"aabbcc"` (each trial turns `2, 2, 2` into
+`1, 2, 2`) and `"aaabbb"` (each trial turns `3, 3` into `2, 3`). Once every
+frequency is equal and more than one letter is present, no single deletion can
+preserve equality.
+
+Contrast with instances where deletion of a whole letter type is the answer:
+
+| Instance | Original frequencies | Trial that succeeds | Frequencies after deletion | Answer |
+|---|---|---|---|---|
+| `"abbcc"` | `a = 1`, `b = 2`, `c = 2` | delete the only `a` | `b = 2`, `c = 2` | `true` |
+| `"aaa"` | `a = 3` | delete one `a` | `a = 2` | `true` |
+| `"ab"` | `a = 1`, `b = 1` | delete either letter | one letter with frequency 1 | `true` |
+| `"aaabbbbcc"` | `a = 3`, `b = 4`, `c = 2` | none | — | `false` |
+
+Two facts fall out of this table. First, the common frequency does not have to be
+1: `"aaa"` succeeds with the surviving frequency 2. Second, a letter reaching
+frequency zero is a feature, not an error, which is why the positive-only filter
+matters — without it, `"abbcc"` would be misjudged, because the vanished `a`
+would contribute a spurious `0` next to `b = 2` and `c = 2`.
+
+## 6. Why the reasoning is correct
+
+**Invariant of the trial loop.** At the start of every trial the frequency table is
+identical to the table built from the original word. This holds initially by
+construction, and it is restored after each failed trial. Consequently every
+trial measures the effect of *exactly one* deletion rather than the accumulated
+effect of all deletions attempted so far.
+
+**Soundness.** If trial $c$ finds a single distinct positive frequency, then the
+word obtained by removing one occurrence of $c$ has all present letters equally
+frequent. That word differs from the input at exactly one position, so it is a
+legitimate witness for the required single deletion, and reporting `true` is
+correct.
+
+**Completeness.** Suppose some index $p$ is a valid deletion, and let $c$ be the
+letter at that position. Because $c$ occurs in the word, $c$ is one of the keys
+of the original frequency table and is therefore tried. Deleting any other
+occurrence of $c$ yields the same resulting frequency vector, so trial $c$ must
+observe the same single distinct positive frequency and report success. No valid
+deletion can be missed, because positions are grouped by an equivalence that
+preserves the only quantity the test inspects.
+
+**Exhaustiveness of the failure.** If no trial succeeds, then for every letter
+type the deletion leaves at least two different positive frequencies. Since every
+position of the word belongs to exactly one letter type, no position can be a
+valid deletion, and reporting `false` is correct. This is where the mandatory
+"exactly one" condition is enforced: the algorithm never tests the zero-deletion
+state, so an already-equal input with more than one letter is correctly rejected.
+
+## 7. Boundary conditions this instance family exposes
+
+| Situation | Instance | Answer | Why |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Minimum length | `"ab"` | `true` | Removing one character always leaves a single letter type with frequency 1. |
+| One distinct letter | `"aaa"` | `true` | Deleting one occurrence leaves one letter type, whose frequency is trivially uniform. |
+| All letters distinct | `"abcd"` | `true` | Each trial leaves the other letters at frequency 1. |
+| Already equal, two types | `"aazz"` | `false` | Equality exists before the move, but the move is compulsory and breaks it. |
+| Already equal, three types | `"aabbcc"` | `false` | Same mechanism with more letters; each trial produces `1, 2, 2`. |
+| Deleted letter disappears | `"abbcc"` | `true` | The vanished letter is ignored because only positive frequencies are compared. |
+| Two different frequency classes | `"aaabbbbcc"` | `false` | Frequencies `3, 4, 2`; one decrement can repair at most one class. |
+| Perfectly balanced larger counts | `"aaabbb"` | `false` | Both trials produce `2` next to `3`. |
+| Maximum length | any 100-character word | depends | Only $\sigma \le 26$ trials are ever needed, so length affects only the counting pass. |
 
----
+## 8. Alternative methods and their trade-offs
 
-### Step 3: Tracing successful and unsuccessful cases
-
-For `word = "abcc"`, the original counts are one each for `a` and `b` and two for `c`. Trying removal of `a` leaves positive frequencies 1 and 2, so it fails and the count is restored. The same happens for `b`. Trying `c` changes its count from 2 to 1, leaving all three positive counts equal to 1. The set has one member, and the method returns true.
-
-For `word = "aazz"`, both letters initially have frequency 2. Removing an `a` creates positive counts 1 and 2; removing a `z` creates 2 and 1. Neither trial has a one-element frequency set, so the result is false. This example highlights “exactly one”: the original frequencies are already equal, but doing nothing is not allowed, and every permitted deletion destroys equality.
-
-Consider `word = "abb"`. Trying the only `a` reduces its count to zero, which is filtered out. The only remaining letter `b` has frequency 2, so all letters still present have equal frequency and the answer is true. The target common frequency does not have to be 1.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Method | Time | Auxiliary space | Why it is not used here |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
+| Delete each of the $n$ positions and recount | $O(n^2)$ | $O(n)$ | Simulates the statement literally but rebuilds a whole string and a whole table per position, repeating work that is identical within a letter type. |
+| Sort the surviving frequencies per trial | $O(\sigma^2 \log \sigma)$ | $O(\sigma)$ | A sorted list decides equality, but distinguishing *distinct positive values* is exactly what a set does in one pass. |
+| Characterise from the frequency-of-frequencies | $O(n)$ | $O(\sigma)$ | Cases such as "one letter has frequency 1 and the rest are equal" or "one unique maximum is exactly one above the rest" can be enumerated directly; it is faster in prose but easy to mis-handle the zero-count and mandatory-deletion cases. |
+| Enumerate letter types and test a set of positive frequencies | $O(n + \sigma^2)$ | $O(\sigma)$ | Chosen. The grouping argument removes the redundant work, and a single set membership test expresses the condition without special cases. |
 
----
+## 9. Cost of the method: complexity derivation
 
-## 4. Complete Execution Trace
+Let $n = \lvert\texttt{word}\rvert$ and let $\sigma$ be the number of distinct
+letters in it, so $\sigma \le 26$.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"word": "abcc"}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
+*Time.* Building the frequency table reads every character once, which costs
+$O(n)$ under the standard assumption that a letter maps to a table slot in
+constant time. Then $\sigma$ trials run; each trial changes one entry, scans the
+$\sigma$ stored entries to collect the positive ones, and is undone. Each trial is
+$O(\sigma)$, so the trials cost $O(\sigma^2)$. The total is
 
----
+$$
+T(n) = O(n) + O(\sigma^2).
+$$
 
-## 5. Algorithmic Correctness
+Because the alphabet is fixed at 26 lowercase English letters, $\sigma^2 \le 676$
+is a constant, and the bound collapses to $T(n) = O(n)$. The quadratic term in
+$\sigma$ is honest but irrelevant at this input size; it would matter only if the
+alphabet were allowed to grow with $n$.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+*Auxiliary space.* The only structure proportional to anything is the frequency
+table, which holds at most 26 entries regardless of how long the word is. The
+per-trial set of positive frequencies holds at most $\sigma$ values and is
+discarded at the end of each trial. Auxiliary memory is therefore
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+$$
+S(n) = O(\sigma) = O(1).
+$$
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Delete every position and recount:** Constructing `word[:i] + word[i+1:]` for all $n$ positions is easy to imagine but can require $O(n^2)$ time and repeated string allocation.
-- **Reason from the frequency-of-frequencies table:** One can derive a constant-case characterization, such as removing the sole letter of frequency 1 or reducing one uniquely high frequency by one. That can be slightly faster after counting, but it is easier to miss the “exactly one” condition; trying at most 26 letter types is already constant-sized.
-- **Sort the frequencies:** For each possible removed letter, sorting remaining counts would test equality but adds unnecessary work. A set directly asks how many distinct positive values exist.
-- **All characters identical:** Removing one occurrence leaves one letter type with a positive frequency, so the answer is always true for length at least 2.
-- **All characters distinct:** Removing any character leaves the others each with frequency 1, so the answer is true.
-- **Already equal frequencies with multiple repeated types:** Equality before removal does not automatically mean success. For `"aazz"`, the mandatory deletion makes one frequency smaller and returns false.
-- **Removing the only occurrence of a letter:** Its count becomes zero and must be ignored because the letter is absent afterward. The `if v` filter handles this case.
-- **A common frequency greater than one:** A result such as a single remaining letter with frequency 2 is valid; equal frequency does not mean every count must equal 1.
-- **Exactly one removal:** The counter is restored after every failed trial, ensuring each experiment contains one deletion rather than an accumulation of deletions.
-- **Repeated positions of the same letter:** They are behaviorally identical at the frequency level, so testing the letter once loses no possible outcome.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the length of `word` and let $\sigma$ be the number of distinct letters, with $\sigma \le 26$. Building the counter takes $O(n)$ time. There are $\sigma$ trials, and each trial scans the $\sigma$ stored values to build a set, for $O(\sigma^2)$ additional time. Thus the general expression is $O(n + \sigma^2)$. Because the alphabet is fixed to 26 lowercase letters, $\sigma^2$ is a constant, yielding the manifest's $O(n)$ time bound.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The input string is never copied or mutated: only counts change, and they change
+back.

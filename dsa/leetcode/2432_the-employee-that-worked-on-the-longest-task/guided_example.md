@@ -1,149 +1,203 @@
 # Guided Example: The Employee That Worked on the Longest Task
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance and the Two Quantities Being Compared
 
-- **Input:** `{"n": 10, "logs": [[0, 3], [2, 5], [0, 9], [1, 15]]}`
-- **Required output:** `1`
+The company has `n = 8` employees, identified by the integers `0` through `7`. A log entry
+`[id, leaveTime]` reports that the employee with that id finished a task at absolute time
+`leaveTime`. The task itself is not bracketed by a start time; the statement instead fixes
+the schedule globally: the first task begins at time `0`, and every later task begins the
+instant the previous one ends.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The instance traced here is
 
----
+$$
+\texttt{logs} = [[7,4],\ [6,5],\ [2,9],\ [5,10]],
+$$
 
-## 1. Instance & Teaching Goal
+whose authored answer is `2`. This instance is chosen because it forces the tie-break to do
+real work: the longest duration occurs twice, and the smaller employee id appears in the
+*second* of the two tied tasks. A scan that simply keeps the first maximum would return
+`7`, and a scan that accumulates work per employee would answer a different question
+altogether.
 
-There are `n` employees, each with a unique id from `0` to $n - 1$.
+The output is a single employee id, selected by two ranking rules applied in order:
 
-The objective is to compute `1` from `{"n": 10, "logs": [[0, 3], [2, 5], [0, 9], [1, 15]]}` while avoiding redundant calculations and unnecessary overhead.
+1. largest task duration wins;
+2. among tasks of equal duration, the smallest employee id wins.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. Task Durations Are Consecutive Differences of Leave Times
 
----
+Write the log entries as $\text{id}_i$ and $\text{leaveTime}_i$ for
+$i = 0, 1, \dots, m-1$. Because task $i$ starts exactly when task $i-1$ ended, the start
+time of task $i$ is simply the leave time of its predecessor, with a virtual predecessor at
+time $0$:
 
-## 2. Conceptual Foundation & Invariants
+$$
+\text{start}_i = \begin{cases} 0 & i = 0 \\ \text{leaveTime}_{i-1} & i > 0 \end{cases}
+\qquad\text{and}\qquad
+\text{duration}_i = \text{leaveTime}_i - \text{start}_i .
+$$
 
-We maintain the core conceptual parameters and state variables:
+The constraints guarantee that the leave times are strictly increasing, so every difference
+is at least $1$ and no task has zero or negative length. That guarantee is what makes `0` a
+safe initial value for the running maximum: the first real duration always exceeds it.
 
-| State Parameter | Role & Purpose | Initial State |
+| Task $i$ | `id` | `leaveTime` | Start time | Duration | Running maximum before | Running maximum after |
+|---|---|---|---|---|---|---|
+| 0 | 7 | 4 | 0 | 4 | 0 (sentinel) | 4 |
+| 1 | 6 | 5 | 4 | 1 | 4 | 4 |
+| 2 | 2 | 9 | 5 | 4 | 4 | 4 |
+| 3 | 5 | 10 | 9 | 1 | 4 | 4 |
+
+The table already shows the tie: task $0$ and task $2$ both last $4$ units. The durations of
+tasks $1$ and $3$ are $1$ each, so they cannot compete.
+
+## 3. Step-by-Step Trace of the Scan
+
+The scan keeps three pieces of state: the leave time of the previous task, the best duration
+found so far, and the employee id that owns it. Each log entry is processed once.
+
+| Step | Log entry | Duration computed | Comparison against the current best | Best duration after | Best id after |
+|---|---|---|---|---|---|
+| 0 | — | — | initialize previous leave time to $0$, best duration to $0$ | 0 | — |
+| 1 | `[7, 4]` | $4 - 0 = 4$ | $4 > 0$, so the first task becomes the incumbent | 4 | 7 |
+| 2 | `[6, 5]` | $5 - 4 = 1$ | $1 < 4$, strictly worse, no change | 4 | 7 |
+| 3 | `[2, 9]` | $9 - 5 = 4$ | $4 = 4$ is a tie and $2 < 7$, so the smaller id replaces the incumbent | 4 | 2 |
+| 4 | `[5, 10]` | $10 - 9 = 1$ | $1 < 4$, strictly worse, no change | 4 | 2 |
+| 5 | end of input | — | return the incumbent id | 4 | 2 |
+
+The decisive step is step 3. The duration ties the existing maximum, so the comparison
+cannot be a plain "is it larger" test: the incumbent must be replaced precisely when the
+new employee id is smaller. Step 4 confirms that the scan cannot stop early — the last entry
+is examined and rejected on its merits, never because the best answer was assumed final.
+
+## 4. State Before and After Each Entry
+
+The same trace is easier to audit when each row shows the complete state, including the
+running previous leave time that must be restored after each subtraction.
+
+| Entry processed | `prevLeave` before | `bestDuration` | `bestId` | Action taken | `prevLeave` after |
+|---|---|---|---|---|---|
+| none (start) | 0 | 0 | undefined | initialise | 0 |
+| `[7, 4]` | 0 | 0 | undefined | set best to $(4, 7)$ | 4 |
+| `[6, 5]` | 4 | 4 | 7 | none | 5 |
+| `[2, 9]` | 5 | 4 | 7 | replace best with $(4, 2)$ because $2 < 7$ | 9 |
+| `[5, 10]` | 9 | 4 | 2 | none | 10 |
+| result | — | 4 | **2** | return `bestId` | — |
+
+One arithmetic detail deserves care. Once a duration has been computed by subtracting the
+previous leave time, the running variable no longer holds an absolute leave time; it holds a
+duration. Adding the duration back to it restores the current absolute leave time, which is
+what the next iteration needs. Assigning the observed leave time directly would be clearer,
+and the two are numerically identical:
+
+$$
+\texttt{prevLeave}_{\text{old}} + \bigl(\text{leaveTime}_i - \texttt{prevLeave}_{\text{old}}\bigr)
+= \text{leaveTime}_i .
+$$
+
+Mishandling this restoration is the classic failure mode here: the durations computed after
+it would become differences of differences and silently shrink.
+
+## 5. The Tie-Break Rule in Both Directions
+
+A tie-break only needs to replace the incumbent when the newcomer is *better*, and a smaller
+id is better. The direction matters, so the table exercises it both ways.
+
+| Logs | Durations | Tied ids | Decision path | Output |
+|---|---|---|---|---|
+| `[[7,4],[6,5],[2,9],[5,10]]` | 4, 1, 4, 1 | 7 and 2 | incumbent 7, then 2 arrives later and is smaller, so it replaces | `2` |
+| `[[0,10],[1,20]]` | 10, 10 | 0 and 1 | incumbent 0, then 1 arrives later and is larger, so it does not replace | `0` |
+| `[[1,2],[0,4],[2,6]]` | 2, 2, 2 | 1, 0, 2 | incumbent 1, then 0 replaces it, then 2 fails the tie test | `0` |
+| `[[4,9],[2,10],[1,12]]` | 9, 1, 2 | none | first duration is the unique maximum and is never challenged | `4` |
+
+Reversing the comparison — replacing only on a strictly larger duration — would leave the
+first tied id in place in all three tie rows. That is correct for the second row and wrong
+for the first and third, which is exactly why the tie condition must be tested separately
+from the duration condition.
+
+## 6. Why a Single Left-to-Right Pass Is Correct
+
+**Invariant.** After processing the first $t$ log entries, `bestDuration` equals the maximum
+duration among tasks $0$ through $t-1$, and `bestId` equals the smallest employee id among
+the tasks that attain that maximum.
+
+**Initialisation.** Before any entry is processed the set of considered tasks is empty, so
+the sentinel `bestDuration = 0` is a lower bound that any positive duration beats. Because
+the leave times are strictly increasing, the first duration is at least $1$, so the first
+comparison always installs a real incumbent.
+
+**Inductive step.** Let $d$ be the duration of task $t$ and let $u$ be its employee id.
+Exactly one of three cases holds.
+
+- If $d > \text{bestDuration}$, then no earlier task reached $d$, so $t$ is the unique
+  longest task among the first $t+1$ and the new pair is $(d, u)$.
+- If $d = \text{bestDuration}$, the maximum is unchanged and the smallest id among the
+  tied tasks becomes $\min(\text{bestId}, u)$, which is precisely the replacement condition.
+- If $d < \text{bestDuration}$, the maximum and its owner are unchanged.
+
+In each case the invariant is preserved, so after all $m$ entries `bestId` is the smallest id
+among the longest tasks — the requested answer.
+
+**Completeness.** Every task is examined exactly once, so no longer task can be missed and no
+tie can be overlooked. In particular the scan cannot terminate early: a later task may have
+a larger duration, and among equal durations a later task may carry a smaller id.
+
+**Sufficiency of the state.** The answer depends only on the pair (duration, id) of each
+task, compared lexicographically as (larger duration, smaller id). The previous leave time
+is needed only to compute the next duration, and the employee parameter `n` is never used by
+the scan, because every id appearing in a log is guaranteed to be valid.
+
+## 7. Boundary and Degenerate Instances
+
+| Situation | Input | Behaviour | Output |
+|---|---|---|---|
+| A single log entry | `n = 4`, `logs = [[3,5]]` | the one task starts at time $0$, so its duration is $5$, and its employee is returned regardless of id | `3` |
+| First task is the longest | `n = 5`, `logs = [[4,9],[2,10],[1,12]]` | durations $9, 1, 2$; the incumbent is never challenged | `4` |
+| Smaller id arrives in a later tied task | `n = 8`, `logs = [[7,4],[6,5],[2,9],[5,10]]` | tie at duration $4$; replacement by the smaller id | `2` |
+| Smaller id already first | `n = 2`, `logs = [[0,10],[1,20]]` | tie at duration $10$; the equal id test fails, so the incumbent stands | `0` |
+| Three-way tie | `n = 3`, `logs = [[1,2],[0,4],[2,6]]` | all durations $2$; the running minimum id wins | `0` |
+| The same employee appears twice | `n = 4`, `logs = [[1,2],[3,7],[1,11]]` | durations $2, 5, 4$ are compared independently; no per-employee total is formed | `3` |
+| `n` smaller than the id range suggests | `n = 1` with four log entries | the scan never consults `n`; ids come from the logs and are guaranteed valid | `1` |
+
+The repeated-employee row is the most tempting trap. Summing all work by an employee answers
+"who worked the most in total", but the question here is "who owns the single longest task",
+and the two can disagree. Employee $1$ appears twice in that row yet loses to employee $3$,
+whose single task of length $5$ is longer than either of employee $1$'s tasks.
+
+## 8. Alternative Methods and Their Costs
+
+| Alternative | Idea | Trade-off |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Build a duration list, then sort | Materialise (duration, id) pairs and sort by descending duration then ascending id | $O(m \log m)$ time and $O(m)$ extra space to solve a problem that a single pass decides |
+| Two passes over the logs | First pass finds the maximum duration, second pass finds the smallest id attaining it | $O(m)$ time but two traversals, and either stored durations or recomputation is required |
+| Accumulate time per employee | Add each duration to a per-employee total, then take the largest total | Answers a different question; an employee with several short tasks would beat the owner of the longest task |
+| Stop early once a large duration is seen | Terminate as soon as some threshold is exceeded | No valid threshold exists, because the maximum is unknown until the last log is read |
+| Sort the logs by leave time first | Reorder the entries before scanning | Unnecessary: the constraints already guarantee strictly increasing leave times |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 9. Complexity Derivation
 
----
+Let $m = \texttt{logs.length}$ be the number of logged tasks.
 
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Logs contain end times, not durations
-
-Each log entry gives an employee ID and the absolute time when that task ended. The first task begins at time zero. Every later task begins as soon as the previous task ends, so its duration is
-
-$$
-\text{current leave time} - \text{previous leave time}.
-$$
-
-The strictly increasing leave times ensure every duration is positive. The employee count `n` determines the valid ID range but is not otherwise needed by the scan.
-
-The solution maintains:
-
-- `last`, the previous task's leave time;
-- `mx`, the longest duration seen so far;
-- `ans`, the employee ID chosen for that longest duration.
-
-All three start at zero. For the first task, subtracting `last = 0` from its leave time gives the correct duration from time zero.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"n": 10, "logs": [[0, 3], [2, 5], [0, 9], [1, 15]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Understand the local reassignment of `t`
-
-The loop receives `uid` and the raw leave time in `t`. It then executes `t -= last`, so the local variable `t` now means task duration rather than leave time.
-
-After the best-answer test, the line `last += t` may look unusual. At that moment,
+**Time.** Each log entry is read once and performs exactly one subtraction, one arithmetic
+restoration of the running leave time, and a bounded number of comparisons for the duration
+and tie conditions. That is $O(1)$ work per entry, so the total is
 
 $$
-\texttt{t}
-=
-\text{current leave time}
--
-\texttt{last}_{old}.
+O(m).
 $$
 
-Therefore
+The employee count $n$ does not appear in the bound at all, because the scan never iterates
+over employee ids; only the ids that actually appear in the logs are examined. Since the
+strictly increasing leave times must be read in full, the bound is tight.
+
+**Auxiliary space.** The method stores only the previous leave time, the best duration, and
+the best employee id. No array, map, or recursion is used, so auxiliary space is
 
 $$
-\texttt{last}_{old} + \texttt{t}
-=
-\text{current leave time}.
+O(1)
 $$
 
-The addition restores `last` to the absolute leave time of the current task. Writing `last = original_leave_time` would be more direct, but the original value has been overwritten in the local `t` variable. The algebra shows that the update is equivalent and keeps the next duration correct.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Update on a longer task or a better tie
-
-The condition
-
-`mx < t or (mx == t and ans > uid)`
-
-implements both ranking rules. If the current duration `t` is larger, the current task must replace the previous choice. If durations tie, the current employee replaces `ans` only when `uid` is smaller.
-
-The assignment `ans, mx = uid, t` updates the chosen employee and its duration together. If neither condition holds, the existing pair remains better: it has a longer duration, or it has the same duration with an equal or smaller employee ID.
-
-Because durations are positive, the first log always has `t > mx` when `mx` is initially zero. Thus `ans` is initialized to the first actual worker through the normal update logic, even if that worker's ID is not zero.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `1` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10, "logs": [[0, 3], [2, 5], [0, 9], [1, 15]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `1` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Precompute a duration array:** Subtract consecutive leave times, then find the best pair. This is also $O(m)$ time but uses $O(m)$ unnecessary storage.
-- **Sort tasks by duration:** Sorting can apply a compound key of negative duration and employee ID, but costs $O(m\log m)$ when a single pass suffices.
-- **Track totals per employee:** Summing all work by an employee answers a different question. The problem asks for the employee owning one longest task, not the greatest total time.
-- **One log:** Its duration is its leave time minus zero, so its employee is returned regardless of ID.
-- **Tie between tasks:** The condition replaces the answer only for a smaller ID, so log order cannot override the stated tie-break.
-- **Same employee appears repeatedly:** Each task duration is evaluated independently; no accumulation is performed.
-- **First worker has nonzero ID:** Positive first duration replaces the zero-initialized best and records the actual ID.
-- **Strictly increasing leave times:** This guarantee makes durations positive and lets zero serve as a safe initial maximum.
-- **Unused `n` parameter:** The scan does not need the number of possible employees because IDs are already present in logs and guaranteed valid.
-- **Local variable mutation:** `t -= last` changes only the unpacked integer variable, not the nested entry stored in `logs`.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(m)$. Let $m$ be `len(logs)`. The loop performs one subtraction, a constant number of comparisons, and constant-size assignments per entry, so time is $O(m)$. The solution never loops through all `n` employee IDs because employees without logged tasks cannot own the longest task.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+beyond the input. The returned id is a single integer, so the output space is constant as
+well. Any method that instead materialised the durations would need $\Theta(m)$ space for no
+benefit in time.

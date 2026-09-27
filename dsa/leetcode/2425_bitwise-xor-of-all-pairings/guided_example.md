@@ -1,139 +1,212 @@
 # Guided Example: Bitwise XOR of All Pairings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the product that must not be built
 
-- **Input:** `{"nums1": [2, 1, 3], "nums2": [10, 2, 5, 0]}`
-- **Required output:** `13`
+We trace
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+- `nums1 = [2, 1, 3]`, so $n = 3$;
+- `nums2 = [10, 2, 5, 0]`, so $m = 4$.
 
----
+The conceptual array `nums3` holds the value $a \oplus b$ for every ordered choice
+of $a \in \texttt{nums1}$ and $b \in \texttt{nums2}$, so it has $nm = 12$ entries,
+and the required answer is the XOR of all of them: `13`.
 
-## 1. Instance & Teaching Goal
+At the stated limits $n, m \le 10^{5}$, the product has up to $10^{10}$ entries.
+Materialising it is not merely slow, it is impossible, so the lesson has to
+explain how the answer can be computed without ever forming a single pair.
 
-You are given two **0-indexed** arrays, `nums1` and `nums2`, consisting of non-negative integers. Let there be another array, `nums3`, which contains the bitwise XOR of **all pairings** of integers between `nums1` and `nums2` (every integer in `nums1` is paired with every integer in `nums2` **exactly once**).
+## 2. The three algebraic facts that do the work
 
-The objective is to compute `13` from `{"nums1": [2, 1, 3], "nums2": [10, 2, 5, 0]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Do not build the Cartesian product
-
-The conceptual array `nums3` contains one value `a ^ b` for every choice of `a` from `nums1` and `b` from `nums2`. If the arrays have lengths $n$ and $m$, explicitly generating those values would take $nm$ operations and could create $10^{10}$ pair results, which is infeasible.
-
-The solution uses two algebraic properties of XOR:
-
-- XOR is associative and commutative, so terms may be regrouped in any order.
-- A value XORed with itself cancels: `x ^ x = 0`. Consequently, an even number of copies of `x` contributes zero, while an odd number of copies contributes one `x`.
-
-These rules let the algorithm count how many times each original value appears in the complete expression without ever generating a pair.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"nums1": [2, 1, 3], "nums2": [10, 2, 5, 0]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Expand and regroup the pair XORs
-
-The requested value is
+XOR on non-negative integers, written $\oplus$, is a commutative and associative
+operation with identity $0$:
 
 $$
-\bigoplus_{a \in \texttt{nums1}}
-\bigoplus_{b \in \texttt{nums2}}
-(a \mathbin{\mathtt{\char94}} b).
+a \oplus b = b \oplus a, \qquad
+(a \oplus b) \oplus c = a \oplus (b \oplus c), \qquad
+a \oplus 0 = a .
 $$
 
-Fix one value `a` from `nums1`. It is paired with every one of the $m$ values in `nums2`, so `a` appears as an XOR term exactly $m$ times in the expanded expression. If $m$ is even, all copies of `a` cancel. If $m$ is odd, one effective copy remains.
+It is also self-inverse: $a \oplus a = 0$. Two consequences follow, and together
+they are the entire algorithm.
 
-Symmetrically, each value `b` from `nums2` appears once for every element of `nums1`, so it appears $n$ times. It contributes only when $n$ is odd.
+- **Reordering is free.** Because $\oplus$ is associative and commutative, a long
+  chain of XOR terms may be permuted and regrouped arbitrarily without changing
+  the result. The nested sum $\bigoplus_{a} \bigoplus_{b} (a \oplus b)$ can
+  therefore be expanded into $nm$ flat terms and sorted by origin.
+- **Multiplicity is everything.** A fixed value $x$ contributes to a flat chain
+  only through the parity of how many times it appears: an even count cancels
+  pairwise down to $0$, and an odd count leaves exactly one copy of $x$. The
+  numeric value of $x$ only matters for the final combination, never for the
+  cancellation count.
 
-The complete result is therefore:
+## 3. Counting occurrences without enumerating them
 
-- XOR of all values in `nums1` if `len(nums2)` is odd;
-- XOR of all values in `nums2` if `len(nums1)` is odd;
-- XOR of both contributions if both opposite lengths are odd;
-- zero if both lengths are even.
+Expand every pair term into its two source halves:
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+$$
+\bigoplus_{a \in \texttt{nums1}} \ \bigoplus_{b \in \texttt{nums2}} (a \oplus b)
+\;=\; \bigoplus_{a \in \texttt{nums1}} \ \bigoplus_{b \in \texttt{nums2}} a
+\;\oplus\;
+\bigoplus_{a \in \texttt{nums1}} \ \bigoplus_{b \in \texttt{nums2}} b .
+$$
+
+Now read each half separately:
+
+- A fixed $a$ from `nums1` is paired with each of the $m$ values in `nums2`, so it
+  appears **$m$ times** in the left half. It survives when $m$ is odd and cancels
+  when $m$ is even.
+- Symmetrically, a fixed $b$ from `nums2` appears **$n$ times** in the right half.
+  It survives when $n$ is odd and cancels when $n$ is even.
+
+This is the crux that beginners get backwards: an element of `nums1` repeats
+according to the length of `nums2`, not its own array's length.
+
+| Source array | Length | Multiplicity of each of its elements | Survives when |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| `nums1` | $n = 3$ | $m = 4$ | $m$ is odd |
+| `nums2` | $m = 4$ | $n = 3$ | $n$ is odd |
 
----
+## 4. The four parity cases
 
-### Step 3: How the exact code applies the parity rule
+Combining the two independent groups gives a complete decision table. No case
+needs a special branch beyond the parity test itself.
 
-The accumulator `ans` starts at zero, the identity for XOR. The expression `len(nums2) & 1` extracts the least significant bit of the length, which is 1 exactly for an odd number. When it is odd, the first loop folds all values of `nums1` into `ans` with `ans ^= v`. When it is even, the loop is skipped because every such value would cancel.
-
-The second condition performs the mirror operation: if `nums1` has odd length, every value of `nums2` contributes once.
-
-The conditions are independent. For odd lengths on both sides, `ans` becomes the XOR of both whole arrays. If only one length is odd, only the opposite array is folded. If both are even, no loop executes and the correct answer remains zero.
-
-For `nums1 = [1, 2]` and `nums2 = [3, 4]`, both lengths are even. Each 1 and 2 occurs twice among expanded terms, and each 3 and 4 also occurs twice. All contributions cancel, giving zero.
-
-For `nums1 = [2, 1, 3]` and `nums2 = [10, 2, 5, 0]`, the second array has even length, so values from `nums1` cancel. The first array has odd length, so the result is `10 ^ 2 ^ 5 ^ 0 = 13`.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| $n$ parity | $m$ parity | Contributing values | Answer |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `13` |
+| even | even | none | `0` |
+| even | odd | every element of `nums1` once | $\bigoplus_{a \in \texttt{nums1}} a$ |
+| odd | even | every element of `nums2` once | $\bigoplus_{b \in \texttt{nums2}} b$ |
+| odd | odd | both full arrays | $\bigl(\bigoplus_a a\bigr) \oplus \bigl(\bigoplus_b b\bigr)$ |
 
----
+For the traced instance $n = 3$ is odd and $m = 4$ is even, which is the third
+row: every element of `nums2` contributes exactly once, and both `2`, `1` and `3`
+cancel completely.
 
-## 4. Complete Execution Trace
+| Element | Array | Multiplicity in the flat expansion | Parity | Contributes |
+|---|---|---|---|---|
+| `2` | `nums1` | 4 | even | no |
+| `1` | `nums1` | 4 | even | no |
+| `3` | `nums1` | 4 | even | no |
+| `10` | `nums2` | 3 | odd | yes, once |
+| `2` | `nums2` | 3 | odd | yes, once |
+| `5` | `nums2` | 3 | odd | yes, once |
+| `0` | `nums2` | 3 | odd | yes, once |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+Note that the value `2` appears in both arrays. The table counts *positions*, not
+distinct numerals: the `2` in `nums1` contributes nothing, while the independent
+`2` in `nums2` contributes once. Values are never deduplicated.
+
+## 5. Executing the instance, bit by bit
+
+Only the four surviving values remain to be combined:
+
+$$
+10 \oplus 2 \oplus 5 \oplus 0 .
+$$
+
+Writing the operands in binary exposes the parity test at each bit position, since
+XOR decides each bit independently of the others.
+
+| Bit position | 3 | 2 | 1 | 0 |
+|---|---|---|---|---|
+| `10` | 1 | 0 | 1 | 0 |
+| `2` | 0 | 0 | 1 | 0 |
+| `5` | 0 | 1 | 0 | 1 |
+| `0` | 0 | 0 | 0 | 0 |
+| Count of ones | 1 | 1 | 2 | 1 |
+| Count parity | odd | odd | even | odd |
+| Result bit | 1 | 1 | 0 | 1 |
+
+The result is `1101`, which is `13`, matching the required output. The bit at
+position 1 shows the cancellation rule working inside a single column: two ones
+annihilate and the bit becomes 0.
+
+For contrast, the second official instance has `nums1 = [1, 2]` and
+`nums2 = [3, 4]`, so $n$ and $m$ are both even. Every element repeats an even
+number of times and the answer is `0` without reading a single value's bits. The
+four generated pair values are `1 ^ 3 = 2`, `1 ^ 4 = 5`, `2 ^ 3 = 1`, `2 ^ 4 = 6`,
+and indeed $2 \oplus 5 \oplus 1 \oplus 6 = 0$.
+
+## 6. Why the reasoning is correct
+
+**Claim.** The XOR of all $nm$ pair values equals
+$\bigl(m \bmod 2\bigr) \cdot \bigoplus_{a \in \texttt{nums1}} a \;\oplus\;
+\bigl(n \bmod 2\bigr) \cdot \bigoplus_{b \in \texttt{nums2}} b$,
+where the multiplier 0 suppresses the whole group and the multiplier 1 keeps it.
+
+*Proof.* The nested sum expands to a flat chain of $nm$ terms, each of which is an
+element of `nums1` or an element of `nums2` (using the associative and
+commutative laws, which permit any regrouping). Group the terms by source
+position. A source position with value $x$ that occurs $t$ times contributes $x$
+if $t$ is odd and $0$ if $t$ is even, because $x \oplus x = 0$ allows the copies
+to be cancelled in pairs, leaving at most one. Each `nums1` position occurs
+exactly $m$ times and each `nums2` position exactly $n$ times. Summing the
+surviving positions of each group reproduces the two displayed XOR aggregates,
+and the groups are then XORed together. $\square$
+
+**Completeness.** The expansion above uses every one of the $nm$ pair terms
+exactly once: no term is dropped and none is double-counted, since each pair
+$(a, b)$ is generated by exactly one choice of indices. Hence the computed value
+is the XOR of the whole of `nums3`, as the statement defines it.
+
+**Bit-level cross-check.** The same conclusion follows one bit at a time. At any
+bit position, the answer bit is the parity of the number of pair values with a 1
+there; each bit of each $a$ is repeated $m$ times and each bit of each $b$ is
+repeated $n$ times, so only the length parities decide which bits survive. This
+view confirms that the argument never depends on the magnitudes of the numbers,
+only on how often each position is counted.
+
+## 7. Boundary conditions this instance family exposes
+
+| Situation | Instance | Answer | Reason |
 |---|---|---|---|
-| Initialization | Initial input `{"nums1": [2, 1, 3], "nums2": [10, 2, 5, 0]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `13` | Verified |
+| Both lengths even | `nums1 = [2, 2]`, `nums2 = [10, 2, 5, 0]` | `0` | Every position has even multiplicity, regardless of the values. |
+| Both lengths odd | `nums1 = [1, 2, 4]`, `nums2 = [8, 16, 32]` | `63` | $7 \oplus 56 = 63$; both aggregates survive and are combined. |
+| Only the second length odd | `nums1 = [1, 2]`, `nums2 = [4, 5, 6]` | `3` | $n$ even cancels `nums2`; `nums1` survives with $1 \oplus 2 = 3$. |
+| Only the first length odd | `nums1 = [7, 8, 9]`, `nums2 = [1, 2]` | `3` | `nums1` cancels; $1 \oplus 2 = 3$ from `nums2`. |
+| Singleton on each side | `nums1 = [1]`, `nums2 = [2]` | `3` | Both lengths are odd, so the answer is simply $1 \oplus 2$. |
+| Singleton against three values | `nums1 = [5]`, `nums2 = [1, 2, 3]` | `5` | The lone `5` repeats 3 times and survives; $1 \oplus 2 \oplus 3 = 0$ disappears. |
+| Zero values | `nums1 = [0]`, `nums2 = [0]` | `0` | Zero has no set bits and cannot change an accumulator, but its multiplicities still count. |
+| Duplicate values | `nums1 = [2, 2]`, `nums2 = [10, 2, 5, 0]` | `0` | Counting is positional; `nums1`'s even length removes everything. |
+| Maximum magnitudes | values near $10^{9}$ | depends | Values need about 30 bits, so each XOR is a constant number of word operations. |
 
----
+## 8. Alternative methods and their trade-offs
 
-## 5. Algorithmic Correctness
+| Method | Time | Auxiliary space | Why it is not used here |
+|---|---|---|---|
+| Two nested loops over all pairs | $O(nm)$ | $O(1)$ if folded on the fly, $O(nm)$ if `nums3` is stored | Matches the definition literally, but $nm$ can reach $10^{10}$; the extra array cannot fit in memory. |
+| Frequency dictionary of all source values | $O(n + m)$ | $O(n + m)$ | Correct — keep only odd multiplicities — but it hashes every value to rediscover a parity that the array lengths already determine. |
+| XOR each array first, then gate on parity | $O(n + m)$ | $O(1)$ | Equally correct, but it always reads both arrays even when one group provably cancels. |
+| Parity-gated accumulation | $O(n + m)$ worst case | $O(1)$ | Chosen. It reads an array only when the opposite length is odd, and folds values directly into a single running accumulator. |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 9. Cost of the method: complexity derivation
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $n = \lvert\texttt{nums1}\rvert$ and $m = \lvert\texttt{nums2}\rvert$.
 
----
+*Time.* A single scan of `nums1` runs only when $m$ is odd, and a single scan of
+`nums2` runs only when $n$ is odd. Each scan performs one XOR per element, so the
+worst case — both lengths odd — costs $n + m$ XOR operations and the best case
+costs none. The parity tests themselves are constant-time bit inspections, and
+each value is at most $10^{9}$, so one XOR is a constant number of word
+operations under the standard word-RAM model. Therefore
 
-## 6. Traps This Instance Exposes
+$$
+T(n, m) = O(n + m).
+$$
 
-- **Generate all pairings:** Two nested loops directly mirror the definition but take $O(nm)$ time. Storing the generated values also takes $O(nm)$ space and is impossible at maximum lengths.
-- **Frequency dictionary:** Count how many times each source value contributes and keep odd frequencies. This eventually recovers the same parity rule while using unnecessary hashing and storage.
-- **XOR each array first:** Compute `xor1` and `xor2` unconditionally, then include `xor1` when $m$ is odd and `xor2` when $n$ is odd. This is equally correct but always scans both arrays; the exact code skips a scan when its contribution cancels.
-- **Both lengths even:** Every element from both arrays occurs an even number of times, so the result is zero regardless of contents.
-- **Both lengths odd:** Both array-wide XOR values survive and must be XORed together.
-- **One length odd:** Only the elements of the opposite array survive. It is easy to reverse this relationship accidentally: values repeat according to the other array's length.
-- **Single-element arrays:** With one element on each side, both lengths are odd and the result is simply the XOR of those two elements.
-- **Zeros:** Zero contributes no set bits and does not change an XOR accumulator, but its position still participates in the parity count. The formula handles it naturally.
-- **Duplicate values:** The proof counts positions, not distinct numeric values. Additional cancellation between equal surviving values is automatically performed by the XOR loops.
-- **Large Cartesian product:** The method's cost depends only on input lengths added together, not multiplied, which is the central reason it meets the constraints.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+This is asymptotically optimal whenever an array genuinely contributes: if $m$ is
+odd, changing any single element of `nums1` changes the answer, so no correct
+algorithm can avoid reading the whole array. When both lengths are even the answer
+is `0` without inspecting any value, because parity alone proves universal
+cancellation.
 
----
+*Auxiliary space.* The computation keeps one accumulator and a loop variable, and
+never allocates a list of size $nm$ or of size $n + m$. Auxiliary memory is
 
-## 7. Complexity Derivation
+$$
+S(n, m) = O(1).
+$$
 
-- **Time Complexity:** $O(n+m)$. Let $n = \lvert\texttt{nums1}\rvert$ and $m = \lvert\texttt{nums2}\rvert$. Each input array is scanned at most once. If an opposite length is even, its scan is skipped, but the worst case has both lengths odd and performs $n+m$ XOR operations. Time is therefore $O(n+m)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The only quantity that grows is the arithmetic width: with $B$-bit inputs the
+bit-level cost of a scan would be $O((n + m)B)$, but $B \le 30$ here, so the
+word-level bound stands.

@@ -1,126 +1,199 @@
 # Guided Example: Number of Common Factors
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and what must be counted
 
-- **Input:** `{"a": 12, "b": 6}`
-- **Required output:** `4`
+Take $a = 12$ and $b = 6$. The required answer is `4`, because exactly four
+positive integers divide both inputs. The whole lesson is about counting that set
+without ever testing the two inputs separately for each candidate.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Two definitions must be kept apart:
 
----
+- a **divisor** of $a$ is a positive integer $x$ with $a \bmod x = 0$;
+- a **common factor** of $a$ and $b$ is a positive integer $x$ with
+  $a \bmod x = 0$ **and** $b \bmod x = 0$.
 
-## 1. Instance & Teaching Goal
+The second condition is a conjunction, so the answer is the size of an
+intersection, not the size of either factor set.
 
-Given two positive integers `a` and `b`, return *the number of **common** factors of *`a`* and *`b`.
-
-The objective is to compute `4` from `{"a": 12, "b": 6}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Reduce two divisibility conditions to one
-
-A number `x` is a common factor of `a` and `b` when both remainders `a % x` and `b % x` are zero. The greatest common divisor
-
-`g = gcd(a, b)`
-
-collects exactly the shared divisibility information. A positive integer divides both `a` and `b` if and only if it divides `g`.
-
-For the forward direction, every common divisor divides every integer linear combination of `a` and `b`, including their greatest common divisor as produced by Euclid's algorithm. For the reverse direction, `g` divides both inputs by definition, so every divisor of `g` also divides both inputs.
-
-Therefore the answer is simply the number of positive divisors of `g`.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| $x$ | Divides 12? | Divides 6? | Common factor? |
 |---|---|---|---|
-| Input Slice | `{"a": 12, "b": 6}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| 1 | yes | yes | yes |
+| 2 | yes | yes | yes |
+| 3 | yes | yes | yes |
+| 4 | yes | no | no |
+| 6 | yes | yes | yes |
+| 12 | yes | no | no |
 
----
+There are $1, 2, 3, 6$, so the count is four. Notice how two of the six divisors of
+12 fall away, and none of the divisors of 6 is outside the divisor set of 12,
+because $6$ divides $12$.
 
-### Step 2: What the exact implementation actually counts
+## 2. Two divisibility conditions collapse into one
 
-The return expression is
+Let $\gcd(a, b)$ be the greatest common divisor. The key structural fact is
 
-`sum(g % x == 0 for x in range(1, g + 1))`.
+$$
+x \mid a \ \text{ and } \ x \mid b
+\quad\Longleftrightarrow\quad
+x \mid \gcd(a, b).
+$$
 
-The range visits every integer from 1 through `g`, inclusive. For each `x`, the divisibility test produces the Boolean value `true` when `x` divides `g` and `false` otherwise. In Python, Boolean values act as integers 1 and 0 in a sum. The generator therefore contributes one for each divisor and zero for each non-divisor.
+*Forward direction.* Any common divisor $x$ divides every integer combination
+$ua + vb$ with integers $u, v$. Euclid's algorithm produces $\gcd(a,b)$ as exactly
+such a combination, so $x$ divides it.
 
-Including both endpoints is essential. The integer 1 divides every positive number, and `g` always divides itself. A range ending at `g` rather than `g + 1` would incorrectly omit the latter.
+*Reverse direction.* The gcd divides $a$ and divides $b$ by definition, so any
+divisor of the gcd is a divisor of both inputs.
 
-For `a=12` and `b=6`, `gcd(12, 6)` is 6. Testing 1 through 6 accepts 1, 2, 3, and 6, so the sum is 4. For 25 and 30, the gcd is 5 and the accepted values are 1 and 5.
+The two directions are precisely `soundness` and `completeness` for this
+reduction: nothing is included that is not common, and nothing common is left
+out. The counting problem therefore becomes "how many positive divisors does
+$g = \gcd(a,b)$ have", and the only candidate values that must be examined are
+$1, 2, \dots, g$. No candidate above $g$ can be common, because the largest
+possible common factor is the gcd itself.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+## 3. Obtaining the gcd with Euclid's algorithm
+
+Euclid's identity
+
+$$
+\gcd(a, b) = \gcd(b,\ a \bmod b)
+$$
+
+preserves the common divisor set while shrinking the numbers: $a \bmod b$ is a
+divisor-preserving combination of $a$ and $b$, and the pair strictly decreases
+whenever the remainder is nonzero. Repeating until the remainder is zero leaves
+the answer as the last nonzero value.
+
+| Step | Pair | Division with remainder | New pair |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| 1 | $(180, 48)$ | $180 = 3 \cdot 48 + 36$ | $(48, 36)$ |
+| 2 | $(48, 36)$ | $48 = 1 \cdot 36 + 12$ | $(36, 12)$ |
+| 3 | $(36, 12)$ | $36 = 3 \cdot 12 + 0$ | remainder zero, stop |
+| 4 | — | $\gcd(180, 48) = 12$ | — |
 
----
+Both inputs are positive and at least 1, so the gcd is at least 1 and the
+candidate range $1 \dots g$ is never empty. There is no zero case to special-case.
 
-### Step 3: Why the gcd reduction is correct
+## 4. Worked trace of the instance
 
-Let `D(a,b)` denote the set of positive integers dividing both inputs, and let `D(g)` denote the positive divisors of their gcd. The divisibility argument gives `D(a,b) = D(g)`. The generator examines every member of the only possible containing range `1..g` and accepts exactly `D(g)`. Its sum is therefore `|D(g)| = |D(a,b)|`, the requested number of common factors.
+For $a = 12$ and $b = 6$, the first division already terminates:
+$12 = 2 \cdot 6 + 0$, so $g = 6$. Every candidate from 1 through $g$ is then tested
+once for divisibility of $g$.
 
-Computing the gcd is not strictly necessary for the small constraints; one could test divisibility of both inputs directly. It still clarifies the mathematics and avoids scanning beyond the greatest possible common factor.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| $x$ | $g \bmod x$ for $g = 6$ | Counts as a factor? | Running count |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `4` |
+| 1 | 0 | yes | 1 |
+| 2 | 0 | yes | 2 |
+| 3 | 0 | yes | 3 |
+| 4 | 2 | no | 3 |
+| 5 | 1 | no | 3 |
+| 6 | 0 | yes | 4 |
 
----
+The scan includes both endpoints, and both are essential. The value 1 divides
+every positive integer, and $g$ always divides itself, so a scan that stopped
+before $g$ would undercount by one.
 
-## 4. Complete Execution Trace
+The same scan applied to the gcd $12$ of the pair $(48, 180)$ produces six
+factors: $1, 2, 3, 4, 6, 12$. Whether the gcd is large or small, the procedure is
+identical; only the number of candidates changes.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
+## 5. Cross-checking against several instances
+
+| $a$ | $b$ | $g = \gcd(a,b)$ | Prime factorisation of $g$ | Divisors of $g$ | Answer |
+|---|---|---|---|---|---|
+| 12 | 6 | 6 | $2 \cdot 3$ | $1, 2, 3, 6$ | 4 |
+| 25 | 30 | 5 | $5$ | $1, 5$ | 2 |
+| 48 | 180 | 12 | $2^2 \cdot 3$ | $1, 2, 3, 4, 6, 12$ | 6 |
+| 8 | 32 | 8 | $2^3$ | $1, 2, 4, 8$ | 4 |
+| 17 | 19 | 1 | — | $1$ | 1 |
+| 36 | 36 | 36 | $2^2 \cdot 3^2$ | nine values | 9 |
+| 1000 | 1000 | 1000 | $2^3 \cdot 5^3$ | sixteen values | 16 |
+
+The last two rows show why the answer is not simply "the number of factors of the
+smaller input": when the inputs are equal, every factor of that value is shared,
+and when they are coprime, only 1 is shared. The row $(8, 32)$ shows the case where
+one input divides the other, so the gcd is the smaller input.
+
+The $(36, 36)$ row also demonstrates that a divisor count can be odd. Divisors
+usually come in pairs $x$ and $g/x$, and the pair collapses to a single value
+exactly when $x = \sqrt{g}$. Since $36 = 6^2$, the value 6 is counted once, which
+is why 36 has nine divisors rather than ten.
+
+## 6. Why the reasoning is correct
+
+**Invariant of the enumeration.** Let $D$ be the set of candidates that have been
+accepted so far. After every tested candidate, $D$ is exactly the set of divisors
+of $g$ among the values tested so far. This holds vacuously before the scan, and
+the acceptance rule $g \bmod x = 0$ adds $x$ precisely when $x$ divides $g$. When
+the scan finishes, $D$ is the complete divisor set of $g$.
+
+**Exhaustiveness.** Every common factor is at most $g$, since the gcd is the
+largest common factor. The scan enumerates every integer in $[1, g]$, so no
+possible common factor is skipped. No candidate outside that range could ever
+have been accepted, so the range is not merely convenient, it is exactly the
+search space.
+
+**Soundness.** Every accepted candidate divides $g$, and $g$ divides both $a$ and
+$b$; divisibility is transitive, so every accepted candidate divides both inputs.
+The count therefore never includes a value that fails the definition.
+
+**Equality of the two counts.** By the reduction of section 2, the common factor
+set of $(a,b)$ equals the divisor set of $g$. The scan returns the cardinality of
+the latter, which is therefore the cardinality of the former — the required
+answer. The correctness does not depend on the sign of anything, because the
+constraints guarantee $a, b \ge 1$.
+
+## 7. Boundary conditions this instance family exposes
+
+| Situation | Instance | Answer | Reason |
 |---|---|---|---|
-| Initialization | Initial input `{"a": 12, "b": 6}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `4` | Verified |
+| Minimum inputs | $(1, 1)$ | 1 | $\gcd = 1$, and 1 divides itself. |
+| Coprime inputs | $(17, 19)$ | 1 | The only shared factor of distinct primes is 1. |
+| One input divides the other | $(8, 32)$ | 4 | The gcd is 8, so the answer is the divisor count of 8. |
+| Equal inputs | $(1000, 1000)$ | 16 | The gcd is 1000 and every factor is shared. |
+| Perfect-square gcd | $(36, 36)$ | 9 | The square-root divisor pairs with itself and is counted once by a plain scan. |
+| Prime gcd | $(25, 30)$ | 2 | $\gcd = 5$, so only 1 and 5 qualify. |
+| Maximum inputs | $(1000, 1000)$ | 16 | The largest possible gcd, and therefore the longest scan, is 1000 candidates. |
+| Endpoint inclusion | any instance | — | Both 1 and $g$ are divisors; a scan that omits either endpoint undercounts. |
 
----
+## 8. Alternative methods and their trade-offs
 
-## 5. Algorithmic Correctness
+| Method | Time | Auxiliary space | Why it is not used here |
+|---|---|---|---|
+| Test both inputs directly for every $x$ up to $\min(a,b)$ | $O(\min(a,b))$ | $O(1)$ | Correct but repeats two modulo tests per candidate and may scan past the gcd, whose divisors are the only ones that can qualify. |
+| Enumerate divisor pairs up to $\sqrt{g}$ | $O(\sqrt{g})$ | $O(1)$ | Asymptotically the better scan: whenever $x$ divides $g$, both $x$ and $g/x$ are divisors, except when $x^2 = g$ and the two coincide. It needs an explicit square case, which the linear scan avoids. |
+| Prime factorisation with the divisor-count product | $O(\sqrt{g})$ | $O(1)$ | If $g = p_1^{e_1} \cdots p_t^{e_t}$, the count is $\prod_r (e_r + 1)$. Elegant and general, but it needs trial division and exponent bookkeeping for a bound of only $g \le 1000$. |
+| Reduce to the gcd, then scan $1 \dots g$ | $O(\log \min(a,b) + g)$ | $O(1)$ | Chosen. It removes the redundant second divisibility test, bounds the search space by the gcd, and needs no special case for square roots. |
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 9. Cost of the method: complexity derivation
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+Let $g = \gcd(a, b)$.
 
----
+*Time.* Euclid's algorithm runs in $O(\log \min(a,b))$ divisions: the remainder
+sequence decreases at least geometrically, so the number of steps is logarithmic
+in the smaller input. The enumeration then performs one modulo operation for each
+integer from 1 through $g$, which is $g$ constant-cost tests. Adding the two
+phases,
 
-## 6. Traps This Instance Exposes
+$$
+T(a, b) = O\bigl(\log \min(a,b)\bigr) + O(g) = O(g),
+$$
 
-- **Complementary divisor pairs:** Scan $x$ only while $x^2 \le g$. When $x$ divides $g$, count both $x$ and $g/x$, except count one when they are equal. This is the genuine $O(\sqrt g)$ method described by the manifest.
-- **Prime factorization formula:** If $g = p_1^{e_1}\cdots p_t^{e_t}$, then its divisor count is $\prod_{r=1}^{t}(e_r+1)$. Trial factorization takes $O(\sqrt g)$ time and generalizes well, but is more code than needed here.
-- **Test both inputs directly:** Scan through `min(a, b)` and check `a % x == 0 and b % x == 0`. It is correct but may scan farther than `g` and repeats two modulo operations per candidate.
-- **One input divides the other:** The gcd is the smaller input, so the answer is simply the divisor count of that smaller value.
-- **Coprime inputs:** Their gcd is 1. The range tests only 1 and returns one common factor.
-- **Equal inputs:** Their gcd is that common value, so every factor of the number is shared.
-- **Input value 1:** The gcd must be 1, and the answer is 1 because only factor 1 is possible.
-- **Perfect-square gcd:** The exact full scan counts the square-root divisor once naturally. A complementary-pair alternative must add a special case to avoid double-counting it.
-- **Positive inputs:** There is no need to define factors of zero or normalize signs because both values are at least 1.
-- **Boolean summation:** Python's `true == 1` and `false == 0` make the compact expression valid; in another language an explicit conditional increment may be clearer.
-- **Manifest mismatch:** The protected solution is a linear scan through $g$, not a square-root divisor-pair scan. Its explanation and performance expectations should follow the source.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+because $g$ dominates the logarithm for every input in range. Under the stated
+constraint $a, b \le 1000$ we have $g \le 1000$, so the scan performs at most a
+thousand modulo operations — far below any practical limit. The bound is linear in
+the gcd rather than in the inputs, which is exactly the improvement the reduction
+buys: the pair $(8, 32)$ scans eight candidates instead of thirty-two.
 
----
+*Auxiliary space.* The computation keeps the current candidate, the accumulated
+count, and the pair of values that Euclid's algorithm is reducing — a constant
+number of integers. No table indexed by $g$ or by a divisor is built, and the
+input pair is never copied. Auxiliary memory is therefore
 
-## 7. Complexity Derivation
+$$
+S(a, b) = O(1).
+$$
 
-- **Time Complexity:** $O(sqrt(g))$. Let $g=\gcd(a,b)$. Computing `gcd` takes $O(\log \min(a,b))$ time with Euclid's algorithm. The generator then performs one modulo operation for every integer from 1 through $g$, taking $O(g)$ time. The total is $O(\log \min(a,b) + g)$, which simplifies to $O(g)$ because $g$ is the dominating term for the full scan.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+If the same gcd were needed for many queries, caching it would trade space for
+time, but a single query needs no storage at all.

@@ -1,134 +1,180 @@
 # Guided Example: Maximum Sum of an Hourglass
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The shape and the instance
 
-- **Input:** `{"grid": [[6, 2, 1, 3], [4, 2, 1, 5], [9, 2, 8, 7], [4, 1, 2, 9]]}`
-- **Required output:** `30`
+An **hourglass** is a seven-cell figure that occupies a full $3 \times 3$ bounding
+box but omits the two middle-row side cells. It cannot be rotated, and it must lie
+entirely inside the matrix. We trace the four-by-four grid whose four rows are
+`[6, 2, 1, 3]`, `[4, 2, 1, 5]`, `[9, 2, 8, 7]` and `[4, 1, 2, 9]`, so $m = 4$ and
+$n = 4$. Its required answer is `30`.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+## 2. Anchors: one integer pair per hourglass
 
----
+Every hourglass has exactly one cell in its middle row, and call that cell the
+**anchor** `grid[i][j]`. The figure then needs one row above and below the anchor,
+and one column to the left and right, so a fully contained hourglass exists at
+anchor $(i, j)$ exactly when
 
-## 1. Instance & Teaching Goal
+$$
+1 \le i \le m - 2, \qquad 1 \le j \le n - 2 .
+$$
 
-You are given an `m x n` integer matrix `grid`.
+Because the mapping from placement to anchor is a bijection, enumerating anchors
+enumerates placements — each exactly once, with no duplicates and no omissions.
+For the four-by-four grid there are $m - 2 = 2$ valid rows and $n - 2 = 2$ valid
+columns, so four anchors: $(1,1)$, $(1,2)$, $(2,1)$, $(2,2)$.
 
-The objective is to compute `30` from `{"grid": [[6, 2, 1, 3], [4, 2, 1, 5], [9, 2, 8, 7], [4, 1, 2, 9]]}` while avoiding redundant calculations and unnecessary overhead.
+| | col 0 | col 1 | col 2 | col 3 |
+|---|---|---|---|---|
+| **row 0** | 6 | 2 | 1 | 3 |
+| **row 1** | 4 | **2** | 1 | 5 |
+| **row 2** | 9 | 2 | 8 | 7 |
+| **row 3** | 4 | 1 | 2 | 9 |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+The bold `2` at row 1, column 1 is the first anchor. Row 0, row 3, column 0 and
+column 3 are *not* excluded from the matrix — they may contain hourglass cells —
+but they can never hold an anchor, because an anchor needs a full ring of
+neighbours around it.
 
----
+## 3. The fixed mask and the "square minus two" identity
 
-## 2. Conceptual Foundation & Invariants
+Relative to the anchor, the seven included offsets are the whole $3 \times 3$
+block apart from the two horizontal neighbours of the anchor. That mask is fixed
+by the definition, which is what "cannot be rotated" means concretely: the
+excluded cells are always the ones sharing the anchor's row, never the ones
+sharing its column.
 
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Offset $(di, dj)$ | Cell | In the hourglass? |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $(-1, -1), (-1, 0), (-1, 1)$ | top row of the box | yes, all three |
+| $(0, -1)$ | left neighbour of the anchor | no |
+| $(0, 0)$ | the anchor | yes |
+| $(0, 1)$ | right neighbour of the anchor | no |
+| $(1, -1), (1, 0), (1, 1)$ | bottom row of the box | yes, all three |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Describe the seven-cell shape precisely
-
-An hourglass occupies a three-by-three bounding box. It includes all three cells in the top row, only the center cell in the middle row, and all three cells in the bottom row. The middle-left and middle-right cells do not belong to the shape.
-
-The exact solution identifies an hourglass by its center `grid[i][j]`. A legal center cannot lie on the outer border because the shape needs one row above and below and one column to the left and right. Therefore `i` ranges from 1 through `m - 2` and `j` ranges from 1 through `n - 2`. Python expresses these intervals as `range(1, m - 1)` and `range(1, n - 1)`.
-
-Every legal hourglass has exactly one center, and every center in those loops defines exactly one fully contained hourglass. Enumerating centers therefore visits every possible placement once.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"grid": [[6, 2, 1, 3], [4, 2, 1, 5], [9, 2, 8, 7], [4, 1, 2, 9]]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
-
----
-
-### Step 2: Reuse the surrounding three-by-three square
-
-For one center, the generator inside `sum` visits all nine cells with row indices `i-1` through `i+1` and column indices `j-1` through `j+1`. That total includes the seven hourglass cells plus the two unwanted middle-side cells `grid[i][j - 1]` and `grid[i][j + 1]`.
-
-The code initializes
-
-`s = -grid[i][j - 1] - grid[i][j + 1]`
-
-and then adds the complete three-by-three total. Algebraically, the two unwanted cells occur once positively and once negatively, so they cancel. The remaining value is exactly
+This gives a convenient way to evaluate a placement: add all **nine** cells of the
+bounding box, then subtract the two cells that do not belong.
 
 $$
-\begin{aligned}
-&\texttt{grid}[i-1][j-1]
-+\texttt{grid}[i-1][j]
-+\texttt{grid}[i-1][j+1] \\
-&+\texttt{grid}[i][j] \\
-&+\texttt{grid}[i+1][j-1]
-+\texttt{grid}[i+1][j]
-+\texttt{grid}[i+1][j+1].
-\end{aligned}
+\text{hourglass}(i, j)
+= \Bigl(\sum_{di=-1}^{1} \sum_{dj=-1}^{1} \texttt{grid}[i+di][j+dj]\Bigr)
+- \texttt{grid}[i][j-1] - \texttt{grid}[i][j+1] .
 $$
 
-This “full square minus two cells” formulation is equivalent to spelling out all seven additions. It also makes the fixed mask visible: everything in the bounding square is selected except the two sides of the middle row.
+The two excluded cells appear once positively and once negatively, so they cancel
+exactly. The identity is an algebraic rearrangement, not an approximation: reading
+a rectangular block is cheaper to describe, and the subtraction removes precisely
+the two unwanted readings.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
+## 4. Worked trace of the four anchors
+
+Each row below is a complete placement evaluation. The "box total" column is the
+sum of all nine cells of the $3 \times 3$ bounding box, and the "excluded" column
+names the two cells the mask removes.
+
+| Anchor $(i, j)$ | Box rows, columns | Box total | Excluded cells | Hourglass sum | Running maximum |
+|---|---|---|---|---|---|
+| $(1, 1)$ | rows 0–2, cols 0–2 | 35 | `grid[1][0] = 4`, `grid[1][2] = 1` | $35 - 4 - 1 = 30$ | 30 |
+| $(1, 2)$ | rows 0–2, cols 1–3 | 31 | `grid[1][1] = 2`, `grid[1][3] = 5` | $31 - 2 - 5 = 24$ | 30 |
+| $(2, 1)$ | rows 1–3, cols 0–2 | 33 | `grid[2][0] = 9`, `grid[2][2] = 8` | $33 - 9 - 8 = 16$ | 30 |
+| $(2, 2)$ | rows 1–3, cols 1–3 | 37 | `grid[2][1] = 2`, `grid[2][3] = 7` | $37 - 2 - 7 = 28$ | 30 |
+
+The maximum over the four placements is **30**, achieved at anchor $(1,1)$, whose
+seven cells are $6, 2, 1$ in row 0, the anchor $2$ in row 1, and $9, 2, 8$ in
+row 2:
+
+$$
+6 + 2 + 1 + 2 + 9 + 2 + 8 = 30 .
+$$
+
+Two features of this trace matter. First, the largest *box* total (37, at anchor
+$(2,2)$) does **not** produce the largest hourglass, because that box hides the
+large values $2$ and $7$ in positions the mask discards. Second, the leftovers
+$9$ and $8$ at row 2 are the largest values in the grid, and they are dropped by
+every placement whose anchor sits in row 2; only anchors in row 1 can reach them.
+
+The second official instance makes the anchor count obvious: for the $3 \times 3$
+grid $[[1,2,3],[4,5,6],[7,8,9]]$ the ranges $1 \le i \le 1$ and $1 \le j \le 1$
+admit exactly one anchor, whose box totals 45 and whose excluded cells are 4 and
+6, giving $45 - 4 - 6 = 35$.
+
+## 5. Why the reasoning is correct
+
+**Invariant of the accumulator.** Process anchors in row-major order and keep a
+single running maximum. After every processed anchor, the running maximum equals
+the largest hourglass sum over the anchors visited so far. It starts at `0`; the
+initial value is safe because every matrix entry is non-negative, so every
+hourglass sum is non-negative and the supremum over an empty set cannot
+accidentally become the answer. Each step replaces the running value by
+$\max(\text{running}, \text{hourglass}(i,j))$, which preserves the invariant by
+construction.
+
+**Soundness of one evaluation.** For a fixed anchor, the nine-cell sum includes
+every hourglass cell exactly once (they all lie in the bounding box) and the two
+excluded cells exactly once. Subtracting each excluded cell once leaves the seven
+hourglass cells with coefficient 1 and every other cell with coefficient 0. The
+computed value is therefore exactly the hourglass sum, never an over- or
+under-count.
+
+**Completeness.** The loops over $1 \le i \le m-2$ and $1 \le j \le n-2$ visit every
+legal anchor exactly once. Since anchors and placements are in bijection, every
+hourglass in the matrix is evaluated. When both loops finish, the invariant's
+"anchors visited so far" is the whole set, so the running maximum is the global
+maximum — the value to return.
+
+**Boundary safety.** Every read uses offsets in $\{-1, 0, 1\}$ from an anchor that
+satisfies $1 \le i \le m-2$ and $1 \le j \le n-2$, so the row indices stay in
+$[0, m-1]$ and the column indices in $[0, n-1]$. No placement is ever evaluated
+partially outside the matrix.
+
+## 6. Boundary conditions this instance family exposes
+
+| Situation | Instance | Answer | Reason |
 |---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Minimum square grid | `[[1,2,3],[4,5,6],[7,8,9]]` | 35 | Exactly one anchor exists; the loops admit index 1 only. |
+| Large cells deliberately excluded | `[[1,1,1],[100,2,100],[1,1,1]]` | 8 | The two middle side cells are absent from the shape, so 100 and 100 do not count; the box total 208 minus 200 gives 8. |
+| All zeros | any all-zero $3 \times 3$ grid | 0 | Every hourglass sums to zero, and the accumulator's starting value is already correct. |
+| Three rows, five columns | `[[9,0,1,2,3],[1,8,1,8,1],[7,0,6,0,5]]` | 31 | Row range collapses to a single index while the column range keeps three anchors; the best is $(1,1)$ with $33 - 1 - 1$. |
+| Five rows, three columns | `[[1,1,1],[0,1,0],[1,1,1],[0,9,0],[2,2,2]]` | 18 | The answer appears only at the last anchor, $(3,1)$, so an early-exit heuristic would fail it. |
+| Maximum cell values | seven cells at $10^{6}$ | $7 \times 10^{6}$ | A single hourglass contains seven cells, so the largest possible answer is $7 \cdot 10^{6}$; no overflow risk in ordinary integer types. |
+| Border anchor | any cell in row 0, row $m-1$, column 0 or column $n-1$ | not legal | Such a cell has no complete ring of neighbours, and the loop bounds exclude it. |
+| Rotated shape | vertical neighbours removed instead | invalid | The definition fixes which two cells are omitted; swapping the mask would describe a different figure. |
 
----
+## 7. Alternative methods and their trade-offs
 
-### Step 3: Keep the largest placement
-
-The accumulator `ans` starts at zero. This is safe because every matrix entry is non-negative, so every hourglass sum is also non-negative. After computing `s` for a center, `ans = max(ans, s)` retains the greatest sum among all placements examined so far.
-
-After the first center, the invariant is that `ans` equals that first hourglass sum or zero; because the sum is non-negative, it equals the sum. Each later update compares the prior maximum with the newly encountered placement. By induction, after any loop prefix `ans` is the maximum over exactly those hourglasses already visited. When both loops finish, all legal centers have been visited, so `ans` is the global maximum.
-
-For a three-by-three matrix, each range contains only the center index 1. The generator sums all nine cells and subtracts the two middle-side cells, producing the only hourglass. For `[[1,2,3],[4,5,6],[7,8,9]]`, the full square totals 45; subtracting 4 and 6 gives 35.
-
-| Parameter | State Before Finalization | Action | Final Value |
+| Method | Time | Auxiliary space | Why it is not used here |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `30` |
+| Spell out all seven additions per anchor | $O(mn)$ | $O(1)$ | Correct and slightly cheaper in constant factors, but it hides the fact that the shape is a rectangle with a fixed two-cell hole. |
+| Two-dimensional prefix sums, then two row queries | $O(mn)$ | $O(mn)$ | The top and bottom segments have fixed length 3, so a prefix matrix buys no asymptotic improvement while adding a full-grid table. |
+| Sliding three-row strip sums | $O(mn)$ | $O(n)$ | Maintains length-three column sums to avoid re-adding, at the cost of bookkeeping for a shape of only seven cells. |
+| Enumerate anchors, sum the bounding box, subtract the two excluded cells | $O(mn)$ | $O(1)$ | Chosen. Exactly $(m-2)(n-2)$ anchors with a constant nine-cell read each, and no size-dependent storage. |
 
----
+## 8. Cost of the method: complexity derivation
 
-## 4. Complete Execution Trace
+Let $m$ and $n$ be the grid dimensions.
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"grid": [[6, 2, 1, 3], [4, 2, 1, 5], [9, 2, 8, 7], [4, 1, 2, 9]]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `30` | Verified |
+*Time.* The anchor loops iterate over $m - 2$ rows and $n - 2$ columns, so there
+are $(m-2)(n-2)$ placements. Each placement reads exactly nine cells — a fixed
+number — and performs a constant number of additions and comparisons. Hence
 
----
+$$
+T(m, n) = 9 \cdot (m-2)(n-2) + O(1) = O(mn).
+$$
 
-## 5. Algorithmic Correctness
+The constant 9 is the shape's size, not a function of the input. This bound is also
+tight for the problem: a constant fraction of the grid's cells participate in some
+hourglass, and in a zero-filled grid a correct algorithm cannot know the maximum
+without inspecting them, so $\Omega(mn)$ inspections are necessary in the worst
+case and the method matches that lower bound.
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+*Auxiliary space.* The computation holds a running maximum, two loop indices, and
+the temporary nine-cell total; nothing is allocated per row or per placement. The
+input grid is read but never modified. Therefore
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+$$
+S(m, n) = O(1).
+$$
 
----
-
-## 6. Traps This Instance Exposes
-
-- **Write all seven additions explicitly:** This avoids summing the two excluded cells only to subtract them and may have a smaller constant factor. The asymptotic bounds are identical, while the exact source emphasizes the three-by-three mask.
-- **Use two-dimensional prefix sums:** A prefix-sum matrix can obtain the top and bottom row segments quickly, but each segment already has fixed length three. Preprocessing adds $O(mn)$ space without improving the $O(mn)$ total time.
-- **Sliding row sums:** Maintain length-three sums for the top and bottom rows as the center moves horizontally. It can reduce repeated additions but adds bookkeeping for a shape containing only seven cells.
-- **Exactly three rows or columns:** There is only one legal center along that dimension. The ranges correctly include it once.
-- **All zeros:** Every hourglass sum is zero, and the initialized answer remains the correct maximum.
-- **Maximum values:** One sum contains only seven entries, so its mathematical maximum is $7 \cdot 10^6$. Python has no overflow concern.
-- **Border centers:** A cell on row 0, row $m-1$, column 0, or column $n-1$ cannot be a center. The loop bounds exclude all of them.
-- **Unrotated shape:** The two removed cells are specifically the horizontal neighbors of the center. Removing vertical neighbors would describe a rotated and invalid shape.
-- **Rectangular rather than square grids:** Row and column loop bounds are independent, so $m$ and $n$ need not match.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(9(m-2)$. There are $(m-2)(n-2)$ legal centers. For each one, the nested generator visits exactly nine cells, and the surrounding arithmetic is constant time. Nine is a fixed shape size, so total time is
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+A prefix-sum or sliding-strip variant would raise this to $O(mn)$ or $O(n)$
+respectively without changing the time bound, which is why the constant-space form
+is preferred here.
