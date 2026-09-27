@@ -30,7 +30,7 @@ Find all words in the dictionary that can be formed by sequentially adjacent ort
 
 Tracing the successful candidates:
 1. `"oath"`: Starts at $(0, 0)$ (`'o'`) $\to (0, 1)$ (`'a'`) $\to (1, 1)$ (`'t'`) $\to (2, 1)$ (`'h'`). All 4 cells are adjacent. **Found.**
-2. `"eat"`: Starts at $(1, 0)$ (`'e'`) $\to (0, 0)$ (`'o'` fails, but $(1, 1)$ is `'t'`, $(2, 0)$ is `'a'`) $\implies (1, 0)$ (`'e'`) $\to (2, 0)$ (`'a'` fails, $(2, 0)$ is `'i'`), $(1, 3)$ (`'e'`) $\to (0, 3)$ (`'n'`), $(1, 0)$ (`'e'`) $\to (0, 0)$ (`'o'`) $\dots$
+2. `"eat"`: Starts at $(1, 0)$ (`'e'`) $\to (0, 0)$ (`'o'` fails, but $(1, 1)$ is `'t'`, $(2, 0)$ is `'i'`) $\implies (1, 0)$ (`'e'`) $\to (2, 0)$ (`'a'` fails, $(2, 0)$ is `'i'`), $(1, 3)$ (`'e'`) $\to (0, 3)$ (`'n'`), $(1, 0)$ (`'e'`) $\to (0, 0)$ (`'o'`) $\dots$
    Examine cell $(1, 0)$ (`'e'`) $\to (0, 0)$ (`'o'`), or $(1, 3)$ (`'e'`) $\to (1, 2)$ (`'a'`) $\to (1, 1)$ (`'t'`)!
    Path: $(1, 3)$ (`'e'`) $\to (1, 2)$ (`'a'`) $\to (1, 1)$ (`'t'`). **Found.**
 3. `"pea"`: Letter `'p'` does not exist anywhere on the board. **Not found.**
