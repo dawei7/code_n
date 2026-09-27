@@ -25,6 +25,12 @@ BOILERPLATE_MARKERS = (
     "Target Answer | Completed",
 )
 
+# A GitHub-Flavored Markdown delimiter row, with optional alignment colons:
+# `|---|:---:|---:|`. The previous `content.count("|---")` test missed every
+# table whose separator cells carry alignment colons, because `|:---:|` does not
+# contain the literal `|---`.
+TABLE_DELIMITER_ROW = re.compile(r"^\s*\|?\s*:?-{1,}:?\s*(?:\|\s*:?-{1,}:?\s*)*\|?\s*$")
+
 FORBIDDEN_CODE_PATTERNS = [
     (re.compile(r"class\s+Solution\b"), "class Solution"),
     (re.compile(r"def\s+[a-zA-Z0-9_]+\s*\("), "def function_name("),
@@ -35,6 +41,29 @@ FORBIDDEN_CODE_PATTERNS = [
     (re.compile(r"```javascript"), "```javascript fence"),
     (re.compile(r"```sql"), "```sql fence"),
 ]
+
+
+def count_tables(content: str) -> int:
+    """Count real GitHub-Flavored Markdown tables in a guide.
+
+    A table is a header row immediately followed by a delimiter row such as
+    ``|---|:---:|---:|``. Counting delimiter rows requires the preceding line to
+    be a pipe-delimited header, and skips fenced blocks so that a table shown as
+    an example inside a code fence is not counted as a table of the lesson.
+    """
+    tables = 0
+    in_fence = False
+    lines = content.splitlines()
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence or index == 0 or not TABLE_DELIMITER_ROW.match(line):
+            continue
+        header = lines[index - 1].strip()
+        if header.startswith("|") and header.endswith("|") and "|" in header[1:-1]:
+            tables += 1
+    return tables
 
 
 def audit() -> int:
@@ -69,8 +98,9 @@ def audit() -> int:
         if len(content) < 1800:
             too_short.append((pkg.name, len(content)))
 
-        if content.count("|---") < 2:
-            insufficient_tables.append((pkg.name, content.count("|---")))
+        table_count = count_tables(content)
+        if table_count < 2:
+            insufficient_tables.append((pkg.name, table_count))
 
         for marker in BOILERPLATE_MARKERS:
             if marker in content:

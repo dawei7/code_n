@@ -67,17 +67,8 @@ For every tuple $p \in \text{Person}$:
    (p.\text{firstName}, \, p.\text{lastName}, \, \text{NULL}, \, \text{NULL})
    $$
 
-### SQL Query Specification
-```sql
-SELECT 
-    p.firstName, 
-    p.lastName, 
-    a.city, 
-    a.state
-FROM Person p
-LEFT JOIN Address a 
-    ON p.personId = a.personId;
-```
+### Relational Formulation
+Reaching the required relation takes exactly two operations over the shared key `personId`: a join predicate that pairs every `Person` tuple with its matching `Address` tuples while retaining left tuples that have no partner, followed by a projection onto the four required attributes `firstName`, `lastName`, `city`, and `state`. Which join type delivers the retention guarantee is the decisive choice this instance teaches; the concrete query belongs to the Reference workflow.
 
 > **Invariant.** The number of rows emitted in the result set is at least equal to $|\text{Person}|$. Every person in `Person` appears in the output with their exact name, regardless of address presence.
 
@@ -126,24 +117,18 @@ Result set complete!
 
 ## 4. Complete Execution Trace
 
-```text
-Person Table:                  Address Table:
-(1, "Wang", "Allen")           (1, 2, "New York City", "New York")
-(2, "Alice", "Bob")            (2, 3, "Leetcode", "California")
+| Tuple | Source Relation | Join Decision | Retained? |
+|:---|:---|:---|:---|
+| `(1, "Wang", "Allen")` | `Person` | No `Address` tuple has `personId = 1`, so the join predicate produces no pairing | Yes, padded with `null` address columns |
+| `(2, "Alice", "Bob")` | `Person` | The `Address` tuple `(1, 2, "New York City", "New York")` satisfies $P.\text{personId} = A.\text{personId}$ | Yes, with the matched address attributes |
+| `(2, 3, "Leetcode", "California")` | `Address` | Right-side tuple whose `personId = 3` never appears in `Person` | No, a left outer join ignores unmatched right-side tuples |
 
-Left Join on personId:
-Person 1: No match in Address  -> ["Allen", "Wang", NULL, NULL]
-Person 2: Matches Address 1    -> ["Bob", "Alice", "New York City", "New York"]
-Address 2 (personId=3): Ignored (orphan address)
+The projected result set, in `Person` order, is:
 
-Output Table:
-+-----------+----------+---------------+----------+
-| firstName | lastName | city          | state    |
-+-----------+----------+---------------+----------+
-| Allen     | Wang     | null          | null     |
-| Bob       | Alice    | New York City | New York |
-+-----------+----------+---------------+----------+
-```
+| `firstName` | `lastName` | `city` | `state` |
+|:---|:---|:---|:---|
+| `"Allen"` | `"Wang"` | `null` | `null` |
+| `"Bob"` | `"Alice"` | `"New York City"` | `"New York"` |
 
 | Source `Person` Row | `personId` | Address Match Condition | Address Row Matched | Result Columns (`firstName, lastName, city, state`) |
 |:---|:---:|:---:|:---:|:---|
