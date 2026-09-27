@@ -31,6 +31,12 @@ BOILERPLATE_MARKERS = (
 # contain the literal `|---`.
 TABLE_DELIMITER_ROW = re.compile(r"^\s*\|?\s*:?-{1,}:?\s*(?:\|\s*:?-{1,}:?\s*)*\|?\s*$")
 
+# A complexity discussion may be titled in words rather than with the word
+# "complexity" itself; "Time and auxiliary space" satisfies the contract.
+COMPLEXITY_HEADING = re.compile(
+    r"(?mi)^#{1,6}.*\b(?:time\s+and\s+(?:auxiliary\s+)?space|running\s+time\s+and\s+space)\b"
+)
+
 FORBIDDEN_CODE_PATTERNS = [
     (re.compile(r"class\s+Solution\b"), "class Solution"),
     (re.compile(r"def\s+[a-zA-Z0-9_]+\s*\("), "def function_name("),
@@ -128,14 +134,21 @@ def audit() -> int:
         ):
             missing_sections.append((pkg.name, "Missing Correctness/Invariant section"))
 
-        if not any(
-            k in content
-            for k in (
-                "Complexity",
-                "complexity",
-                "Cost of the method",
-                "Complexity Derivation",
+        # The complexity discussion counts under any of its conventional titles.
+        # A heading like "## 9. Time and auxiliary space" states the requirement
+        # exactly, so rejecting it over the missing word "complexity" would be a
+        # false failure that pushes authors toward worse headings.
+        if not (
+            any(
+                k in content
+                for k in (
+                    "Complexity",
+                    "complexity",
+                    "Cost of the method",
+                    "Complexity Derivation",
+                )
             )
+            or COMPLEXITY_HEADING.search(content)
         ):
             missing_sections.append((pkg.name, "Missing Complexity section"))
 
