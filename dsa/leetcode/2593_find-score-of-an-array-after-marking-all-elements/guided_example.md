@@ -58,7 +58,7 @@ Each loop iteration looks at the top entry. A stale key is discarded and the nex
 
 The simulation stops after round 3, because every index is marked even though the heap still holds entries. The final score is $1 + 2 + 4 = 7$.
 
-Round 2 is the heart of the lesson. The smallest key overall is `(2, 0)`, but index 0 was consumed as a neighbour in round 1. A simulation that popped the smallest key unconditionally would add 2 a second time and report 9 for this input. The equal-valued entry `(2, 5)` is the one that actually satisfies the rules, and it is reachable only after the stale key is removed.
+Round 2 is the heart of the lesson. The smallest key overall is `(2, 0)`, but index 0 was consumed as a neighbour in round 1. A simulation that popped the smallest key unconditionally would add 2 a second time and report 8 for this input. The equal-valued entry `(2, 5)` is the one that actually satisfies the rules, and it is reachable only after the stale key is removed.
 
 ## 5. Where the score comes from, index by index
 
@@ -87,13 +87,13 @@ Since marking is permanent and choosing an index marks it, no index can contribu
 
 | Strategy | Score on `[2,1,3,4,5,2]` | Verdict |
 |:---|:---:|:---|
-| Pop the smallest key without consulting the marked array | 9 | Wrong: it selects index 0 in round 2, which the rules already marked |
+| Pop the smallest key without consulting the marked array | 8 | Wrong: it selects index 0 in round 2, which the rules already marked |
 | Rescan the array for the minimum each round | 7 | Correct but $O(n^2)$, roughly $10^{10}$ comparisons at $n = 10^{5}$ |
 | Sort indices by `(value, index)` once and sweep with a marked array | 7 | Correct; logically the heap without the heap, and it needs the same staleness check |
 | Delete both neighbours from the heap eagerly when marking | 7 | Correct, but positional deletion from a binary heap is not free; lazy marking is cheaper |
 | Take the $\lceil n/2 \rceil$ smallest values of the array | 5 | Wrong: neighbourhoods swallow values by position, so which values count depends on adjacency |
 
-A second trap is the tie rule itself. On `[2,3,5,1,3,2]` the two trailing 2s tie: the leftmost unmarked one, index 0, is chosen in the second round and marks index 1, after which only index 5 remains and contributes 2. Choosing the other 2 first would leave index 0 to be chosen later and would change the score. The order $(\text{value}, \text{index})$ is part of the contract, not an implementation detail.
+A second trap is the tie rule itself. On `[2,3,5,1,3,2]` the two trailing 2s tie: the leftmost unmarked one, index 0, is chosen in the second round and marks index 1, after which only index 5 remains and contributes 2. Choosing the other 2 first would leave index 0 to be chosen later and would still total `5` here, but the tie-break is not cosmetic: on `[1,1,2]` the leftmost `1` first scores `3` while the rightmost `1` first scores `1`. The order $(\text{value}, \text{index})$ is part of the contract, not an implementation detail.
 
 | Instance | Score | What it teaches |
 |:---|:---:|:---|

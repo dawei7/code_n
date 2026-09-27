@@ -4,7 +4,7 @@ We trace the step-by-step tree centroid characterization, diameter midpoint redu
 
 - **Input:** $n = 4, \quad \text{edges} = [[1, 0], [1, 2], [1, 3]]$
 - **Required output:** $[1]$ (Star graph with central hub node $1$; rooting at $1$ yields height $1$, while rooting at any other node yields height $2$)
-- **Two Centroids Instance:** $n = 6, \; \text{edges} = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]] \implies [3, 4]$ (Even diameter path yields two adjacent centroids, both giving minimum tree height $2$)
+- **Two Centroids Instance:** $n = 6, \; \text{edges} = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]] \implies [3, 4]$ (Odd diameter path yields two adjacent centroids, both giving minimum tree height $2$)
 - **Single Node Base Case:** $n = 1, \; \text{edges} = [] \implies [0]$ (Trivially root $0$ with height $0$)
 - **Two Nodes Base Case:** $n = 2, \; \text{edges} = [[0, 1]] \implies [0, 1]$ (Both nodes have height $1$)
 
@@ -39,7 +39,7 @@ Optimal root: [1]
 - Running BFS from each of the $N$ nodes to measure its height takes $O(N \cdot (V + E)) = O(N^2)$ time. For $N = 2 \times 10^4$, $N^2 \approx 4 \times 10^8$ operations, causing Time Limit Exceeded.
 - **Topological Leaf Peeling ($O(N)$):**
   - Leaves (nodes with degree 1) lie on the outer perimeter of the tree.
-  - A leaf can never be a minimum-height root in a multi-node tree: moving the root from a leaf to its neighbor decreases distance to all other nodes.
+  - A leaf can never be a minimum-height root once $n > 2$: moving the root from a leaf to its neighbor decreases the distance to every other node by one.
   - Peeling away leaves layer by layer contracts the tree inward until only **1 or 2 centroid nodes** remain.
 
 ---
@@ -183,6 +183,38 @@ Path: $0 - 3 - 4 - 5$ with extra branches on 3.
 - Layer 2 peels: $\{3, 4\}$.
 - Result: `[3, 4]`.
 
+The same peeling written pop by pop shows why the two centroids survive
+*together*: whichever of them is processed first drags the other's degree to
+zero, so neither can seed another layer.
+
+| Layer | Queue at entry | Pop | Neighbour degrees after the decrement | Newly at degree 1 | `ans` at layer end |
+|:---:|:---|:---:|:---|:---|:---|
+| 1 | `[0, 1, 2, 5]` | 0 | $\text{degree}[3]: 4 \to 3$ | none | - |
+| 1 | | 1 | $\text{degree}[3]: 3 \to 2$ | none | - |
+| 1 | | 2 | $\text{degree}[3]: 2 \to 1$ | **3** | - |
+| 1 | | 5 | $\text{degree}[4]: 2 \to 1$ | **4** | `[0, 1, 2, 5]` |
+| 2 | `[3, 4]` | 3 | $\text{degree}[0], \text{degree}[1], \text{degree}[2], \text{degree}[4]: 1 \to 0$ | none | - |
+| 2 | | 4 | $\text{degree}[3]: 1 \to 0$, $\text{degree}[5]: 1 \to 0$ | none | **`[3, 4]`** |
+
+Because both survivors sit in the same layer, the loop still clears `ans` before
+that layer and the recorded answer remains the pair, not a single node.
+
+### Every boundary instance, side by side
+
+The peeling rule is uniform, yet its output changes shape with the diameter's
+parity and with how much of the tree survives the first layer.
+
+| Instance | $n$ and edges | Diameter | Nodes peeled in earlier layers | Answer | Which rule fixes the answer |
+|:---|:---|:---:|:---:|:---|:---|
+| Single node | $1$, `[]` | 0 | 0 | `[0]` | no node has degree $1$, so the $n = 1$ guard must supply the answer |
+| Two nodes | $2$, `[[0, 1]]` | 1 | 0 | `[0, 1]` | the first layer *is* the answer; both endpoints are midpoints of an odd diameter |
+| Star | $4$, `[[1, 0], [1, 2], [1, 3]]` | 2 | 3 | `[1]` | even diameter, single midpoint, and all three leaves peel at once |
+| Path of three | $3$, `[[0, 1], [1, 2]]` | 2 | 2 | `[1]` | the middle node is one step from each end |
+| Path of five | $5$, `[[0, 1], [1, 2], [2, 3], [3, 4]]` | 4 | 4 | `[2]` | even diameter; each layer removes one node from each end |
+| Path of six | $6$, `[[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]` | 5 | 4 | `[2, 3]` | odd diameter, so the two middle nodes tie at height $3$ |
+| Branched pair | $6$, `[[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]` | 3 | 4 | `[3, 4]` | the longest path $0 - 3 - 4 - 5$ is odd, and its middle nodes are adjacent |
+| Balanced binary tree | $7$, `[[0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6]]` | 4 | 6 | `[0]` | the unique midpoint is the root even though the tree is not a path |
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -198,6 +230,17 @@ Path: $0 - 3 - 4 - 5$ with extra branches on 3.
 - **Base Case $n = 1$:** When $n = 1$, `edges` is empty. The single node 0 has degree 0, not 1, so it would never be enqueued by the degree-1 check. A defensive guard `if n == 1: return [0]` is mandatory.
 - **Immediate Enqueueing without Layer Isolation:** Processing newly added leaves within the same loop iteration corrupts the concentric layer boundaries. Peeling must proceed strictly level-by-level using `for _ in range(len(q))` or a remaining-node counter.
 - **Undirected Edges:** Edges are bidirectional. Both `g[a].append(b)` and `g[b].append(a)` must be populated, and both `degree[a]` and `degree[b]` incremented.
+
+### Approaches this problem eliminates
+
+| Approach | Time | Auxiliary space | Why it is chosen or eliminated |
+|:---|:---:|:---:|:---|
+| Breadth-first search from every node | $O(N^2)$ | $O(N)$ per run | Correct but with $N = 2 \times 10^4$ it performs about $4 \times 10^8$ edge relaxations, which is the time limit this problem exists to test |
+| Two diameter sweeps, then walk to the middle | $O(N)$ | $O(N)$ for parent pointers | Also linear and correct, but it must remember a parent array to recover the longest path and must special-case the empty edge list and the parity of the diameter |
+| Layer-by-layer leaf peeling (the method used here) | $O(N)$ | $O(N)$ for adjacency, degrees and the queue | Every node is enqueued once and each edge is relaxed twice; the centroids appear as the last layer with no path reconstruction at all |
+| Peeling without layer isolation, tracking only the node popped last | $O(N)$ | $O(N)$ | Wrong: the answer is the last **layer**, not the last node. On the star this deletes leaves $0$, $2$, $3$ and then the hub, returning nothing; on the two-centroid instance it would keep whichever of $3$ and $4$ was popped second and silently drop the other |
+| Subtree-size centroid rule: pick the node whose removal leaves no component larger than $N/2$ | $O(N)$ | $O(N)$ | Solves a **different** problem. On the ten-node tree formed by the path $0 - 1 - 2 - 3 - 4$ with five extra leaves on node $1$, that rule returns node $1$ (largest component $3$), while the minimum-height root is node $2$, whose eccentricity is $2$ against node $1$'s $3$ |
+| All-pairs shortest paths | $O(N^3)$ | $O(N^2)$ | Infeasible at $N = 2 \times 10^4$; it computes far more information than the two extreme nodes require |
 
 ---
 

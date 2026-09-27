@@ -224,7 +224,7 @@ partition survives.
 |:---|:---|:---:|:---:|:---|
 | Fix the first two terms, then propagate (the method used here) | $O(N)$ choices for $i$, $O(N)$ for $j$, then one forced pass over the remainder | $O(N^3)$ | $O(N)$ | No branch survives after $(a, b)$ is fixed, so the only branching is the pair enumeration |
 | Enumerate every partition into three or more pieces, then test the additive law | all compositions of the digit string | exponential in $N$ | $O(N)$ | Rejects nothing early; at $N = 35$ the cut tree dwarfs the $O(N^2)$ pairs that the propagation method ever forms |
-| Fix only the first term and let the second vary freely | $O(N)$ choices for $i$, unbounded second term | $O(N^3)$ | $O(N)$ | Correct but no cheaper; the pruning benefit comes from the pair being fixed, not from the second term being searched |
+| Verify the propagation with string addition instead of integer conversion | the same pair enumeration, with digit-by-digit carry logic replacing each conversion of a term | $O(N^3)$ | $O(N)$ | Unavoidable in a fixed-width language once terms pass 19 digits, but it re-implements arithmetic that arbitrary-precision integers already perform exactly |
 | Sum the terms in fixed-width 64-bit arithmetic | the same pair enumeration | $O(N^3)$ | $O(N)$ | Terms reach 35 digits, and a sum overflows a signed 64-bit accumulator once it passes 19 digits |
 | Track one running total instead of the last two terms | a single accumulator of all digits seen so far | $O(N^3)$ | $O(N)$ | Wrong model: each term is the sum of the previous **two** terms, so a cumulative total accepts strings that are not additive |
 
