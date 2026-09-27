@@ -1,139 +1,251 @@
 # Guided Example: Count Subarrays With Fixed Bounds
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the two conditions a subarray must satisfy
 
-- **Input:** `{"nums": [1, 3, 5, 2, 7, 5], "minK": 1, "maxK": 5}`
+A fixed-bound subarray of `nums` is a contiguous slice whose minimum equals
+`minK` **and** whose maximum equals `maxK`. This lesson works through the
+official first example:
+
+- **Input:** `nums = [1, 3, 5, 2, 7, 5]`, `minK = 1`, `maxK = 5`
 - **Required output:** `2`
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+Both conditions are simultaneously necessary, and they pull in opposite
+directions. Requiring the minimum to equal `minK` forbids every value strictly
+below `minK`; requiring the maximum to equal `maxK` forbids every value strictly
+above `maxK` and additionally demands that an occurrence of `maxK` is actually
+inside the slice. A slice can therefore fail for three independent reasons:
+a value below the floor drops the minimum, a value above the ceiling raises the
+maximum, and a slice whose values all lie in range may still contain no `minK`
+or no `maxK`, so neither equality holds. The third failure mode is what makes
+this problem interesting: `[3, 5, 2]` passes both range tests, yet its minimum
+is 3 and it is not fixed-bound.
 
 ---
 
-## 1. Instance & Teaching Goal
+## 2. Counting by right endpoint instead of enumerating subarrays
 
-You are given an integer array `nums` and two integers `minK` and `maxK`.
+There are $\frac{n(n+1)}{2}$ subarrays, which is $2.1 \times 10^{9}$ at the
+constraint limit $n = 10^{5}$. Every subarray, however, has exactly one right
+endpoint, so instead of generating pairs we can fix the right endpoint `i` and
+ask a purely local question:
 
-The objective is to compute `2` from `{"nums": [1, 3, 5, 2, 7, 5], "minK": 1, "maxK": 5}` while avoiding redundant calculations and unnecessary overhead.
+> How many start indices $s$ produce a slice `nums[s..i]` that is fixed-bound?
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+Summing those answers over all `i` counts each subarray exactly once, because no
+subarray has two right endpoints. The answer for this instance is the sum of six
+per-endpoint counts.
 
----
+Three positions summarize everything the slice `nums[s..i]` could contain:
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Count valid starts for each fixed ending position
-
-Every subarray is uniquely identified by its start and end. Instead of generating all $O(n^2)$ pairs, the solution scans the end index `i` from left to right and counts how many starts produce a valid subarray ending exactly at `i`. Adding those counts covers every subarray once.
-
-A fixed-bound subarray needs three facts:
-
-- It cannot contain a value below `minK` or above `maxK`.
-- It must contain at least one occurrence of `minK`.
-- It must contain at least one occurrence of `maxK`.
-
-The scan maintains the latest position relevant to each fact:
-
-- `k` is the latest invalid position containing a value outside the allowed interval.
-- `j1` is the latest occurrence of `minK`.
-- `j2` is the latest occurrence of `maxK`.
-
-All begin at -1, meaning the corresponding event has not yet appeared.
-
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Tracked position | Meaning | Initial value | Why it is needed |
 |---|---|---|---|
-| Input Slice | `{"nums": [1, 3, 5, 2, 7, 5], "minK": 1, "maxK": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `k` | latest index holding a value outside $[\texttt{minK}, \texttt{maxK}]$ | -1 | any slice containing it is disqualified |
+| `j1` | latest index holding a value equal to `minK` | -1 | the slice must contain that occurrence |
+| `j2` | latest index holding a value equal to `maxK` | -1 | the slice must contain that occurrence |
+
+All three begin at -1, meaning "this event has not happened yet", and each is
+refreshed to the current index whenever its condition holds at that index.
 
 ---
 
-### Step 2: The latest invalid position sets a strict lower bound
+## 3. The invariant that turns three positions into a count
 
-If `nums[k]` lies outside `[minK,maxK]`, any subarray containing it has a minimum below `minK` or a maximum above `maxK`. Therefore a valid subarray ending at the current `i` must start strictly after `k`.
+> **Frontier invariant.** After the update at endpoint `i`, a start index $s$
+> yields a fixed-bound subarray `nums[s..i]` if and only if
+> $k < s \le \min(j_1, j_2)$.
 
-Only the latest invalid position matters. Starting after it automatically excludes all earlier invalid values as well. When the current value is invalid, `k=i`, and no subarray ending at that same position can be valid.
+*Necessity.* If $s \le k$, the slice contains the out-of-range value at index
+`k`, so either its minimum is strictly below `minK` or its maximum is strictly
+above `maxK`. If $s > j_1$, the slice begins after the most recent `minK`, and
+since `j1` is the latest such index there is no `minK` at all in
+`nums[s..i]`; symmetrically for $s > j_2$. So any admissible start must satisfy
+$s > k$, $s \le j_1$ and $s \le j_2$.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+*Sufficiency.* If $k < s \le \min(j_1, j_2)$, then no index in $[s, i]$ is
+out of range — every out-of-range index is at most `k`, which is below $s$ — so
+every element satisfies $\texttt{minK} \le x \le \texttt{maxK}$. The slice
+contains index `j1` with value `minK`, so its minimum is exactly `minK`, and it
+contains index `j2` with value `maxK`, so its maximum is exactly `maxK`.
 
----
-
-### Step 3: The latest bounds set an upper bound on the start
-
-To include both required values, the start must be no later than the latest occurrence of each. Thus it must satisfy
+The admissible starts therefore form one unbroken integer interval, and its size
+is $\min(j_1, j_2) - k$ when that quantity is positive and zero otherwise:
 
 $$
-\text{start} \le \min(j1,j2).
+\text{valid}(i) = \max\bigl(0,\ \min(j_1, j_2) - k\bigr).
 $$
 
-Why use the earlier of the two latest positions? If `j1 < j2`, starting after `j1` would exclude the most recent `minK`, and there is no later occurrence before the current endpoint. The same reasoning applies symmetrically.
+The maximum with zero is not cosmetic. When `k` is the *later* of the two
+frontiers it means the most recent disqualifying value sits to the right of the
+most recent required value, so no start is admissible at all, and the raw
+difference is negative.
 
-Combining conditions, valid starts are exactly the integers satisfying
+---
 
-$$
-k < \text{start} \le \min(j1,j2).
-$$
+## 4. Worked trace on `nums = [1, 3, 5, 2, 7, 5]`
 
-The number of integers in that interval is `min(j1,j2) - k` when positive, and zero otherwise. That is the expression
+| Endpoint `i` | `nums[i]` | `k` | `j1` | `j2` | $\min(j_1,j_2) - k$ | `valid(i)` | Running total |
+|---|---|---|---|---|---|---|---|
+| 0 | `1` | -1 | 0 | -1 | $-1 - (-1) = 0$ | 0 | 0 |
+| 1 | `3` | -1 | 0 | -1 | $-1 - (-1) = 0$ | 0 | 0 |
+| 2 | `5` | -1 | 0 | 2 | $0 - (-1) = 1$ | 1 | 1 |
+| 3 | `2` | -1 | 0 | 2 | $0 - (-1) = 1$ | 1 | 2 |
+| 4 | `7` | 4 | 0 | 2 | $0 - 4 = -4$ | 0 | 2 |
+| 5 | `5` | 4 | 0 | 5 | $0 - 4 = -4$ | 0 | 2 |
 
-`max(0, min(j1, j2) - k)`.
+Reading the table:
 
-| Parameter | State Before Finalization | Action | Final Value |
+- Endpoints 0 and 1 contribute nothing because `maxK` has not appeared; `j2`
+  is still -1, so $\min(-1, 0) = -1$ and the raw difference is zero.
+- Endpoint 2 is the first moment both required values are present, and the
+  single admissible start is $s = 0$, giving the slice `[1, 3, 5]`.
+- Endpoint 3 admits the same single start, giving `[1, 3, 5, 2]`. The value `2`
+  is inside the allowed range and changes no frontier.
+- Endpoint 4 is out of range (`7 > 5`), so `k` jumps to 4. The raw difference
+  turns negative and the maximum with zero refuses to count anything.
+- Endpoint 5 is exactly `maxK`, so `j2` advances to 5 — and the count stays
+  zero: the disqualifying `7` at index 4 dominates the refreshed `j2 = 5`.
+
+Endpoint-by-endpoint, the admissible start intervals are:
+
+| Endpoint `i` | Admissible starts $(k, \min(j_1,j_2)]$ | Start indices | Subarrays counted |
 |---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `2` |
+| 2 | $(-1,\ 0]$ | `{0}` | `[1, 3, 5]` |
+| 3 | $(-1,\ 0]$ | `{0}` | `[1, 3, 5, 2]` |
+| 4 | $(4,\ 0]$ | $\emptyset$ | none |
+| 5 | $(4,\ 0]$ | $\emptyset$ | none |
+
+The two counted slices are exactly the two the problem statement names, and the
+total of the `valid(i)` column is `2`, matching the required output.
 
 ---
 
-## 4. Complete Execution Trace
+## 5. A second look: overlapping required values accumulate multiplicities
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"nums": [1, 3, 5, 2, 7, 5], "minK": 1, "maxK": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `2` | Verified |
+The trace above contributes 1 per eligible endpoint, which hides how the count
+can grow faster than the number of endpoints. Running the same frontier rules on
+`nums = [1, 5, 1, 5]` with `minK = 1` and `maxK = 5` shows the accumulation.
 
----
+| Endpoint `i` | `nums[i]` | `k` | `j1` | `j2` | `valid(i)` | New subarrays counted at this endpoint |
+|---|---|---|---|---|---|---|
+| 0 | `1` | -1 | 0 | -1 | 0 | none |
+| 1 | `5` | -1 | 0 | 1 | 1 | `[1, 5]` |
+| 2 | `1` | -1 | 2 | 1 | 2 | `[5, 1]`, `[1, 5, 1]` |
+| 3 | `5` | -1 | 2 | 3 | 3 | `[1, 5]`, `[5, 1, 5]`, `[1, 5, 1, 5]` |
 
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Enumerate every subarray:** Maintain minimum and maximum while extending each start. This still takes $O(n^2)$ time and is too slow at $10^5$ elements.
-- **Two independent window counts:** Count subarrays whose values stay in a range and use inclusion-exclusion on bounds. It can work but is less direct than tracking the latest required positions.
-- **Segment tree or sparse table:** Range minimum and maximum queries become fast, yet there remain quadratically many subarrays to classify unless additional counting logic is added.
-- **Invalid current value:** Setting `k=i` makes the contribution zero because no subarray ending there can exclude that endpoint.
-- **One required bound not seen:** Its latest position remains -1, and the formula contributes zero.
-- **Latest bound before latest invalid:** It cannot serve a subarray starting after the invalid value, so the formula correctly yields zero.
-- **Repeated bounds:** Only the latest occurrence is needed because it permits the largest set of possible starts for the current endpoint.
-- **Equal bounds:** Both latest positions move together, and only runs of that single value contribute.
-- **Values exactly at a bound:** They are allowed and update the corresponding required position.
-- **Contiguity:** The start interval counts contiguous slices ending at `i`; no elements can be skipped around an invalid position.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+Every value lies inside `[1, 5]`, so `k` never moves and each endpoint simply
+opens one more admissible start. The total is 6, which is the count of
+four-element subarrays that contain both a `1` and a `5`. Notice that
+`valid(i)` can exceed 1: it counts *starts*, not events, and each extra
+admissible start is a genuinely different subarray.
 
 ---
 
-## 7. Complexity Derivation
+## 6. Boundary and degenerate instances handled by the same rule
 
-- **Time Complexity:** $O(n)$. Let $n$ be the array length. The loop visits each value once and performs only constant-time comparisons, assignments, minimum/maximum operations, and arithmetic. Total time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+| Instance | `k` behaviour | `j1`, `j2` behaviour | Result | Reason |
+|---|---|---|---|---|
+| `nums = [1]`, `minK = 1`, `maxK = 5` | never set | `j2` stays -1 | 0 | the required `maxK` is absent |
+| `nums = [1, 2, 2]`, `minK = 1`, `maxK = 3` | never set | `j2` stays -1 | 0 | all values in range, but no `maxK` |
+| `nums = [1, 1, 1, 1]`, `minK = maxK = 1` | never set | `j1 = j2 = i` | 10 | every value refreshes both frontiers; all $\frac{4 \cdot 5}{2}$ subarrays qualify |
+| `nums = [2, 2, 3, 2]`, `minK = maxK = 2` | `k = 2` at the `3` | `j1 = j2` at each `2` | 4 | only runs of the single allowed value count |
+| `nums = [1, 5, 6, 1, 5]`, `minK = 1`, `maxK = 5` | `k = 2` at the `6` | refreshed after the reset | 2 | the reset splits the array into independent segments |
+| `[1000000, 1, 1000000]`, `minK = 1`, `maxK = 1000000` | never set | `j1 = 1`, `j2` at each extreme | 3 | the allowed interval spans the full legal value range |
+| `nums = [1, 3, 5, 2, 7, 5]`, `minK = 1`, `maxK = 5` | `k = 4` at the `7` | `j1 = 0`, `j2 = 5` | 2 | the instance traced in Section 4 |
+
+When `minK = maxK` the allowed interval collapses to one value, so `j1` and
+`j2` move together and the rule degenerates into counting maximal runs of that
+value: `[1, 1, 1, 1]` yields $1 + 2 + 3 + 4 = 10$, while `[2, 2, 3, 2]` yields
+$1 + 2 + 0 + 1 = 4$ because the `3` resets the frontier.
+
+---
+
+## 7. Why the reasoning is correct
+
+The frontier invariant of Section 3 is proved in both directions and holds after
+every update, so it is a genuine invariant rather than a heuristic. Two
+consequences make the algorithm exact.
+
+**Soundness.** Every unit added to the total is justified by a non-empty
+admissible start interval whose members were shown to produce slices with
+minimum `minK` and maximum `maxK`. The method never counts a slice that fails
+either equality.
+
+**Completeness.** Every fixed-bound subarray `nums[s..i]` has one right endpoint
+`i`. At that endpoint the slice contains `minK`, so $s \le j_1$; it contains
+`maxK`, so $s \le j_2$; and it has no value outside the interval, so the latest
+out-of-range index `k` must lie strictly before `s`. Hence $s$ belongs to the
+admissible interval, and the algorithm counts it at endpoint `i` and nowhere
+else. No valid subarray is lost, and none is double-counted.
+
+A useful sanity check follows from the same argument: the running total can
+never decrease, because `valid(i)` is clamped at zero, and the total can never
+exceed $\frac{n(n+1)}{2}$.
+
+---
+
+## 8. Alternatives and why they were not chosen
+
+| Method | Idea | Time | Auxiliary space | Trade-off |
+|---|---|---|---|---|
+| Enumerate every subarray | extend each start and track min/max | $O(n^2)$ | $O(1)$ | correct but hopeless at $n = 10^{5}$ |
+| Monotonic queue / sliding window | maintain a window whose min is `minK` and max is `maxK`, shrink from the left | $O(n)$ amortized | $O(n)$ for the deques | same asymptotic time with more state and more edge cases |
+| Two inclusion–exclusion counts | count slices whose values stay in $[1, \texttt{maxK}]$ and subtract those staying in $[1, \texttt{minK}-1]$ | $O(n)$ | $O(1)$ | elegant for range-only constraints, but it does not force an *exact* minimum and maximum |
+| Sparse table plus binary search | precompute range min/max and locate the admissible start interval per endpoint | $O(n \log n)$ | $O(n \log n)$ | strictly slower and heavier than three running indices |
+| Latest-position frontiers | track `k`, `j1`, `j2` and add $\max(0, \min(j_1,j_2)-k)$ | $O(n)$ | $O(1)$ | the method derived here |
+
+Inclusion–exclusion is the most tempting wrong turn: `[3, 5, 2]` satisfies the
+range condition "all values lie in $[\texttt{minK}, \texttt{maxK}]$" yet has
+neither the required minimum nor the required maximum.
+
+---
+
+## 9. Complexity derivation
+
+Let $n = \lvert\texttt{nums}\rvert$.
+
+**Time.** The scan visits each index once. At index `i` it performs up to three
+comparisons against `minK` and `maxK`, a constant number of index assignments, a
+two-way minimum, a subtraction, and a clamp at zero. Every one of those
+operations is $O(1)$, so the loop costs $\Theta(n)$ and the total is
+
+$$
+O(n).
+$$
+
+There is no nested loop and no re-scanning of earlier positions, because the
+three frontiers compress all past information that any future endpoint needs.
+
+**Auxiliary space.** The method stores exactly four integers — `k`, `j1`, `j2`
+and the running answer — plus the loop index and the current value. It allocates
+no prefix array, no window, no result collection and no recursion stack, so peak
+auxiliary space is
+
+$$
+O(1),
+$$
+
+independent of $n$ and of the magnitude of the values, which can be as large as
+$10^{6}$.
+
+---
+
+## 10. Traps this instance exposes
+
+- **Confusing the range condition with the exact-bound condition:** `[3, 5, 2]`
+  stays inside `[1, 5]` yet has minimum 3, so it is not fixed-bound.
+- **Dropping the clamp at zero:** at endpoint 4 the raw difference is $-4$; the
+  clamp is what converts "no admissible start" into a contribution of 0.
+- **Keeping the earliest rather than the latest occurrence:** only the newest
+  `minK` and `maxK` maximize the admissible start interval; an older position
+  would undercount.
+- **Keeping every out-of-range position:** only the newest one matters, because
+  requiring $s > k_{\text{newest}}$ already excludes all older ones.
+- **Reading the refreshed `j2` as helpful:** at endpoint 5, `j2 = 5` still
+  cannot beat `k = 4`, so the contribution is 0.
+- **Treating a refreshed bound as a new subarray:** `valid(i)` counts starts,
+  and a start re-used at a later endpoint is a different, longer subarray.
+- **Assuming each endpoint contributes at most one:** `[1, 5, 1, 5]` contributes
+  1, 2 and 3 at successive endpoints.
+- **Overflow of the total:** the count can reach $\frac{n(n+1)}{2}$, which
+  exceeds 32-bit range at the constraint limit, so the accumulator must be a
+  wide integer type.

@@ -1,122 +1,149 @@
 # Guided Example: Sum of Prefix Scores of Strings
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+The representative instance is `words = ["abc", "ab", "bc", "b"]`, whose required answer is `[5, 4, 3, 2]`. It is chosen because two different words share the prefix `"a"`, two different words share the prefix `"b"`, and one word is itself a prefix of another — so the instance exercises sharing, branching, and the "a word counts as a prefix of itself" rule all at once.
 
-- **Input:** `{"words": ["abc", "ab", "bc", "b"]}`
-- **Required output:** `[5, 4, 3, 2]`
+## 1. The Instance and the Quantity Being Summed
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
-
----
-
-## 1. Instance & Teaching Goal
-
-You are given an array `words` of size `n` consisting of **non-empty** strings.
-
-The objective is to compute `[5, 4, 3, 2]` from `{"words": ["abc", "ab", "bc", "b"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
-|---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
-
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
-
----
-
-## 3. Step-by-Step Worked Execution
-
-### Step 1: Turning many prefix questions into one shared structure
-
-For every word, the required answer is the sum of the scores of all its non-empty prefixes. The score of a prefix is the number of input words that begin with that prefix. A direct solution could generate every prefix as a separate string, count it in a dictionary, and later look those strings up again. That can work, but repeatedly creating slices such as `word[:i]` copies characters. The solution instead uses a trie, also called a prefix tree, so common prefixes are represented only once and can be followed one character at a time.
-
-Let
+The score of a string `term` is the number of entries $\text{words}[i]$ for which `term` is a prefix. The required output for each word is the sum of the scores of all of its **non-empty** prefixes:
 
 $$
-S = \sum_{w \in \texttt{words}} \lvert w \rvert
+\text{answer}[i] = \sum_{\substack{p \text{ prefix of } \text{words}[i] \\ p \neq \varepsilon}} \bigl\lvert \{\, j : p \text{ is a prefix of } \text{words}[j] \,\} \bigr\rvert .
 $$
 
-be the total number of characters across all input words. The trie contains a root that represents the empty prefix. Moving from a node through the child for a letter extends the represented prefix by that letter. For example, after following the children for `a` and then `b`, the current node represents the prefix `"ab"`. Words that start the same way share these nodes, which is precisely the sharing this problem needs.
+Because a string is considered a prefix of itself, the full word always contributes one occurrence per copy of itself in the input. Duplicates are therefore *separate entries*, not a single merged key — a detail the instance `["abc", "abc"]` makes decisive.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"words": ["abc", "ab", "bc", "b"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+For the traced input, the four words contribute eight non-empty prefixes in total, and only five of them are distinct, because `"a"`, `"ab"`, and `"b"` are each shared:
 
----
+| Prefix `p` | Words having `p` as a prefix | Score of `p` |
+|:---|:---|:---:|
+| `"a"` | `"abc"`, `"ab"` | 2 |
+| `"ab"` | `"abc"`, `"ab"` | 2 |
+| `"abc"` | `"abc"` | 1 |
+| `"b"` | `"bc"`, `"b"` | 2 |
+| `"bc"` | `"bc"` | 1 |
 
-### Step 2: What each trie node stores
+The table is the whole problem in miniature: `"b"` scores `2` because it is shared by `"bc"` and the one-letter word `"b"`, and `"ab"` and `"abc"` are counted independently even though one contains the other.
 
-The `Trie` class has two fields. Its `children` field is a list of 26 positions, one for each lowercase English letter. Character `c` is converted to a zero-based position by `ord(c) - ord("a")`. A missing child is `null`; a present child points to another `Trie` object. This fixed array makes choosing the next edge a constant-time operation.
+## 2. Sharing Structure: Why a Prefix Tree Is the Right Model
 
-The `cnt` field records how many inserted words pass through that node. Importantly, the root's count is never used because the empty prefix must not contribute to an answer. Every non-root node corresponds to one non-empty prefix, and its count becomes exactly that prefix's score.
+Processing each word in isolation would force a fresh scan of the whole input for every prefix. The essential observation is that prefixes form a *nested* family: if a string is a prefix of a word, so is every shorter prefix of that string. The prefixes of `"abc"` are the chain
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+$$
+\varepsilon \;\subset\; \texttt{"a"} \;\subset\; \texttt{"ab"} \;\subset\; \texttt{"abc"},
+$$
 
----
+and the prefixes of `"ab"` are an initial segment of the same chain. A tree whose root is the empty prefix and whose every other node is one character extension records that nesting exactly: each node stands for one distinct non-empty prefix, and a word is the path from the root down its characters. Storing, at each node, the number of input words that pass *through* it is then enough, because a word passes through a node precisely when the node's string is one of its prefixes — so the score of a word becomes the sum of the counters along its root-to-node path.
 
-### Step 3: First pass: insert every word and build the counts
+## 3. Insertion Trace: Building the Counters
 
-The method creates one root named `trie` and calls `insert` for every word. Inserting begins at the root. For each character, it finds the appropriate child position, creates a node if that path has not appeared before, moves to the child, and increments that child's `cnt`.
+The tree is built by inserting the words one after another. Descending along a character creates the child node if it does not exist yet, and then increments that child's counter — the counter is incremented on *arrival* at the node, never at the root, because the empty prefix is excluded from every score.
 
-The order of the last two actions matters conceptually: the count belongs to the node for the prefix including the current character. Suppose `"abc"` is inserted. The nodes representing `"a"`, `"ab"`, and `"abc"` each receive one increment. If `"ab"` is inserted afterward, the first two nodes receive another increment while the third does not. Their final counts are therefore 2, 2, and 1, exactly the three prefix scores needed for `"abc"`.
+| Insertion | Word | Characters descended | Nodes created | Counter updates |
+|:---:|:---|:---|:---|:---|
+| 1 | `"abc"` | `a`, `b`, `c` | the path `a` → `ab` → `abc` | `a` = 1, `ab` = 1, `abc` = 1 |
+| 2 | `"ab"` | `a`, `b` | none — both nodes already exist | `a` = 2, `ab` = 2 |
+| 3 | `"bc"` | `b`, `c` | a **new** `b` node under the root, then `bc` under it | `b`(root child) = 1, `bc` = 1 |
+| 4 | `"b"` | `b` | none — the root child already exists | `b`(root child) = 2 |
 
-Duplicate words are also handled naturally. Inserting the same path again increments every node on it again, because each occurrence is another string in `words`. No terminal marker is needed: the problem asks how many words pass through each prefix, not how many distinct words end at a node.
+The third row is the most instructive: the character `b` already appears in the tree, yet a *new* node is created, because the existing `b` node hangs under `a` and therefore represents the prefix `"ab"`, not the prefix `"b"`. A prefix tree shares prefixes, not single characters. The fourth row then shows the same node being reused by a different word, which is precisely how the score of `"b"` becomes `2`.
 
-After all insertions, consider any trie node representing a prefix `p`. A word increments that node if and only if insertion follows every character of `p`. That happens if and only if `p` is a prefix of the word. Consequently, `node.cnt` equals the number of input words having `p` as a prefix. This establishes the central fact on which the second pass relies.
+Every word contributes exactly one increment on each of its characters, so the build performs $\sum_i \lvert \text{words}[i] \rvert = 3 + 2 + 2 + 1 = 8$ counter increments for this instance.
 
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[5, 4, 3, 2]` |
+## 4. The Tree After All Four Insertions
 
----
+The five distinct non-empty prefixes correspond to five non-root nodes. Their counters are the scores computed in Section 1, which is not a coincidence:
 
-## 4. Complete Execution Trace
+| Node (prefix) | Parent node | Counter | Words that pass through | Interpretation |
+|:---|:---|:---:|:---|:---|
+| `"a"` | root | 2 | `"abc"`, `"ab"` | shared first letter of two words |
+| `"ab"` | `"a"` | 2 | `"abc"`, `"ab"` | both survivors continue past `a` |
+| `"abc"` | `"ab"` | 1 | `"abc"` | only one word reaches here |
+| `"b"` | root | 2 | `"bc"`, `"b"` | second branch of the root |
+| `"bc"` | `"b"` | 1 | `"bc"` | only one word reaches here |
 
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"words": ["abc", "ab", "bc", "b"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[5, 4, 3, 2]` | Verified |
+```mermaid
+graph TD
+    accTitle: Prefix tree for the four traced words
+    accDescr: The root represents the empty prefix; each non-root node is labelled with its prefix and the number of input words that pass through it. The path a, ab, abc serves two words, while the path b, bc serves one word plus the standalone word b.
 
----
+    R(("root")) --> A["a : 2"]
+    R --> B["b : 2"]
+    A --> AB["ab : 2"]
+    AB --> ABC["abc : 1"]
+    B --> BC["bc : 1"]
+```
 
-## 5. Algorithmic Correctness
+The shape confirms the structure of the instance: the root has two children because two distinct first letters occur, and the depth of the left branch (three edges, reaching `"abc"`) exceeds the depth of the right branch (two edges).
 
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
+## 5. Reading the Scores Out of the Tree
 
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
+A query walks the word's characters from the root and accumulates the counters of the nodes it visits. The table follows the query for `"abc"` step by step.
 
----
+| Query step | Character | Node reached | Counter at node | Running score |
+|:---:|:---:|:---|:---:|:---:|
+| 1 | `a` | `"a"` | 2 | 2 |
+| 2 | `b` | `"ab"` | 2 | $2 + 2 = 4$ |
+| 3 | `c` | `"abc"` | 1 | $4 + 1 = 5$ |
 
-## 6. Traps This Instance Exposes
+The walk ends at the node for the full word and returns `5`, the required value for `answer[0]`. Applying the same walk to the remaining three words gives the complete output:
 
-- **Dictionary of materialized prefix strings:** Count every slice such as `word[:i]` and then sum the stored counts. It is easy to describe, but constructing and hashing each growing prefix can copy or inspect $O(i)$ characters, making the total work potentially quadratic in word lengths rather than linear in $S$.
-- **Dictionary keyed by incremental immutable strings:** Building a prefix one character at a time still creates new Python strings because strings are immutable. A trie avoids those repeated full-prefix objects and compares only the next character.
-- **Sparse child dictionaries:** Replacing every 26-slot child array with a dictionary stores only edges that exist. It can use less memory when nodes have few children, at the cost of hashing and larger per-edge overhead. The fixed lowercase alphabet makes the array representation straightforward and predictable.
-- **Sorting adjacent words:** Lexicographic sorting can expose shared prefixes between neighbors, but converting those relationships into the score of every prefix requires extra bookkeeping. The trie expresses the needed prefix groups directly.
-- **One word:** Every prefix is shared by exactly that one word, so a word of length $m$ receives score $m$. The insert and search passes produce this without a special case.
-- **Duplicate words:** Each occurrence must count separately. Repeated insertion increments the same path once per occurrence, so duplicates correctly raise every shared-prefix score.
-- **A word that is a prefix of another:** Its complete path is shared with the longer word. No terminal-node logic should stop traversal or prevent the longer word from increasing those counts.
-- **Completely different first letters:** Such words immediately occupy different root children and share no non-empty prefix, which is exactly why the root's count is excluded.
-- **Maximum lengths:** The total-character bound, rather than only the number of words or maximum individual length, is the right measure because every character is processed twice and can create at most one node.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
+| Word | Prefixes visited in order | Counters collected | Sum | Required `answer[i]` |
+|:---|:---|:---|:---:|:---:|
+| `"abc"` | `"a"`, `"ab"`, `"abc"` | 2, 2, 1 | 5 | 5 |
+| `"ab"` | `"a"`, `"ab"` | 2, 2 | 4 | 4 |
+| `"bc"` | `"b"`, `"bc"` | 2, 1 | 3 | 3 |
+| `"b"` | `"b"` | 2 | 2 | 2 |
 
----
+The score of a word depends only on the counters on *its own* path, so shorter words are cheaper to query: `"ab"` needs two steps and `"b"` one. The total query work is again eight character steps, matching the build.
 
-## 7. Complexity Derivation
+## 6. Invariant and Correctness
 
-- **Time Complexity:** $O(S)$. Using $S$ for the total number of input characters, insertion examines every character once, for $O(S)$ time. Searching examines every character once again, also $O(S)$. Character-to-index conversion, child access, count increments, and additions are constant-time operations, so the combined time is $O(S)$; the factor of two is discarded in asymptotic notation.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+Let $c(v)$ denote the counter stored at node $v$, and let $\pi(v)$ be the string that $v$ represents.
+
+**Node invariant.** After all insertions, for every node $v$, $c(v)$ equals the number of indices $j$ such that $\pi(v)$ is a prefix of $\text{words}[j]$.
+
+*Proof.* Inserting a single word $w$ descends through the nodes for the prefixes $w_1$, $w_1w_2$, …, $w$ and increments each exactly once, touching no other node, because every node it reaches represents a prefix of $w$. After this insertion every node on $w$'s path is incremented by one and every other node is unchanged. Summing over all insertions, $c(v)$ counts exactly the words whose path includes $v$ — that is, the words having $\pi(v)$ as a prefix. This makes the tree a faithful *count* structure rather than a membership structure: duplicate words are counted twice because the same path is walked twice. $\square$
+
+**Query correctness.** A query for word $w$ visits exactly the nodes for the non-empty prefixes of $w$, in increasing length order, so its running total is $\sum c(v)$ over that set. Substituting the invariant, the total equals the sum of the occurrence counts of all non-empty prefixes of $w$, which is the definition of `answer` for the entry holding $w$; no prefix is omitted or double counted, because each corresponds to a distinct node on the path.
+
+**Why sharing loses nothing.** Merging equal prefixes into one node is safe because a prefix's score depends only on the prefix string, not on which word reached it. When two words share a prefix they share the node, and its counter becomes the *sum* of their contributions rather than one overwriting the other — exactly the quantity both queries need.
+
+## 7. Boundaries and Traps
+
+The instance exposes several boundary behaviours that a naive implementation gets wrong. Each row below is checked against the contract's limits $1 \le \lvert \text{words} \rvert \le 1000$ and $1 \le \lvert \text{words}[i] \rvert \le 1000$.
+
+| Boundary instance | Expected | Mechanism | Trap it exposes |
+|:---|:---:|:---|:---|
+| `["abcd"]` | `[4]` | one path of four nodes, every counter `1` | a single word scores its own length, not `1` |
+| `["abc", "abc"]` | `[6, 6]` | the same path walked twice; counters reach `2` | duplicates are separate entries, so every shared prefix doubles |
+| `["a", "a", "b"]` | `[2, 2, 1]` | `a` counter `2`; `b` counter `1` | a one-letter word has exactly one prefix |
+| `["z", "x", "y"]` | `[1, 1, 1]` | three root children, each counter `1` | disjoint words share no node, so no score is inflated |
+| `["a", "aa", "aaa"]` | `[3, 5, 6]` | counters `a` = 3, `aa` = 2, `aaa` = 1 | nested words: the longer the word, the more equal-score prefixes it accumulates |
+| `["aaaa", "aaab"]` | `[7, 7]` | counters `a = aa = aaa = 2`, then `1` each | a shared prefix need not be followed by sharing |
+| `["apple", "ape", "april"]` | `[9, 7, 9]` | `a = ap = 3`, then branch counters `1` | branching after a shared prefix splits the counts |
+| one word of length `1000`, repeated `1000` times | `[10^{6}]` per entry | one chain of `1000` nodes, every counter `1000` | the maximum output value reaches $10^{6}$, so counts must not be truncated |
+
+The deepest trap is the **node identity** trap of Section 3: a character appearing earlier in the tree does not license reuse of its node. Keys must be full prefixes, not single characters — a map keyed by character would merge `"ab"`'s second letter with the root-level `"b"`, giving `"b"` = 3 and wrong answers for both `"bc"` and `"b"`.
+
+## 8. Alternative Formulations
+
+| Alternative | Work performed | Cost | Trade-off against the prefix tree |
+|:---|:---|:---|:---|
+| For every prefix of every word, scan all words and count matches | each of the $S$ prefixes compared against all $n$ words | time $O(S \cdot n)$, and a prefix comparison can cost up to its length | directly mirrors the definition but multiplies the corpus by itself |
+| Sort the words, then count completions of each prefix by binary search over the sorted range | each prefix mapped to an interval of the sorted array | time $O(S \log n)$ after an $O(S \log n)$ sort of the corpus | competitive, but requires materializing sorted copies and handling prefix-comparison bounds carefully |
+| Count prefix multiplicities with a hash map from prefix string to count, then sum per word | every prefix materialized as a separate string key | time $O(S)$ hashing with $O(S)$ string storage | asymptotically fine, yet it stores every prefix as a full string instead of sharing characters, so its memory constant is much worse |
+| Prefix tree with a counter per node, one insertion and one query per word | one node arrival or visit per character | time $O(S)$, auxiliary space $O(S)$ nodes | chosen: sharing is structural rather than simulated, and the query is a single root-to-node walk |
+
+The hash-map alternative is the same algorithm with the sharing removed; the tree wins because the path taken by a query is exactly the path taken by an insertion, so no prefix is ever reconstructed or re-hashed.
+
+## 9. Complexity Derivation
+
+Define the total input size $S = \sum_{i=1}^{n} \lvert \text{words}[i] \rvert$, so $S = 8$ for the traced instance and $S \le 1000 \cdot 1000 = 10^{6}$ under the contract's limits.
+
+**Build time.** Inserting a word of length $\ell$ descends $\ell$ edges and performs exactly $\ell$ counter increments. Each descent is $O(1)$: one lookup in the node's fixed 26-slot child table, a possible allocation of a fresh child, and one increment. Summed over all words this is $O(S)$.
+
+**Query time.** A query for a word of length $\ell$ descends $\ell$ edges and accumulates one counter per edge, so $O(\ell)$; running it for every word is again $O(S)$.
+
+**Total time.** $O(S)$, linear in the total number of input characters, which is optimal because any correct method must read every character at least once. The fixed alphabet hides only a constant factor.
+
+**Auxiliary space.** Distinct prefixes number at most $S$ (one per character position), so the tree has $O(S)$ nodes, each with a fixed-size child table and one counter: $O(S)$ auxiliary memory. Construction needs no recursion stack, and the answer array is the required output rather than auxiliary state.
