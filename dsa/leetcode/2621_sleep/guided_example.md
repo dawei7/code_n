@@ -1,132 +1,128 @@
 # Guided Example: Sleep
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance and the Outcome It Must Produce
 
-- **Input:** `{"millis": 100}`
-- **Required output:** `100`
+The task asks for an asynchronous function that accepts a positive integer `millis` and stays asleep for that many milliseconds before resolving. The verified contract fixes the legal domain as $1 \le millis \le 1000$, and it explicitly notes that a *minor* deviation from `millis` in the actual sleeping duration is acceptable. "Asynchronous" is the load-bearing word: the function must hand control back to its caller immediately rather than hold the program still for the requested duration.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The representative instance for this lesson is the first authored sample, `millis = 100`, together with the two domain boundaries `millis = 1` and `millis = 1000`, which are what separate a real timer from a hardcoded pause. The authored cases expect the observed result to equal the requested duration for every value in the domain, so the delivered payload and the requested delay are the same number here.
 
----
-
-## 1. Instance & Teaching Goal
-
-Given a positive integer `millis`, write an asynchronous function that sleeps for `millis` milliseconds. It can resolve any value.
-
-The objective is to compute `100` from `{"millis": 100}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Element of the instance | Value | Obligation it creates |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Requested delay `millis` | `100` | The caller must not observe completion before the delay elapses |
+| Returned object | a promise | The caller attaches a continuation instead of blocking |
+| State at return time | pending | No continuation may have run yet |
+| Settled value | `100` | The delivered payload equals the requested duration |
+| Minimum legal delay | `1` | Milliseconds are the unit; there is no whole-second rounding |
+| Maximum legal delay | `1000` | The delay is finite and far below the host timer ceiling |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 2. The Two Obligations, and the State They Force
 
----
+A correct answer satisfies two obligations at once, and each one alone is easy to fake:
 
-## 3. Step-by-Step Worked Execution
+1. **Latency obligation.** The completion signal must not be delivered before the requested duration has elapsed on the host's monotonic clock. Delivering it instantly satisfies every type check and fails the problem.
+2. **Non-blocking obligation.** The caller must regain control of its own instruction stream immediately, so that other work scheduled on the same event loop can proceed during the wait.
 
-### Step 1: Sleeping in JavaScript means postponing completion
+Only one arrangement satisfies both: a *deferred* promise — a promise whose settlement capability is captured separately from the promise object — plus a host timer that later invokes that captured capability. The promise gives non-blocking behavior, and the timer gives the delay.
 
-JavaScript should not block the execution thread for the requested number of milliseconds. A busy loop would prevent other work, timers, and callbacks from running.
+| Symbol | Meaning | Value for this instance |
+|---|---|---|
+| $t_0$ | Instant the function is called | some monotonic reading |
+| $d$ | Requested delay `millis` | $100$ |
+| $t_r$ | Instant the promise settles | $t_0 + d + \epsilon$, with $\epsilon \ge 0$ small |
+| $\epsilon$ | Tolerated scheduling overshoot | nonzero but minor |
+| $p$ | The returned promise | pending at $t_0$, fulfilled at $t_r$ |
 
-Instead, `sleep(millis)` returns a Promise whose settlement is scheduled for the future. Callers can either:
+The promise itself is a two-state object as far as this task is concerned: it begins *pending*, and it ends *fulfilled with the delay value*. It never rejects inside the legal domain, because nothing in the contract asks for a failure path for a delay between $1$ and $1000$ milliseconds.
 
-- use `await sleep(millis)` inside an asynchronous function, or
-- attach a continuation with `sleep(millis).then(...)`.
+## 3. Step-by-Step Execution of `millis = 100`
 
-In both cases, the caller receives an asynchronous pause while the JavaScript runtime remains free to process other work.
+The trace below follows one call from the instant it is made to the instant the caller's continuation observes the result. "Loop time" is the event loop's own progress; "host time" is the elapsed monotonic reading.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+| Step | Event-loop action | Promise state | Host time elapsed | Caller's position |
+|---|---|---|---|---|
+| 1 | Function entered with `millis = 100` | not yet created | $0$ ms | inside the call |
+| 2 | Deferred promise constructed; settlement capability retained | pending | $\approx 0$ ms | inside the call |
+| 3 | One timer registered for $100$ ms against the timer queue | pending | $\approx 0$ ms | inside the call |
+| 4 | Promise returned to the caller | pending | $\approx 0$ ms | receives the promise |
+| 5 | Caller attaches a continuation and continues its own work | pending | $\approx 0$ ms | running other tasks |
+| 6 | Event loop drains other ready callbacks | pending | varying | suspended |
+| 7 | $100$ ms of host time elapse; the timer entry becomes due | pending | $\ge 100$ ms | suspended |
+| 8 | Timer callback runs; the retained capability is invoked with `100` | fulfilled with `100` | $\ge 100$ ms | suspended |
+| 9 | Continuations attached to the promise are queued and run | fulfilled with `100` | $\ge 100$ ms | observes `100` |
+
+```mermaid
+flowchart TD
+    accTitle: Control flow of one sleep call
+    accDescr: A call with a delay of 100 milliseconds creates a pending promise, registers a timer, returns the promise to the caller, and later fulfils that promise with the delay value when the timer becomes due.
+    A["call with millis = 100"] --> B["construct deferred promise: pending"]
+    B --> C["register one timer for 100 milliseconds"]
+    C --> D["return the pending promise"]
+    D --> E["caller runs its own work during the wait"]
+    E --> F["100 milliseconds of host time elapse"]
+    F --> G["timer callback fulfils the promise with 100"]
+    G --> H["continuations attached by the caller run"]
+```
+
+Two details in the trace are easy to miss.
+
+First, steps 4 and 5 happen in the same synchronous stretch. A caller that checks the promise's state on the very next line of its own code always sees *pending*, because the timer cannot fire inside that stretch — the event loop has not regained control.
+
+Second, steps 8 and 9 are two different queues. The timer callback is a *macrotask*; the continuations attached to the promise are *microtasks* that are drained after the currently running macrotask completes. So a chain of two continuations registered on the promise runs in order, before the loop proceeds to the next macrotask, but never before the timer callback itself.
+
+## 4. The Deadline Invariant and Why the Reasoning Is Correct
+
+**Invariant (no early settlement).** For every call with delay $d$ in the legal domain, the returned promise is still pending at the moment the call returns, and it cannot become fulfilled before at least $d$ milliseconds of host time have elapsed since the call, up to the tolerated minor deviation.
+
+The argument has three parts.
+
+- **The promise cannot settle early through the caller's code.** The only settlement capability in existence is the one captured in step 2, and it lives inside the timer callback's closure. Nothing the caller receives exposes it: the caller holds the promise, not the capability. So the caller has no way to force settlement, and the honest answer to "can it complete instantly?" is no.
+
+- **The timer cannot fire early.** The host guarantees that a timer registered with delay $d$ is not dispatched before $d$ milliseconds of monotonic time have passed, and that wall-clock adjustments do not move that deadline backwards. This is exactly the guarantee the problem's note acknowledges when it tolerates a minor *overshoot*: $\epsilon \ge 0$ is permitted, $\epsilon < 0$ is not. Because the delay is measured against a monotonic source, the invariant survives a system clock correction occurring during the wait.
+
+- **The promise cannot stay pending forever.** The delay is finite and inside the legal domain, and the domain ceiling of $1000$ milliseconds is many orders of magnitude below the host timer ceiling of $2^{31} - 1$ milliseconds (roughly $24.8$ days), so the registered delay is never clamped into an unintended longer wait or dropped. Eventual dispatch therefore follows, making the method *complete*: every legal input produces a settlement, not merely a promise that happens never to be broken.
+
+The delivered payload closes the last gap. The value handed to the retained capability is the requested duration itself, so the observable result of the call equals `millis` for every case the package authors — `1`, `10`, `37`, `100`, `200`, and `1000` all come back unchanged.
+
+There is one place where a careless reading of the contract could bite. The statement permits resolving with *any* value, so a correct-but-different payload would still satisfy the prose; the authored cases nevertheless compare the observed result against the requested duration, which is why the duration is the payload that reproduces every expected output. Correctness here means matching the authored evidence, not merely matching the loosest reading of the sentence.
+
+## 5. Boundary and Domain Analysis
+
+The legal domain is narrow, and every boundary in it probes a distinct failure mode.
+
+| Input | What it probes | Required behavior | Why it matters |
 |---|---|---|---|
-| Input Slice | `{"millis": 100}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `millis = 1` | The minimum legal delay | Fulfils after at least $1$ ms with value `1` | Proves the wait is driven by the argument and not by a constant |
+| `millis = 10` | A short delay | Fulfils with `10` | Short waits still yield to the loop rather than resolving inline |
+| `millis = 37` | An odd duration | Fulfils with `37` | No rounding to tens or to whole seconds |
+| `millis = 100` | The representative instance | Fulfils with `100` | The sample the lesson traces |
+| `millis = 200` | A second sample with a different duration | Fulfils with `200` | Guards against reusing another call's cached settlement |
+| `millis = 1000` | The maximum legal delay | Fulfils with `1000` | The ceiling is still far below the host timer ceiling, so no clamping |
+| `millis = 0` | Outside the domain | Undefined by the contract | A zero delay is the one value whose "no early settlement" reading is vacuous, so it is excluded rather than special-cased |
+| `millis > 1000` | Outside the domain | Undefined by the contract | No behavior should be invented for it |
 
----
+The important consequence: since the domain excludes both $0$ and any negative value, the method needs no guard clause, no rejection path, and no branch for a "degenerate" delay. Adding one would be inventing semantics the problem never requested.
 
-### Step 2: Create a Promise that starts pending
+## 6. Traps, Rejected Alternatives, and Material Edge Cases
 
-The expression
+| Tempting shortcut | Why it fails |
+|---|---|
+| Return an already-fulfilled promise with the delay as the payload | Passes type checks and every payload comparison, yet the caller observes the result at $\approx 0$ ms, which violates the latency obligation entirely |
+| Block the thread, spinning on a clock reading until $d$ milliseconds pass | The result arrives late by whatever the loop stalled, blocks every other pending callback, and defeats the concurrency the method exists to provide |
+| Sleep for a fixed constant and ignore the argument | Collapses on `millis = 1` and `millis = 1000`; endpoints of a legal domain are exactly where constants are detected |
+| Keep one settlement promise at module scope and return it to every caller | The first call settles it; later calls with different durations receive an already-settled promise and observe the first duration |
+| Resolve with the wall-clock timestamp of the timer firing instead of the duration | The clock reading is a large ever-changing number, not `100`, so the payload comparison fails |
+| Use a polling interval that repeatedly checks whether the deadline has passed | Adds wakeups, overshoots by up to one polling period, and turns a constant-cost wait into a loop whose iteration count grows with $d$ |
+| Reject when the delay is invalid | The domain contains no invalid delay, and the judged cases never expect a rejection |
+| Round the delay to a whole second | Destroys the meaning of the millisecond unit that the whole problem is stated in |
 
-`new Promise(r => setTimeout(r, millis))`
+**Material edge cases.** A zero delay and a negative delay are outside the contract, so they are not edge cases to handle but inputs to exclude. An enormous delay is likewise outside the contract, which is why timer-range clamping is a fact worth knowing rather than a branch worth writing. Finally, note what the invariant does *not* claim: it does not promise the timer fires at exactly $t_0 + d$. It promises it does not fire *before* that instant, and the problem's own note confirms that a minor overshoot is acceptable. An implementation that tried to guarantee an exact instant would be solving a stricter problem than the one posed.
 
-constructs a Promise and immediately invokes its executor function. The parameter `r` is the Promise's resolver.
+## 7. Time and Auxiliary Space Complexity
 
-The executor does not call `r` immediately. It passes that resolver to `setTimeout` with delay `millis`. Therefore, the Promise remains pending after construction.
+**Scheduling work: $O(1)$ time.** The call performs a constant amount of work — construct one deferred promise, register one timer, return. None of that work depends on the value of `millis`, so scheduling `millis = 1000` costs exactly as much computation as scheduling `millis = 1`.
 
-Once the timer becomes eligible and the runtime executes its callback, `r` is called. That resolves the Promise. The resolver receives no argument, so the resolved value is `undefined`, which is allowed because the contract says the Promise may resolve any value.
+**Elapsed latency: $\Theta(d)$ wall-clock time, $O(1)$ processor time.** The delay is *waiting*, not computation. The interval between the call and settlement grows linearly in $d$, because the host is obliged to respect the registered deadline; the processor cost during that interval is zero, since the event loop is free to run other work. This distinction is the whole point of the asynchronous form: an implementation that made the processor cost $\Theta(d)$ — a spin loop of roughly $d$ iterations — would be strictly worse and would also break the non-blocking obligation.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Auxiliary space: $O(1)$ per call.** One pending promise record and one timer registration are live at a time, independent of `millis`. No buffer, table, or schedule of length $d$ is allocated, and no recursion depth is created. If $k$ sleep calls are outstanding simultaneously, the live registrations number $k$, i.e. $O(k)$ in that count rather than in the delay — the space depends on how many waits overlap, never on how long each one lasts.
 
----
-
-### Step 3: What `setTimeout` actually guarantees
-
-`setTimeout(callback, millis)` schedules the callback no earlier than approximately the requested delay. It does not reserve the JavaScript thread or guarantee execution at an exact wall-clock instant.
-
-After the delay expires, the callback becomes eligible to run. It may wait until:
-
-- the current call stack is empty;
-- earlier queued work has completed;
-- the runtime's timer resolution and scheduling permit it.
-
-That is why minor positive deviation is acceptable. The solution promises a minimum-style asynchronous delay, not a hard real-time deadline.
-
-For the challenge's values from one through 1000 milliseconds, ordinary timer scheduling directly models the requirement.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `100` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"millis": 100}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `100` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Normal function returning a Promise:** Removing `async` preserves behavior because the body already returns a Promise.
-- **Callback-only API:** A timer callback can delay work, but it does not provide the requested awaitable Promise interface.
-- **Busy waiting:** It blocks the event loop and wastes CPU, so it is not an acceptable asynchronous sleep.
-- **Exact timing expectation:** The callback may run later than requested because `setTimeout` specifies an earliest eligible time.
-- **Several concurrent calls:** Each receives an independent Promise and timer.
-- **Ignored resolved value:** The Promise fulfills with undefined, which the contract permits.
-- **Very busy event loop:** Completion may be delayed beyond `millis` but cannot run synchronously before timer scheduling.
-- **Positive delay:** Constraints exclude negative values and require at least one millisecond.
-- **No cancellation:** Sleep always resolves; the returned API exposes no timer handle.
-- **No thread blocking:** Other JavaScript work can run while the Promise is pending.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(1)$. The function performs constant computational work: it creates one Promise, registers one timer, and later invokes one resolver. Computational time is $O(1)$, excluding time spent waiting.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The temptation to make the wait "proportional to the delay" is therefore the exact opposite of what the problem rewards: the required behavior is a constant-cost registration that hands a linear amount of wall-clock latency to the host timer subsystem.

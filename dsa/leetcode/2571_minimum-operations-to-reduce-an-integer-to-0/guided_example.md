@@ -49,11 +49,11 @@ This is already an algorithm: repeatedly strip the parity of $n$. What remains i
 
 For odd $n$ the two candidates $(n-1)/2$ and $(n+1)/2$ are consecutive integers, one even and one odd. The even one is never worse.
 
-**Dominance lemma.** For every $m \ge 1$, $\;w(2m) \le w(2m+1) - 1$ and $w(2m) \le w(2m-1) - 1$.
+**Dominance lemma.** For every $m \ge 1$, $\;w(2m) \le w(2m+1)$ and $w(2m) \le w(2m-1)$.
 
-*Proof.* Take an optimal decomposition of $2m+1$. Its sum is odd, so by the parity argument it contains exactly one unit term, and the parity of an odd sum forces that term to be $+1$. Deleting it leaves a decomposition of $2m$ using one term fewer, so $w(2m) \le w(2m+1) - 1$. The same argument applies to $2m-1$. $\square$
+*Proof.* Consecutive integers differ in $w$ by at most $1$, because a decomposition of one of them extends to the other by appending a single $\pm 1$ term. The recurrence of Section 3 gives $w(2m) = w(m)$, while for the odd value $2m+1$ it gives $w(2m+1) = 1 + \min\bigl(w(m), w(m+1)\bigr) \ge 1 + \bigl(w(m) - 1\bigr) = w(m) = w(2m)$; the same computation with $w(2m-1) = 1 + \min\bigl(w(m-1), w(m)\bigr)$ gives $w(2m) \le w(2m-1)$. $\square$
 
-Now apply the recurrence. If $n \equiv 1 \pmod 4$, the candidates are the even number $(n-1)/2 = 2j$ and the odd number $(n+1)/2 = 2j+1$ with $j \ge 1$, and the lemma gives $w(2j) < w(2j+1)$: the even candidate wins outright. If $n \equiv 3 \pmod 4$, the candidates are $(n-1)/2 = 2j+1$ and the even $(n+1)/2 = 2j+2$; here $w(2j+1) \ge 1 + w(j+1) - 1 = w(j+1) = w(2j+2)$, using $\lvert w(j) - w(j+1)\rvert \le 1$ (any decomposition of one of two consecutive integers extends to the other by appending $\pm 1$) together with the even-value halving rule. The even candidate is again at least as good.
+Now apply the recurrence. If $n \equiv 1 \pmod 4$, the candidates are the even number $(n-1)/2 = 2j$ and the odd number $(n+1)/2 = 2j+1$ with $j \ge 1$, and the lemma gives $w(2j) \le w(2j+1)$: the even candidate is never worse. If $n \equiv 3 \pmod 4$, the candidates are $(n-1)/2 = 2j+1$ and the even $(n+1)/2 = 2j+2$; here $w(2j+1) \ge 1 + w(j+1) - 1 = w(j+1) = w(2j+2)$, using $\lvert w(j) - w(j+1)\rvert \le 1$ (any decomposition of one of two consecutive integers extends to the other by appending $\pm 1$) together with the even-value halving rule. The even candidate is again at least as good.
 
 The winning choice is therefore always the sign that makes the *successor* even:
 
@@ -105,7 +105,7 @@ Row $28$ is the trap the case file flags: clearing set bits one at a time costs 
 
 - **Faithfulness.** Every operation is a signed power of two and vice versa, so the operation count equals the number of terms in a signed decomposition, and the recursion of Section 3 computes the minimum number of terms exactly.
 - **Halving is exact, not a heuristic.** The even case is an equality, because the absence of a unit term is forced by parity and the normalization lemma.
-- **The greedy sign is optimal.** The dominance lemma rules out the odd candidate in both residue classes, so choosing the sign that makes the successor even attains the minimum at every step of the recursion.
+- **The greedy sign is optimal.** The dominance lemma shows the odd candidate is never better in either residue class, so choosing the sign that makes the successor even attains the minimum at every step of the recursion.
 - **The run view is the same process.** A run $[s,t]$ becomes $-2^s$ plus a carry at $t+1$, which is the digit pair the recursion records at those two positions; a length-one run records a single digit. The carry state is precisely the recursion's pending odd value.
 - **Termination and bounds.** Each step halves the value, so the recursion runs for at most $\lceil \log_2 n \rceil + 1$ steps, and $w(n)$ never exceeds the number of steps.
 

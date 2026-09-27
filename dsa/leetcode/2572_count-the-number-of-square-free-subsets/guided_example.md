@@ -79,7 +79,7 @@ Seeding with $f[0] = 2^{c_1} = 2^2 = 4$ and applying the two sweeps:
 
 Reading the two sweeps in detail:
 
-- **Sweeping `2`** (support $\{2\}$): the only occupied source is $S = 0$, which is disjoint from the mask, so $f[1]$ receives $c_2 \cdot f[0] = 1 \cdot 4 = 4$. The four ones-only subsets may each be augmented by the position holding `2`. Masks $2$ and $3$ stay at $0$ because no selected value has produced prime $5$.
+- **Sweeping `2`** (support $\{2\}$): the only occupied source is $S = 0$, which is disjoint from the mask, so $f[1]$ receives $c_2 \cdot f[0] = 1 \cdot 4 = 4$. The four ones-only subsets may each be augmented by the position holding `2`. Masks $2$ and $3$ stay at $0$ because no selected value has produced prime $3$.
 - **Sweeping `6`** (support $\{2,3\}$, mask $3$): $S = 0$ is still disjoint and contributes $f[3] = 1 \cdot 4 = 4$. But $S = 1$ is *not* disjoint — bit $0$ is already claimed by the value `2` — so `6` is refused as an extension of that family. This is exactly the incompatibility the problem is built on.
 
 Every mask at the end holds a count of subsets, and exactly one of the counted subsets is the empty subset, which is not a square-free *non-empty* subset:

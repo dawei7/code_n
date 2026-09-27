@@ -1,135 +1,130 @@
 # Guided Example: Counter
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. What the Contract Actually Fixes
 
-- **Input:** `{"n": 10, "calls": ["call", "call", "call"]}`
-- **Required output:** `[10, 11, 12]`
+A factory operation receives one integer start value and hands back a function. That returned function is the real object of study: its first invocation must produce the start value itself, and every later invocation must produce exactly one more than the value it produced on the preceding invocation. Invoking it $m$ times therefore emits
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+$$n,\; n+1,\; n+2,\; \dots,\; n+m-1 .$$
 
----
+Two facts are fixed by the statement and one is left open. Fixed: the first emitted value is the start value `n` itself, never `n + 1`; and the step between consecutive emissions is exactly $1$, never a quantity derived from the input. Open: how many invocations will occur, because the schedule arrives beside the start value and its length $m$ may be anything from $0$ up to the documented limit. The method must produce the progression lazily, one value per invocation, rather than preparing a fixed list of answers up front.
 
-## 1. Instance & Teaching Goal
+The instance traced here starts at `n = -2` with five scheduled invocations, so five values are owed. The negative start is deliberate: a progression that begins below zero and then crosses it exercises the register arithmetic without adding any special case for sign.
 
-Given an integer `n`, return a `counter` function. This `counter` function initially returns `n` and then returns 1 more than the previous value every subsequent time it is called (`n`, $n + 1$, $n + 2$, etc).
-
-The objective is to compute `[10, 11, 12]` from `{"n": 10, "calls": ["call", "call", "call"]}` while avoiding redundant calculations and unnecessary overhead.
-
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Part of the input | Value for this instance | What it fixes |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| Start value `n` | `-2` | the first emitted value, and the origin of the progression |
+| Invocation schedule | `["call","call","call","call","call"]` | that exactly $m = 5$ invocations occur, in this order |
+| Required output | `[-2,-1,0,1,2]` | that the $k$-th emitted value equals $n + (k - 1)$ |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+## 2. Why No Stateless Function Can Work
 
----
+A function that kept nothing between invocations would derive its answer from the same untouched input every time. With start value `-2` it would emit `-2` on all five invocations, giving `[-2,-2,-2,-2,-2]`, whereas the contract requires `[-2,-1,0,1,2]`. That design is already wrong at the second invocation, and the gap between the two answers is exactly the information the method must carry: one integer register holding the value the next invocation owes the caller.
 
-## 3. Step-by-Step Worked Execution
+This is the whole algorithmic content of the problem. There is no search, no ordering decision, and no optimisation. There is one piece of private state and a two-phase discipline that every invocation follows without exception:
 
-### Step 1: A returned function needs persistent private state
+1. **Emit:** report the value the register currently holds.
+2. **Advance:** replace the register's contents with that value plus one, so the next invocation owes a larger number.
 
-`createCounter(n)` finishes before the returned counter is called. Nevertheless, each future call must remember the value left by the previous call.
+The register lives between invocations rather than inside them. In language terms the returned function is a closure over the register: it keeps referring to that storage, so the storage survives each call and is never rebuilt. The register is written once, when the factory runs; nothing afterwards may re-initialise it.
 
-JavaScript closures provide exactly this behavior. A function retains access to variables from the lexical environment in which it was created, even after the outer function has returned.
+```mermaid
+accTitle: Counter register state machine
+accDescr: The factory initialises one private register, and each invocation emits the stored value before advancing the register by one, so invocations repeat the emit-then-advance cycle indefinitely.
+flowchart TD
+    A["Factory runs with start value n"] --> B["Private register is set to n"]
+    B --> C["An invocation arrives"]
+    C --> D["Emit the value the register currently holds"]
+    D --> E["Store that value plus one in the register"]
+    E --> C
+```
 
-The inner anonymous function closes over parameter `n`. That binding becomes the counter's private mutable state.
+The order of those two phases is the entire correctness argument of the next section, and it is also the most common way a submitted design breaks.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+## 3. Step-by-Step Execution of the Chosen Instance
+
+Write $s_k$ for the register's contents immediately before the $k$-th invocation. The single initialisation gives $s_1 = n$, and the two-phase discipline gives the recurrence
+
+$$s_{k+1} = s_k + 1 \quad \text{for every } k \ge 1, \qquad \text{emitted value at invocation } k = s_k .$$
+
+Unrolling it yields the closed form $s_k = n + (k - 1)$, which is exactly the progression the contract demands. The trace walks the five invocations and checks each emission against that form.
+
+| Invocation $k$ | Register before, $s_k$ | Value emitted | Register after, $s_{k+1}$ | Required $n + (k - 1)$ |
+|---|---|---|---|---|
+| 1 | $-2$ | `-2` | $-1$ | $-2 + 0 = -2$ |
+| 2 | $-1$ | `-1` | $0$ | $-2 + 1 = -1$ |
+| 3 | $0$ | `0` | $1$ | $-2 + 2 = 0$ |
+| 4 | $1$ | `1` | $2$ | $-2 + 3 = 1$ |
+| 5 | $2$ | `2` | $3$ | $-2 + 4 = 2$ |
+
+The emitted column equals `[-2,-1,0,1,2]`, the required output, and no value is produced twice. The third invocation emits `0`, a legitimate emission that a design treating zero as "no value yet" would silently drop. The crossing from `-1` through `0` to `1` needs no branch. After the fifth invocation the register holds $3$, which the schedule never observes: the answer is the sequence of reads, not the final register contents.
+
+## 4. The Invariant and Why the Reasoning Is Correct
+
+**Invariant.** Immediately before the $k$-th invocation, the private register holds $s_k = n + (k - 1)$, where $n$ is the start value captured by the factory.
+
+**Base case.** The factory performs exactly one write, setting the register to `n`, and returns before any invocation can occur. Nothing has advanced it, so the register holds $n = n + (1 - 1)$ before the first invocation, and the invariant holds at $k = 1$.
+
+**Inductive step.** Assume $s_k = n + (k - 1)$ at some invocation $k$. The emit phase reports the register unchanged, so the value handed to the caller is $n + (k - 1)$, precisely the value the contract requires at position $k$. The advance phase stores $s_{k+1} = s_k + 1 = n + (k - 1) + 1 = n + k = n + ((k + 1) - 1)$, which is the invariant at $k + 1$.
+
+By induction the invariant holds at every invocation, so every emitted value equals the required $n + (k - 1)$ and the method is sound. It is also complete: each invocation emits one value and advances the register once, so $m$ invocations emit exactly $m$ values and no required position is skipped.
+
+Two properties follow from where the register lives rather than from its arithmetic.
+
+- **Irreversibility.** The register is only replaced by its own successor, so the emitted sequence is strictly increasing with common difference $1$ and no value can repeat.
+- **Privacy.** The register belongs to one factory run, so two counters created with different start values cannot interfere; a register kept in a shared location passes a single-counter test and fails as soon as two counters coexist.
+
+## 5. Traps Exposed by This Instance
+
+| Trap | What the defective handling produces | What this instance demonstrates |
+|---|---|---|
+| Advancing before emitting | the emissions are shifted by one, giving `[-1,0,1,2,3]` | the required first value `-2` never appears, and a sixth value `3` appears in a five-invocation run |
+| Recomputing the answer from `n` on each invocation | every invocation emits `-2`, giving `[-2,-2,-2,-2,-2]` | the schedule asks for five distinct values, so a stateless answer is wrong from the second invocation onward |
+| Keeping the register in a shared location | a second counter continues from the first counter's leftover value | the leftover $3$ in this trace would become another counter's first emission instead of its own start value |
+| Special-casing negative start values | a branch that moves toward zero for negatives and away from zero for positives | `-2` advances to `-1` and then past zero to `1`, so the step is $+1$ for every sign |
+| Assuming emitted values stay inside the documented start range | clamping or rejecting values above the largest start value | a start value of `1000` with three invocations owes `[1000,1001,1002]` |
+
+The first two rows are the decisive ones and are the same defect seen twice: a method that never carries the register forward, and one that carries it forward at the wrong moment. Both return a plausible list of integers of the right length, which is why the trace is checked value by value rather than by counting elements.
+
+## 6. Boundary Instances and Their Expected Outputs
+
+The documented limits bound the start value and the number of invocations, not the values emitted.
+
+| Start value `n` | Invocation schedule | Required output | What the instance establishes |
 |---|---|---|---|
-| Input Slice | `{"n": 10, "calls": ["call", "call", "call"]}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `0` | one invocation | `[0]` | zero is a legitimate emission and must not be suppressed as a missing result |
+| `-1000` | two invocations | `[-1000,-999]` | the lowest documented start value advances normally, with no floor at zero |
+| `1000` | three invocations | `[1000,1001,1002]` | emissions are not confined to the documented start range |
+| `95` | ten invocations | `[95,96,97,98,99,100,101,102,103,104]` | the register is never reset between invocations, and the emissions stay in order |
+| `7` | no invocations | `[]` | an uninvoked counter emits nothing at all |
 
----
+With no invocations the register is initialised and never read, so the answer is the empty list, not a one-element list. With at most $1000$ invocations from a start of at most $1000$, the largest possible emission is $1000 + 999 = 1999$ and the smallest is $-1000$, so no overflow reasoning is needed anywhere in the method.
 
-### Step 2: Understand what the outer call creates
+## 7. Alternative Designs and Why They Are Eliminated
 
-Calling `createCounter(10)` performs two conceptual actions:
+| Design | Auxiliary space | Verdict |
+|---|---|---|
+| Stateless recomputation from the start value | $O(1)$ | unsound: it emits the start value on every invocation instead of advancing |
+| Remember only how many invocations have occurred | $O(1)$ | sound and equivalent: the $k$-th emission is $n + (k - 1)$, so the same invariant is carried by a differently labelled register |
+| Remember every value already emitted | $O(m)$ | sound but wasteful: a single integer already determines the next value, and the stored history is never read again |
+| Keep the register outside the returned function | $O(1)$ | sound for one counter only; counters created later would inherit a stranger's position rather than their own start value |
+| Precompute the whole progression before the first invocation | $O(m)$ | impossible in general: the number of invocations is unknown to the factory, which has already returned before any invocation occurs |
 
-1. create a lexical binding `n` initialized to ten;
-2. create and return an inner function that references that binding.
+The second row is the only genuinely interchangeable alternative, because storing the next value and storing the invocation count are two encodings of the same information related by $s = n + (k - 1)$. One integer is also necessary rather than merely sufficient: the value owed at invocation $k$ depends on the previous emission alone, and $k$ itself is unknown until the invocation arrives.
 
-Because the returned function still needs `n`, JavaScript keeps the binding alive. It is not copied anew on every counter call, and it is not discarded when `createCounter` returns.
+## 8. Time and Auxiliary Space Complexity
 
-The caller receives only the function, not direct access to the enclosed variable. This gives simple encapsulation: the sequence can advance through calls, but outside code cannot normally assign the private `n` binding directly.
+Every invocation performs a fixed amount of work regardless of the start value, the invocation index, or the schedule length.
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+| Phase | Work performed | Cost |
+|---|---|---|
+| Emit | the stored integer is reported to the caller | $O(1)$ |
+| Advance | one integer addition and one store into the register | $O(1)$ |
+| Total for one invocation | both phases together | $O(1)$ |
 
----
+With $m$ invocations the total running time is $O(m)$, and that is optimal rather than merely acceptable: the output contains $m$ values and each must be produced by its own invocation, so no method can beat one unit of work per emitted value. For the traced instance $m = 5$, and the trace above is exactly five emit-and-advance pairs.
 
-### Step 3: Postfix increment returns before advancing
+Auxiliary space is $O(1)$: the only storage the method owns is the single register, whose size does not depend on $m$. The emitted values are output rather than auxiliary storage, so the result list never counts against working memory. Writing $T$ for time and $S$ for auxiliary space,
 
-The function body is:
+$$T(m) = O(m), \qquad S(m) = O(1).$$
 
-`return n++;`
-
-The postfix increment operator has two linked effects:
-
-- the expression's value is the old value of `n`;
-- the stored binding is then incremented by one.
-
-Therefore, with initial $n=10$:
-
-- first call evaluates to ten, then stores eleven;
-- second call evaluates to eleven, then stores twelve;
-- third call evaluates to twelve, then stores thirteen.
-
-This order exactly matches the requirement that the first result be the supplied starting value.
-
-Using prefix increment `++n` without adjusting initialization would be wrong because the first call would return $n+1$.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[10, 11, 12]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"n": 10, "calls": ["call", "call", "call"]}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[10, 11, 12]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit local state variable:** Copy `n` into `let current = n` and return `current++`; behavior and complexity are the same.
-- **Increment before return:** Initialize to $n-1$, then use prefix increment. This works but is less direct.
-- **Class instance:** A class with a field and method models the state but adds unnecessary syntax for one operation.
-- **Global variable:** Incorrect because separately created counters would interfere.
-- **Negative start:** Postfix increment naturally produces the required increasing sequence through zero.
-- **Zero calls:** The closure is created, but its state is never changed or observed.
-- **Multiple counters:** Each factory call captures a separate binding.
-- **Extra call arguments:** They are ignored and do not affect state.
-- **Prefix versus postfix:** `n++` returns the old value; `++n` would return the incremented value.
-- **Encapsulation:** The captured binding is not exposed as a writable public object property.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(1)$. Creating a counter allocates one function and one captured numeric binding, so creation takes $O(1)$ time and $O(1)$ space.
-- **Auxiliary Space Complexity:** $O(1)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The limits $0 \le m \le 1000$ keep both bounds small in practice, but their shape is the real result: memory stays constant precisely because the register is the only information that must survive an invocation boundary.

@@ -1,138 +1,94 @@
 # Guided Example: Memoize II
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the outcome to derive
 
-- **Input:** `{"fnName": "sum", "calls": [[2, 2], [2, 2], [1, 2]], "callPlan": null}`
-- **Required output:** `{"lastValue": 3, "callCount": 2}`
+A memoized function must never run its underlying work twice on identical inputs; it returns the cached value instead. Identical here does **not** mean structurally similar: the statement defines two inputs as identical when they are `===` to each other, so two separately constructed objects with the same contents are different inputs, while one object passed twice is the same input twice. The memoized function may accept any number of arguments of any type, and every distinct argument tuple is its own cache entry.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The instance traced here merges pairs of objects. Two shared references are created once — `left` holding `{x: 1}` and `right` holding `{y: 2}` — together with structurally equal but separately constructed copies `leftCopy` and `rightCopy`. The call plan and the required outcome are:
 
----
+| Call | Arguments | Required value | Underlying work allowed |
+|---|---|---|---|
+| 1 | `left`, `right` | `{x: 1, y: 2}` | yes, this tuple is new |
+| 2 | `left`, `right` | `{x: 1, y: 2}` | no, both references were already seen together |
+| 3 | `left`, `rightCopy` | `{x: 1, y: 2}` | yes, `rightCopy` is a different object from `right` |
+| 4 | `leftCopy`, `right` | `{x: 1, y: 2}` | yes, `leftCopy` is a different object from `left` |
 
-## 1. Instance & Teaching Goal
+The final call must return `{x: 1, y: 2}` and the underlying function must have run exactly `3` times. The instance is chosen because it mixes identity and structure in one plan: calls 1 and 2 differ only in whether the references were seen before, while calls 3 and 4 keep one shared reference and replace the other with a look-alike.
 
-Given a function `fn`, return a **memoized** version of that function.
+## 2. The key is a path, not a string
 
-The objective is to compute `{"lastValue": 3, "callCount": 2}` from `{"fnName": "sum", "calls": [[2, 2], [2, 2], [1, 2]], "callPlan": null}` while avoiding redundant calculations and unnecessary overhead.
+Because an argument may be any value, including an object with no natural textual form, the cache cannot flatten a tuple into a printable key without losing the identity distinction the statement requires. The structure that preserves it is a tree of lookup nodes: one level per argument, and one child per distinct argument reference observed at that level.
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Element of the structure | Role | Why it is needed |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| root node | stands for the empty prefix of every argument tuple | it is also the entry point for a zero-argument call |
+| one node per argument position | a distinct child is created the first time a given argument reference appears at that position | object arguments are distinguished by identity rather than by contents |
+| terminal marker inside a node | records that the tuple ending at this node has a computed result | a node can be both a prefix of longer tuples and the end of a shorter one, so "prefix exists" must be distinguished from "result computed" |
+| stored result | the value the underlying function produced for that exact tuple | includes falsy values such as `false` and `undefined`, which are legitimate cached results |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+The lookup depth of a tuple is its arity, so tuples of different lengths end at different nodes and can never collide.
 
----
+## 3. Step-by-step trace of the instance
 
-## 3. Step-by-Step Worked Execution
+| Call | Path walked from the root | Work performed | Terminal marker state | Underlying calls so far |
+|---|---|---|---|---|
+| 1 | `left`, then `right` | both levels are new, so nodes are created for `left` and for `right` beneath it; the underlying merge runs and its result is stored at the end of the path | newly set at `left` then `right` | 1 |
+| 2 | `left`, then `right` | the same two nodes are found, the terminal marker is already present, and the stored result is returned | unchanged | 1 |
+| 3 | `left`, then `rightCopy` | the `left` level already exists and is reused; `rightCopy` is a different reference, so a new child node is created and the merge runs again | newly set at `left` then `rightCopy` | 2 |
+| 4 | `leftCopy`, then `right` | the root has no child for `leftCopy`, so a new branch is created; `right` is then a new child of that node | newly set at `leftCopy` then `right` | 3 |
 
-### Step 1: General arguments require identity-aware keys
+The final state of the cache, with three terminal markers, is a small tree rather than a flat table:
 
-Unlike a numeric-only memoizer, this function may receive values of any type. Two object arguments count as identical only when they are the same reference under `===`.
+```text
+root
+  |-- left -------- right      [result {x:1, y:2}]
+  |                 rightCopy  [result {x:1, y:2}]
+  |-- leftCopy ---- right      [result {x:1, y:2}]
+```
 
-Serialization is therefore not safe:
+Node `left` proves the point of the design: it is simultaneously an interior node on two cached paths and, if the memoized function were later called with `left` alone, the place where a result for that shorter tuple would be stored. The stored value for calls 3 and 4 is the same object content as call 1, yet each was computed separately, because the argument references differ.
 
-- two distinct empty objects both stringify as `"{}"` but are not identical;
-- the same object reference must hit the same cache path;
-- argument order and argument count must remain distinct.
+## 4. The cache invariant and correctness
 
-The solution represents an argument tuple as a path through nested `Map` objects. Each path edge is keyed by one actual argument value, so JavaScript's map-key identity semantics do the matching.
+Let the *signature* of a call be its argument tuple, with equality defined position by position using the strict identity the statement specifies. The cache maintains one invariant:
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+> For every signature $s$ that has been called, the node reached by walking $s$ from the root holds a terminal marker, and the value stored behind that marker is the value the underlying function produced for $s$. No node holds a result for a signature that was never called.
+
+**Hits are sound.** A returned value is only ever read from a terminal marker that was written by an earlier call. That earlier call had exactly the same references in exactly the same positions, because the walk compares each argument against the children of the current node one position at a time; a differing reference at any position diverts the walk to a different node or to no node at all. So every hit returns the result of the same signature, which is what memoization promises.
+
+**Misses are complete.** If a signature has never been called, then either some level of the walk has no matching child — which happens for a never-seen reference — or the walk reaches an existing node that carries no terminal marker, which happens when every argument was seen before but never as this exact tuple, for instance `left` alone after `left` `right` was cached. Both situations produce a miss, so no uncomputed signature can be served from the cache.
+
+**Falsy results survive.** The marker is tested for presence, not for truthiness, so a cached `false`, `0`, empty string, or `undefined` is returned as a hit. A truthiness test would silently recompute those signatures on every call and break the "never called twice" guarantee.
+
+**Termination and stability.** Each call walks a fixed number of levels — one per argument — and each level performs a constant lookup, so the walk always finishes. Nodes are only ever added, never removed, and a node's stored result is never overwritten by a later call, because a later call with the same signature short-circuits before reaching the underlying function. The cache is therefore monotone: it grows with the number of distinct tuples and never changes a value it has already committed.
+
+## 5. Boundary and trap analysis
+
+| Situation | Concrete plan | Observed outcome | The trap it exposes |
 |---|---|---|---|
-| Input Slice | `{"fnName": "sum", "calls": [[2, 2], [2, 2], [1, 2]], "callPlan": null}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| Structurally equal but fresh objects | three calls, each passing two newly built empty objects | the underlying function runs 3 times | structural similarity is irrelevant; only identity decides, so all three tuples are distinct |
+| Repeated shared references | three calls, all passing the same two objects | the underlying function runs 1 time | the same tuple reaches the same node every time, so the marker is found immediately |
+| Argument order | `(1, 2)`, `(2, 1)`, `(1, 2)` | two underlying calls, final value `3` | order is part of the signature: the two tuples occupy different branches and only the repeat of the first one hits |
+| Different arity | `(7)`, `(7)`, `(7, 8)`, `(7, 8)` | two underlying calls, final value `2` | tuple length is part of the signature; `(7)` ends at the node for `7`, while `(7, 8)` continues one level deeper |
+| No arguments at all | three calls with an empty argument list | one underlying call, final value `7` | the empty tuple is cached at the root itself, so the root must be able to hold a terminal marker |
+| A result of `undefined` | three calls with `(5)` where the underlying function returns nothing | one underlying call, value `undefined` | presence of the marker, not the value, decides a hit |
+| A result of `false` | two calls with `(0)` where the underlying function returns `false` | one underlying call, value `false` | a falsy result is a cacheable result like any other |
+| Number against string | `(1)`, `("1")`, `(1)`, `("1")` | two underlying calls, final value `"1"` | identity is strict, so a number and its textual form take different branches |
+| Value serving as both prefix and result | caching `left` `right` and later calling with `left` alone | the second call misses and computes | an interior node is not a cache entry; the terminal marker is a separate fact from the node's existence |
 
----
+## 6. Alternatives this instance eliminates
 
-### Step 2: The nested maps form a trie of argument sequences
+| Alternative | Behaviour here | Why it is eliminated |
+|---|---|---|
+| Serializing the arguments to a string | would report calls 3 and 4 as hits for call 1 | serialized text cannot see reference identity, so look-alike objects collapse into one entry |
+| Joining the arguments with a separator into one flat key | same collapse, plus collisions when an argument's own text contains the separator | it inherits every weakness of serialization and adds ambiguity |
+| A single flat lookup with numeric coercion | would treat the tuple carrying `1` and the tuple carrying `"1"` as one signature | identity is strict, and the corpus pins that the number and its textual form are different inputs |
+| A recursive lookup that treats a returned child as a result | would return an internal node as the cached value for a shorter tuple | a node's existence means a prefix was seen, not that a value was computed |
+| Testing the stored value for truthiness to decide a hit | would recompute the `undefined`, `false`, and `0` cases on every call | the contract forbids a second call with the same inputs regardless of the result's truthiness |
+| A per-arity map plus one shared cache | correct for one arity but wrong as soon as tuples of different lengths share a prefix | the signature includes the length, and a single tree handles every arity uniformly |
 
-`root` is a `Map` representing the empty argument prefix.
+## 7. Time and auxiliary space complexity
 
-For arguments $(a_0,a_1,\ldots,a_{k-1})$, the wrapper walks:
+Let $A$ be the total number of argument values passed across the whole call plan, bounded by $0 \le \text{inputs.flat}().length \le 10^{5}$, and let $d$ be the arity of a single call. One call walks $d$ levels and performs a constant lookup per level, so producing the answer for a call costs $O(d)$ expected time — the caveat is the ordinary expected cost of a hash lookup, not a worse worst case — and the whole plan costs $O(A)$ expected time, because each argument value is visited once per call that carries it. No call ever scans the cache: the walk visits only the nodes on its own path, which is what separates this structure from a linear search over stored signatures.
 
-$$
-\texttt{root}
-\xrightarrow{a_0}
-M_1
-\xrightarrow{a_1}
-M_2
-\cdots
-\xrightarrow{a_{k-1}}
-M_k.
-$$
-
-If an edge does not exist, `node.set(arg, new Map())` creates the next map. Tuples sharing a prefix share the corresponding initial maps.
-
-For example, tuples `(objectA, 1)` and `(objectA, 2)` share the edge for `objectA` and diverge at their second arguments. Tuple `(objectB, 1)` begins on a different root edge if `objectB !== objectA`.
-
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
-
----
-
-### Step 3: Store the result at the terminal node
-
-After every argument has been consumed, `node` represents exactly that full tuple. The solution needs a marker key that cannot be confused with another argument edge.
-
-`const resultKey = Symbol('result')` creates a unique symbol held privately inside the closure. The terminal map stores the cached value under that symbol.
-
-Even if a caller supplies another symbol with the same description, it has different identity. The closure's symbol is never exposed, so user inputs cannot intentionally reproduce it.
-
-This design also distinguishes a tuple from its prefix. A result for one argument is stored at the map reached after one edge, while a two-argument tuple continues through a second edge from that same node.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `{"lastValue": 3, "callCount": 2}` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"fnName": "sum", "calls": [[2, 2], [2, 2], [1, 2]], "callPlan": null}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `{"lastValue": 3, "callCount": 2}` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **`JSON.stringify(args)`:** Incorrect for unrestricted objects because distinct references can serialize identically.
-- **Linear list of prior tuples:** Preserves identity but may require $O(ua)$ comparisons per call.
-- **Weak-map hybrid:** Can allow object-key paths to be garbage-collected, but primitive keys still require ordinary maps and implementation becomes more complex.
-- **Same object reused:** It follows the same map edge and produces cache hits.
-- **Structurally equal new objects:** Their references differ, so they correctly follow different paths.
-- **Argument order:** Each position is a separate trie level, so `(a,b)` differs from `(b,a)`.
-- **Different arity with common prefix:** Results live at different terminal nodes or marker positions.
-- **Zero arguments:** The cached result is stored directly on the root.
-- **Falsy or undefined result:** Marker membership prevents recomputation.
-- **Receiver-dependent function:** `this` is forwarded for execution but not included in the cache key, consistent with the stated argument-only identity contract.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(a)$. Let $a$ be the number of arguments in one call. The wrapper performs one expected $O(1)$ map operation per argument and one terminal lookup, for expected $O(a)$ cache-navigation time, plus the cost of `fn` on a miss.
-- **Auxiliary Space Complexity:** $O(ua)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The auxiliary space is the cache itself, whose size is bounded by the number of distinct prefixes observed. Every new prefix consumes exactly one node created while processing one argument occurrence, so with $A \le 10^{5}$ argument occurrences the tree holds at most $A + 1$ nodes, counting the root; the argument tuples whose arity is $0$ add nothing beyond the root's own terminal marker. Each node stores one lookup table for its children and, once computed, one result, so the total retained state is $O(A)$, and the working memory of an individual call beyond the cache is $O(1)$: a single cursor walks the path level by level.

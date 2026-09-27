@@ -84,6 +84,21 @@ $$
 \text{return self.has\_peeked or self.iterator.hasNext()}
 $$
 
+### Operation Semantics as a Transition Table
+
+The three protocols above depend only on whether the buffer is occupied, so the complete behaviour of the wrapper is the six-row transition table below. Reading it by cache state shows immediately why `has_peeked` — not `peeked_element` — is the state variable:
+
+| Cache state before the call | Operation | Action taken | Cache state after | Returned value |
+|:---|:---|:---|:---|:---|
+| Empty (`has_peeked = False`) | `peek()` | Prefetch one value from the underlying iterator into the buffer | Full, holding the fetched value | The fetched value |
+| Empty (`has_peeked = False`) | `next()` | Delegate straight to the underlying iterator; nothing is buffered | Empty | The value the source yields |
+| Empty (`has_peeked = False`) | `hasNext()` | Ask the source whether it has more values | Empty | Whatever the source reports |
+| Full, holding $v$ | `peek()` | No action: the buffer already answers the question | Full, still holding $v$ | $v$, so repeated peeks agree |
+| Full, holding $v$ | `next()` | Serve $v$ from the buffer, then mark the buffer empty | Empty | $v$ |
+| Full, holding $v$ | `hasNext()` | Report availability from the buffer without consulting the source | Full, still holding $v$ | `true`, even when the source is already exhausted |
+
+The last row is what a sentinel-based implementation gets wrong, and the fourth row is what makes `peek()` idempotent: an occupied buffer turns every further `peek()` into a pure read.
+
 > **Invariant.** The logical next element visible to the caller is `self.peeked_element` if `has_peeked` is True, or `self.iterator.next()` otherwise. The underlying iterator is never ahead of the caller's logical view by more than 1 position.
 
 ---
@@ -182,6 +197,21 @@ Results: [1, 2, 2, 3, false]
 | 4 | `next()` | Empty (`False`) | Read directly from iterator | **3** | Empty (`False`) | Exhausted |
 | **5** | `hasNext()` | Empty (`False`) | Evaluate `has_peeked or hasNext()` | **`false`** | Empty (`False`) | Exhausted |
 
+### Second Instance: Consecutive Peeks on $[5, 6]$
+
+The first trace never calls `peek()` twice in a row, which is exactly the situation the wrapper exists to handle. Running the sequence `peek, peek, next, hasNext, next, hasNext` over the two-element source $[5, 6]$ shows the buffer absorbing the repetition. The final column names the value the *source* would yield next, which is the physical position the caller must never observe through the logical cursor:
+
+| Step | Call | Cache before | Action | Returned | Cache after | Value the source would yield next |
+|:---:|:---|:---|:---|:---:|:---|:---:|
+| 1 | `peek()` | Empty | Prefetch $5$ from the source | **5** | Full ($5$) | 6 |
+| 2 | `peek()` | Full ($5$) | Skip the prefetch; the buffer already holds the answer | **5** | Full ($5$) | 6 |
+| 3 | `next()` | Full ($5$) | Serve the buffer and empty it | **5** | Empty | 6 |
+| 4 | `hasNext()` | Empty | Delegates to the source, which still holds $6$ | **`true`** | Empty | 6 |
+| 5 | `next()` | Empty | Delegates to the source | **6** | Empty | exhausted |
+| 6 | `hasNext()` | Empty | Both the buffer and the source are empty | **`false`** | Empty | exhausted |
+
+Step 2 is the decisive row. Had the second `peek()` prefetched again, it would have returned $6$ instead of $5$, and the two-element source would already be empty, so the required sequence `[5, 5, 5, true, 6, false]` could not be produced at all.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -197,6 +227,15 @@ Results: [1, 2, 2, 3, false]
 - **Calling Underlying `next()` on Every `peek()`:** If `peek()` is called three times in a row, naively calling `iterator.next()` on each invocation would advance the underlying iterator 3 times, skipping elements! Guarding with `if not self.has_peeked` ensures prefetching happens at most once until consumed.
 - **Using `None` as an Empty-Cache Sentinel:** In generic languages (e.g. Java, Python), a list can contain `None` or `null` as valid elements. Checking `if self.peeked_element is not None` fails when `None` is the stored value. An independent boolean flag `has_peeked` prevents this bug.
 - **Underlying Iterator Exhaustion After `peek()`:** When peeking at the final element, the underlying iterator's `hasNext()` becomes False. If `hasNext()` only checked the underlying iterator, it would incorrectly report that no elements remain! Checking `self.has_peeked or self.iterator.hasNext()` properly preserves the availability of the cached element.
+
+### Boundary Instances
+
+| Instance | Condition exercised | Required result | Why the buffer design produces it |
+|:---|:---|:---|:---|
+| source $[5, 6]$, calls `peek, peek, next, hasNext, next, hasNext` | the same element is inspected twice with no consumption in between | `[5, 5, 5, true, 6, false]` | The first `peek()` occupies the buffer; the second observes `has_peeked = True` and returns the stored value without touching the source, so the element survives to be consumed once. |
+| source $[1]$, calls `peek, peek, next, hasNext` | the prefetch itself exhausts a one-element source | `[1, 1, 1, false]` | Both peeks serve the buffered $1$ even though the source is already empty; only after `next()` clears the buffer does `hasNext()` fall through to the empty source and report `false`. |
+| source $[1, 2, 3]$, calls `hasNext, peek, next, next, hasNext` | availability is queried before any lookahead exists | `[true, 1, 1, 2, true]` | With an empty buffer, `hasNext()` consults the source directly; the buffer is created later by `peek()` and consumed by the following `next()`. |
+| a source whose upcoming value equals the language's empty sentinel (`None`, `null`, or a falsy value such as $0$ inside a numeric wrapper) | the buffer legitimately holds a value a sentinel test would misread as "empty" | `peek()` and `next()` must both return that value exactly once | Occupancy is recorded by the separate `has_peeked` flag, never by comparing the stored value, so no legitimate element can be mistaken for an empty buffer or served twice. |
 
 ---
 

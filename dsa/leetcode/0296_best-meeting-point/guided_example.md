@@ -73,6 +73,19 @@ To simultaneously achieve the minimum for all nested pairs, $z$ must lie in the 
 
 > **Invariant.** The coordinate that minimizes the sum of absolute differences is the **median** of the coordinate list. The arithmetic mean minimizes squared Euclidean distance ($\sum (a_i - z)^2$), but the median minimizes $L_1$ Manhattan distance ($\sum |a_i - z|$).
 
+### Sweeping the Cost Function: Where the Turn Happens
+Evaluating the horizontal cost at every column of the instance exposes the convex shape that the median theorem predicts, and shows why the turning point rather than the average is the right coordinate:
+
+| Candidate $Y$ | $D_{\text{col}}(Y) = \lvert 0 - Y \rvert + \lvert 2 - Y \rvert + \lvert 4 - Y \rvert$ | Change $\Delta(Y) = D_{\text{col}}(Y) - D_{\text{col}}(Y - 1)$ | Reading |
+|:---:|:---:|:---:|:---|
+| $0$ | $0 + 2 + 4 = 6$ | — leftmost candidate | Moving right must help: every home is at or to the right |
+| $1$ | $1 + 1 + 3 = 5$ | $-1$ | Still falling |
+| $2$ | $2 + 0 + 2 = 4$ | $-1$ | **Minimum: the column median** |
+| $3$ | $3 + 1 + 1 = 5$ | $+1$ | Rising |
+| $4$ | $4 + 2 + 0 = 6$ | $+1$ | Rising |
+
+The step size obeys $\Delta(Y) = \#\{c_i < Y\} - \#\{c_i \ge Y\}$: while more homes sit at or above $Y$ than strictly below it, the walk toward the middle still reduces the total, and once that balance reverses the total grows again. The median is exactly the coordinate where the balance reverses. The same sweep on $\text{rows} = [0, 0, 2]$ gives $D_{\text{row}}(0) = 2$, $D_{\text{row}}(1) = 3$ and $D_{\text{row}}(2) = 4$, so row $0$ is the turning point on that axis.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -174,9 +187,23 @@ Total Distance = 2 + 4 = 6
 
 ## 6. Traps This Instance Exposes
 
-- **Using Mean Instead of Median:** The arithmetic mean minimizes the sum of squared distances $\sum (x_i - \bar{x})^2$. For absolute distances, an outlier coordinate would shift the mean away from the majority of homes, increasing total travel. The median is the unique robust minimizer for absolute distances.
+- **Using Mean Instead of Median:** The arithmetic mean minimizes the sum of squared distances $\sum (x_i - \bar{x})^2$. For absolute distances, an outlier coordinate would shift the mean away from the majority of homes, increasing total travel. The median — any point of the median interval when $k$ is even — is the robust minimizer for absolute distances.
 - **Requiring Meeting Point on a Friend's Home:** The optimal meeting point $(0, 2)$ is an empty cell (`grid[0][2] == 0`). The problem statement does NOT require the meeting point to be at an existing friend's house.
 - **Unsorted Columns:** Scanning row-by-row produces `rows` in sorted order, but `cols` is interleaved across rows (e.g. $[0, 4, 2]$). Forgetting to sort `cols` produces an incorrect median.
+
+### Boundary Shapes and Their Exact Answers
+Every input has at least two homes, so the median index always exists, but the shape of the optimal set changes with the parity of $k$ and the axis that carries the homes:
+
+| Grid | Homes $k$ | Median coordinates read by the method | Answer | Why that value is forced |
+|:---|:---:|:---|:---:|:---|
+| `[[1,1]]` | $2$ | rows $[0,0]$, cols $[0,1]$ | $1$ | Even count: every cell between the two homes, endpoints included, costs the same $1$ |
+| `[[1,0,1]]` | $2$ | rows $[0,0]$, cols $[0,2]$ | $2$ | The median interval is the whole span $[0,2]$; the method takes its upper endpoint and obtains $2$, as does every column in between |
+| `[[1],[0],[0],[0],[1]]` | $2$ | rows $[0,4]$, one distinct column | $4$ | The same argument runs along rows when the homes are stacked vertically: the upper median row $4$ costs $4$, exactly as every row between the endpoints does |
+| `[[1,0,1],[0,0,0],[1,0,1]]` | $4$ | rows and cols both resolve to the middle band | $8$ | Four equal corner homes leave a whole central region optimal; the method returns one corner of that region, and their costs agree |
+| `[[1,1,1],[1,1,1],[1,1,1]]` | $9$ | $(1,1)$ | $12$ | Odd square: the centre is the unique optimum, and each axis contributes $3 \times (0 + 1 + 2)$ |
+| `[[1,1,1,1],[0,0,0,0],[0,0,0,0],[0,0,0,1]]` | $5$ | row $0$, column $2$ | $8$ | Four homes in row $0$ hold the row median at $0$ even though one home sits three rows away; the outlier is outvoted |
+
+Two structural facts follow from the table. First, when $k$ is even the answer is attained by a set of points, not a single point, so any implementation that reports the meeting coordinates must not claim uniqueness. Second, the optimum never leaves the bounding box of the homes: the sweep above shows the cost rising again once the walk passes the last home.
 
 ---
 
@@ -184,3 +211,12 @@ Total Distance = 2 + 4 = 6
 
 - **Time Complexity:** $O(M \times N + K \log K)$, where $M \times N$ is the grid size and $K$ is the number of homes ($K \le M \times N$). Scanning the grid takes $O(M N)$. Sorting `cols` of length $K$ takes $O(K \log K)$. Summing distances takes $O(K)$. Total runtime is dominated by grid traversal and column sorting.
 - **Auxiliary Space Complexity:** $O(K)$ auxiliary memory to store the row and column coordinates of the $K$ homes.
+
+### Alternatives and Their Costs
+| Approach | Time | Space | What it gets right | Where it stands on this instance |
+|:---|:---|:---|:---|:---|
+| **Score every cell by brute force** | $O(MN \cdot K)$ | $O(K)$ | Obviously correct: it evaluates the objective at every candidate point | With $200 \times 200 = 4 \cdot 10^{4}$ cells and $K = 4 \cdot 10^{4}$ homes that is $1.6 \cdot 10^{9}$ distance evaluations |
+| **Row and column prefix sums** | $O(MN)$ | $O(MN)$ | Builds the exact cost of every cell in one pass, with no sorting | Correct and linear, but it computes a whole cost surface when the separability argument already identifies the optimum's two coordinates |
+| **Arithmetic mean of the coordinates** | $O(K)$ | $O(1)$ | It is the exact minimizer of $\sum (r_i - X)^2 + \sum (c_i - Y)^2$ | Wrong objective: for columns $[0, 0, 4]$ the mean $4/3$ costs $16/3 \approx 5.33$, while the median column $0$ costs $4$ |
+| **Row and column medians (the method here)** | $O(MN + K \log K)$ | $O(K)$ | Separates the two axes and uses the exact $L_1$ minimizer on each, exploiting that rows already arrive sorted | The grid scan and the column sort both stay far below the $200 \times 200$ ceiling |
+| **Selection instead of sorting** | $O(MN + K)$ expected | $O(K)$ | Quickselect on the column list returns the same median without ordering the whole list | A legitimate refinement rather than a correction: the explicit sort is simpler to reason about and is never the bottleneck at these sizes |

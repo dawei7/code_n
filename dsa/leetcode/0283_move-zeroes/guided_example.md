@@ -153,6 +153,21 @@ Result: [1, 3, 12, 0, 0]
 | **4** | **12** | **Yes** | 2 | $\text{swap}(\text{nums}[2], \text{nums}[4])$ | `[1, 3, 12, 0, 0]` |
 | **End** | - | - | 3 | - | **`[1, 3, 12, 0, 0]`** |
 
+### Region Ledger
+
+The trace above records whole array states; the ledger below records the same steps as the three region boundaries of the invariant, which is what makes the sizes of those regions checkable at a glance. Entries are listed *after* the step for index $i$ has finished, so the zero window has already absorbed position $i$:
+
+| State after step | Write pointer $k$ | Non-zero prefix $[0 \dots k-1]$ | Zero window $[k \dots i]$ | Unvisited suffix $[i+1 \dots N-1]$ |
+|:---:|:---:|:---|:---|:---|
+| Before $i = 0$ | 0 | empty | empty | $[0, 1, 0, 3, 12]$ |
+| $i = 0$ | 0 | empty | $[0]$ | $[1, 0, 3, 12]$ |
+| $i = 1$ | 1 | $[1]$ | $[0]$ | $[0, 3, 12]$ |
+| $i = 2$ | 1 | $[1]$ | $[0, 0]$ | $[3, 12]$ |
+| $i = 3$ | 2 | $[1, 3]$ | $[0, 0]$ | $[12]$ |
+| $i = 4$ | 3 | $[1, 3, 12]$ | $[0, 0]$ | empty |
+
+Every row satisfies two counting facts that follow from the region definitions: the three regions together cover exactly the indices $0 \dots N - 1$, and $k$ equals the number of non-zero elements seen so far. The second fact is why the single index $k$ is enough state — the algorithm never needs to know *which* non-zero elements were placed, only how many.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -168,6 +183,27 @@ Result: [1, 3, 12, 0, 0]
 - **Overwriting Zeros without Swapping:** A two-pass approach copies non-zeros forward (`nums[k] = nums[i]`) and then runs a second loop filling zeros (`nums[k:] = 0`). While correct, it always performs $N$ writes even when few zeros exist. Swapping achieves in-place compaction in a single pass.
 - **Unstable Partitioning:** Using opposite-end pointers ($L$ and $R$ moving inward) destroys the relative order of non-zero elements (e.g. $[0, 1, 2]$ would become $[2, 1, 0]$). The forward-moving two-pointer approach guarantees stability.
 - **Self-Swap Optimization:** When the array starts with non-zeros (e.g. $[1, 2, 0]$), $k == i$ for the initial elements. The code executes a trivial self-swap `nums[i], nums[i] = nums[i], nums[i]`, maintaining correctness without conditional branching overhead.
+
+### Boundary Instances and the Rule That Carries Each One
+
+The traps above are easiest to separate when each boundary instance isolates one condition. The outcomes below are the required outcomes for those inputs:
+
+| Instance | Distinguishing condition | Required outcome | Which part of the method carries it |
+|:---|:---|:---|:---|
+| $[0]$ | $N = 1$ and the only element is a zero | $[0]$ | No non-zero is ever encountered, so $k$ stays $0$ and no swap is attempted; the untouched array is already correct. |
+| $[1, 2, 3]$ | No zeros at all | $[1, 2, 3]$ | $k$ and $i$ advance in lockstep, so every swap is a self-swap and each element is confirmed rather than relocated. |
+| $[0, 0, 0]$ | Every element is a zero | $[0, 0, 0]$ | $k$ remains $0$ while the zero window grows to cover the entire array, which is exactly the required arrangement. |
+| $[0, 0, 1]$ | Two leading zeros before the first non-zero | $[1, 0, 0]$ | The first non-zero appears at $i = 2$ and is swapped with $\text{nums}[0]$; the two zeros rotate one slot rightward into the window. |
+| $[0, 1, 0, 2]$ | Alternating zero and non-zero | $[1, 2, 0, 0]$ | Each non-zero is swapped into the next free prefix slot, so $1$ and $2$ keep their encounter order while both zeros collect in the window. |
+
+### Approach Comparison
+
+| Approach | Mechanism | Time | Auxiliary space | Preserves non-zero order? | Tradeoff and verdict |
+|:---|:---|:---:|:---:|:---:|:---|
+| Auxiliary filter array | Copy every non-zero into a fresh list, append one zero per skipped element, then write the result back over the input. | $O(N)$ | $O(N)$ | yes | Simple and fast, but the extra buffer grows with the input and violates the in-place requirement. |
+| Opposite-end partition | Walk one pointer from the left and one from the right, swapping a zero on the left with a non-zero on the right until they cross. | $O(N)$ | $O(1)$ | no | In-place and linear, but the exchanges reverse the non-zeros, so $[0, 1, 2]$ would become $[2, 1, 0]$. |
+| Two-pass copy then fill | Copy non-zeros forward into their final prefix, then overwrite the remaining tail with zeros in a second sweep. | $O(N)$ | $O(1)$ | yes | Correct and stable, but it always performs $N$ writes even when the array contains no zeros to move. |
+| Forward swap compaction | Swap $\text{nums}[k]$ with $\text{nums}[i]$ whenever $\text{nums}[i] \ne 0$, then advance $k$. | $O(N)$ | $O(1)$ | yes | Chosen here: one pass, in place and stable, and the swap degenerates to a self-swap whenever $k == i$, so already-correct elements cost only the comparison. |
 
 ---
 

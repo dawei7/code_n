@@ -9,7 +9,7 @@ We trace the step-by-step two-heap balanced partition, max-heap lower half routi
   - After `[1, 2, 3]`: Median is $2.0$
   - After `[1, 2, 3, 4]`: Median is $(2 + 3) / 2 = 2.5$
   - After `[1, 2, 3, 4, 5]`: Median is $3.0$
-- **Unordered Stream Insertion:** Adding elements out of order (e.g. $[5, 2, 4, 1, 3]$) maintains the exact same heap partition and yields identical medians
+- **Unordered Stream Insertion:** Arriving out of order (e.g. $[5, 2, 4, 1, 3]$) still ends with the same partition — lower $\{1, 2\}$, upper $\{3, 4, 5\}$ — and the same final median $3.0$, but the intermediate medians are decided by the prefix seen so far, giving $5.0, 3.5, 4.0, 3.0, 3.0$ instead of the sorted arrival's $1.0, 1.5, 2.0, 2.5, 3.0$
 - **Duplicate Values:** Equal stream elements are partitioned across the two heaps without breaking heap order
 
 This instance demonstrates dynamic stream median tracking, proves how two complementary heaps maintain a split boundary around the median, details the logarithmic rebalancing mechanism, and achieves $O(\log N)$ per insertion with $O(1)$ median queries in $O(N)$ auxiliary space.
@@ -155,6 +155,19 @@ Initial state: `minq = []`, `maxq = []`.
 - Size difference: $3 - 2 = 1 \le 1$ (Balanced).
 - **`findMedian()`:** Odd count ($3 > 2$) $\implies \text{minq}[0] = \mathbf{3.0}$.
 
+#### Inside `heappushpop`: Which Value Crosses the Boundary
+Routing is one combined operation — push $-\text{num}$, then immediately pop the smallest stored value — so the number that reaches `minq` is $\max(\text{num}, \max(\text{lower}))$, and it is not always the number that just arrived. The ledger below separates that exchange from the rebalancing move that follows it:
+
+| Step | `num` arriving | `maxq` right after pushing $-\text{num}$ | `heappushpop` returns | Value crossing into `minq` | Rebalancing move | Boundary after all moves |
+|:---:|:---:|:---:|:---:|:---:|:---|:---|
+| 1 | $1$ | $\{-1\}$ | $-1$ | $1$ (the arrival) | none: $\lvert \text{minq} \rvert - \lvert \text{maxq} \rvert = 1$ | lower half empty, so $x \le y$ is vacuous |
+| 2 | $2$ | $\{-2\}$ | $-2$ | $2$ (the arrival) | pop $1$ from `minq`, push $-1$ into `maxq` | $\max(\text{lower}) = 1 \le 2 = \min(\text{upper})$ |
+| 3 | $3$ | $\{-3, -1\}$ | $-3$ | $3$ (the arrival) | none: the difference is already $1$ | $\max(\text{lower}) = 1 \le 2 = \min(\text{upper})$ |
+| 4 | $4$ | $\{-4, -1\}$ | $-4$ | $4$ (the arrival) | pop $2$ from `minq`, push $-2$ into `maxq` | $\max(\text{lower}) = 2 \le 3 = \min(\text{upper})$ |
+| 5 | $5$ | $\{-5, -2, -1\}$ | $-5$ | $5$ (the arrival) | none: the difference is already $1$ | $\max(\text{lower}) = 2 \le 3 = \min(\text{upper})$ |
+
+Every arrival in this increasing stream is the largest value seen so far, so `heappushpop` hands back exactly the number it was given and the lower half changes only in the rebalancing move. A descending stream reverses that: from the third element onward the arrival is the smallest value seen, so the call pushes the previous maximum of the lower half up into `minq` and keeps the new number below the boundary — the case analysed in §6.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -195,6 +208,18 @@ Results: [1.0, 1.5, 2.0, 2.5, 3.0]
 - **Integer Division Trap:** In languages like Python 2, C++, or Java, dividing integers using `/ 2` performs floor truncation (e.g. $5 / 2 = 2$). Floating-point division `/ 2.0` is required to produce $2.5$.
 - **Direct Insertion without Boundary Check:** Pushing directly to `minq` or `maxq` based solely on size without checking the value can invert the partition (e.g. putting a small number into `minq`). The `heappushpop` routing guarantees the boundary invariant holds before sizing is resolved.
 
+### Boundary Conditions Worth Checking by Hand
+Each row below is an exact median sequence produced by the method above, and each isolates one way the invariants can be stressed:
+
+| Stream condition | Instance | Medians returned | What it tests |
+|:---|:---|:---|:---|
+| Single element | $[0]$ | $0.0$ | The odd rule reads `minq[0]` while the lower half is still empty |
+| Two elements | $[50, 98]$ | $50.0, \; 74.0$ | Rebalancing first moves the smaller value down, so the even rule reads two genuine boundary values |
+| All values equal | $[2, 2, 2, 2]$ | $2.0$ at every step | The ordering invariant is $\le$, not $<$: $\max(\text{lower}) = \min(\text{upper}) = 2$ is legal, and the mean of two equal boundary values is that same value |
+| Negative values | $[-5, -10, -3]$ | $-5.0, \; -7.5, \; -5.0$ | The negation trick must be applied to negative inputs too: the stored root $10$ represents the value $-10$, and the even rule computes $-5 - 10 = -15$, halved to $-7.5$ |
+| Strictly descending arrival | $[5, 4, 3, 2, 1]$ | $5.0, \; 4.5, \; 4.0, \; 3.5, \; 3.0$ | From the third element on, `heappushpop` returns the stored root instead of the arrival, so the upper half grows during routing |
+| Out-of-order arrival | $[5, 2, 4, 1, 3]$ | $5.0, \; 3.5, \; 4.0, \; 3.0, \; 3.0$ | The final partition and final median match the sorted arrival, yet every intermediate query answers about a different prefix |
+
 ---
 
 ## 7. Complexity Derivation
@@ -203,3 +228,12 @@ Results: [1.0, 1.5, 2.0, 2.5, 3.0]
   - `addNum(num)`: $O(\log N)$ logarithmic time. The method executes at most two heap pushes and two heap pops. Each heap operation on a heap of size $N/2$ costs $O(\log N)$.
   - `findMedian()`: $O(1)$ constant time. Accesses the roots of the heaps at index `0` and performs basic arithmetic.
 - **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the $N$ stream elements distributed across `minq` and `maxq`.
+
+### Alternatives and Their Costs
+| Approach | `addNum` cost | `findMedian` cost | Auxiliary space | Tradeoff on this workload |
+|:---|:---|:---|:---|:---|
+| **Sort the buffer at every query** | $O(1)$ append | $O(N \log N)$ | $O(N)$ | Correct, but it re-derives an order the previous query already knew; with up to $5 \cdot 10^{4}$ calls the queries dominate every other cost |
+| **One sorted list, binary-search insertion** | $O(\log N)$ to locate the position plus $O(N)$ to shift the tail | $O(1)$ middle read | $O(N)$ | The search and the read are cheap; the shifting makes each insertion linear |
+| **Balanced search tree with subtree sizes** | $O(\log N)$ | $O(\log N)$ rank selection | $O(N)$ | Asymptotically sound and free of value-range assumptions, but the structure must be written by hand |
+| **Frequency array over the bounded value range** | $O(1)$ increment over $V = 2 \cdot 10^{5} + 1$ possible values | $O(V)$ scan, or $O(\log V)$ with a Fenwick tree over the counts | $O(V)$ | Uses the stated bound $-10^{5} \le \text{num} \le 10^{5}$, but the query stops being constant |
+| **Two heaps (the method used here)** | $O(\log N)$: one `heappushpop`, plus at most one pop/push pair | $O(1)$: two heap roots and one subtraction | $O(N)$ | Each query reads the two boundary values that insertion already maintained |

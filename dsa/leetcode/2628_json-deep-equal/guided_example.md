@@ -1,133 +1,93 @@
 # Guided Example: JSON Deep Equal
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The instance and the verdict to derive
 
-- **Input:** `{"o1": {"x": 1, "y": 2}, "o2": {"x": 1, "y": 2}}`
-- **Required output:** `true`
+A comparison is **deeply equal** when two values agree all the way down their JSON structure: primitives must pass the strict equality check, arrays must hold the same elements in the same order, and objects must expose the same keys with deeply equal values. Both inputs are guaranteed to be the output of parsing JSON text, so they are acyclic trees built from `null`, booleans, numbers, strings, arrays, and objects.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The instance traced here is a pair whose outer shapes agree everywhere and whose only disagreement sits at the deepest leaf:
 
----
+- $o1 = \{\texttt{"x"}: \texttt{null}, \texttt{"L"}: [1, 2, 3]\}$
+- $o2 = \{\texttt{"x"}: \texttt{null}, \texttt{"L"}: [\texttt{"1"}, \texttt{"2"}, \texttt{"3"}]\}$
+- required answer: `false`
 
-## 1. Instance & Teaching Goal
+This pair is worth tracing because nothing at the top level is wrong. The key sets are identical, both values under the key `x` are `null`, and the arrays under the key `L` have the same length. Only the *type* of the array elements differs, and the lesson must show how a verdict formed at one leaf travels back to the root. The statement bounds the work: each serialized input satisfies $1 \le \lvert \text{JSON.stringify}(o1) \rvert \le 10^{5}$ and the same for $o2$, with $maxNestingDepth \le 1000$.
 
-Given two values `o1` and `o2`, return a boolean value indicating whether two values, `o1` and `o2`, are **deeply equal**.
+## 2. The decision taken at one pair of nodes
 
-The objective is to compute `true` from `{"o1": {"x": 1, "y": 2}, "o2": {"x": 1, "y": 2}}` while avoiding redundant calculations and unnecessary overhead.
+Let $E(u, v)$ denote the verdict for a pair of JSON values. The whole method is the observation that $E$ decomposes into five disjoint cases, and every case shrinks the problem to strictly smaller sub-pairs or terminates:
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
-
----
-
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Shape of the pair $(u, v)$ | Verdict | Why this case is decided on the spot |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| $u$ and $v$ are the identical primitive or the same `null` | true | strict equality already certifies agreement; this also covers equal strings, equal numbers, and `null` against `null` |
+| exactly one side is `null`, or exactly one side is not an object | false | a primitive can never be deeply equal to a structure, and different primitive values fail strict equality |
+| both are objects but exactly one of them is an array | false | an array and an object are different shapes even when their index-like keys coincide |
+| both are arrays | same length, then element-wise $E$ at every index | arrays inherit equality from position-aligned elements, so the order of positions must be preserved |
+| both are non-array objects | the same number of own keys, then every key of $u$ must exist in $v$ with $E$ holding on its values | object equality is keyed, not positional, so key *order* carries no meaning while key *membership* does |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Two properties of this table decide the instance. First, the array and object branches are reached only after the shape test, so the numeric keys of an object never masquerade as array indices. Second, the object branch compares key *sets*, never key sequences, which is why `{"y": 2, "x": 1}` and `{"x": 1, "y": 2}` are the same value.
 
----
+## 3. Step-by-step trace of the instance
 
-## 3. Step-by-Step Worked Execution
+The comparison descends depth-first. Each row is one visited pair, and the verdict of a parent waits on its children.
 
-### Step 1: Compare values according to their structural category
+| Step | Pair under comparison | Shape test outcome | Decision | Result |
+|---|---|---|---|---|
+| 1 | the two roots | both are non-array objects with the two own keys `x` and `L` | recurse into each key of $o1$, checking membership in $o2$ first | pending |
+| 2 | the values under `x`: `null` against `null` | identical primitives | accepted by strict equality | true |
+| 3 | the values under `L`: `[1, 2, 3]` against `["1", "2", "3"]` | both arrays of length 3 | lengths agree, so compare index by index | pending |
+| 4 | index 0: `1` against `"1"` | not identical; neither side is an object | a number and a string fail strict equality, and no coercion is applied | false |
+| 5 | indices 1 and 2 | never reached | the failing child already forces the array, and therefore the root, to be unequal | not visited |
 
-Deep equality is recursive. Two outer containers are equal only when their corresponding contents are deeply equal.
+The failure at step 4 is the only disagreement in the entire structure, and it is enough. The array comparison at step 3 returns false, and the root's keyed comparison at step 1 returns false because the value associated with `L` is not deeply equal.
 
-The solution distinguishes four relevant JSON situations in a careful order:
+```text
+root (objects: keys x, L)
+  |-- key x : null  vs  null                      -> true
+  |-- key L : arrays of length 3                  -> needs all indices
+        |-- index 0 : 1  vs  "1"                  -> false
+        |-- index 1 : not visited (short circuit)
+        |-- index 2 : not visited (short circuit)
+  root verdict: false
+```
 
-1. values already equal by `===`;
-2. null or non-object values that failed strict equality;
-3. arrays;
-4. ordinary objects.
+The same descent also explains the positive case. When two structures are deeply equal, every visited pair returns true, every array length matches, and every key of the first object is found in the second; the root then reports true without any special handling.
 
-This order matters because JavaScript reports `typeof null` as `"object"`, and arrays also have object type even though their comparison rules require order and length.
+## 4. Correctness of the recursion: soundness, completeness, termination
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
-|---|---|---|---|
-| Input Slice | `{"o1": {"x": 1, "y": 2}, "o2": {"x": 1, "y": 2}}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+**Soundness.** Whenever a pair is accepted, the acceptance is backed by a finite derivation: an identity witness, or equal array lengths together with a witness for each index, or matching key sets together with a witness for each key. Structural induction on the height of the pair builds a full derivation of deep equality from these local witnesses, so an accepted pair really is deeply equal.
 
----
+**Completeness.** Suppose two values are deeply equal. If they are primitives they are identical, which the first case accepts. If they are arrays, deep equality forces the same length and deeply equal elements at every index, which is exactly the array branch. If they are objects, deep equality forces the same key set and deeply equal values per key, which is exactly the object branch. Every necessary condition therefore passes, so the method cannot reject a pair that is genuinely equal. Conversely, a rejection always names a violated necessary condition — unequal length, a missing key, or a non-equal primitive — so no equal pair is rejected and no unequal pair is accepted.
 
-### Step 2: Accept strict equality immediately
+**Termination and well-foundedness.** Each recursive call replaces a pair with a pair of direct children of the corresponding JSON nodes. The inputs are acyclic, because parsing JSON text cannot produce a cycle, and their depth is bounded by 1000, so the descent strictly decreases a well-founded measure. No visited set is needed for that reason, which is why the same subtrees may legitimately be compared twice if they appear twice.
 
-The first line is:
+**The traversal order does not change the verdict.** Every case is a conjunction of independent requirements, so the order in which keys and indices are visited affects only how early a false verdict is discovered. Discovering the failure at index 0 rather than at index 2 changes the number of visited pairs, not the answer.
 
-`if (o1 === o2) return true`.
+## 5. Boundary and trap analysis
 
-This handles equal primitives directly:
+| Instance pair | Verdict | The trap it exposes |
+|---|---|---|
+| `{"y": 2, "x": 1}` against `{"x": 1, "y": 2}` | true | key order is not part of a JSON object's identity; a positional comparison of key sequences would wrongly reject it |
+| `{"0": 1}` against `[1]` | false | an object whose keys look like indices is still an object; only the shape test keeps the two branches apart |
+| `null` against `{}` | false | `null` is a primitive here, not an empty object, and it is not interchangeable with one |
+| `{"a": 1, "b": 2}` against `{"a": 1, "c": 2}` | false | equal key *counts* prove nothing; each key of the first side must be present on the second |
+| `{"items": [1, {"v": 2}, 3]}` against `{"items": [1, 3, {"v": 2}]}` | false | arrays are compared position by position, so a permutation of the same elements is a different array |
+| `{"array": [], "object": {}}` against `{"object": {}, "array": []}` | true | empty structures are equal regardless of key order, and the recursion must handle a zero-length element list without a special branch |
+| `true` against `false` | false | distinct booleans are distinct primitives; there is no notion of a structurally equal pair of different primitives |
+| `1` against `"1"` | false | equality is strict, so a numeric value and its textual form are different values even though they print alike |
 
-- the same number;
-- the same string;
-- the same Boolean;
-- null with null.
+## 6. Alternatives this instance eliminates
 
-It also accepts two references to the exact same array or object. A value is necessarily deeply equal to itself, so traversing it would be wasted work.
+| Alternative | Behaviour on this instance | Why it is eliminated |
+|---|---|---|
+| Comparing serialized text | produces different text for `{"y": 2, "x": 1}` and `{"x": 1, "y": 2}`, so it reports false for a pair that is deeply equal | serialization preserves key order, which JSON identity does not |
+| Matching on the number of keys only | accepts `{"a": 1, "b": 2}` against `{"a": 1, "c": 2}` | key membership, not key count, is the requirement |
+| Loose equality for primitives | accepts `1` against `"1"` and would accept the traced instance | value coercion is not part of the specification, which asks for the strict check |
+| Treating arrays as ordinary objects | makes `[1]` equal to `{"0": 1}` and weakens the array-order requirement | an array's identity includes its length and its positional order |
+| Canonical serialization with sorted keys | returns the right verdicts but must build and compare two full canonical strings | correct yet strictly more memory and no early exit; the recursive form can reject this instance after four comparisons instead of scanning both inputs |
+| An explicit stack instead of recursion | same verdicts, same asymptotics | a legitimate trade-off: it removes the dependence on the runtime call stack for the depth bound of 1000, at the cost of holding the pending pairs explicitly |
 
-The inputs come from valid JSON, so problematic primitive cases such as `NaN` do not occur.
+## 7. Time and auxiliary space complexity
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+Let $S$ be the combined serialized size, that is $\lvert \text{JSON.stringify}(o1) \rvert + \lvert \text{JSON.stringify}(o2) \rvert$, and let $d = maxNestingDepth$ be the depth of the deeper value. Enumerating the own keys of an object node costs time proportional to that node's key count, and every node pair is entered at most once per visit, so the traversal performs $O(S)$ work in the worst case — reached by a deeply equal pair, where every node must be inspected. The best case is $O(1)$: the traced instance stops after the root shape test, one key match, one length test, and a single primitive comparison, because the first failing index ends the descent. There is no hashing, sorting, or canonicalization anywhere in the method.
 
----
-
-### Step 3: Reject incompatible leaves
-
-If strict equality failed, the code checks whether either value is null or either type is not `"object"`.
-
-At this point, any primitive pair is unequal by definition because it already failed `===`. A primitive cannot be deeply equal to a container. Null must be handled explicitly because its type string misleadingly says object.
-
-Returning false here ensures recursion proceeds only when both values are non-null containers.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `true` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"o1": {"x": 1, "y": 2}, "o2": {"x": 1, "y": 2}}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `true` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Serialize both values:** Plain `JSON.stringify` is sensitive to object key order, so logically equal objects can produce different strings.
-- **Iterative stack:** Avoid recursive call-stack limits while applying the same category checks.
-- **Lodash `isEqual`:** General-purpose but explicitly forbidden and broader than JSON semantics.
-- **Both values null:** The initial strict-equality branch returns true.
-- **One null:** The explicit null guard returns false before object traversal.
-- **Array versus object:** `Array.isArray` distinguishes their structural categories.
-- **Different object key order:** Lookup by key still returns true when values match.
-- **Same key count but different keys:** The own-property check detects the mismatch.
-- **Number versus numeric string:** Strict equality rejects them.
-- **Maximum nesting:** Recursive depth follows the JSON tree and may motivate an iterative implementation in runtimes with small stacks.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(n)$. Let $n$ be the total number of primitive values, array elements, and object keys across the compared structures. In the worst case, each corresponding node and key is examined once, so time is $O(n)$.
-- **Auxiliary Space Complexity:** $O(n)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+The auxiliary space is the state of the descent. The comparison is depth-first, so only one root-to-leaf path can be pending at any moment, giving $O(d)$ stack frames, and the per-node key list held while iterating adds at most the own-key count of the nodes on that path. With $maxNestingDepth \le 1000$ and $\lvert \text{JSON.stringify}(o1) \rvert \le 10^{5}$, the retained key lists remain bounded by the input size, so the auxiliary space is $O(d)$ frames and $O(S)$ in the pathological case of a single object with a very large key list. Nothing proportional to the number of *already compared* subtrees is retained, because no memo or visited set is used.

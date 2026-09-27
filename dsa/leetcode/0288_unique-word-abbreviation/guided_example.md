@@ -75,6 +75,20 @@ For a queried string `word`, compute its abbreviation $a = \text{abbr}(word)$:
 
 > **Invariant.** An abbreviation is unique if and only if no dictionary word *different from `word`* maps to the same abbreviation string.
 
+### The Four Bucket States That Decide Every Answer
+
+The protocol above is exhaustive because a bucket can only ever be in one of four states, and each state fixes the answer without inspecting anything else:
+
+| Bucket state | Instance in this dictionary | Query landing there | Answer | Why that answer is forced |
+|:---|:---|:---|:---:|:---|
+| Key absent from $d$ | `"c2t"` and `"m2e"` were never inserted | `"cart"`, `"make"` | `true` | No dictionary word carries the abbreviation, so Condition 1 is satisfied before any comparison happens |
+| Key present, singleton set equal to the query | $d[\text{"c2e"}] = \{\text{"cake"}\}$ | `"cake"` | `true` | The query is the only owner of the abbreviation, which is exactly Condition 2 |
+| Key present, singleton set different from the query | $d[\text{"c2e"}] = \{\text{"cake"}\}$ | `"cane"` | `false` | A dictionary word shares the abbreviation but has a different identity, so neither condition holds |
+| Key present with two or more distinct words | $d[\text{"d2r"}] = \{\text{"deer"}, \text{"door"}\}$ | `"dear"`, `"deer"`, `"door"` | `false` for all three | The bucket holds two identities, so Condition 2 fails for every query, and the key exists so Condition 1 fails as well |
+| Key present where the repeats are one identity | dictionary `["deer", "deer"]` gives $d[\text{"d2r"}] = \{\text{"deer"}\}$ | `"deer"` | `true` | Set deduplication collapses the repeat before it can be mistaken for ambiguity |
+
+The second and third rows share a bucket and differ only in the query, which is why uniqueness is a property of the pair (dictionary, query) rather than of the dictionary alone.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -89,6 +103,18 @@ We trace the dictionary $\text{dictionary} = [\text{"deer"}, \text{"door"}, \tex
    Set: $d[\text{"c2e"}] = \{\text{"cake"}\}$.
 4. `"card"`: length 4 $\implies \text{abbr} = \text{"c"} + 2 + \text{"d"} = \text{"c2d"}$.
    Set: $d[\text{"c2d"}] = \{\text{"card"}\}$.
+
+Which pairs of words land in the same bucket is decided entirely by the three components the abbreviation keeps, so the collision structure of this dictionary is visible before any query runs:
+
+| Word pair | Preserved first character | Counted interior length | Preserved last character | Abbreviations | Same bucket? | What the row isolates |
+|:---|:---:|:---:|:---:|:---|:---:|:---|
+| `"deer"` / `"door"` | `d` / `d` | 2 / 2 | `r` / `r` | `"d2r"` / `"d2r"` | **Yes** | Only the discarded interior differs, so two dictionary identities share one key |
+| `"deer"` / `"dear"` | `d` / `d` | 2 / 2 | `r` / `r` | `"d2r"` / `"d2r"` | **Yes** | A query collides with a bucket although the query word was never inserted |
+| `"cake"` / `"cane"` | `c` / `c` | 2 / 2 | `e` / `e` | `"c2e"` / `"c2e"` | **Yes** | A single differing interior letter is invisible to the abbreviation |
+| `"cake"` / `"card"` | `c` / `c` | 2 / 2 | `e` / `d` | `"c2e"` / `"c2d"` | No | The last character is preserved, so the two buckets stay separate |
+| `"cart"` / `"card"` | `c` / `c` | 2 / 2 | `t` / `d` | `"c2t"` / `"c2d"` | No | Matching prefix and matching length are not sufficient; the key is the ordered triple |
+| `"dog"` / `"doog"` | `d` / `d` | 1 / 2 | `g` / `g` | `"d1g"` / `"d2g"` | No | The interior count is part of the key, so words of different lengths never collide |
+| `"it"` / `"at"` | — | 0, no numeric part inserted | — | `"it"` / `"at"` | No | Below length 3 the abbreviation is the word itself, so short words collide only when identical |
 
 ---
 
@@ -178,8 +204,20 @@ Results: [false, true, false, true, true]
 ## 6. Traps This Instance Exposes
 
 - **Duplicate Words in Dictionary:** If the dictionary contains `["cake", "cake"]`, using a frequency count would report count $= 2$, erroneously concluding that `"cake"` is not unique! Storing words in a `set` collapses duplicates to `{"cake"}`, correctly reporting uniqueness.
-- **Short Words ($\text{len} < 3$):** Words like `"it"` or `"a"` have fewer than 3 characters. Attempting to format as `s[0] + str(len - 2) + s[-1]` would produce `"i0t"` or cause negative indexing errors. The guard `s if len(s) < 3 else ...` handles short strings properly.
+- **Short Words ($\text{len} < 3$):** Words like `"it"` or `"a"` have fewer than 3 characters. Applying the general format `s[0] + str(len - 2) + s[-1]` to `"it"` yields `"i0t"`, and to a single letter such as `"a"` it yields the nonsense key `"a-1a"`, because `len(s) - 2` becomes $-1$ inside the number rather than acting as an index. The guard `s if len(s) < 3 else ...` keeps one- and two-letter words as their own keys.
 - **Query Word Not in Dictionary vs Unique:** A word does NOT need to be in the dictionary to be unique. If `word`'s abbreviation does not exist in the dictionary (e.g. `"cart"`), it is unique.
+
+The boundaries below are exactly the ones the hidden cases probe, and each is decided by one of the four bucket states rather than by a special branch:
+
+| Boundary | Dictionary | Bucket built during construction | Query and answer | Why that answer follows |
+|:---|:---|:---|:---|:---|
+| One-letter entries, one of them repeated | `["a", "a"]` | `"a" -> {"a"}` | `"a"` is `true`; `"b"` is `true` | The key is the word itself, the repeat collapses inside the set, and `"b"` has no key at all |
+| Two-letter entries | `["it", "in"]` | `"it" -> {"it"}` and `"in" -> {"in"}` | `"it"`, `"is"`, `"in"` are all `true` | No numeric part is inserted, and each query either owns its key or finds it absent |
+| Three-letter words | `["dog"]` | `"d1g" -> {"dog"}` | `"dog"` is `true`; `"dig"` and `"dug"` are `false`; `"dot"` is `true` | The interior count is exactly $1$ and only the outer letters survive, so `"dig"` and `"dug"` collide while `"dot"` differs in its last letter |
+| Maximum-length words | `["abcdefghijklmnopqrst"]` | `"a18t" -> {"abcdefghijklmnopqrst"}` | `"azzzzzzzzzzzzzzzzzzt"` is `false` | The counted interior becomes two digits, and a different 20-letter word with the same endpoints still collides |
+| One dictionary identity repeated | `["deer", "deer"]` | `"d2r" -> {"deer"}` | `"deer"` is `true`; `"dear"` is `false` | Repetition of a single identity never creates ambiguity, but a different identity still does |
+| An ambiguity that a later repeat cannot undo | `["deer", "door", "deer"]` | `"d2r" -> {"deer", "door"}` | `"deer"`, `"door"` and `"dear"` are all `false` | Once two distinct identities share a key, no further insertion can remove either of them |
+| A query whose key belongs to another identity | `["cake", "cane", "cart", "card"]` | `"c2d" -> {"card"}`, `"c2e" -> {"cake", "cane"}`, `"c2t" -> {"cart"}` | `"cold"` is `false`; `"cart"` and `"card"` are `true`; `"cape"` and `"care"` are `false` | `"cold"` abbreviates to `"c2d"`, owned solely by a different word, while `"cape"` and `"care"` join an already ambiguous bucket |
 
 ---
 

@@ -31,6 +31,15 @@ Immediate successor of node $1$ is node $\mathbf{2}$.
   - If $\text{curr.val} > p.\text{val}$: Node $\text{curr}$ is a candidate successor! But a smaller valid candidate might exist in its left subtree. We save $\text{successor} = \text{curr}$ and branch **left**.
   - If $\text{curr.val} \le p.\text{val}$: Neither $\text{curr}$ nor any node in its left subtree can be greater than $p.\text{val}$. We discard the entire left subtree and branch **right**.
 
+The candidate strategies differ only in how much of the tree each one must remember, so the choice is decided before the trace starts:
+
+| Strategy | How it locates the successor | Time | Auxiliary space | Tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Collect the whole in-order sequence | Traverse all $N$ nodes in ascending order and return the element after $p$ | $O(N)$ | $O(N)$ for the stored sequence | Pays for nodes that can never be the answer, and visits the entire tree even when $p$ sits next to its successor |
+| Climb parent pointers | Take the leftmost node of $p$'s right subtree; when there is none, climb until arriving from a left child | $O(H)$ | $O(1)$ | Exact and cheap, but the tree in this statement stores no parent links, so the climb is unavailable |
+| Two-phase search | Descend once to reach $p$, then run a second descent for the minimum of $p$'s right subtree | $O(H)$ | $O(1)$ | The second descent cannot answer the case where $p$ has no right child, because there the successor is an ancestor the first descent already walked past |
+| One top-down descent carrying a candidate | Keep the smallest key seen so far that exceeds $p.\text{val}$ and keep descending | $O(H)$ | $O(1)$ | The running candidate must be maintained explicitly, but the two structural cases collapse into a single loop |
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -126,6 +135,17 @@ Consider $\text{root} = [5, 3, 6, 2, 4, \text{null}, \text{null}, 1]$ with $p = 
 3. At Node 4: $4 \ge 4 \implies \text{curr} \leftarrow \text{curr.right} = \text{None}$ (`successor` stays 5).
 4. Terminates with $\text{successor} = \mathbf{5}$! (Correct: in-order sequence is $1, 2, 3, 4, \mathbf{5}, 6$).
 
+The same four visits, recorded with the region each one proves irrelevant:
+
+| Visit | `curr` node | $\text{curr.val}$ | Test $p.\text{val} < \text{curr.val}$ with $p.\text{val} = 4$ | Action | `successor` after the visit | Region proved unable to hold a smaller successor |
+|:---:|:---:|:---:|:---:|:---|:---:|:---|
+| 1 | 5 (the root) | 5 | $4 < 5$ — **True** | record 5, descend left | `Node(5)` | 5's right subtree, whose keys all exceed 5 |
+| 2 | 3 | 3 | $4 < 3$ — **False** | descend right | `Node(5)` | node 3 together with its left subtree, whose keys are at most 3 |
+| 3 | 4 (the target itself) | 4 | $4 < 4$ — **False** | descend right, which is empty | `Node(5)` | node 4 (equal, not greater) and its left subtree, whose keys are below 4 |
+| 4 | `None` | — | not evaluated | stop and report the candidate | `Node(5)` | nothing is left to examine |
+
+Between visits 1 and 3 the candidate is written exactly once, and the answer survives the two later visits that fail the strict test. The four rows together eliminate $1, 2, 3, 4$ — precisely the keys that precede 5 in the in-order sequence — which is why the recorded candidate at termination is the true successor.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -165,6 +185,18 @@ Result: Node(2)
 - **Target Has No Right Subtree:** When $p$ has no right child (e.g. node 4 in the extended example), many implementations fail by searching only down $p$'s subtrees. Tracking the last left-branching ancestor during the top-down descent seamlessly finds the ancestor successor.
 - **Strict Inequality ($>$ vs $\ge$):** The successor must be **strictly greater** than $p.\text{val}$. At $\text{curr.val} == p.\text{val}$, the code must branch right without recording `curr` as a successor candidate.
 - **Handling Non-Existent Successor:** If $p$ is the largest element in the BST (e.g. $p = 6$ in $[5, 3, 6]$), `p.val < curr.val` is never true. `successor` remains `None`, correctly returning `null`.
+
+The boundaries below are the ones that decide whether the single descent is genuinely complete:
+
+| Boundary | Instance | Descent behaviour | Result | Why it is the right answer |
+|:---|:---|:---|:---:|:---|
+| $p$ is the maximum key | $\text{root} = [5, 3, 6], \quad p = 6$ | Every visited node satisfies $\text{curr.val} \le 6$, so the candidate is never written and the pointer follows right links out of the tree | `null` | No key in the tree is strictly greater than 6, and the ordering property leaves no unvisited region that could hide one |
+| $p$ is the minimum key | $\text{root} = [2, 1, 3], \quad p = 1$ | The root already satisfies $1 < 2$ and is recorded; the descent then enters 1 and steps straight to its empty right child | `2` | The in-order sequence is $[1, 2, 3]$, so 2 is the first key above 1 |
+| $p$ is the root and owns a right subtree | $\text{root} = [5, 3, 7, 2, 4, 6, 8], \quad p = 5$ | 5 fails the strict test against itself, so the pointer enters the right subtree and turns left at 7 | `6` | The successor of a node with a non-empty right subtree is that subtree's minimum, and 6 is the smallest key above 5 |
+| The successor is $p$'s immediate right child | $\text{root} = [5, 3, 7, 2, 4, 6, 8], \quad p = 3$ | 5 is recorded first, then 4 overwrites it because $3 < 4$ still holds; 4 has no left child, so the descent halts | `4` | Nothing in the in-order sequence $[2, 3, 4, 5, 6, 7, 8]$ lies between 3 and 4 |
+| The successor is a distant ancestor | $\text{root} = [20, 10, 30, 5, 15, \text{null}, \text{null}, 2, 7, 13, 17], \quad p = 17$ | 20 is recorded at the root and every later node on the path (10, 15, 17) is at most 17, so the candidate survives to termination | `20` | 17 has no right child, so its successor is the lowest ancestor whose left subtree contains it, namely 20 |
+| A single-node tree | $\text{root} = [0], \quad p = 0$ | The only test is $0 < 0$, which fails, so the pointer moves to the empty right child | `null` | The tree contains no key strictly greater than 0 |
+| The extreme key magnitudes | $\text{root} = [0, -100000, 100000], \quad p = -100000$ | 0 is recorded because $-100000 < 0$, then the pointer enters $-100000$ and stops | `0` | The test compares values only, with no numeric sentinel, so the boundary magnitudes $-10^5$ and $10^5$ need no special branch |
 
 ---
 

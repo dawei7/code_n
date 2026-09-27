@@ -37,6 +37,17 @@ To guarantee a true bijection, we must enforce consistency in **both directions 
 1. Forward: Each character $c$ maps to exactly one word $w$.
 2. Reverse: Each word $w$ maps to exactly one character $c$.
 
+The four representative instances separate cleanly once the relation is described by its two cardinalities and the index where it first breaks:
+
+| Instance | `pattern` | `s` | Distinct pattern characters | Distinct words | Distinct counts equal? | Where the run stops | Verdict |
+|:---|:---|:---|:---:|:---:|:---:|:---|:---:|
+| Passing instance | `"abba"` | `"dog cat cat dog"` | 2: `'a'`, `'b'` | 2: `"dog"`, `"cat"` | Yes | never: all four pairs agree with both maps | **`true`** |
+| Forward inconsistency | `"abba"` | `"dog cat cat fish"` | 2 | 3: `"dog"`, `"cat"`, `"fish"` | No | index $3$: `'a'` already holds `"dog"`, so it cannot also hold `"fish"` | **`false`** |
+| Reverse inconsistency | `"abba"` | `"dog dog dog dog"` | 2 | 1: `"dog"` | No | index $1$: `"dog"` already belongs to `'a'`, so `'b'` cannot claim it | **`false`** |
+| Token count mismatch | `"aaa"` | `"aa aa aa aa"` | 1: `'a'` | 1: `"aa"` | Yes | never: the length pre-check rejects the input before any pair is compared | **`false`** |
+
+The last row is why the cardinality pre-check cannot be replaced by comparing the number of distinct characters with the number of distinct words: those two counts agree there, and the input is still invalid because three positions cannot be paired with four tokens.
+
 ---
 
 ## 2. Conceptual Foundation & Invariants
@@ -156,11 +167,20 @@ Result: true
   - Reverse check: $\text{"dog"} \in d_2$, but $d_2[\text{"dog"}] = \text{'a'} \ne \text{'b'}$!
   - Conflict detected! Immediate return **`false`**.
 
+Read side by side with the passing table above, the failing run differs in exactly one cell — the reverse check at the second index:
+
+| Index $i$ | $c$ | $w$ | $d_1$ before the checks | $d_2$ before the checks | Outcome |
+|:---:|:---:|:---:|:---|:---|:---|
+| 0 | `'a'` | `"dog"` | empty | empty | Neither map knows the pair, so it binds `'a' \leftrightarrow \text{"dog"}` in both directions |
+| 1 | `'b'` | `"dog"` | `{'a': "dog"}` | `{"dog": 'a'}` | Forward passes because `'b'` is unseen, but the reverse check finds `"dog"` already owned by `'a'` and stops the run |
+
+Because the shared word is discovered through $d_2$ rather than $d_1$, a solution that maintains only the forward map consumes all four pairs without complaint and answers `true`; injectivity is not a property the forward map can observe on its own.
+
 ---
 
 ## 5. Algorithmic Correctness
 
-**Soundness.** A string follows the pattern if there exists a bijection between characters and words. The forward check ensures functionality (no character maps to two different words), while the reverse check ensures injectivity (no two characters map to the same word). Because both domains have equal length, the mapping is also surjective, guaranteeing a true bijection.
+**Soundness.** A string follows the pattern if there exists a bijection between characters and words. The forward check ensures functionality (no character maps to two different words), while the reverse check ensures injectivity (no two characters map to the same word). Every position is paired with exactly one word, so every word of $W$ lies in the image; functionality and injectivity together therefore make the recorded pairing a true bijection between the characters actually used and the words actually used.
 
 **Completeness.** Every pair $(c_i, w_i)$ is examined. If any inconsistency exists, it is detected either at the moment a previously mapped character encounters a different word, or when a previously mapped word encounters a different character. If no conflict arises across all pairs, the bijection is complete.
 
@@ -171,6 +191,19 @@ Result: true
 - **Missing Reverse Map (One-Way Mapping Trap):** Checking only `d[c] == w` fails on `"abba"` with `"dog dog dog dog"`. Using two dictionaries or a dictionary plus a `seen_words` set is mandatory to guarantee injectivity.
 - **Unequal Token Counts:** `zip(pattern, s.split())` in Python stops at the length of the shorter sequence. For `pattern = "aaa"` and `s = "aa aa aa aa"`, `zip` evaluates only the first 3 tokens and would falsely return `True`. Checking `len(pattern) == len(words)` upfront is critical.
 - **Non-String / Number Tokens:** In loosely-typed environments, words that look like numbers or booleans might be cast. Maintaining pure strings prevents type coercion mismatches.
+
+The boundaries below are the ones the two maps must survive, and each is decided by one of the checks rather than by a special case:
+
+| Boundary | Instance | Check that decides it | Result | Why |
+|:---|:---|:---|:---:|:---|
+| Shortest possible pattern | `"a"` with `"dog"` | One pair, both maps empty, so it binds and the loop ends | `true` | A one-element relation is a bijection trivially |
+| One distinct character, one distinct word, repeated throughout | `"aaaa"` with `"dog dog dog dog"` | Every index repeats the same agreeing pair, so both maps are singletons | `true` | Repetition of one binding is not an injectivity violation |
+| One distinct character but two distinct words | `"aaaa"` with `"dog dog dog cat"` | Index $3$: forward check finds $d_1[\text{'a'}] = \text{"dog"} \ne \text{"cat"}$ | `false` | A character may hold only one word |
+| Two distinct characters competing for one word | `"ab"` with `"dog dog"` | Index $1$: reverse check finds $d_2[\text{"dog"}] = \text{'a'} \ne \text{'b'}$ | `false` | A word may belong to only one character |
+| A conflict that only appears at the final index | `"abba"` with `"dog cat cat cat"` | Index $3$: forward check finds $d_1[\text{'a'}] = \text{"dog"} \ne \text{"cat"}$ | `false` | Three agreeing pairs do not license the fourth, so no prefix can be trusted early |
+| Alternating characters with alternating words | `"abab"` with `"dog cat dog cat"` | Both maps are queried at every index and agree each time | `true` | The two roles stay paired exactly as they were first bound |
+| More words than pattern characters | `"ab"` with `"dog cat cat"` | Length pre-check: $2 \ne 3$ | `false` | Without the pre-check, the pair iterator would silently ignore the extra token |
+| More pattern characters than words | `"abc"` with `"dog cat"` | Length pre-check: $3 \ne 2$ | `false` | The same truncation would hide the missing token in the other direction |
 
 ---
 

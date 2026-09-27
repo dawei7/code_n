@@ -1,132 +1,135 @@
 # Guided Example: Flatten Deeply Nested Array
 
-We trace the step-by-step execution of the optimal approach on a representative problem instance:
+## 1. The Instance and the Depth Rule It Tests
 
-- **Input:** `{"arr": [], "n": 5}`
-- **Required output:** `[]`
+The input is a multi-dimensional array: a recursive structure whose slots hold either integers or further multi-dimensional arrays. Flattening replaces a sub-array with the elements it contains, but only where the *current depth of nesting is less than* `n`, and the elements of the first array are defined to sit at depth $0$. The bundled statement also forbids using the language's own array-flattening method, so the traversal must be built by hand. The contract bounds the total number of numbers at $10^{5}$, the total number of sub-arrays at $10^{5}$, the maximum nesting depth at $1000$, each number to $-1000 \le x \le 1000$, and the depth argument to $0 \le n \le 1000$.
 
-This instance is chosen because it demonstrates non-trivial state evolution, boundary handling, and decision invariants without degenerate edge collapses.
+The representative instance is the depth-one sample, because it contains groups that must be expanded, one group that must be *kept intact*, and three ordinary integers in front of both:
 
----
+$$
+\texttt{arr} = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], \qquad n = 1.
+$$
 
-## 1. Instance & Teaching Goal
+The required result is `[1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]`. Everything is spilled out except the group `[9, 10, 11]`, which survives as a nested unit.
 
-Given a **multi-dimensional** array `arr` and a depth `n`, return a **flattened** version of that array.
+The instance is chosen for that survivor. The groups `[4, 5, 6]`, `[7, 8, [9, 10, 11], 12]` and `[13, 14, 15]` all sit at depth $0$, which is less than $n = 1$, so their boundaries dissolve. The group `[9, 10, 11]` sits at depth $1$, which is *not* less than $n = 1$, so its boundary stays.
 
-The objective is to compute `[]` from `{"arr": [], "n": 5}` while avoiding redundant calculations and unnecessary overhead.
+| Slot in `arr` | Content | Depth of the slot | Is the depth less than $n = 1$? | Disposition |
+|---|---|---|---|---|
+| index 0 | `1` | 0 | not an array | Emitted as an atom |
+| index 1 | `2` | 0 | not an array | Emitted as an atom |
+| index 2 | `3` | 0 | not an array | Emitted as an atom |
+| index 3 | `[4, 5, 6]` | 0 | yes | Expanded into its three integers |
+| index 4 | `[7, 8, [9, 10, 11], 12]` | 0 | yes | Expanded, revealing a deeper group |
+| index 4, position 2 | `[9, 10, 11]` | 1 | no | Kept intact as one entry of the result |
+| index 5 | `[13, 14, 15]` | 0 | yes | Expanded into its three integers |
 
-A naive or brute-force exploration risks evaluating infeasible states or repeating subproblem computations. The optimal method establishes a clear invariant that advances deterministically toward the goal.
+## 2. The Depth Ledger and the Single Decision Rule
 
----
+The traversal carries exactly one piece of state: the depth of the container currently being scanned. Every slot is then handled by one rule, applied identically everywhere.
 
-## 2. Conceptual Foundation & Invariants
-
-We maintain the core conceptual parameters and state variables:
-
-| State Parameter | Role & Purpose | Initial State |
+| Slot holds | Comparison at the slot's depth | Action |
 |---|---|---|
-| Primary State | Tracks active elements, frontier indices, or DP table cells | Initialized at boundary |
-| Accumulator | Preserves confirmed optimal sub-answers or counts | Empty / Neutral |
+| An integer | irrelevant: integers are atoms at every depth | Append the integer to the output |
+| A sub-array | depth is less than `n` | Descend into it; the scan depth becomes depth $+ 1$ |
+| A sub-array | depth is not less than `n` | Append the whole sub-array to the output and do not look inside |
 
-> **Invariant.** At every processing step, all previously evaluated subproblems strictly satisfy the problem constraints, and no viable candidate solution has been omitted.
+Two consequences follow immediately, and both are exercised by the package's cases. Any sub-array that the traversal is allowed to see has depth at most `n`, because the traversal only descends while the depth is below `n`; therefore an emitted sub-array always sits at depth exactly `n`, never deeper. And integers are never subject to the comparison at all, so no numeric value can be mistaken for a directive: the trial `trial-limit-exceeds-depth` contains the values `-1`, `0` and `1`, and each of them must be emitted as data.
 
----
+```mermaid
+flowchart TD
+    accTitle: Nesting tree of the traced array
+    accDescr: The top-level array at depth zero holds the integers 1, 2 and 3 plus three sub-arrays at depth zero, and the middle sub-array contains a further sub-array at depth one that must be kept intact because its depth is not less than the requested one.
+    R["depth 0: the whole input array"] --> A["1 at depth 0"]
+    R --> B["2 at depth 0"]
+    R --> C["3 at depth 0"]
+    R --> D["[4, 5, 6] at depth 0"]
+    R --> E["[7, 8, [9, 10, 11], 12] at depth 0"]
+    R --> F["[13, 14, 15] at depth 0"]
+    E --> G["[9, 10, 11] at depth 1, kept intact since depth is not less than n"]
+```
 
-## 3. Step-by-Step Worked Execution
+## 3. Step-by-Step Trace of the Chosen Instance
 
-### Step 1: Define depth from the current container
+The trace walks the structure in original left-to-right order. "Position" identifies where the scan is, and "output so far" shows the result array after the step.
 
-The outermost input array is visited with `depth = 0`. While scanning a container at depth $d$, a nested array value is expanded only when:
+| Step | Position | Slot content | Depth | Decision | Output so far |
+|---|---|---|---|---|---|
+| 1 | index 0 | `1` | 0 | atom, emit | `[1]` |
+| 2 | index 1 | `2` | 0 | atom, emit | `[1, 2]` |
+| 3 | index 2 | `3` | 0 | atom, emit | `[1, 2, 3]` |
+| 4 | index 3 | `[4, 5, 6]` | 0 | $0 < 1$, descend | `[1, 2, 3]` |
+| 5 | index 3, position 0 | `4` | 1 | atom, emit | `[1, 2, 3, 4]` |
+| 6 | index 3, position 1 | `5` | 1 | atom, emit | `[1, 2, 3, 4, 5]` |
+| 7 | index 3, position 2 | `6` | 1 | atom, emit | `[1, 2, 3, 4, 5, 6]` |
+| 8 | index 3 exhausted | — | 0 | return to the outer scan | `[1, 2, 3, 4, 5, 6]` |
+| 9 | index 4 | `[7, 8, [9, 10, 11], 12]` | 0 | $0 < 1$, descend | `[1, 2, 3, 4, 5, 6]` |
+| 10 | index 4, position 0 | `7` | 1 | atom, emit | `[1, 2, 3, 4, 5, 6, 7]` |
+| 11 | index 4, position 1 | `8` | 1 | atom, emit | `[1, 2, 3, 4, 5, 6, 7, 8]` |
+| 12 | index 4, position 2 | `[9, 10, 11]` | 1 | $1 < 1$ is false, emit whole | `[1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11]]` |
+| 13 | index 4, position 3 | `12` | 1 | atom, emit | `[1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12]` |
+| 14 | index 4 exhausted | — | 0 | return to the outer scan | unchanged |
+| 15 | index 5 | `[13, 14, 15]` | 0 | $0 < 1$, descend | unchanged |
+| 16 | index 5, positions 0 to 2 | `13`, `14`, `15` | 1 | atoms, emit | `[1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]` |
+| 17 | input exhausted | — | 0 | traversal ends | final result, thirteen entries |
 
-$$
-d<n.
-$$
+The final output is exactly the required `[1, 2, 3, 4, 5, 6, 7, 8, [9, 10, 11], 12, 13, 14, 15]`, with thirteen entries where the input had six.
 
-If expanded, its contents are visited with depth $d+1$. If not expanded, that entire nested array is appended as one output value.
+Step 12 is the step that separates a correct rule from a nearly correct one. The group `[9, 10, 11]` is reached while the scan depth is $1$, the comparison fails, and the group is appended as a single entry. An implementation that compared one level too late — expanding while the depth is at most `n` instead of below it — would spill `9`, `10` and `11` into the output and produce a fifteen-entry result, contradicting both the sample and the statement's own explanation that this group must remain unflattened.
 
-This convention matches the statement:
+## 4. Invariants and Why the Reasoning Is Correct
 
-- with $n=0$, even arrays directly inside the outer array are not flattened;
-- with $n=1$, those direct subarrays are flattened, but arrays nested inside them remain intact;
-- larger $n$ permits correspondingly deeper expansion.
+**Invariant 1 (depth accuracy).** Whenever the traversal is scanning a container, its maintained depth equals the number of array boundaries crossed from the top-level array down to that container. The top-level scan runs at depth $0$; descending into a sub-array found during a scan at depth $d$ runs the inner scan at $d + 1$; returning from that inner scan restores depth $d$. The depth is a property of the current *path*, not of the traversal as a whole — a counter that is incremented but never restored drifts upward and starts keeping later groups intact for no reason.
 
-Thinking of `depth` as the number of array boundaries already flattened on the path avoids off-by-one confusion.
+**Invariant 2 (order preservation).** After any prefix of the traversal, the output equals the flattening of exactly the slots already visited, in original left-to-right order. The traversal visits each container's slots in index order and finishes a container completely before returning to the container that holds it. That is a pre-order depth-first order, and for a nested array it coincides with the order in which a reader moving left to right and descending at each opening bracket encounters the data. Completeness follows because a slot is either emitted directly or descended into, never skipped, so every original value appears exactly once, and no value is duplicated because no container is ever visited twice.
 
-| Parameter | Value Before Step | Operation / Rule Applied | Value After Step |
+**Invariant 3 (the stopping rule is exact).** A sub-array is emitted as a unit exactly when its depth equals `n`. It cannot be at a greater depth, since the traversal refuses to descend past that point; and it cannot be at a lesser depth and be emitted, since every sub-array shallower than `n` is descended into. Together the three invariants give the required output: the values whose enclosing boundaries lie no deeper than `n` appear inline, and every remaining sub-array appears as one entry.
+
+The same rule explains the two extremes of the depth domain without any special case. With $n = 0$, no slot satisfies "depth is less than $0$", so nothing is ever expanded and the result reproduces the original nesting — the package's `sample-depth-zero` case. With $n$ at or above the maximum nesting depth, every sub-array is expanded and the result is completely flat — the package's `trial-limit-exceeds-depth` case, whose input nests to depth $3$ and whose expected output is the four flat values. A separate branch for either extreme is redundant; both fall out of the single comparison.
+
+## 5. Boundary Conditions and Domain Analysis
+
+| Situation | What it probes | Required behavior | Reasoning |
 |---|---|---|---|
-| Input Slice | `{"arr": [], "n": 5}` | Initial boundary validation | Setup completed |
-| Active State | Base configuration | Apply initial state rule | Initialized |
+| `n = 0` | The lower bound of the depth argument | The original nesting is reproduced, not flattened | No depth is below $0$, so the expansion rule never fires |
+| A sub-array at depth exactly `n` | The stopping boundary | Emitted as one entry | `trial-exact-cutoff` with $n = 2$ turns `[[[1]], 2], 3]` into `[[1], 2, 3]`; the group `[1]` is at depth $2$ and stays whole |
+| `n = 1000`, larger than the data's depth | The upper bound of the depth argument | Everything is flattened | Every sub-array satisfies the comparison, so the traversal reaches every integer |
+| Empty top-level array | Degenerate input | An empty result | The traversal has no slots to visit |
+| Empty sub-arrays | Empty containers | They contribute nothing when expanded, and one entry when kept | `trial-empty-subarrays` with $n = 2$ yields `[1, 2]` from `[[], 1, [[], 2], []]` |
+| Several branches at the same depth | Order across containers | Global left-to-right order | `trial-order-through-branches` with $n = 1$ yields `[1, [2, 3], 4, [5], 6]` from `[[1, [2, 3]], 4, [[5], 6]]` |
+| Values `-1000` to `1000`, including `0` and `-1` | Falsy and negative data | Emitted as ordinary integers | `-1`, `0` and `1` in the oversized-limit trial are data, not status values |
+| Maximum depth `1000` | Deep structures | Visited without loss | Depth is bounded by the contract, which is what keeps a recursive descent safe |
+| Up to $10^{5}$ numbers and $10^{5}$ sub-arrays | Scale | Each slot handled once | A multiplicative or repeated pass would exceed the intended work |
 
----
+## 6. Traps and Rejected Alternatives
 
-### Step 2: Use one result array for the whole traversal
+| Tempting shortcut | Why it fails |
+|---|---|
+| Expand while the depth is at most `n` | Off by one level: the traced group `[9, 10, 11]` would be poured into the output, giving thirteen entries instead of the required eleven plain values plus one group |
+| Expand while depth plus one is less than `n` | Off by one in the other direction: groups that must dissolve, such as `[4, 5, 6]`, would be kept intact |
+| Special-case `n = 0` by returning the input reference | The rule already reproduces the original nesting, so the branch is dead weight; worse, if it returns the *same* array, later mutation aliases the input |
+| Build a general flattening pass and repeat it `n` times | Correct in principle, but each pass rewrites the whole structure, so the work becomes $O(n \cdot N)$ — up to about $2 \cdot 10^{8}$ slot visits at the contract's limits, against a single pass that visits each slot once |
+| Descend into empty sub-arrays but also drop empty sub-arrays at the stopping depth | The two cases differ: expanding an empty container contributes no entry, while keeping one contributes the empty array itself, so a blanket "ignore empties" rule changes the output whenever an empty group sits at depth `n` |
+| Treat the values as directives, for example stopping when a `0` or `-1` is met | Integers are atoms at every depth; the stopping condition is purely structural |
+| Track depth in one variable that is incremented on descent but never restored on return | Depth drifts upward, so deeper groups encountered later are wrongly kept intact |
+| Process the structure breadth-first, level by level | Levels interleave containers, so the result is ordered by depth rather than by position and no longer matches the required left-to-right sequence |
+| Use the language's built-in flattening method | The statement explicitly forbids it, and the method does not accept an arbitrary stopping depth in the same sense |
+| Serialize the array to text and rebuild it after stripping brackets | Loses the distinction between a number and a container and cannot express a depth cutoff |
 
-`result` begins empty and is captured by recursive helper `visit`.
+**Material edge cases.** The stopping depth is inclusive of nothing — a group exactly at depth `n` survives, which the exact-cutoff trial pins down. An expanded empty container adds no entries, but a preserved empty container is itself an entry. The result is always a new array whose length is at least the number of integers, since every integer is emitted, and at most the number of integers plus the number of sub-arrays at depth `n`.
 
-The helper loops through `values` from left to right. For each `value`:
+## 7. Time and Auxiliary Space Complexity
 
-- if it is an array and current `depth < n`, recurse into it;
-- otherwise, append it to `result`.
+Let $N$ be the total number of slots in the input, that is, the number of integers plus the number of sub-arrays.
 
-All recursive calls write into the same output. This avoids constructing and repeatedly concatenating intermediate arrays, which could copy already-produced elements many times.
+| Aspect | Cost | Derivation |
+|---|---|---|
+| Slot visits | $O(N)$ | Each slot is examined once: integers are emitted, containers are either descended into or emitted whole |
+| Appending an entry | $O(1)$ amortized | Each emitted integer or preserved sub-array costs one append |
+| Depth maintenance | $O(1)$ per slot | The depth is advanced and restored as the traversal descends and returns |
+| Auxiliary space, traversal | $O(D)$ | $D = \min(\text{maxDepth}, n) \le 1000$ frames on the descent path, or an explicit stack holding the same number of frames |
+| Auxiliary space, output | $O(N)$ | The result holds every integer plus every preserved sub-array |
 
-| Parameter | Current Observed Sub-state | Transition Decision | Updated State |
-|---|---|---|---|
-| Intermediate State | Subproblem evaluation | Evaluate transition invariant | Invariant satisfied |
-| Candidate Set | Active candidates | Prune non-optimal paths | Monotone progress |
+**Time.** Every slot is processed by a constant amount of work — one comparison for containers, one append for emitted values — so the running time is linear in the total size of the input, $O(N)$. Nothing is re-read and no container is revisited: an integer inside a group that is expanded is touched exactly once, and a group that is preserved is touched only as a single value, which is also why preserving a deep group can make the traversal *cheaper* than flattening it fully.
 
----
-
-### Step 3: Why `Array.isArray` is the right type test
-
-JavaScript reports arrays as objects under `typeof`. Therefore `typeof value === "object"` cannot distinguish a nested array from an ordinary object.
-
-`Array.isArray(value)` performs the intended distinction. Only nested arrays are containers to flatten; numbers are appended, and under a broader JSON-style input an ordinary object would also remain a value.
-
-The contract specifically describes integers and arrays, so every leaf is a number, but using the precise built-in predicate keeps the recursive rule explicit.
-
-| Parameter | State Before Finalization | Action | Final Value |
-|---|---|---|---|
-| Target Output | Accumulator state | Synthesize final result | `[]` |
-
----
-
-## 4. Complete Execution Trace
-
-| Phase | Observed Component | Operation / Decision | Invariant Status |
-|---|---|---|---|
-| Initialization | Initial input `{"arr": [], "n": 5}` | Set up baseline structures | Holds |
-| Transition | Active elements evaluated | Apply invariant transition rule | Maintained |
-| Finalization | Complete sequence processed | Extract `[]` | Verified |
-
----
-
-## 5. Algorithmic Correctness
-
-**Soundness.** Every state transition strictly obeys the mathematical properties of the problem. Candidate pruning or state reduction is justified because any discarded branch is provably suboptimal or incompatible with the required constraints.
-
-**Completeness.** The search space traversal or dynamic recurrence exhausts all viable configurations. No valid solution can be overlooked because every feasible candidate is either directly evaluated or subsumed by an optimal sub-state representation.
-
----
-
-## 6. Traps This Instance Exposes
-
-- **Explicit stack:** Avoid recursion-depth limits; push elements in reverse order so popping preserves left-to-right output.
-- **Queue with repeated splicing:** Can preserve order but may shift or copy many elements and become inefficient.
-- **Built-in `Array.flat`:** Direct but explicitly forbidden.
-- **`n = 0`:** No nested array is expanded, though a new outer result array is still produced.
-- **Depth exceeds maximum nesting:** Every subarray is flattened and all numeric leaves appear in order.
-- **Empty outer array:** The traversal appends nothing and returns an empty array.
-- **Empty nested array:** Expanding it contributes no values; preserving it at the limit contributes the empty array itself.
-- **Preserved nested reference:** An unflattened subarray is appended without cloning.
-- **Order preservation:** Complete each expanded subarray before continuing with its parent's next item.
-- **Deep nesting:** Recursion uses one call frame per expanded level and may motivate an iterative stack in stricter runtimes.
-- **Off-by-one errors:** verify loop termination conditions and inclusive/exclusive interval bounds.
-- **Degenerate inputs:** handle minimum-sized inputs without null references or out-of-bounds access.
-
----
-
-## 7. Complexity Derivation
-
-- **Time Complexity:** $O(V)$. Let $V$ be the number of array containers and values actually visited, and let $R$ be the number of items placed in the result. The traversal performs constant work per visited item, so time is $O(V)$, with $R\le V$ under a node-count interpretation.
-- **Auxiliary Space Complexity:** $O(V + D)$. Auxiliary memory is restricted to state tracking variables, avoiding superfluous heap allocations.
+**Auxiliary space.** Excluding the output, the only extra storage is the current descent path. Its length is the depth at which the traversal stops, so it is bounded by both the data's maximum depth and the cutoff: $D = \min(\text{maxDepth}, n) \le 1000$. That is a small constant in practice, but it is a real bound rather than zero, which is why the depth limit matters — an unbounded depth would make the stack usage proportional to the nesting rather than to the number of slots. The output itself requires $O(N)$ space in the worst case and is unavoidable, since every integer in the input must appear in the result.

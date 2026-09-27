@@ -44,7 +44,7 @@ In a finite impartial two-player game with no ties:
 ## 2. Conceptual Foundation & Invariants
 
 ### Integer Bitmask Representation
-Since string length $N \le 20$, the string can be mapped to a compact 32-bit integer `mask`:
+Since no more than $20$ consecutive `'+'` may appear and every reachable state is a subset of the pluses of `currentState` ($\text{currentState.length} \le 60$), the state can be mapped to a compact integer `mask` held in a 64-bit word:
 - Bit $i$ is $1$ if $\text{currentState}[i] == \text{'+'}$.
 - Bit $i$ is $0$ if $\text{currentState}[i] == \text{'-'}$.
 
@@ -120,6 +120,17 @@ Player 1 evaluates all adjacent pair flips $i \in [0, 2]$:
 
 Player 1 wins!
 
+#### Every Root Candidate, Including the Branch the Short-Circuit Never Reaches
+The search returns the moment one child reports a loss for the player about to move, so move $i = 2$ is never generated in the actual run. Evaluating it afterwards shows it would have been rejected for the same reason as $i = 0$:
+
+| Root move $i$ | `next_mask` | Resulting state | What the opponent can do from there | `dfs(next_mask)` | Verdict |
+|:---:|:---:|:---:|:---:|:---:|:---|
+| $i = 0$ | $15 \oplus 3 = 12$ | `"--++"` | flip $i = 2$: $12 \oplus 12 = 0$, and the mover at mask $0$ has no move | `True` — the opponent on move wins | Eliminated |
+| $i = 1$ | $15 \oplus 6 = 9$ | `"+--+"` | nothing: bits $0$ and $3$ are never adjacent | `False` — the opponent on move loses | **Chosen: Player 1 wins** |
+| $i = 2$ | $15 \oplus 12 = 3$ | `"++--"` | flip $i = 0$: $3 \oplus 3 = 0$, and the mover at mask $0$ has no move | `True` — the opponent on move wins | Eliminated |
+
+Both outer moves fail for one structural reason: neither destroys the pluses, so each leaves exactly one live adjacent pair and the opponent's single reply empties the board.
+
 ---
 
 ## 4. Complete Execution Trace
@@ -162,7 +173,40 @@ Result: true
 
 - **Flipping an Outer vs Inner Pair:** In `"++++"`, flipping an outer pair (index 0 or 2) leaves two adjacent pluses (`"--++"` or `"++--"`), giving the opponent an immediate counter-win. Only flipping the center pair (index 1) isolates the pluses (`"+--+"`), denying the opponent any legal moves.
 - **Missing Memoization:** Game trees branch exponentially. Without caching (`@cache` or memo dictionary), subgames with identical remaining pluses would be recalculated thousands of times, causing Time Limit Exceeded.
-- **Bitmask Size Limit:** Using integer bitmasks requires that $N$ fits within machine integer sizes. Here $N \le 20$, which comfortably fits in a standard 32-bit integer with fast bitwise operations.
+- **Bitmask Size Limit:** An integer bitmask needs one bit per index, so the encoding must hold up to $60$ bits — a 64-bit word, not a 32-bit one. What actually bounds the search is the separate constraint that no more than $20$ consecutive `'+'` may appear, which caps the length of any single playable run and keeps the memoized game tree small.
+
+### Boundary Values and Composed Positions
+The worked instance is one point in a small landscape of positions. Every verdict below is the exact `dfs` value for that state, and each one is forced by a structural reason rather than by a special case:
+
+| Instance | Plus runs | Legal moves at the start | `dfs` | Why the value is forced |
+|:---:|:---:|:---:|:---:|:---|
+| `"+"` | $1$ | $0$ | `False` | A run of length $1$ holds no adjacent pair, so there is nothing to flip |
+| `"++"` | $2$ | $1$ | `True` | The only move clears both bits and hands over a terminal state |
+| `"+++"` | $3$ | $2$ | `True` | Either flip leaves a lone `'+'`, so the opponent's reply set is empty |
+| `"++++"` | $4$ | $3$ | `True` | Only the centre flip isolates the survivors; the two outer flips lose |
+| `"+++++"` | $5$ | $4$ | `False` | All $4$ moves leave a run of length $2$ or $3$, and each of those is a win for the opponent |
+| `"++--++"` | $2, 2$ | $2$ | `False` | Two equal pair-games cancel: whatever the mover does to one run, the opponent mirrors it in the other |
+| `"+++--++"` | $3, 2$ | $3$ | `False` | Different lengths, equal Grundy numbers ($1 \oplus 1 = 0$), so the mover is still lost |
+| `"++++--++"` | $4, 2$ | $4$ | `True` | Grundy numbers $2$ and $1$ disagree ($2 \oplus 1 = 3 \ne 0$), so a winning reply exists |
+| 60-character alternating state | $1, 1, \dots, 1$ | $0$ | `False` | The length ceiling is reached and no two `'+'` are adjacent, so the answer is a terminal loss |
+
+### Why Equal Components Cancel
+A maximal run of `'+'` is an independent subgame, because a flip can never cross a `'-'`. Its outcome is summarized by a Grundy number $g(L)$ built from the split recurrence
+$$
+g(L) = \operatorname{mex}\{\, g(a) \oplus g(b) : a + b = L - 2 \,\},
+$$
+since flipping a pair inside a run of length $L$ leaves two runs of lengths $a$ and $b$ with $a + b = L - 2$. A composed position loses for the mover exactly when the XOR of its component Grundy numbers is $0$:
+
+| Run length $L$ | Legal opening moves | `dfs` for the run alone | Grundy number $g(L)$ |
+|:---:|:---:|:---:|:---:|
+| $1$ | $0$ | `False` | $0$ |
+| $2$ | $1$ | `True` | $1$ |
+| $3$ | $2$ | `True` | $1$ |
+| $4$ | $3$ | `True` | $2$ |
+| $5$ | $4$ | `False` | $0$ |
+| $6$ | $5$ | `True` | $3$ |
+
+Two runs of length $2$ therefore cancel ($1 \oplus 1 = 0$), and so do a run of length $3$ and a run of length $2$ ($1 \oplus 1 = 0$) despite their different lengths. The memoized search never needs this theory — it reaches the same verdicts by exhausting moves — but the component view explains in one line why positions such as `"++--++"` and `"+++--++"` are losing.
 
 ---
 

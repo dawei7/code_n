@@ -79,6 +79,19 @@ Distances radiate outward like ripples in a pond.
 
 > **Invariant.** At any BFS step, the queue contains cells sorted monotonically by distance. When cell $(nr, nc)$ is first reached from $(r, c)$, $\text{rooms}[r][c] + 1$ is the globally minimal unweighted shortest distance from any gate to $(nr, nc)$.
 
+### Why One Predicate Replaces the Visited Set
+
+Every value a neighbor can hold when it is inspected falls into exactly one class, and the single test $\text{rooms}[nr][nc] == \text{INF}$ answers all four correctly:
+
+| Value read at $(nr, nc)$ | Cell class | Passes the $\text{INF}$ test? | Action taken | Why the action is right |
+|:---:|:---|:---:|:---|:---|
+| $2147483647$ | Unfilled room | Yes | Write $\text{rooms}[r][c] + 1$ and enqueue | It has never been reached, so this first arrival is its shortest distance |
+| $-1$ | Wall | No | Skip | Walls cannot be traversed and must survive the pass unchanged |
+| $0$ | Gate | No | Skip | Its distance is already the minimum possible, so overwriting would corrupt a source |
+| $1 \dots d$ | Room settled by an earlier or equal round | No | Skip | Its stored value is already minimal, and revisiting it would only re-enqueue settled work |
+
+Because the test is a value predicate rather than an identity test, it doubles as the open-room check and the visited check, and no second matrix is allocated.
+
 ---
 
 ## 3. Step-by-Step Worked Execution
@@ -224,6 +237,19 @@ Queue empty -> Done!
 | **Layer 3** | $(3, 2)$ | 3 | $(3, 3)$ | $\text{INF}$ | **4** |
 | **Layer 4** | $(3, 3)$ | 4 | - | - | - |
 
+The same run viewed as a frontier evolution, which is what makes the "first arrival is minimal" claim checkable: every room leaves the $\text{INF}$ set in the round whose index equals its final distance, and each filled room is owned by a specific gate.
+
+| Expansion round | Queue on entry | Rooms filled in this round | Queue on exit | Rooms still $\text{INF}$ | Owning gate of the filled rooms |
+|:---:|:---|:---|:---|:---|:---|
+| Seeding | empty | $(0, 2)$ and $(3, 0)$ are gates and already hold $0$ | $(0, 2), \; (3, 0)$ | $(0,0), (0,3), (1,0), (1,1), (1,2), (2,0), (2,2), (3,2), (3,3)$ | the gates themselves |
+| $d = 1$ | $(0, 2), \; (3, 0)$ | $(1,2)$ and $(0,3)$ from $(0,2)$; $(2,0)$ from $(3,0)$ | $(1,2), \; (0,3), \; (2,0)$ | $(0,0), (1,0), (1,1), (2,2), (3,2), (3,3)$ | $(0,2)$ for $(1,2)$ and $(0,3)$; $(3,0)$ for $(2,0)$ |
+| $d = 2$ | $(1,2), \; (0,3), \; (2,0)$ | $(2,2)$ and $(1,1)$ from $(1,2)$; $(1,0)$ from $(2,0)$ | $(2,2), \; (1,1), \; (1,0)$ | $(0,0), (3,2), (3,3)$ | $(0,2)$ for $(2,2)$ and $(1,1)$; $(3,0)$ for $(1,0)$ |
+| $d = 3$ | $(2,2), \; (1,1), \; (1,0)$ | $(3,2)$ from $(2,2)$; $(0,0)$ from $(1,0)$ | $(3,2), \; (0,0)$ | $(3,3)$ | $(0,2)$ for $(3,2)$; $(3,0)$ for $(0,0)$ |
+| $d = 4$ | $(3,2), \; (0,0)$ | $(3,3)$ from $(3,2)$ | $(3,3)$ | none | $(0,2)$ |
+| $d = 5$ | $(3,3)$ | none: its right and up neighbors are a gate-adjacent filled room and a wall | empty | none | — |
+
+Two entries are decided by walls rather than by straight-line proximity: $(3,2)$ and $(3,3)$ lie at Manhattan distance $2$ and $3$ from the gate at $(3,0)$, but the wall at $(3,1)$ closes that route, so both are instead reached the long way round from $(0,2)$ at distances $3$ and $4$.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -239,6 +265,20 @@ Queue empty -> Done!
 - **Single-Source Repeated BFS ($O((MN)^2)$):** Running BFS starting from each empty room leads to massive re-computation and causes Time Limit Exceeded. Reversing search direction to multi-source BFS from gates takes strictly $O(M N)$.
 - **Using an Auxiliary Visited Matrix:** A separate `visited` boolean matrix takes unnecessary memory. The condition $\text{rooms}[nr][nc] == \text{INF}$ serves as both the open-room check and the unvisited check.
 - **Overwriting Non-INF Cells:** If the neighbor check allows values other than $\text{INF}$ (e.g. `<= rooms[r][c] + 1`), search waves could overwrite walls ($-1$) or gates ($0$). Restricting transitions strictly to $\text{rooms}[nr][nc] == \text{INF}$ preserves all obstacles and gates.
+
+The boundaries that follow are the ones a submitted solution is actually judged on, and each one is decided by a property of the same single predicate:
+
+| Boundary | Instance | What the waves do | Result | Why that result is forced |
+|:---|:---|:---|:---|:---|
+| The grid holds no gate | $[[\text{INF}]]$ | Seeding finds no cell equal to $0$, so the queue is empty before the first expansion and no neighbor is ever inspected | $[[\text{INF}]]$ | No gate can reach the room, and only $\text{INF}$ cells are ever written, so nothing changes |
+| The grid is a single wall | $[[-1]]$ | Same empty seeding; the wall also fails the neighbor predicate | $[[-1]]$ | Walls are read-only under the predicate and are never a source |
+| A wall cuts the grid in two | $[[0, -1, \text{INF}]]$ | $(0,0)$ seeds and its right neighbor is a wall, so the expansion stops there forever | $[[0, -1, \text{INF}]]$ | The room beyond lies in a different connected component of open cells, and BFS never widens across a wall |
+| Gates exist but no empty room does | $[[0, -1, 0], [-1, -1, -1], [0, -1, 0]]$ | Every neighbor of every gate is a gate or a wall, so all four waves drain without a write | unchanged | The set of $\text{INF}$ cells is empty, so there is nothing to fill |
+| One-dimensional row | $[[0, \text{INF}, \text{INF}, \text{INF}]]$ | The lone gate pushes rightward one cell per round | $[[0, 1, 2, 3]]$ | On an unweighted path the round index equals the hop count, and each hop is forced |
+| One-dimensional column | $[[\text{INF}], [\text{INF}], [0]]$ | Identical reasoning transposed: the gate ascends | $[[2], [1], [0]]$ | The column is the same path graph with the roles of row and column exchanged |
+| Two gates equidistant from a room | $[[0, \text{INF}, 0]]$ | Both gates enter the queue at distance $0$; the middle room is filled by the left wave and is already non-$\text{INF}$ when the right wave arrives | $[[0, 1, 0]]$ | The room's value is the minimum over all gates, and a tie simply means that minimum is attained twice; the first arrival already equals it, so the later skip changes nothing |
+| Walls force a detour | $[[0, -1, \text{INF}, \text{INF}], [\text{INF}, -1, \text{INF}, -1], [\text{INF}, \text{INF}, \text{INF}, -1], [\text{INF}, -1, \text{INF}, 0]]$ | The gate at $(0,0)$ feeds the left column downward; the gate at $(3,3)$ feeds upward through $(3,2)$ and $(2,2)$; the wall row blocks every straight connection between the two regions | $[[0, -1, 4, 5], [1, -1, 3, -1], [2, 3, 2, -1], [3, -1, 1, 0]]$ | Each region is served by whichever gate is genuinely closer along open cells, which is not the same as the closer gate by Manhattan distance |
+| The minimum dimensions | $1 \le m, n \le 250$ with a single gate | A $1 \times 1$ grid of a gate seeds and drains immediately | $[[0]]$ | The empty queue ends the search before any neighbor test runs |
 
 ---
 
