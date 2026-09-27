@@ -150,6 +150,27 @@ Final Answer: 5
 | 1 | 2 | 4 | No ($2 \ne 0$) | $\text{min}_1 = 1$ | $4 + 1 = 5$ | $\text{new\_min}_2 = 5$ |
 | **End** | - | - | - | - | - | **$\mathbf{5}$ (Final Cost)** |
 
+### State Evolution on a Four-House Instance
+
+The representative instance uses one transition; a longer instance where
+$\text{idx}_1$ changes from row to row shows what the tracked pair must survive.
+Take $\text{costs} = [[1, 4, 6], [1, 3, 5], [2, 1, 4], [1, 2, 3]]$, whose
+authored answer is $7$.
+
+| House $i$ | $\text{costs}[i]$ | DP row after the transition | $\text{min}_1$ ($\text{idx}_1$) | $\text{min}_2$ | What this row teaches |
+|:---:|:---|:---|:---:|:---:|:---|
+| 0 | `[1, 4, 6]` | `[1, 4, 6]` | 1 (color 0) | 4 (color 1) | The base row is the raw cost row, and the second minimum sits at a *different* index |
+| 1 | `[1, 3, 5]` | `[5, 4, 6]` | 4 (color 1) | 5 (color 0) | $\text{idx}_1$ moves: color 1 pays $3$ plus the previous second minimum $4$, undercutting color 0, which must pay $1 + 4$ |
+| 2 | `[2, 1, 4]` | `[6, 6, 8]` | 6 (color 0) | 6 (color 1) | A genuine tie: the cheapest base cost ($1$ at color 1) must add $5$, while color 0 adds $4$, and both land on $6$ |
+| 3 | `[1, 2, 3]` | `[7, 8, 9]` | 7 (color 0) | 8 (color 1) | Colors 0 and 1 may each reuse the value $6$: excluding color 0 leaves $\text{min}_2 = 6$, and excluding color 1 leaves $\text{min}_1 = 6$ |
+
+The optimum behind the final $7$ is the coloring $(1, 0, 1, 0)$ with per-house
+costs $4, 1, 1, 1$. Row two is the row that makes the dual-minimum bookkeeping
+necessary: because the two smallest values are equal but sit at different
+indices, excluding one of them still leaves a minimum of $6$, and any method that
+recorded only a value without its index would either forbid a legal color or
+allow an illegal one.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -166,9 +187,52 @@ Final Answer: 5
 - **Identical Minimum Values:** If two different colors both yield the same minimal cost (e.g. costs $[2, 2, 5]$), $\text{min}_1 = 2$ and $\text{min}_2 = 2$ with different indices. If the next house chooses $\text{idx}_1$, it can transition to the other color at cost $\text{min}_2 = 2$.
 - **$K = 1$ Edge Case:** If $K = 1$ and $N > 1$, it is impossible to paint adjacent houses with different colors. The problem guarantees $K \ge 2$ when $N > 1$.
 
+### Why the Cheapest Color at Each House Is Not the Answer
+
+A learner's first instinct is to paint every house its locally cheapest allowed
+color. The four-house instance punishes that instinct, and the table follows both
+strategies step by step on the same data.
+
+| House $i$ | Greedy choice (cheapest color allowed by the previous row) | Greedy running total | Optimal cumulative from the DP row | Divergence |
+|:---:|:---|:---:|:---:|:---|
+| 0 | Color 0 at cost $1$ | 1 | 1 (color 0) | None yet: color 0 is genuinely best for a single house |
+| 1 | Color 0 is forbidden, so color 1 at cost $3$ | 4 | 4 (color 1) | Still level, but greedy has already spent its cheap color |
+| 2 | Color 1 is forbidden, so color 0 at cost $2$ | 6 | 6 (colors 0 and 1 tied) | Level again, and the tie hides the coming split |
+| 3 | Color 0 is forbidden, so color 1 at cost $2$ | **8** | **7** (color 0, reusing the value $6$) | The optimum finishes on color 0 at cost $1$; greedy is locked out of it |
+
+The failure is visible only at the last house, which is exactly why a local rule
+cannot repair it: choosing color $0$ for house $0$ saves $3$ immediately but
+forces color $1$ at house $3$, where the price is $2$ instead of $1$, and the
+same asymmetry repeats through the middle houses. A second instance shows the
+same trap with a wider margin: on
+$\text{costs} = [[1, 1, 20], [1, 20, 20]]$ the greedy rule pays $1$ then $20$ for
+a total of $21$, while the optimal coloring pays $1$ for color $1$ and then $1$
+for color $0$, for a total of $2$. Keeping both minima lets the method accept a
+slightly worse color now whenever it unlocks a much cheaper color next.
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N \cdot K)$, where $N$ is the number of houses and $K$ is the number of colors. For each of the $N$ houses, we iterate through the $K$ colors exactly once, performing $O(1)$ comparisons and arithmetic operations per cell.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary space. Only three scalar variables ($\text{min}_1$, $\text{idx}_1$, $\text{min}_2$) are maintained across rows.
+
+### Alternatives and Their Costs
+
+The follow-up asks for $O(nk)$ runtime, so every row below is judged against that
+target rather than against the loose sizes used to motivate it. With the stated
+limits $n \le 100$ and $k \le 20$, the naive inner scan performs at most
+$(n - 1) \cdot k \cdot (k - 1) = 37{,}620$ exclusion lookups.
+
+| Strategy | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Exclusion scan per cell | For each color, scan every other color of the previous row for its minimum | $O(n k^2)$ | $O(k)$ for the previous row | Simple and obviously correct, but it is the form the follow-up asks to remove |
+| Dual-minimum tracking (the method traced) | Carry only $\text{min}_1$, $\text{idx}_1$, and $\text{min}_2$ from the previous row | $O(n k)$ | $O(1)$ beyond two rolling rows | Needs $\text{min}_2$ to be the best value at an index other than $\text{idx}_1$, and both minima must come from the same unchanged row |
+| Prefix and suffix minima per row | Precompute $\min$ over the row's prefix and suffix, then each color reads the two neighbours around it | $O(n k)$ | $O(k)$ | Same asymptotic time, but two extra passes and $k$ extra cells, and the arrays must be rebuilt for every house |
+| Sort each row | Sort the previous row's value-index pairs and keep the two smallest | $O(n k \log k)$ | $O(k)$ | Converts a linear scan into a sort; more work than carrying two scalars |
+| Min-heap over the previous row | Pop the smallest; if its index equals the current color, pop the next | $O(n k \log k)$ | $O(k)$ | Handles ties correctly, but pays a logarithm for a comparison that a linear pass already answers |
+
+The dual-minimum method is the only $O(nk)$ strategy that also keeps auxiliary
+space constant, which matters because the state it summarises is exactly two
+numbers per row: the best value and the best value that is still legal when the
+best one is forbidden.
