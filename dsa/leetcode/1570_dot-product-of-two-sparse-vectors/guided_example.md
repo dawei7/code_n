@@ -141,7 +141,7 @@ The table below catalogs every step of the vector construction and the subsequen
 | Init 2 | Scan $\text{nums2}$ | 2 | - | 0 | Skip zero | `{0: 1, 3: 2, 4: 3}` | `{1: 3}` | - | - |
 | Init 2 | Scan $\text{nums2}$ | 3 | - | 4 | Insert $(3, 4)$ | `{0: 1, 3: 2, 4: 3}` | `{1: 3, 3: 4}` | - | - |
 | Init 2 | Scan $\text{nums2}$ | 4 | - | 0 | Skip zero | `{0: 1, 3: 2, 4: 3}` | `{1: 3, 3: 4}` | - | - |
-| Dot | Compare sizes | - | - | - | $\|D_2\| < \|D_1\|$ | Driver: $D_2$ | Target: $D_1$ | - | 0 |
+| Dot | Compare sizes | - | - | - | $\lvert D_2 \rvert < \lvert D_1 \rvert$ | Driver: $D_2$ | Target: $D_1$ | - | 0 |
 | Dot | Query entry 1 | 1 | 0 | 3 | $1 \notin D_1$ | - | - | $3 \times 0 = 0$ | 0 |
 | Dot | Query entry 3 | 3 | 2 | 4 | $3 \in D_1$ | - | - | $4 \times 2 = 8$ | **8** |
 | Finish | Complete | - | - | - | Termination | - | - | Return 8 | 8 |

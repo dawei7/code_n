@@ -134,9 +134,9 @@ All other characters from `'c'` to `'z'` have $C_s(c) = 0$ and $C_t(c) = 0$.
 
 We contrast the target instance against several representative cases to illustrate the generalized formula:
 
-| String $s$ | String $t$ | Length ($N$) | Deficits by Character | Total Positive Deficit | Formula: $\frac{1}{2} \sum \|C_s - C_t\|$ | Result |
+| String $s$ | String $t$ | Length ($N$) | Deficits by Character | Total Positive Deficit | Formula: $\frac{1}{2} \sum \lvert C_s - C_t \rvert$ | Result |
 |---|---|---|---|---|---|---|
-| **`"bab"`** | **`"aba"`** | $3$ | `'b'`: $+1$ | $1$ | $\frac{1}{2} (\|-1\| + \|+1\|) = 1$ | **$1$** |
+| **`"bab"`** | **`"aba"`** | $3$ | `'b'`: $+1$ | $1$ | $\frac{1}{2} (\lvert -1 \rvert + \lvert +1 \rvert) = 1$ | **$1$** |
 | `"leetcode"` | `"practice"` | $8$ | `'d'`: $+1$, `'e'`: $+2$, `'l'`: $+1$, `'o'`: $+1$ | $5$ | $\frac{1}{2} (1+2+1+1 + 1+1+1+1+1) = 5$ | **$5$** |
 | `"anagram"` | `"mangaar"` | $7$ | None | $0$ | $\frac{1}{2} (0) = 0$ | **$0$** |
 | `"xxyyzz"` | `"aabbcc"` | $6$ | `'x'`: $+2$, `'y'`: $+2$, `'z'`: $+2$ | $6$ | $\frac{1}{2} (2+2+2 + 2+2+2) = 6$ | **$6$** |

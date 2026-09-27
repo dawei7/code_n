@@ -106,7 +106,7 @@ Final answer: $2$.
 
 ## 4. Complete Execution Trace
 
-| Iteration | Anchor $i$ ($\text{nums}[i]$) | Left $j$ ($\text{nums}[j]$) | Right $k$ ($\text{nums}[k]$) | Triplet Sum $S$ | Absolute Error $\|S - \text{target}\|$ | Best Sum So Far | Direction Shift | Elimination Rationale |
+| Iteration | Anchor $i$ ($\text{nums}[i]$) | Left $j$ ($\text{nums}[j]$) | Right $k$ ($\text{nums}[k]$) | Triplet Sum $S$ | Absolute Error $\lvert S - \text{target} \rvert$ | Best Sum So Far | Direction Shift | Elimination Rationale |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
 | 1 | 0 ($-4$) | 1 ($-1$) | 3 ($2$) | $-3$ | $\lvert -3 - 1 \rvert = 4$ | $-3$ | $j \leftarrow 2$ | $S < 1$; pairing $-1$ with smaller right elements yields even smaller sums |
 | 2 | 0 ($-4$) | 2 ($1$) | 3 ($2$) | $-1$ | $\lvert -1 - 1 \rvert = 2$ | $-1$ | $j \leftarrow 3$ | $S < 1$; advance left pointer |

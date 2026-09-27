@@ -136,12 +136,12 @@ Minimum absolute difference across all combinations is $\mathbf{0}$.
 
 ## 4. Complete Execution Trace
 
-| Left Sum $l$ | Target Complement $6 - l$ | Bisection Neighbors in $\mathcal{R} = [0, 3, 5, 8]$ | Total Subsequence Sum $l + r$ | Absolute Error $\|(l + r) - 6\|$ | Running Record |
+| Left Sum $l$ | Target Complement $6 - l$ | Bisection Neighbors in $\mathcal{R} = [0, 3, 5, 8]$ | Total Subsequence Sum $l + r$ | Absolute Error $\lvert (l + r) - 6 \rvert$ | Running Record |
 |---|---|---|---|---|---|
-| $-7$ | $13$ | $\mathcal{R}[3] = 8$ | $-7 + 8 = 1$ | $\|1 - 6\| = 5$ | $5$ |
-| **$-2$** | **$8$** | **$\mathcal{R}[3] = 8$** | **$-2 + 8 = 6$** | **$\|6 - 6\| = 0$** | **$0$ (Exact Match)** |
-| $0$ | $6$ | $\mathcal{R}[2] = 5, \mathcal{R}[3] = 8$ | $0 + 5 = 5$ | $\|5 - 6\| = 1$ | $0$ |
-| $5$ | $1$ | $\mathcal{R}[0] = 0, \mathcal{R}[1] = 3$ | $5 + 0 = 5$ | $\|5 - 6\| = 1$ | $0$ |
+| $-7$ | $13$ | $\mathcal{R}[3] = 8$ | $-7 + 8 = 1$ | $\lvert 1 - 6 \rvert = 5$ | $5$ |
+| **$-2$** | **$8$** | **$\mathcal{R}[3] = 8$** | **$-2 + 8 = 6$** | **$\lvert 6 - 6 \rvert = 0$** | **$0$ (Exact Match)** |
+| $0$ | $6$ | $\mathcal{R}[2] = 5, \mathcal{R}[3] = 8$ | $0 + 5 = 5$ | $\lvert 5 - 6 \rvert = 1$ | $0$ |
+| $5$ | $1$ | $\mathcal{R}[0] = 0, \mathcal{R}[1] = 3$ | $5 + 0 = 5$ | $\lvert 5 - 6 \rvert = 1$ | $0$ |
 
 Winning Subsequence: $\{5, -7\}$ from Left, $\{3, 5\}$ from Right $\implies 5 - 7 + 3 + 5 = 6$.
 Output: `0`.

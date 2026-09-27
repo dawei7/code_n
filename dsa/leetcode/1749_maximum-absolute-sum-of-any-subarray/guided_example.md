@@ -118,7 +118,7 @@ Subarray spanning indices $2 \dots 3$ ($nums[2] + nums[3] = 2 + 3 = 5$) matches 
 
 ## 4. Complete Execution Trace
 
-| Index | Element $x$ | Positive Run $f$ | Negative Run $g$ | Step Candidate $\max(f, \|g\|)$ | Global Record $M$ | Best Subarray Identified |
+| Index | Element $x$ | Positive Run $f$ | Negative Run $g$ | Step Candidate $\max(f, \lvert g \rvert)$ | Global Record $M$ | Best Subarray Identified |
 |---|---|---|---|---|---|---|
 | $0$ | $1$ | $1$ | $1$ | $1$ | $1$ | $[1]$ |
 | $1$ | $-3$ | $-2$ | $-3$ | $3$ | $3$ | $[-3]$ |

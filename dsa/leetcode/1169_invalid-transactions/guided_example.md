@@ -51,7 +51,7 @@ $$\text{Invalid}(i) \equiv (amount_i > 1000) \lor \exists j \ne i \left( name_i 
 | Rule Component | Mathematical Condition | Behavioral Implication |
 |---|---|---|
 | Rule 1 (Threshold) | $amount_i > 1000$ | Local check on single transaction; independent of other records |
-| Rule 2 (Collision) | $name_i = name_j \land city_i \ne city_j \land \|time_i - time_j\| \le 60$ | Pairwise relational check; flags both $i$ and $j$ simultaneously |
+| Rule 2 (Collision) | $name_i = name_j \land city_i \ne city_j \land \lvert time_i - time_j \rvert \le 60$ | Pairwise relational check; flags both $i$ and $j$ simultaneously |
 | Same-City Exemption | $city_i = city_j$ | Multiple transactions within 60 mins in the same city are completely valid |
 | Index Set Tracker | $invalid\_indices \subseteq \{0, \dots, N-1\}$ | Set of integers preventing duplicate insertions of the same index |
 
@@ -143,10 +143,10 @@ Transaction $T_3$ (`"bob,60,200,mtv"`) is valid and omitted.
 
 | Index ($i$) | Transaction String | Amount Check ($> 1000$) | Conflicting Pair ($j$) | City Match / Diff | Time Delta ($\le 60$) | Violation Reason | Result Status |
 |---|---|---|---|---|---|---|---|
-| $0$ | `"alice,20,800,mtv"` | $800 \le 1000$ | $T_1$ | `mtv != beijing` | $|20 - 50| = 30$ | Rule 2 (Geo Collision) | **Invalid** |
-| $1$ | `"alice,50,100,beijing"` | $100 \le 1000$ | $T_0$ | `beijing != mtv` | $|50 - 20| = 30$ | Rule 2 (Geo Collision) | **Invalid** |
-| $2$ | `"bob,50,1200,mtv"` | $1200 > 1000$ | None | Same city as $T_3$ | $|50 - 60| = 10$ | Rule 1 (Amount $> 1000$) | **Invalid** |
-| $3$ | `"bob,60,200,mtv"` | $200 \le 1000$ | None | Same city as $T_2$ | $|60 - 50| = 10$ | None (Same city valid) | **Valid** |
+| $0$ | `"alice,20,800,mtv"` | $800 \le 1000$ | $T_1$ | `mtv != beijing` | $\lvert 20 - 50 \rvert = 30$ | Rule 2 (Geo Collision) | **Invalid** |
+| $1$ | `"alice,50,100,beijing"` | $100 \le 1000$ | $T_0$ | `beijing != mtv` | $\lvert 50 - 20 \rvert = 30$ | Rule 2 (Geo Collision) | **Invalid** |
+| $2$ | `"bob,50,1200,mtv"` | $1200 > 1000$ | None | Same city as $T_3$ | $\lvert 50 - 60 \rvert = 10$ | Rule 1 (Amount $> 1000$) | **Invalid** |
+| $3$ | `"bob,60,200,mtv"` | $200 \le 1000$ | None | Same city as $T_2$ | $\lvert 60 - 50 \rvert = 10$ | None (Same city valid) | **Valid** |
 
 ```text
 Geographic Timeline Comparison:
@@ -175,10 +175,10 @@ Bob's Timeline:
 
 | Trap Category | Hazard Scenario | Root Cause | Preventive Design Invariant |
 |---|---|---|---|
-| **One-Sided Blame Fallacy** | Adding only $j$ when $|time_i - time_j| \le 60$ | Assuming only the chronologically later transaction is invalid. | Always add both $i$ and $j$ to the invalid set upon detecting a conflict. |
+| **One-Sided Blame Fallacy** | Adding only $j$ when $\lvert time_i - time_j \rvert \le 60$ | Assuming only the chronologically later transaction is invalid. | Always add both $i$ and $j$ to the invalid set upon detecting a conflict. |
 | **Same-City False Alarm** | Flagging $T_3$ because it is within 10 minutes of $T_2$ | Forgetting to check $city_i \ne city_j$. | Check $city_i \ne city_j$ explicitly. |
 | **String Set Duplicate Collapse** | Input contains two identical invalid strings: `["alice,20,800,mtv", "alice,20,800,mtv"]` | Storing invalid items in a `Set<String>` collapses the two items into one, losing an input element. | Store invalid indices in `Set<Integer>` and look up original strings from the input array. |
-| **Boundary Strictness Error** | Using $|time_i - time_j| < 60$ instead of $\le 60$, or $amount \ge 1000$ instead of $> 1000$ | Misreading "exceeds 1000" as $\ge 1000$, or "within 60 minutes" as $< 60$. | Amount strictly $> 1000$; time difference inclusive $\le 60$. |
+| **Boundary Strictness Error** | Using $\lvert time_i - time_j \rvert < 60$ instead of $\le 60$, or $amount \ge 1000$ instead of $> 1000$ | Misreading "exceeds 1000" as $\ge 1000$, or "within 60 minutes" as $< 60$. | Amount strictly $> 1000$; time difference inclusive $\le 60$. |
 
 ---
 

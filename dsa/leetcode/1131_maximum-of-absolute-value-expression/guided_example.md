@@ -206,7 +206,7 @@ $$
 |---|---|---|---|
 | Minimal Array Length ($N = 2$) | $arr1 = [1, 2], arr2 = [3, 4]$ | Evaluates single pair $(1, 0) \implies 1 + 1 + 1 = 3$. | Off-by-one errors on boundary loop. |
 | Negative Coordinate Ranges | $arr1 = [-10^6], arr2 = [-10^6]$ | Correctly evaluates large positive spreads up to $4 \times 10^6$. | Overflow if not using 64-bit signed integers. |
-| Identical Arrays | $arr1 = [5, 5], arr2 = [5, 5]$ | Coordinate diffs $= 0$; output is $|1 - 0| = 1$. | Forgetting the index difference term $\|i - j\|$. |
+| Identical Arrays | $arr1 = [5, 5], arr2 = [5, 5]$ | Coordinate diffs $= 0$; output is $\lvert 1 - 0 \rvert = 1$. | Forgetting the index difference term $\lvert i - j \rvert$. |
 | Zero Differences | $arr1[i] = arr1[j], arr2[i] = arr2[j]$ | Handled seamlessly; sign multipliers yield zero. | Division by zero or incorrect sign assumptions. |
 | Monotonically Decreasing | $arr1 = [4, 3, 2, 1]$ | Maximal difference achieved between endpoints. | Directional bias in single-pass tracking. |
 

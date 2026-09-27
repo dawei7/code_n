@@ -136,7 +136,7 @@ Both options yield cost $1$. The minimum number of people to teach is $\mathbf{1
 | Tally | Person 1 languages | Knows $\{1\}$ | $C_S[1] = 1$ |
 | Tally | Person 2 languages | Knows $\{2\}$ | $C_S[2] = 1$ |
 | Optimization | $\max C_S[\ell]$ | $\max(C_S[1], C_S[2]) = 1$ | Peak overlap = 1 |
-| Conclusion | Subtract from $\|S\|$ | $\lvert S \rvert - \max C_S = 2 - 1 = 1$ | Result: 1 |
+| Conclusion | Subtract from $\lvert S \rvert$ | $\lvert S \rvert - \max C_S = 2 - 1 = 1$ | Result: 1 |
 
 ---
 
