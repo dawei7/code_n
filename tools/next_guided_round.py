@@ -89,10 +89,23 @@ if len(sys.argv) > 1 and sys.argv[1] == "--settle":
     raise SystemExit(0)
 
 label = sys.argv[1] if len(sys.argv) > 1 else "r"
+# Two independent numbers per kind: the *size* of one batch and the *total*
+# number of packages to hand out this round. Passing a size where a total was
+# meant still runs, but emits one full batch plus a short remainder file - which
+# is how r12_boiler_002 came to hold a single package and r12_tables_002 three.
+# The plan line below makes that visible before any agent is launched.
 boiler_batch = int(sys.argv[2]) if len(sys.argv) > 2 else 6
-boiler_count = int(sys.argv[3]) if len(sys.argv) > 3 else 60
-table_batch = int(sys.argv[4]) if len(sys.argv) > 4 else 12
-table_count = int(sys.argv[5]) if len(sys.argv) > 5 else 120
+boiler_count = int(sys.argv[3]) if len(sys.argv) > 3 else 30
+table_batch = int(sys.argv[4]) if len(sys.argv) > 4 else 8
+table_count = int(sys.argv[5]) if len(sys.argv) > 5 else 40
+
+if boiler_count < boiler_batch or table_count < table_batch:
+    raise SystemExit(
+        f"refusing to run: a total ({boiler_count}, {table_count}) smaller than one "
+        f"batch size ({boiler_batch}, {table_batch}) is almost certainly an "
+        f"argument-order mistake; the signature is "
+        f"<label> <boiler_size> <boiler_total> <table_size> <table_total>"
+    )
 
 inflight = prune(read_ledger())
 write_ledger(inflight)
@@ -116,6 +129,14 @@ print(f"remaining: leaks={len(leaks)} boilerplate={len(boiler)} table_debt={len(
 print(f"  next leak head      : {leaks[:3]}")
 print(f"  next boilerplate head: {boiler[:3]}")
 print(f"  next table head     : {tables[:3]}")
+
+boiler_take = min(boiler_count, len(boiler))
+table_take = min(table_count, len(tables))
+print(
+    f"plan: boilerplate {boiler_take} packages in batches of {boiler_batch} -> "
+    f"{-(-boiler_take // boiler_batch)} file(s); tables {table_take} in batches of "
+    f"{table_batch} -> {-(-table_take // table_batch)} file(s)"
+)
 
 BATCHES.mkdir(parents=True, exist_ok=True)
 assigned: set[str] = set()

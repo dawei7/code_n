@@ -188,6 +188,31 @@ Result: [1, 3, 2, 4, 5, 6]
 | 6 | `next()` | 1 (skipped 0) | $v_2$ (Index 3) | **6** | `[2, 4]` | 0 |
 | **7** | `hasNext()` | 0 | All empty | - | `[2, 4]` | **`False`** |
 
+### The Same Stream Through a Queue of Active Vectors
+
+The rotation loop is not the only way to hold the interleaving state. Storing
+each vector together with its next unread index in a queue makes the turn order
+explicit: the queue front is always the vector whose turn it is, and a vector
+that still has unread elements goes to the back after it emits one. The emitted
+sequence must be identical, because both mechanisms encode the same round-robin
+order.
+
+| Call | Queue Before | `hasNext()` Decision | Popped Entry | Emitted | Re-Queued Entry | Queue After |
+|:---:|:---|:---|:---|:---:|:---|:---|
+| 1 | $(v_1, 0),\ (v_2, 0)$ | Front has unread data | $(v_1, 0)$ | **1** | $(v_1, 1)$, since index 1 is still unread | $(v_2, 0),\ (v_1, 1)$ |
+| 2 | $(v_2, 0),\ (v_1, 1)$ | Front has unread data | $(v_2, 0)$ | **3** | $(v_2, 1)$ | $(v_1, 1),\ (v_2, 1)$ |
+| 3 | $(v_1, 1),\ (v_2, 1)$ | Front has unread data | $(v_1, 1)$ | **2** | None: index 2 equals the length of $v_1$ | $(v_2, 1)$ |
+| 4 | $(v_2, 1)$ | Front has unread data | $(v_2, 1)$ | **4** | $(v_2, 2)$ | $(v_2, 2)$ |
+| 5 | $(v_2, 2)$ | Front has unread data | $(v_2, 2)$ | **5** | $(v_2, 3)$ | $(v_2, 3)$ |
+| 6 | $(v_2, 3)$ | Front has unread data | $(v_2, 3)$ | **6** | None: index 4 equals the length of $v_2$ | empty |
+| 7 | empty | Queue is empty | — | — | — | empty |
+
+The queue view explains the $k$-vector generalization directly: with $k$ vectors
+the front entry is always correct after at most one cleanup, and an exhausted
+vector simply stops re-queuing itself, so it is never inspected again. For the
+two-vector instance, the queue holds at most two entries, which is the same
+$O(1)$ auxiliary state as the index array.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -204,11 +229,46 @@ Result: [1, 3, 2, 4, 5, 6]
 - **Unequal Vector Lengths:** If $v_1$ has 2 elements and $v_2$ has 100 elements, alternating blindly would fail after 2 steps. The rotation loop in `hasNext()` handles unequal lengths and finishes streaming the remainder of $v_2$.
 - **$k$-Vector Scalability:** For $k$ vectors, repeated linear scanning of exhausted vectors in `hasNext()` can take $O(k)$ time. A `collections.deque` storing `(vector, index)` pairs achieves strictly $O(1)$ time for $k$ vectors by removing exhausted vectors from the queue entirely.
 
+### Boundary Census Across Vector Shapes
+
+Every row below was produced by the same rotation protocol with two vectors, and
+the `next()` count is always the total number of stored elements. What changes is
+how much work `hasNext()` does to find a live vector.
+
+| $v_1$ | $v_2$ | Emitted sequence | `next()` calls | `hasNext()` calls | Rotations inside `hasNext()` | What this shape tests |
+|:---|:---|:---|:---:|:---:|:---:|:---|
+| `[]` | `[]` | *(nothing)* | 0 | 1 | 2 | The opening `hasNext()` rotates through both empty vectors and returns `False` on the first call |
+| `[1]` | `[]` | `[1]` | 1 | 2 | 2 | First vector carries the only element; the empty second vector is skipped on its turn |
+| `[]` | `[1]` | `[1]` | 1 | 2 | 3 | First vector is empty at construction, so the very first `hasNext()` must rotate forward before any emission |
+| `[1]` | `[2]` | `[1, 2]` | 2 | 3 | 2 | Minimum non-empty case: one clean alternation and one terminal full cycle |
+| `[1, 2]` | `[3, 4, 5, 6]` | `[1, 3, 2, 4, 5, 6]` | 6 | 7 | 4 | The traced instance: alternation ends early and the longer vector drains |
+| `[1, 2, 3, 4]` | `[9]` | `[1, 9, 2, 3, 4]` | 5 | 6 | 4 | Mirror of the traced instance: the *first* vector drains after the second is exhausted |
+| `[1]` | `[9, 8, 7, 6]` | `[1, 9, 8, 7, 6]` | 5 | 6 | 5 | Longest skip chain: the empty first vector is re-tested on every call, so `hasNext()` rotates twice each time |
+| `[1, 2, 3]` | `[4, 5, 6]` | `[1, 4, 2, 5, 3, 6]` | 6 | 7 | 2 | Equal lengths: no vector is ever skipped, so rotations happen only in the terminal cycle |
+| `[0, 2]` | `[1, 3, 4]` | `[0, 1, 2, 3, 4]` | 5 | 6 | 3 | Odd-length tail: the final unpaired value of $v_2$ is emitted without a partner |
+
+Two invariants are visible in the counts. First, `hasNext()` is called exactly
+once more than `next()`, because the driver loop asks for permission before every
+emission and once more to discover exhaustion. Second, no single `hasNext()` call
+performs more than two rotations for two vectors, since a third rotation would
+return the turn to its starting vector and prove the stream empty. Those two
+facts together are the $O(1)$ per-call argument.
+
+### Strategy Comparison for the Two-Vector Contract
+
+| Strategy | State maintained | Per-call cost | Auxiliary space | Failure mode or tradeoff |
+|:---|:---|:---:|:---:|:---|
+| Index array plus rotating turn (this lesson) | Two read indices and one turn counter | $O(1)$ worst case for two vectors, $O(k)$ in general | $O(k)$ | None for $k = 2$; for large $k$ a call may scan several exhausted vectors before finding a live one |
+| Queue of active vectors | A queue of $(\text{vector}, \text{index})$ entries holding only unfinished vectors | $O(1)$ amortized | $O(k)$ | Exhausted vectors leave the queue permanently, but the queue must be rebuilt for each fresh iteration over the same data |
+| Pre-materialized merge | One flat list of all elements built before the first read | $O(1)$ per read | $O(N_1 + N_2)$ | Destroys the streaming contract: a caller that reads one element still pays for every element and every vector, and a later mutation of the inputs is not observed |
+| Round-robin zip with a fill sentinel | A sentinel value padded onto the shorter vector, filtered out on read | $O(k)$ per step | $O(k)$ | Correct only while the sentinel cannot occur in the data; if a real element equals the sentinel it is silently dropped from the stream |
+| Independent cursors with a modulo sweep without the start check | One cursor per vector advanced by rotation arithmetic only | $O(k)$ | $O(k)$ | The exhaustion test can loop forever: without comparing against the saved starting vector, an all-empty state keeps rotating but never reports `False` |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:**
   - `next()`: $O(1)$ constant time.
-  - `hasNext()`: $O(1)$ amortized time. For 2 vectors, `hasNext()` checks at most 2 entries. Across the entire iteration, each vector is found exhausted at most once.
+  - `hasNext()`: $O(1)$ amortized time. For 2 vectors, a single `hasNext()` call performs at most 2 rotations before either finding a live vector or returning to its starting point, so each call is $O(1)$ in the worst case.
 - **Auxiliary Space Complexity:** $O(1)$ auxiliary memory. Only scalar pointers and an index list of size 2 are maintained.

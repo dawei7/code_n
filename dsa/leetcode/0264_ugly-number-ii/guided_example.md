@@ -203,6 +203,35 @@ Result: 12
 | **8** | $5 \times 2 = \mathbf{10}$ | $4 \times 3 = 12$ | $2 \times 5 = \mathbf{10}$ | **10** | $p_2 \leftarrow 5, \; p_5 \leftarrow 2$ | **10** |
 | **9** | $6 \times 2 = \mathbf{12}$ | $4 \times 3 = \mathbf{12}$ | $3 \times 5 = 15$ | **12** | $p_2 \leftarrow 6, \; p_3 \leftarrow 4$ | **$\mathbf{12}$ ($10^{\text{th}}$ Ugly)** |
 
+### Producer Table: Where Each Value Comes From
+
+The step table shows what happens at each index; the table below inverts the
+view and asks, for each value, which streams are capable of producing it. Every
+value's producing slots are strictly smaller than its own slot, which is the
+dependency that makes the sequence a dynamic program rather than a search.
+
+| Value | Slot `ugly[i]` | From the $\times 2$ stream | From the $\times 3$ stream | From the $\times 5$ stream | Producing streams | Pointers advanced |
+|:---:|:---:|:---|:---|:---|:---:|:---|
+| 2 | 1 | `ugly[0] × 2 = 1 × 2` | — | — | 1 | $p_2$ |
+| 3 | 2 | — | `ugly[0] × 3 = 1 × 3` | — | 1 | $p_3$ |
+| 4 | 3 | `ugly[1] × 2 = 2 × 2` | — | — | 1 | $p_2$ |
+| 5 | 4 | — | — | `ugly[0] × 5 = 1 × 5` | 1 | $p_5$ |
+| 6 | 5 | `ugly[2] × 2 = 3 × 2` | `ugly[1] × 3 = 2 × 3` | — | 2 | $p_2$ and $p_3$ |
+| 8 | 6 | `ugly[3] × 2 = 4 × 2` | — | — | 1 | $p_2$ |
+| 9 | 7 | — | `ugly[2] × 3 = 3 × 3` | — | 1 | $p_3$ |
+| 10 | 8 | `ugly[4] × 2 = 5 × 2` | — | `ugly[1] × 5 = 2 × 5` | 2 | $p_2$ and $p_5$ |
+| 12 | 9 | `ugly[5] × 2 = 6 × 2` | `ugly[3] × 3 = 4 × 3` | — | 2 | $p_2$ and $p_3$ |
+| 15 | 10 | — | `ugly[4] × 3 = 5 × 3` | `ugly[2] × 5 = 3 × 5` | 2 | $p_3$ and $p_5$ |
+| 30 | 17 | `ugly[10] × 2 = 15 × 2` | `ugly[8] × 3 = 10 × 3` | `ugly[5] × 5 = 6 × 5` | 3 | $p_2$, $p_3$ and $p_5$ |
+
+Two conclusions follow directly. First, a value has several producers exactly
+when it admits more than one factorization over $\{2, 3, 5\}$: $6 = 3 \cdot 2 =
+2 \cdot 3$ has two, and $30 = 15 \cdot 2 = 10 \cdot 3 = 6 \cdot 5$ has all three,
+which is why the minimum test must be a sequence of independent comparisons
+rather than a branch chain. Second, ties are the common case rather than a rare
+coincidence: among the $99$ non-unit values in the first hundred entries of the
+sequence, $79$ are produced by more than one stream.
+
 ---
 
 ## 5. Algorithmic Correctness
@@ -219,9 +248,45 @@ Result: 12
 - **Heap Overhead:** A min-heap (priority queue) can also generate ugly numbers, but popping and inserting takes $O(\log K)$ time per element and requires a hash set to deduplicate. The three-pointer DP approach runs in $O(1)$ time per element without any hashing overhead.
 - **32-Bit Overflow in Unbounded Calculations:** For $n = 1690$, the answer is $2,123,366,400$, which fits in a 32-bit signed integer (`INT_MAX` is $2,147,483,647$). In languages like C++, candidate multiplication can temporarily exceed 32 bits, requiring 64-bit `long long` for intermediate products.
 
+### Boundary Table of the Sequence Limits
+
+The values below were produced by the same three-pointer loop the lesson traces.
+They mark where the sequence stops being an arithmetic exercise and starts
+testing the contract.
+
+| Boundary or quantity | Value | What it establishes |
+|:---|:---:|:---|
+| Smallest legal query, $n = 1$ | 1 | The generation loop runs zero times, so the answer is the seeded $\text{ugly}[0]$ and no pointer ever advances |
+| Traced target, $n = 10$ | 12 | Two ties ($6$ and $10$) already occur inside the worked window, so deduplication is exercised by the representative instance |
+| Next entry, $n = 11$ | 15 | $15 = 5 \times 3 = 3 \times 5$ is a tie on the very next step, confirming ties are ordinary rather than exceptional |
+| Authored case, $n = 15$ | 24 | $24 = 12 \times 2 = 8 \times 3$: another double-producing entry, both producers already present in the array |
+| Authored case, $n = 100$ | 1536 | Over this prefix $79$ of the $99$ non-unit values have more than one producer, so a branch chain that advances only one pointer corrupts the sequence early |
+| Largest legal query, $n = 1690$ | 2123366400 | Fits inside a signed 32-bit integer, and is the $1690^{\text{th}}$ of exactly $1691$ ugly numbers below $2^{31}$ |
+| One past the legal range, $n = 1691$ | 2125764000 | Still below `INT_MAX`, so the $1690$ ceiling comes from the problem statement and not from the integer type |
+| Largest live candidate while reaching $n = 1690$ | 8062156800 | Candidate products are not bounded by the answer: they overshoot `INT_MAX` by nearly four times, which is why fixed-width languages need 64-bit intermediates |
+
 ---
 
 ## 7. Complexity Derivation
 
 - **Time Complexity:** $O(N)$, where $N = n$. Each iteration of the loop from $1$ to $n - 1$ computes 3 products, takes the minimum of 3 values, and performs at most 3 pointer increments. All operations in the loop body are strictly $O(1)$. Total time is $O(N)$ linear time.
 - **Auxiliary Space Complexity:** $O(N)$ auxiliary memory to store the array of $n$ ugly numbers.
+
+### Alternatives and Their Costs
+
+Every strategy below reaches the same sequence; they differ in whether they pay a
+logarithm per entry, how many candidates they keep alive, and whether they solve
+only the query that was asked.
+
+| Strategy | Mechanism | Time | Auxiliary space | Tradeoff or failure mode |
+|:---|:---|:---:|:---:|:---|
+| Three-pointer merge (the method traced) | Keep the generated sequence and three indices; take the minimum of the three products and advance every tying pointer | $O(N)$ | $O(N)$ | One comparison per entry and no hashing; the whole correctness burden sits on advancing *all* tied pointers |
+| Min-heap with a seen set | Seed a heap with $1$, repeatedly pop the smallest and push its three products when unseen | $O(N \log N)$ | $O(N)$ | Correct and short, but every push, pop, and membership test costs a logarithm that the three-pointer form avoids |
+| Min-heap without a seen set | Push all three products unconditionally | $O(N \log N)$ with a larger constant | More than $N$ heap entries | The frontier grows by three per pop and tied values are stored repeatedly, so the heap holds many duplicates of the same candidate |
+| Test each integer for ugliness | Count the ugly numbers in increasing order with the factored-residual test until the count reaches $n$ | $O(M)$ where $M$ is the answer value, each test costing $O(\log M)$ | $O(1)$ | At $n = 1690$ it inspects more than two billion integers and discards essentially all of them |
+| Closure over a pre-chosen bound | Build the sorted set of all ugly numbers up to an upper limit, then index into it | $O(u \log u)$ for $u$ values | $O(u)$ | Answers a much larger question than asked, and the limit has to be known before the query is seen |
+
+The three-pointer merge is the only row whose work is proportional to the number
+of entries actually requested, and it is the reason the required bound is $O(N)$
+rather than $O(N \log N)$: the three streams are each already sorted, so the
+merge needs no priority queue to stay in order.

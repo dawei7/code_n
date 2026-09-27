@@ -139,7 +139,7 @@ already settled.
 |:---:|:---:|:---:|:---:|:---:|:---|:---|
 | 0 | Even | $6 \le 5$ | Violated | Swap | `[5, 6, 4, 3, 2, 1]` | No earlier pair exists |
 | 1 | Odd | $6 \ge 4$ | Satisfied | None | `[5, 6, 4, 3, 2, 1]` | $5 \le 6$ still holds |
-| 2 | Even | $4 \le 3$ | Violated | Swap | `[5, 6, 3, 4, 2, 1]` | $6 \ge 3$ still holds: the promoted value $4$ leaves index 1 unchanged |
+| 2 | Even | $4 \le 3$ | Violated | Swap | `[5, 6, 3, 4, 2, 1]` | $6 \ge 3$ still holds: the smaller value $3$ lands at index 2 while index 1 keeps $6$ |
 | 3 | Odd | $4 \ge 2$ | Satisfied | None | `[5, 6, 3, 4, 2, 1]` | $3 \le 4$ still holds |
 | 4 | Even | $2 \le 1$ | Violated | Swap | `[5, 6, 3, 4, 1, 2]` | $4 \ge 1$ still holds |
 | End | — | — | — | — | `[5, 6, 3, 4, 1, 2]` | Full sequence $5 \le 6 \ge 3 \le 4 \ge 1 \le 2$ |
